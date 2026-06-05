@@ -1,6 +1,5 @@
 "use client";
 
-import { useRef } from "react";
 import Link from "next/link";
 import { formatPrice } from "@/lib/cart/CartContext";
 
@@ -13,33 +12,14 @@ export interface VideoFeedItem {
 }
 
 function VideoCard({ item }: { item: VideoFeedItem }) {
-  const ref = useRef<HTMLVideoElement | null>(null);
-
-  const play = () => {
-    const v = ref.current;
-    if (!v) return;
-    v.play().catch(() => {});
-  };
-
-  const stop = () => {
-    const v = ref.current;
-    if (!v) return;
-    v.pause();
-    v.currentTime = 0;
-  };
-
   return (
     <Link
       href={item.href}
-      onMouseEnter={play}
-      onMouseLeave={stop}
-      onFocus={play}
-      onBlur={stop}
       className="group relative block aspect-[3/4] overflow-hidden rounded-sm bg-[#f8f8f8]"
     >
       <video
-        ref={ref}
         className="h-full w-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+        autoPlay
         muted
         loop
         playsInline
