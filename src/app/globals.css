@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #ffffff;
+  --color-foreground: #262626; /* charcoal — softer than pure black */
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+  --font-display: var(--font-display);
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Slightly larger root for more readable body copy across the site */
+  font-size: 106.25%; /* ~17px */
+}
+
+body {
+  background: #fafaf9; /* stone-50 */
+  color: #262626; /* charcoal text for high-contrast, premium feel */
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  line-height: 1.6; /* elegant, airy line-height */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Keep headings tight unless a leading-* utility overrides */
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.18;
+}
+
+/* Visible, on-brand focus ring for keyboard / screen-reader navigation */
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid #b8902f; /* gold accent */
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+.font-serif {
+  font-family: var(--font-serif), Georgia, serif;
+  letter-spacing: -0.015em; /* tighter tracking for sophisticated Hebrew headings */
+}
+
+.font-display {
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
+}
