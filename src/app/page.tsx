@@ -10,14 +10,15 @@ import ShoppableVideoFeed, {
 } from "@/components/ShoppableVideoFeed";
 import { COLLECTIONS, getMockProductByHandle } from "@/lib/mock-data";
 
-// Maps each lifestyle video to the closest matching catalog product.
-// (No exact "Gold Pendant" / "Gold Hoop" products exist yet, so these point
-// to the nearest gold necklace / gold earrings.)
+// Maps each lifestyle video to the product actually shown in the footage.
+// (Verified against a still frame from each clip — the file names are
+// misleading: "gold-hoops" is really the gold bar necklace, "gold-pendant"
+// is the geometric prism pendant.)
 const VIDEO_FEED: { video: string; handle: string }[] = [
   { video: "/videos/silver-hoops-lifestyle.mp4", handle: "silver-hoop-earrings" },
-  { video: "/videos/gold-pendant-lifestyle.mp4", handle: "clean-gold-bar-necklace" },
-  { video: "/videos/geo-pendant-lifestyle.mp4", handle: "geo-pendant-necklace" },
-  { video: "/videos/gold-hoops-lifestyle.mp4", handle: "geo-gold-earrings" },
+  { video: "/videos/gold-pendant-lifestyle.mp4", handle: "geo-pendant-necklace" },
+  { video: "/videos/geo-pendant-lifestyle.mp4", handle: "geo-gold-earrings" },
+  { video: "/videos/gold-hoops-lifestyle.mp4", handle: "clean-gold-bar-necklace" },
 ];
 
 function getVideoFeedItems(): VideoFeedItem[] {
