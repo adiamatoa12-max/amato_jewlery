@@ -43,7 +43,7 @@ export default function ProductCard({ product }: { product: MockProduct }) {
 
   return (
     <article className="group flex flex-col">
-      <div className="relative aspect-[4/5] w-full overflow-hidden rounded-sm">
+      <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-[#fafaf9] transition-all duration-500 ease-in-out group-hover:-translate-y-1 group-hover:shadow-[0_22px_45px_-18px_rgba(0,0,0,0.18)]">
         <Link href={`/product/${product.handle}`} className="absolute inset-0 z-10">
           <span className="sr-only">{product.title}</span>
         </Link>
