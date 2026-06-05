@@ -212,7 +212,7 @@ export const COLLECTIONS: MockCollection[] = [
         availableForSale: true,
         image: "/images/earrings-detail.jpg",
         hoverImage: "/images/earrings-lifestyle.jpg",
-        gallery: ["/images/earrings-detail.jpg", "/images/earrings-lifestyle.jpg"],
+        gallery: ["/images/earrings-detail.jpg"],
         styledImage: "/images/earrings-lifestyle.jpg",
         badge: "new",
       },
