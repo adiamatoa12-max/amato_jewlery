@@ -213,8 +213,8 @@ const FOOTER_LINKS = {
     links: [
       { label: "אודות", href: "/about" },
       { label: "צור קשר", href: "mailto:adiamato119@gmail.com" },
-      { label: "שאלות נפוצות (FAQ)", href: "#" },
-      { label: "מדריך מידות", href: "#" },
+      { label: "שאלות נפוצות (FAQ)", href: "/faq" },
+      { label: "מדריך מידות", href: "/sizing" },
     ],
   },
   policies: {
