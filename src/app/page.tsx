@@ -219,9 +219,9 @@ const FOOTER_LINKS = {
   policies: {
     title: "מדיניות",
     links: [
-      { label: "משלוחים", href: "#" },
-      { label: "החלפות והחזרות", href: "#" },
-      { label: "תקנון האתר", href: "#" },
+      { label: "משלוחים", href: "/shipping" },
+      { label: "החלפות והחזרות", href: "/returns" },
+      { label: "תקנון האתר", href: "/terms" },
     ],
   },
 };
