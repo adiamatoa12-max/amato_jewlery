@@ -3,6 +3,8 @@ import { Assistant, Frank_Ruhl_Libre, Montserrat } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/lib/cart/CartContext";
 import CartDrawer from "@/components/CartDrawer";
+import { InfoProvider } from "@/lib/info/InfoContext";
+import InfoDrawer from "@/components/InfoDrawer";
 import SiteHeader from "@/components/SiteHeader";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -43,11 +45,14 @@ export default function RootLayout({
     >
       <body className="min-h-full bg-stone-50 text-neutral-900">
         <CartProvider>
-          <AnnouncementBar />
-          <SiteHeader />
-          {children}
-          <WhatsAppButton />
-          <CartDrawer />
+          <InfoProvider>
+            <AnnouncementBar />
+            <SiteHeader />
+            {children}
+            <WhatsAppButton />
+            <CartDrawer />
+            <InfoDrawer />
+          </InfoProvider>
         </CartProvider>
       </body>
     </html>

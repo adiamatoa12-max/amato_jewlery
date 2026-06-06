@@ -8,6 +8,7 @@ import EssenceSection from "@/components/EssenceSection";
 import ShoppableVideoFeed, {
   type VideoFeedItem,
 } from "@/components/ShoppableVideoFeed";
+import FooterLink, { type FooterLinkItem } from "@/components/FooterLink";
 import { COLLECTIONS, getMockProductByHandle } from "@/lib/mock-data";
 
 // Maps each lifestyle video to the product actually shown in the footage.
@@ -207,14 +208,17 @@ function NewArrivalsIntro() {
   );
 }
 
-const FOOTER_LINKS = {
+const FOOTER_LINKS: Record<
+  "service" | "policies",
+  { title: string; links: FooterLinkItem[] }
+> = {
   service: {
     title: "שירות לקוחות",
     links: [
       { label: "אודות", href: "/about" },
       { label: "צור קשר", href: "mailto:adiamato119@gmail.com" },
-      { label: "שאלות נפוצות (FAQ)", href: "/faq" },
-      { label: "מדריך מידות", href: "/sizing" },
+      { label: "שאלות נפוצות (FAQ)", panel: "faq" },
+      { label: "מדריך מידות", panel: "sizing" },
     ],
   },
   policies: {
@@ -259,13 +263,7 @@ function Footer() {
                 {col.title}
               </h3>
               {col.links.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className="text-xs text-neutral-500 transition-all duration-500 ease-in-out hover:text-neutral-900"
-                >
-                  {link.label}
-                </Link>
+                <FooterLink key={link.label} item={link} />
               ))}
             </nav>
           ))}
