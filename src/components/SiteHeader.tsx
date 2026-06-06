@@ -98,18 +98,12 @@ export default function SiteHeader() {
       .slice(0, 6);
   }, [query, allProducts]);
 
-  // Transparent only over the homepage hero; a refined dark bar everywhere
-  // else (other pages have light backgrounds where white text would vanish)
-  // and once the user scrolls or opens search.
-  const transparent =
-    pathname === "/" && !scrolled && !searchOpen && !mobileOpen;
-
+  // A solid, dedicated dark band that sits in its own space above the hero —
+  // never overlapping the hero imagery. Deepens its shadow slightly on scroll.
   return (
     <header
-      className={`fixed inset-x-0 top-9 z-50 text-white transition-all duration-500 ease-in-out ${
-        transparent
-          ? "border-b border-transparent bg-transparent"
-          : "border-b border-white/10 bg-black/95 backdrop-blur-md"
+      className={`fixed inset-x-0 top-9 z-50 border-b border-white/10 bg-black text-white backdrop-blur-md transition-shadow duration-500 ease-in-out ${
+        scrolled ? "shadow-lg shadow-black/30" : ""
       }`}
     >
       <div className="mx-auto grid h-20 max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-6 lg:h-[88px] lg:px-10">
