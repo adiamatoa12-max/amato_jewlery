@@ -28,16 +28,16 @@ export default function AnnouncementBar() {
       className="fixed inset-x-0 top-0 z-[60] flex h-7 items-center justify-center overflow-hidden bg-gradient-to-b from-neutral-900 to-black px-4"
       aria-live="polite"
     >
-      <div className="relative h-4 w-full max-w-md">
+      <div className="relative h-5 w-full max-w-md">
         {MESSAGES.map(({ icon: Icon, text }, i) => (
           <p
             key={text}
             aria-hidden={i !== active}
-            className={`absolute inset-0 flex items-center justify-center gap-2 whitespace-nowrap text-center text-[10px] font-light uppercase tracking-[0.26em] text-[#d9c187] transition-opacity duration-700 ease-in-out ${
+            className={`absolute inset-0 flex items-center justify-center gap-2 whitespace-nowrap text-center text-[12px] font-medium uppercase tracking-[0.2em] text-[#f2dd97] transition-opacity duration-700 ease-in-out ${
               i === active ? "opacity-100" : "opacity-0"
             }`}
           >
-            <Icon className="h-3 w-3 shrink-0 text-[#c8a24c]" strokeWidth={1.5} />
+            <Icon className="h-3.5 w-3.5 shrink-0 text-[#f2dd97]" strokeWidth={1.75} />
             <span>{text}</span>
           </p>
         ))}
