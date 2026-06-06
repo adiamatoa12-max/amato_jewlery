@@ -27,6 +27,17 @@ import type { Product as ShopifyProduct } from "./shopify/types";
 
 const DEFAULT_MATERIAL = "כסף סטרלינג 925 איכותי בציפוי זהב 14 קראט";
 
+/**
+ * Log a Shopify failure and signal that we're serving the bundled catalog
+ * instead, so a Shopify outage / unavailable store never takes the site down.
+ */
+function warnFallback(op: string, error: unknown) {
+  const message = error instanceof Error ? error.message : String(error);
+  console.warn(
+    `[catalog] Shopify "${op}" failed — serving bundled catalog. ${message}`,
+  );
+}
+
 /** True only when real (non-placeholder) Shopify credentials are configured. */
 export function isShopifyLive(): boolean {
   const domain = process.env.SHOPIFY_STORE_DOMAIN;
@@ -83,12 +94,17 @@ export async function getCollections(): Promise<MockCollection[]> {
     tagline,
   }));
 
-  return Promise.all(
-    metas.map(async (m) => {
-      const products = await getCollectionProducts(m.handle, 12);
-      return { ...m, products: products.map(adapt) } satisfies MockCollection;
-    }),
-  );
+  try {
+    return await Promise.all(
+      metas.map(async (m) => {
+        const products = await getCollectionProducts(m.handle, 12);
+        return { ...m, products: products.map(adapt) } satisfies MockCollection;
+      }),
+    );
+  } catch (error) {
+    warnFallback("getCollections", error);
+    return COLLECTIONS;
+  }
 }
 
 export async function getProduct(
@@ -96,29 +112,46 @@ export async function getProduct(
 ): Promise<MockProductWithCollection | null> {
   if (!isShopifyLive()) return getMockProductByHandle(handle);
 
-  const p = await getProductByHandle(handle);
-  if (!p) return null;
-  // Breadcrumb collection context isn't fetched per-product yet; link home.
-  return { ...adapt(p), collectionTitle: "AMATO", collectionHandle: "" };
+  try {
+    const p = await getProductByHandle(handle);
+    if (!p) return null;
+    // Breadcrumb collection context isn't fetched per-product yet; link home.
+    return { ...adapt(p), collectionTitle: "AMATO", collectionHandle: "" };
+  } catch (error) {
+    warnFallback("getProduct", error);
+    return getMockProductByHandle(handle);
+  }
 }
 
 export async function getAllHandles(): Promise<string[]> {
   if (!isShopifyLive()) return getAllMockHandles();
-  const products = await getProducts({ first: 100 });
-  return products.map((p) => p.handle);
+  try {
+    const products = await getProducts({ first: 100 });
+    return products.map((p) => p.handle);
+  } catch (error) {
+    warnFallback("getAllHandles", error);
+    return getAllMockHandles();
+  }
+}
+
+function searchMock(query: string): MockProduct[] {
+  const needle = query.toLowerCase();
+  return COLLECTIONS.flatMap((c) => c.products)
+    .filter((p) => p.title.toLowerCase().includes(needle))
+    .slice(0, 6);
 }
 
 export async function searchProducts(query: string): Promise<MockProduct[]> {
   const q = query.trim();
   if (!q) return [];
 
-  if (!isShopifyLive()) {
-    const needle = q.toLowerCase();
-    return COLLECTIONS.flatMap((c) => c.products)
-      .filter((p) => p.title.toLowerCase().includes(needle))
-      .slice(0, 6);
-  }
+  if (!isShopifyLive()) return searchMock(q);
 
-  const products = await getProducts({ first: 6, query: q });
-  return products.map(adapt);
+  try {
+    const products = await getProducts({ first: 6, query: q });
+    return products.map(adapt);
+  } catch (error) {
+    warnFallback("searchProducts", error);
+    return searchMock(q);
+  }
 }
