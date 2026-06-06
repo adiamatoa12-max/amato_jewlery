@@ -107,8 +107,63 @@ export default function SiteHeader() {
       }`}
     >
       <div className="mx-auto grid h-20 max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-6 lg:h-[5.5rem] lg:px-10">
-        {/* Start cell (right in RTL): hamburger + primary nav */}
-        <div className="flex items-center justify-start">
+        {/* Start cell (right in RTL, leading): logo */}
+        <Link
+          href="/"
+          aria-label="AMATO — דף הבית"
+          className="relative h-9 w-28 justify-self-start transition-all duration-500 ease-in-out hover:opacity-80 lg:h-10 lg:w-32"
+        >
+          <Image
+            src="/images/logo.jpg"
+            alt="AMATO"
+            fill
+            priority
+            sizes="128px"
+            className="object-cover object-center mix-blend-screen"
+          />
+        </Link>
+
+        {/* Center cell: primary nav */}
+        <nav className="hidden items-center justify-self-center gap-10 text-[11px] font-light tracking-[0.18em] md:flex">
+          {NAV_MENU.map((group) => (
+            <div key={group.label} className="group relative">
+              <Link
+                href={group.href}
+                className="flex items-center gap-1.5 py-8 transition-all duration-500 ease-in-out group-hover:opacity-60"
+              >
+                {group.label}
+                <ChevronDown
+                  className="h-3 w-3 transition-transform duration-300 ease-in-out group-hover:rotate-180"
+                  strokeWidth={1.5}
+                />
+              </Link>
+
+              {/* Hover dropdown panel */}
+              <div className="invisible absolute right-1/2 top-full z-50 min-w-[220px] translate-x-1/2 translate-y-1 opacity-0 transition-all duration-300 ease-in-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                <div className="overflow-hidden rounded-sm border border-stone-200/70 bg-white py-2 shadow-xl shadow-black/10">
+                  {group.links.map((link) => (
+                    <Link
+                      key={link.label}
+                      href={link.href}
+                      className="block px-6 py-2.5 text-center text-[13px] tracking-[0.06em] text-neutral-600 transition-all duration-300 ease-in-out hover:bg-stone-50 hover:text-neutral-900"
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+          <Link
+            href="/about"
+            className="py-8 transition-all duration-500 ease-in-out hover:opacity-60"
+          >
+            אודות
+          </Link>
+        </nav>
+
+        {/* End cell (left in RTL): icons + mobile menu toggle */}
+        <div className="flex items-center justify-end gap-6">
           <button
             type="button"
             onClick={() => setMobileOpen((o) => !o)}
@@ -122,64 +177,6 @@ export default function SiteHeader() {
               <Menu className="h-6 w-6" strokeWidth={1.5} />
             )}
           </button>
-
-          <nav className="hidden items-center gap-10 text-[11px] font-light tracking-[0.18em] md:flex">
-            {NAV_MENU.map((group) => (
-              <div key={group.label} className="group relative">
-                <Link
-                  href={group.href}
-                  className="flex items-center gap-1.5 py-8 transition-all duration-500 ease-in-out group-hover:opacity-60"
-                >
-                  {group.label}
-                  <ChevronDown
-                    className="h-3 w-3 transition-transform duration-300 ease-in-out group-hover:rotate-180"
-                    strokeWidth={1.5}
-                  />
-                </Link>
-
-                {/* Hover dropdown panel */}
-                <div className="invisible absolute right-1/2 top-full z-50 min-w-[220px] translate-x-1/2 translate-y-1 opacity-0 transition-all duration-300 ease-in-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-                  <div className="overflow-hidden rounded-sm border border-stone-200/70 bg-white py-2 shadow-xl shadow-black/10">
-                    {group.links.map((link) => (
-                      <Link
-                        key={link.label}
-                        href={link.href}
-                        className="block px-6 py-2.5 text-center text-[13px] tracking-[0.06em] text-neutral-600 transition-all duration-300 ease-in-out hover:bg-stone-50 hover:text-neutral-900"
-                      >
-                        {link.label}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-            <Link
-              href="/about"
-              className="py-8 transition-all duration-500 ease-in-out hover:opacity-60"
-            >
-              אודות
-            </Link>
-          </nav>
-        </div>
-
-        {/* Center cell: logo */}
-        <Link
-          href="/"
-          aria-label="AMATO — דף הבית"
-          className="relative h-9 w-28 justify-self-center transition-all duration-500 ease-in-out hover:opacity-80 lg:h-10 lg:w-32"
-        >
-          <Image
-            src="/images/logo.jpg"
-            alt="AMATO"
-            fill
-            priority
-            sizes="128px"
-            className="object-cover object-center mix-blend-screen"
-          />
-        </Link>
-
-        {/* End cell (left in RTL): icons */}
-        <div className="flex items-center justify-end gap-6">
           <button
             type="button"
             aria-label={searchOpen ? "סגירת חיפוש" : "חיפוש"}
