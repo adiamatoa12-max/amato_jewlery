@@ -124,7 +124,7 @@ export default function SiteHeader() {
         </Link>
 
         {/* Center cell: primary nav */}
-        <nav className="hidden items-center justify-self-center gap-10 text-[11px] font-light tracking-[0.18em] md:flex">
+        <nav className="hidden items-center justify-self-center gap-10 font-sans text-[12px] font-medium tracking-[0.24em] text-white md:flex lg:gap-14">
           {NAV_MENU.map((group) => (
             <div key={group.label} className="group relative">
               <Link
@@ -145,7 +145,7 @@ export default function SiteHeader() {
                     <Link
                       key={link.label}
                       href={link.href}
-                      className="block px-6 py-2.5 text-center text-[13px] tracking-[0.06em] text-neutral-600 transition-all duration-300 ease-in-out hover:bg-stone-50 hover:text-neutral-900"
+                      className="block px-6 py-2.5 text-center font-sans text-[13px] tracking-[0.12em] text-neutral-700 transition-all duration-300 ease-in-out hover:bg-stone-50 hover:text-neutral-900"
                     >
                       {link.label}
                     </Link>
