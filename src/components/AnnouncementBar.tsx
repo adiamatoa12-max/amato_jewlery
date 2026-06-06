@@ -25,7 +25,7 @@ export default function AnnouncementBar() {
 
   return (
     <div
-      className="fixed inset-x-0 top-0 z-[60] flex h-9 items-center justify-center overflow-hidden bg-gradient-to-b from-neutral-900 to-black px-4"
+      className="fixed inset-x-0 top-0 z-[60] flex h-7 items-center justify-center overflow-hidden bg-gradient-to-b from-neutral-900 to-black px-4"
       aria-live="polite"
     >
       <div className="relative h-4 w-full max-w-md">

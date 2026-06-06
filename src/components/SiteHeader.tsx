@@ -102,16 +102,16 @@ export default function SiteHeader() {
   // never overlapping the hero imagery. Deepens its shadow slightly on scroll.
   return (
     <header
-      className={`fixed inset-x-0 top-9 z-50 bg-black text-white transition-shadow duration-500 ease-in-out ${
+      className={`fixed inset-x-0 top-7 z-50 bg-black text-white transition-shadow duration-500 ease-in-out ${
         scrolled ? "shadow-lg shadow-black/30" : ""
       }`}
     >
-      <div className="mx-auto grid h-20 max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-6 lg:h-[5.5rem] lg:px-10">
+      <div className="mx-auto grid h-16 max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-6 lg:px-10">
         {/* Start cell (right in RTL, leading): logo */}
         <Link
           href="/"
           aria-label="AMATO — דף הבית"
-          className="relative h-9 w-28 justify-self-start transition-all duration-500 ease-in-out hover:opacity-80 lg:h-10 lg:w-32"
+          className="relative h-8 w-24 justify-self-start transition-all duration-500 ease-in-out hover:opacity-80 lg:h-9 lg:w-28"
         >
           <Image
             src="/images/logo.jpg"
@@ -129,7 +129,7 @@ export default function SiteHeader() {
             <div key={group.label} className="group relative">
               <Link
                 href={group.href}
-                className="flex items-center gap-1.5 py-8 transition-all duration-500 ease-in-out group-hover:opacity-60"
+                className="flex items-center gap-1.5 py-6 transition-all duration-500 ease-in-out group-hover:opacity-60"
               >
                 {group.label}
                 <ChevronDown
@@ -156,7 +156,7 @@ export default function SiteHeader() {
           ))}
           <Link
             href="/about"
-            className="py-8 transition-all duration-500 ease-in-out hover:opacity-60"
+            className="py-6 transition-all duration-500 ease-in-out hover:opacity-60"
           >
             אודות
           </Link>
@@ -214,7 +214,7 @@ export default function SiteHeader() {
             : "pointer-events-none max-h-0 border-t-0 opacity-0"
         }`}
       >
-        <div className="mx-auto max-w-3xl px-6 py-8 lg:py-10">
+        <div className="mx-auto max-w-3xl px-6 py-6 lg:py-8">
           <form
             onSubmit={(e) => e.preventDefault()}
             className="flex items-center gap-3 border-b border-white/25 pb-3"
@@ -279,14 +279,14 @@ export default function SiteHeader() {
           aria-label="סגירת תפריט"
           tabIndex={mobileOpen ? 0 : -1}
           onClick={() => setMobileOpen(false)}
-          className={`fixed inset-x-0 bottom-0 top-[7.25rem] z-40 bg-black/40 transition-opacity duration-300 ${
+          className={`fixed inset-x-0 bottom-0 top-[5.75rem] z-40 bg-black/40 transition-opacity duration-300 ${
             mobileOpen ? "opacity-100" : "opacity-0"
           }`}
         />
 
         {/* Panel */}
         <nav
-          className={`fixed inset-x-0 top-[7.25rem] z-40 max-h-[calc(100vh-7.25rem)] overflow-y-auto border-t border-white/10 bg-black/95 backdrop-blur-md transition-all duration-300 ease-in-out ${
+          className={`fixed inset-x-0 top-[5.75rem] z-40 max-h-[calc(100vh-5.75rem)] overflow-y-auto border-t border-white/10 bg-black/95 backdrop-blur-md transition-all duration-300 ease-in-out ${
             mobileOpen
               ? "translate-y-0 opacity-100"
               : "-translate-y-3 opacity-0"
