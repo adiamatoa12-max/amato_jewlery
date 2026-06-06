@@ -1,11 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import ProductDetails from "@/components/ProductDetails";
 import type { AddToCartInput } from "@/lib/cart/CartContext";
-
-export type Plating = "gold" | "silver";
 
 interface ProductViewProps {
   product: AddToCartInput & {
@@ -28,14 +25,6 @@ export default function ProductView({
   collectionTitle,
   collectionHandle,
 }: ProductViewProps) {
-  const [plating, setPlating] = useState<Plating>("gold");
-
-  // Silver simulates the alternate plating by neutralizing the gold tone.
-  const variantClass =
-    plating === "silver"
-      ? "[filter:grayscale(1)_brightness(1.12)_contrast(1.03)]"
-      : "";
-
   const gallery =
     product.gallery && product.gallery.length > 0
       ? product.gallery
@@ -60,7 +49,7 @@ export default function ProductView({
                 priority={i === 0}
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className={`transition-all duration-700 ease-in-out group-hover:scale-105 ${
-                  photo ? "object-cover" : `object-contain p-8 ${variantClass}`
+                  photo ? "object-cover" : "object-contain p-8"
                 }`}
               />
             </div>
@@ -73,8 +62,6 @@ export default function ProductView({
         soldOut={soldOut}
         collectionTitle={collectionTitle}
         collectionHandle={collectionHandle}
-        plating={plating}
-        onPlatingChange={setPlating}
         product={product}
       />
     </div>

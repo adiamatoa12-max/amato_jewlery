@@ -18,14 +18,7 @@ interface ProductDetailsProps {
   soldOut: boolean;
   collectionTitle: string;
   collectionHandle: string;
-  plating: string;
-  onPlatingChange: (plating: "gold" | "silver") => void;
 }
-
-const PLATINGS = [
-  { id: "gold", label: "זהב", className: "bg-gradient-to-br from-[#e6c878] to-[#b8902f]" },
-  { id: "silver", label: "כסף", className: "bg-gradient-to-br from-[#e8e8e8] to-[#a9a9a9]" },
-] as const;
 
 const TRUST_BADGES = [
   { icon: Truck, label: "משלוח חינם", sub: "בקנייה מעל 299 ₪" },
@@ -39,8 +32,6 @@ export default function ProductDetails({
   soldOut,
   collectionTitle,
   collectionHandle,
-  plating,
-  onPlatingChange,
 }: ProductDetailsProps) {
   const { addItem } = useCart();
   const [wishlisted, setWishlisted] = useState(false);
@@ -76,29 +67,6 @@ export default function ProductDetails({
       <p className="mt-5 text-2xl tabular-nums text-neutral-900">
         {formatPrice(product.price, product.currency)}
       </p>
-
-      {/* Plating swatches */}
-      <div className="mt-9">
-        <p className="text-xs tracking-[0.12em] text-neutral-500">
-          סוג ציפוי: <span className="text-neutral-900">{PLATINGS.find((p) => p.id === plating)?.label}</span>
-        </p>
-        <div className="mt-3 flex gap-3">
-          {PLATINGS.map((p) => (
-            <button
-              key={p.id}
-              type="button"
-              onClick={() => onPlatingChange(p.id)}
-              aria-label={p.label}
-              aria-pressed={plating === p.id}
-              className={`h-9 w-9 rounded-full ${p.className} ring-1 ring-stone-300 transition-all duration-300 ease-in-out ${
-                plating === p.id
-                  ? "ring-2 ring-offset-2 ring-neutral-900"
-                  : "hover:ring-neutral-400"
-              }`}
-            />
-          ))}
-        </div>
-      </div>
 
       {/* Stock status */}
       <p className="mt-7 flex items-center gap-2 text-xs tracking-[0.08em] text-emerald-600">
