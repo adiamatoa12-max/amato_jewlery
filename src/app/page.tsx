@@ -257,7 +257,7 @@ function Footer() {
   return (
     <footer className="border-t border-stone-200/70 bg-stone-50">
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-20">
-        <div className="grid grid-cols-2 gap-10 lg:grid-cols-4 lg:gap-12">
+        <div className="grid grid-cols-2 gap-x-10 gap-y-12 lg:grid-cols-4 lg:gap-x-12">
           {/* Brand */}
           <div className="col-span-2 lg:col-span-1">
             <span className="font-serif text-xl tracking-[0.35em] text-neutral-900">
@@ -270,13 +270,15 @@ function Footer() {
 
           {/* Link columns */}
           {[FOOTER_LINKS.service, FOOTER_LINKS.policies].map((col) => (
-            <nav key={col.title} className="flex flex-col gap-3">
+            <nav key={col.title} className="flex flex-col">
               <h3 className="text-xs font-medium tracking-[0.16em] text-neutral-900">
                 {col.title}
               </h3>
-              {col.links.map((link) => (
-                <FooterLink key={link.label} item={link} />
-              ))}
+              <div className="mt-4 flex flex-col gap-3">
+                {col.links.map((link) => (
+                  <FooterLink key={link.label} item={link} />
+                ))}
+              </div>
             </nav>
           ))}
 
@@ -285,7 +287,7 @@ function Footer() {
             <h3 className="text-xs font-medium tracking-[0.16em] text-neutral-900">
               הצטרפו ל-AMATO
             </h3>
-            <p className="mt-3 text-xs leading-relaxed text-neutral-500">
+            <p className="mt-4 text-xs leading-relaxed text-neutral-500">
               גישה מוקדמת לפריטים חדשים ותצוגות מקדימות של קולקציות.
             </p>
             <form className="mt-5 flex items-center border-b border-neutral-300 pb-2">
@@ -307,7 +309,7 @@ function Footer() {
         {/* Bottom bar — social (left) · copyright (center) · payments (right) */}
         <div className="mt-14 grid grid-cols-1 items-center gap-6 border-t border-stone-200/70 pt-8 sm:grid-cols-3">
           {/* Left: social */}
-          <div className="flex justify-center gap-4 text-neutral-700 sm:justify-start">
+          <div className="flex items-center justify-center gap-4 text-neutral-600 sm:justify-start">
             <a
               href="https://www.instagram.com/amato.jewelry/"
               target="_blank"
@@ -315,14 +317,14 @@ function Footer() {
               aria-label="Instagram"
               className="transition-all duration-500 ease-in-out hover:text-neutral-900"
             >
-              <Instagram className="h-5 w-5" strokeWidth={1.5} />
+              <Instagram className="h-[18px] w-[18px]" strokeWidth={1.5} />
             </a>
             <a
               href="#"
               aria-label="TikTok"
-              className="transition-all duration-500 ease-in-out hover:text-neutral-900"
+              className="flex items-center transition-all duration-500 ease-in-out hover:text-neutral-900"
             >
-              <TikTokIcon className="h-5 w-5" />
+              <TikTokIcon className="h-[18px] w-[18px]" />
             </a>
           </div>
 
@@ -332,11 +334,11 @@ function Footer() {
           </span>
 
           {/* Right: payments */}
-          <div className="flex flex-wrap items-center justify-center gap-2 sm:justify-end">
+          <div className="flex flex-wrap items-center justify-center gap-1.5 sm:justify-end">
             {PAYMENTS.map((p) => (
               <span
                 key={p}
-                className="rounded-sm border border-stone-200 bg-white px-2.5 py-1 text-[10px] font-medium tracking-[0.06em] text-neutral-500"
+                className="inline-flex h-6 items-center rounded-sm border border-stone-200 bg-white px-2 text-[9px] font-medium tracking-[0.06em] text-neutral-500"
               >
                 {p}
               </span>
