@@ -139,6 +139,20 @@ export async function getCollections(): Promise<MockCollection[]> {
   }
 }
 
+/** Live products (view-model), newest first, for featured sections. */
+export async function getFeaturedProducts(limit = 4): Promise<MockProduct[]> {
+  if (!isShopifyLive()) {
+    return COLLECTIONS.flatMap((c) => c.products).slice(0, limit);
+  }
+  try {
+    const products = await getProducts({ first: limit });
+    return products.map(adapt);
+  } catch (error) {
+    warnFallback("getFeaturedProducts", error);
+    return COLLECTIONS.flatMap((c) => c.products).slice(0, limit);
+  }
+}
+
 export async function getProduct(
   handle: string,
 ): Promise<MockProductWithCollection | null> {

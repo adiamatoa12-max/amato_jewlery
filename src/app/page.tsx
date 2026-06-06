@@ -9,29 +9,27 @@ import ShoppableVideoFeed, {
   type VideoFeedItem,
 } from "@/components/ShoppableVideoFeed";
 import FooterLink, { type FooterLinkItem } from "@/components/FooterLink";
-import { COLLECTIONS, getMockProductByHandle } from "@/lib/mock-data";
-import { getCollections } from "@/lib/catalog";
+import { COLLECTIONS } from "@/lib/mock-data";
+import { getCollections, getFeaturedProducts } from "@/lib/catalog";
 
-// The "In Motion" lifestyle videos are a curated, static showcase — their
-// labels/prices come from the bundled catalog so they always render alongside
-// the live Shopify product grid. (Verified against a still frame from each
-// clip: "gold-hoops" is really the gold bar necklace, "gold-pendant" the
-// geometric prism pendant.)
-const VIDEO_FEED: { video: string; handle: string }[] = [
-  { video: "/videos/silver-hoops-lifestyle.mp4", handle: "silver-hoop-earrings" },
-  { video: "/videos/gold-pendant-lifestyle.mp4", handle: "geo-pendant-necklace" },
-  { video: "/videos/geo-pendant-lifestyle.mp4", handle: "geo-gold-earrings" },
-  { video: "/videos/gold-hoops-lifestyle.mp4", handle: "clean-gold-bar-necklace" },
+// The "In Motion" lifestyle clips. Each video is paired (by order) with one of
+// your live Shopify products, so its title/price/URL come straight from Shopify.
+const VIDEO_FILES = [
+  "/videos/silver-hoops-lifestyle.mp4",
+  "/videos/gold-pendant-lifestyle.mp4",
+  "/videos/geo-pendant-lifestyle.mp4",
+  "/videos/gold-hoops-lifestyle.mp4",
 ];
 
-function getVideoFeedItems(): VideoFeedItem[] {
-  return VIDEO_FEED.flatMap(({ video, handle }) => {
-    const product = getMockProductByHandle(handle);
+async function getVideoFeedItems(): Promise<VideoFeedItem[]> {
+  const products = await getFeaturedProducts(VIDEO_FILES.length);
+  return VIDEO_FILES.flatMap((video, i) => {
+    const product = products[i];
     if (!product) return [];
     return [
       {
         video,
-        href: `/product/${handle}`,
+        href: `/product/${product.handle}`,
         title: product.title,
         price: product.price,
         currency: product.currency,
@@ -41,8 +39,10 @@ function getVideoFeedItems(): VideoFeedItem[] {
 }
 
 export default async function Home() {
-  const collections = await getCollections();
-  const videoItems = getVideoFeedItems();
+  const [collections, videoItems] = await Promise.all([
+    getCollections(),
+    getVideoFeedItems(),
+  ]);
 
   return (
     // Reserve the fixed announcement + header band (top-7 + h-14 = 5.25rem)
