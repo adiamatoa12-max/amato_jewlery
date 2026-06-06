@@ -107,24 +107,54 @@ export default function SiteHeader() {
       }`}
     >
       <div className="mx-auto grid h-16 max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-6 lg:px-10">
-        {/* Start cell (right in RTL, leading): logo */}
-        <Link
-          href="/"
-          aria-label="AMATO — דף הבית"
-          className="relative h-8 w-24 justify-self-start transition-all duration-500 ease-in-out hover:opacity-80 lg:h-9 lg:w-28"
-        >
-          <Image
-            src="/images/logo.jpg"
-            alt="AMATO"
-            fill
-            priority
-            sizes="128px"
-            className="object-cover object-center mix-blend-screen"
-          />
-        </Link>
+        {/* Start cell (right in RTL): menu toggle on mobile, logo on desktop */}
+        <div className="flex items-center justify-self-start">
+          <button
+            type="button"
+            onClick={() => setMobileOpen((o) => !o)}
+            className="-m-2 flex items-center p-2 transition-all duration-500 ease-in-out hover:opacity-60 md:hidden"
+            aria-label={mobileOpen ? "סגירת תפריט" : "תפריט"}
+            aria-expanded={mobileOpen}
+          >
+            {mobileOpen ? (
+              <X className="h-6 w-6" strokeWidth={1.5} />
+            ) : (
+              <Menu className="h-6 w-6" strokeWidth={1.5} />
+            )}
+          </button>
+          <Link
+            href="/"
+            aria-label="AMATO — דף הבית"
+            className="relative hidden h-9 w-28 transition-all duration-500 ease-in-out hover:opacity-80 md:block"
+          >
+            <Image
+              src="/images/logo.jpg"
+              alt="AMATO"
+              fill
+              priority
+              sizes="128px"
+              className="object-cover object-center mix-blend-screen"
+            />
+          </Link>
+        </div>
 
-        {/* Center cell: primary nav */}
-        <nav className="hidden items-center justify-self-center gap-10 font-sans text-[12px] font-medium tracking-[0.24em] text-white md:flex lg:gap-14">
+        {/* Center cell: logo on mobile, primary nav on desktop */}
+        <div className="flex items-center justify-self-center">
+          <Link
+            href="/"
+            aria-label="AMATO — דף הבית"
+            className="relative h-8 w-24 transition-all duration-500 ease-in-out hover:opacity-80 md:hidden"
+          >
+            <Image
+              src="/images/logo.jpg"
+              alt="AMATO"
+              fill
+              priority
+              sizes="96px"
+              className="object-cover object-center mix-blend-screen"
+            />
+          </Link>
+          <nav className="hidden items-center gap-10 font-sans text-[12px] font-medium tracking-[0.24em] text-white md:flex lg:gap-14">
           {NAV_MENU.map((group) => (
             <div key={group.label} className="group relative">
               <Link
@@ -160,23 +190,11 @@ export default function SiteHeader() {
           >
             אודות
           </Link>
-        </nav>
+          </nav>
+        </div>
 
-        {/* End cell (left in RTL): icons + mobile menu toggle */}
+        {/* End cell (left in RTL): search + cart icons */}
         <div className="flex items-center justify-end gap-6">
-          <button
-            type="button"
-            onClick={() => setMobileOpen((o) => !o)}
-            className="-m-2 flex items-center p-2 transition-all duration-500 ease-in-out hover:opacity-60 md:hidden"
-            aria-label={mobileOpen ? "סגירת תפריט" : "תפריט"}
-            aria-expanded={mobileOpen}
-          >
-            {mobileOpen ? (
-              <X className="h-6 w-6" strokeWidth={1.5} />
-            ) : (
-              <Menu className="h-6 w-6" strokeWidth={1.5} />
-            )}
-          </button>
           <button
             type="button"
             aria-label={searchOpen ? "סגירת חיפוש" : "חיפוש"}
