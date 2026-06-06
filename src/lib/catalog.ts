@@ -89,20 +89,50 @@ export async function getCollections(): Promise<MockCollection[]> {
   if (!isShopifyLive()) return COLLECTIONS;
 
   try {
-    const collections = await getShopifyCollections(20);
-    const withProducts = await Promise.all(
-      collections.map(async (c) => {
-        const products = await getCollectionProducts(c.handle, 12);
-        return {
-          handle: c.handle,
-          title: c.title,
-          enTitle: c.title,
-          tagline: c.description ?? "",
-          products: products.map(adapt),
-        } satisfies MockCollection;
-      }),
+    const [collections, allShopify] = await Promise.all([
+      getShopifyCollections(20),
+      getProducts({ first: 100 }),
+    ]);
+
+    const discovered = (
+      await Promise.all(
+        collections.map(async (c) => {
+          const products = await getCollectionProducts(c.handle, 50);
+          return {
+            handle: c.handle,
+            title: c.title,
+            enTitle: c.title,
+            tagline: c.description ?? "",
+            products: products.map(adapt),
+          } satisfies MockCollection;
+        }),
+      )
+    ).filter((c) => c.products.length > 0);
+
+    const allProducts = allShopify.map(adapt);
+
+    // No products at all → just return whatever (possibly empty) collections.
+    if (allProducts.length === 0) return discovered;
+
+    // If every product already lives in a discovered collection, show the
+    // curated multi-section view.
+    const covered = new Set(
+      discovered.flatMap((c) => c.products.map((p) => p.handle)),
     );
-    return withProducts.filter((c) => c.products.length > 0);
+    const everythingCovered = allProducts.every((p) => covered.has(p.handle));
+    if (discovered.length > 0 && everythingCovered) return discovered;
+
+    // Otherwise some products are uncategorized — show a single comprehensive
+    // grid so nothing is ever hidden.
+    return [
+      {
+        handle: "all-products",
+        title: "כל המוצרים",
+        enTitle: "ALL PRODUCTS",
+        tagline: "",
+        products: allProducts,
+      } satisfies MockCollection,
+    ];
   } catch (error) {
     warnFallback("getCollections", error);
     return COLLECTIONS;
