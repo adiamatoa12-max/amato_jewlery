@@ -102,11 +102,11 @@ export default function SiteHeader() {
   // never overlapping the hero imagery. Deepens its shadow slightly on scroll.
   return (
     <header
-      className={`fixed inset-x-0 top-9 z-50 border-b border-white/10 bg-black text-white backdrop-blur-md transition-shadow duration-500 ease-in-out ${
+      className={`fixed inset-x-0 top-9 z-50 bg-black text-white transition-shadow duration-500 ease-in-out ${
         scrolled ? "shadow-lg shadow-black/30" : ""
       }`}
     >
-      <div className="mx-auto grid h-20 max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-6 lg:h-[88px] lg:px-10">
+      <div className="mx-auto grid h-20 max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-6 lg:h-[5.5rem] lg:px-10">
         {/* Start cell (right in RTL): hamburger + primary nav */}
         <div className="flex items-center justify-start">
           <button
