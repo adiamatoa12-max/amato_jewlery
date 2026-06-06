@@ -106,7 +106,7 @@ export default function SiteHeader() {
         scrolled ? "shadow-lg shadow-black/30" : ""
       }`}
     >
-      <div className="mx-auto grid h-16 max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-6 lg:px-10">
+      <div className="mx-auto grid h-14 max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-6 lg:px-10">
         {/* Start cell (right in RTL): menu toggle on mobile, logo on desktop */}
         <div className="flex items-center justify-self-start">
           <button
@@ -154,12 +154,12 @@ export default function SiteHeader() {
               className="object-cover object-center mix-blend-screen"
             />
           </Link>
-          <nav className="hidden items-center gap-10 font-sans text-[12px] font-medium tracking-[0.24em] text-white md:flex lg:gap-14">
+          <nav className="hidden items-center gap-6 font-sans text-[12px] font-medium tracking-[0.16em] text-white md:flex lg:gap-8">
           {NAV_MENU.map((group) => (
             <div key={group.label} className="group relative">
               <Link
                 href={group.href}
-                className="flex items-center gap-1.5 py-6 transition-all duration-500 ease-in-out group-hover:opacity-60"
+                className="flex items-center gap-1.5 py-4 transition-all duration-500 ease-in-out group-hover:opacity-60"
               >
                 {group.label}
                 <ChevronDown
@@ -186,7 +186,7 @@ export default function SiteHeader() {
           ))}
           <Link
             href="/about"
-            className="py-6 transition-all duration-500 ease-in-out hover:opacity-60"
+            className="py-4 transition-all duration-500 ease-in-out hover:opacity-60"
           >
             אודות
           </Link>
@@ -297,14 +297,14 @@ export default function SiteHeader() {
           aria-label="סגירת תפריט"
           tabIndex={mobileOpen ? 0 : -1}
           onClick={() => setMobileOpen(false)}
-          className={`fixed inset-x-0 bottom-0 top-[5.75rem] z-40 bg-black/40 transition-opacity duration-300 ${
+          className={`fixed inset-x-0 bottom-0 top-[5.25rem] z-40 bg-black/40 transition-opacity duration-300 ${
             mobileOpen ? "opacity-100" : "opacity-0"
           }`}
         />
 
         {/* Panel */}
         <nav
-          className={`fixed inset-x-0 top-[5.75rem] z-40 max-h-[calc(100vh-5.75rem)] overflow-y-auto border-t border-white/10 bg-black/95 backdrop-blur-md transition-all duration-300 ease-in-out ${
+          className={`fixed inset-x-0 top-[5.25rem] z-40 max-h-[calc(100vh-5.25rem)] overflow-y-auto border-t border-white/10 bg-black/95 backdrop-blur-md transition-all duration-300 ease-in-out ${
             mobileOpen
               ? "translate-y-0 opacity-100"
               : "-translate-y-3 opacity-0"

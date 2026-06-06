@@ -33,7 +33,7 @@ export default function AnnouncementBar() {
           <p
             key={text}
             aria-hidden={i !== active}
-            className={`absolute inset-0 flex items-center justify-center gap-2 whitespace-nowrap text-center text-[12px] font-medium uppercase tracking-[0.2em] text-[#f2dd97] transition-opacity duration-700 ease-in-out ${
+            className={`absolute inset-0 flex items-center justify-center gap-2 whitespace-nowrap text-center font-sans text-[12px] font-semibold tracking-[0.14em] text-[#f4e0a0] antialiased transition-opacity duration-700 ease-in-out ${
               i === active ? "opacity-100" : "opacity-0"
             }`}
           >

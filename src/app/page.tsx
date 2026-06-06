@@ -40,9 +40,9 @@ function getVideoFeedItems(): VideoFeedItem[] {
 
 export default function Home() {
   return (
-    // Reserve the fixed announcement + header band (top-7 + h-16 = 5.75rem)
+    // Reserve the fixed announcement + header band (top-7 + h-14 = 5.25rem)
     // so the hero begins cleanly below the navigation, never under it.
-    <div className="flex min-h-full flex-col pt-[5.75rem]">
+    <div className="flex min-h-full flex-col pt-[5.25rem]">
       <main className="flex-1">
         <Hero />
         <ShopByCategory />
@@ -62,7 +62,7 @@ export default function Home() {
 
 function Hero() {
   return (
-    <section className="relative flex min-h-[calc(100vh-5.75rem)] w-full items-center justify-center overflow-hidden">
+    <section className="relative flex min-h-[calc(100vh-5.25rem)] w-full items-center justify-center overflow-hidden">
       <HeroCarousel />
       {/* Soft, warm overlay — just enough for the white text to pop. */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/35" />
