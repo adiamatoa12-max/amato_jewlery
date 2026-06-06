@@ -9,13 +9,14 @@ import ShoppableVideoFeed, {
   type VideoFeedItem,
 } from "@/components/ShoppableVideoFeed";
 import FooterLink, { type FooterLinkItem } from "@/components/FooterLink";
-import { COLLECTIONS } from "@/lib/mock-data";
-import { getCollections, getProduct } from "@/lib/catalog";
+import { COLLECTIONS, getMockProductByHandle } from "@/lib/mock-data";
+import { getCollections } from "@/lib/catalog";
 
-// Maps each lifestyle video to the product actually shown in the footage.
-// (Verified against a still frame from each clip — the file names are
-// misleading: "gold-hoops" is really the gold bar necklace, "gold-pendant"
-// is the geometric prism pendant.)
+// The "In Motion" lifestyle videos are a curated, static showcase — their
+// labels/prices come from the bundled catalog so they always render alongside
+// the live Shopify product grid. (Verified against a still frame from each
+// clip: "gold-hoops" is really the gold bar necklace, "gold-pendant" the
+// geometric prism pendant.)
 const VIDEO_FEED: { video: string; handle: string }[] = [
   { video: "/videos/silver-hoops-lifestyle.mp4", handle: "silver-hoop-earrings" },
   { video: "/videos/gold-pendant-lifestyle.mp4", handle: "geo-pendant-necklace" },
@@ -23,28 +24,25 @@ const VIDEO_FEED: { video: string; handle: string }[] = [
   { video: "/videos/gold-hoops-lifestyle.mp4", handle: "clean-gold-bar-necklace" },
 ];
 
-async function getVideoFeedItems(): Promise<VideoFeedItem[]> {
-  const items = await Promise.all(
-    VIDEO_FEED.map(async ({ video, handle }) => {
-      const product = await getProduct(handle);
-      if (!product) return null;
-      return {
+function getVideoFeedItems(): VideoFeedItem[] {
+  return VIDEO_FEED.flatMap(({ video, handle }) => {
+    const product = getMockProductByHandle(handle);
+    if (!product) return [];
+    return [
+      {
         video,
-        href: `/product/${product.handle}`,
+        href: `/product/${handle}`,
         title: product.title,
         price: product.price,
         currency: product.currency,
-      } satisfies VideoFeedItem;
-    }),
-  );
-  return items.filter((item): item is VideoFeedItem => item !== null);
+      } satisfies VideoFeedItem,
+    ];
+  });
 }
 
 export default async function Home() {
-  const [collections, videoItems] = await Promise.all([
-    getCollections(),
-    getVideoFeedItems(),
-  ]);
+  const collections = await getCollections();
+  const videoItems = getVideoFeedItems();
 
   return (
     // Reserve the fixed announcement + header band (top-7 + h-14 = 5.25rem)

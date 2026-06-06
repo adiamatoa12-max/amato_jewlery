@@ -146,9 +146,13 @@ export async function getProduct(
 
   try {
     const p = await getProductByHandle(handle);
-    if (!p) return null;
-    // Breadcrumb collection context isn't fetched per-product yet; link home.
-    return { ...adapt(p), collectionTitle: "AMATO", collectionHandle: "" };
+    if (p) {
+      // Breadcrumb collection context isn't fetched per-product yet; link home.
+      return { ...adapt(p), collectionTitle: "AMATO", collectionHandle: "" };
+    }
+    // Live store doesn't carry this handle (e.g. the bundled products behind the
+    // "In Motion" videos) — fall back to the bundled catalog so the link resolves.
+    return getMockProductByHandle(handle);
   } catch (error) {
     warnFallback("getProduct", error);
     return getMockProductByHandle(handle);
