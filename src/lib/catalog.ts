@@ -139,6 +139,43 @@ export async function getCollections(): Promise<MockCollection[]> {
   }
 }
 
+export interface StyleTile {
+  handle: string;
+  label: string;
+  image: string;
+}
+
+/** Bundled fallback tiles for the "Shop by Style" grid. */
+const FALLBACK_STYLE_TILES: StyleTile[] = [
+  { handle: "geo-collection", label: "עגילים", image: "/collections/earrings.png" },
+  { handle: "the-cubans", label: "שרשראות", image: "/collections/necklaces.png" },
+  { handle: "clean-essentials", label: "טבעות", image: "/collections/rings.png" },
+  { handle: "clean-essentials", label: "צמידים", image: "/collections/bracelets.png" },
+];
+
+/**
+ * Tiles for the "Shop by Style" grid, sourced from live Shopify collections
+ * that have a cover image. Falls back to the curated bundled tiles when not
+ * live or when no collection has an image set.
+ */
+export async function getStyleTiles(): Promise<StyleTile[]> {
+  if (!isShopifyLive()) return FALLBACK_STYLE_TILES;
+  try {
+    const collections = await getShopifyCollections(12);
+    const tiles = collections
+      .filter((c) => c.image?.url && c.handle !== "frontpage")
+      .map((c) => ({
+        handle: c.handle,
+        label: c.title,
+        image: c.image!.url,
+      }));
+    return tiles.length > 0 ? tiles : FALLBACK_STYLE_TILES;
+  } catch (error) {
+    warnFallback("getStyleTiles", error);
+    return FALLBACK_STYLE_TILES;
+  }
+}
+
 /** Live products (view-model), newest first, for featured sections. */
 export async function getFeaturedProducts(limit = 4): Promise<MockProduct[]> {
   if (!isShopifyLive()) {

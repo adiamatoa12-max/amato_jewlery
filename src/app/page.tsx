@@ -10,7 +10,12 @@ import ShoppableVideoFeed, {
 } from "@/components/ShoppableVideoFeed";
 import FooterLink, { type FooterLinkItem } from "@/components/FooterLink";
 import { COLLECTIONS } from "@/lib/mock-data";
-import { getCollections, getFeaturedProducts } from "@/lib/catalog";
+import {
+  getCollections,
+  getFeaturedProducts,
+  getStyleTiles,
+  type StyleTile,
+} from "@/lib/catalog";
 
 // The "In Motion" lifestyle clips. Each video is paired (by order) with one of
 // your live Shopify products, so its title/price/URL come straight from Shopify.
@@ -39,9 +44,10 @@ async function getVideoFeedItems(): Promise<VideoFeedItem[]> {
 }
 
 export default async function Home() {
-  const [collections, videoItems] = await Promise.all([
+  const [collections, videoItems, styleTiles] = await Promise.all([
     getCollections(),
     getVideoFeedItems(),
+    getStyleTiles(),
   ]);
 
   return (
@@ -51,7 +57,7 @@ export default async function Home() {
       <main className="flex-1">
         <Hero />
         <FadeIn>
-          <ShopByCategory />
+          <ShopByCategory tiles={styleTiles} />
         </FadeIn>
         <FadeIn>
           <EssenceSection />
@@ -78,22 +84,29 @@ function Hero() {
     <section className="relative flex min-h-[calc(100vh-5.25rem)] w-full items-center justify-center overflow-hidden">
       <HeroCarousel />
       {/* Soft, warm overlay — just enough for the white text to pop. */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/35" />
-      <div className="absolute inset-0 bg-[#3a2e22]/10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/15 to-black/45" />
 
-      <div className="relative z-10 flex flex-col items-center px-6 text-center text-white">
-        <h1 className="font-serif text-4xl font-light uppercase leading-[1.08] tracking-[0.1em] sm:text-6xl sm:tracking-[0.12em] lg:text-7xl">
+      <div className="relative z-10 flex max-w-2xl flex-col items-center px-6 text-center text-white">
+        <p className="mb-5 text-[11px] font-medium uppercase tracking-[0.34em] text-white/75">
+          AMATO
+        </p>
+        <h1 className="font-serif text-[2.6rem] font-light uppercase leading-[1.05] tracking-[0.1em] sm:text-6xl sm:tracking-[0.12em] lg:text-7xl">
           The New Essentials
         </h1>
-        <p className="mt-7 max-w-lg text-sm leading-relaxed text-white/85 sm:text-base">
+        <p className="mt-6 max-w-md text-sm font-light leading-relaxed tracking-[0.02em] text-white/85 sm:text-base">
           קולקציית תכשיטי הפרימיום מכסף סטרלינג 925 וציפוי זהב 14 קראט.
         </p>
         <Link
-          href="#geo-collection"
-          className="mt-11 inline-flex items-center rounded-full border border-white/80 px-9 py-3.5 text-xs font-medium tracking-[0.14em] text-white transition-all duration-500 ease-in-out hover:bg-white hover:text-neutral-900"
+          href="#shop"
+          className="mt-10 inline-flex items-center justify-center rounded-full bg-white px-10 py-4 text-xs font-medium uppercase tracking-[0.18em] text-neutral-900 shadow-lg shadow-black/10 transition-all duration-500 ease-in-out hover:bg-white/90 hover:shadow-xl sm:text-[13px]"
         >
-          לקולקציה המלאה
+          Shop Full Collection
         </Link>
+      </div>
+
+      {/* Subtle scroll cue */}
+      <div className="absolute inset-x-0 bottom-7 z-10 flex justify-center">
+        <span className="h-9 w-[1px] bg-gradient-to-b from-white/0 via-white/60 to-white/0" />
       </div>
     </section>
   );
@@ -126,37 +139,42 @@ function CollectionSection({
   );
 }
 
-const CATEGORIES = [
-  { label: "עגילים", handle: "geo-collection", image: "/collections/earrings.png" },
-  { label: "שרשראות", handle: "the-cubans", image: "/collections/necklaces.png" },
-  { label: "טבעות", handle: "clean-essentials", image: "/collections/rings.png" },
-  { label: "צמידים", handle: "clean-essentials", image: "/collections/bracelets.png" },
-];
-
-function ShopByCategory() {
+function ShopByCategory({ tiles }: { tiles: StyleTile[] }) {
+  if (tiles.length === 0) return null;
   return (
-    <section className="mx-auto max-w-7xl px-6 pb-2 pt-14 lg:px-10 lg:pt-20">
-      <p className="text-center text-xs tracking-[0.3em] text-[#b8902f]">
-        SHOP BY CATEGORY
+    <section
+      id="shop"
+      className="mx-auto max-w-7xl scroll-mt-24 px-6 pb-4 pt-16 lg:px-10 lg:pb-8 lg:pt-24"
+    >
+      <p className="text-center text-[11px] font-medium tracking-[0.3em] text-[#b8902f]">
+        SHOP BY STYLE
       </p>
-      <div className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
-        {CATEGORIES.map((cat) => (
+      <h2 className="mt-4 text-center font-serif text-3xl font-light tracking-[0.04em] text-neutral-900 lg:text-4xl">
+        קנו לפי סגנון
+      </h2>
+      <div className="mt-12 grid grid-cols-2 gap-4 lg:mt-16 lg:grid-cols-4 lg:gap-6">
+        {tiles.map((tile, i) => (
           <Link
-            key={cat.label}
-            href={`/#${cat.handle}`}
-            className="group relative block aspect-[3/4] overflow-hidden rounded-sm bg-[#f8f8f8]"
+            key={`${tile.handle}-${i}`}
+            href={`/#${tile.handle}`}
+            className="group relative block aspect-[3/4] overflow-hidden rounded-lg bg-[#f4f2ef]"
           >
             <Image
-              src={cat.image}
-              alt={cat.label}
+              src={tile.image}
+              alt={tile.label}
               fill
               sizes="(min-width: 1024px) 25vw, 50vw"
-              className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+              className="object-cover transition-transform duration-[900ms] ease-in-out group-hover:scale-[1.06]"
             />
             {/* Soft overlay for legibility of the centered label */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent transition-opacity duration-500 group-hover:from-black/55" />
-            <span className="absolute inset-0 flex items-center justify-center font-serif text-2xl font-light tracking-[0.1em] text-white">
-              {cat.label}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent transition-opacity duration-500 group-hover:from-black/60" />
+            <span className="absolute inset-x-0 bottom-0 flex flex-col items-center gap-2 px-4 pb-6 text-center text-white">
+              <span className="font-serif text-xl font-light tracking-[0.08em] lg:text-2xl">
+                {tile.label}
+              </span>
+              <span className="text-[10px] font-medium uppercase tracking-[0.22em] text-white/80 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                Shop now
+              </span>
             </span>
           </Link>
         ))}

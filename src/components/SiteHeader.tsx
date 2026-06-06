@@ -128,12 +128,12 @@ export default function SiteHeader() {
       }`}
     >
       <div className="mx-auto grid h-14 max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-6 lg:px-10">
-        {/* Start cell (right in RTL): menu toggle on mobile, logo on desktop */}
+        {/* Start cell (right in RTL): menu toggle on every breakpoint */}
         <div className="flex items-center justify-self-start">
           <button
             type="button"
             onClick={() => setMobileOpen((o) => !o)}
-            className="-m-2 flex items-center p-2 transition-all duration-500 ease-in-out hover:opacity-60 md:hidden"
+            className="-m-2 flex items-center p-2 transition-all duration-500 ease-in-out hover:opacity-60"
             aria-label={mobileOpen ? "סגירת תפריט" : "תפריט"}
             aria-expanded={mobileOpen}
           >
@@ -143,76 +143,23 @@ export default function SiteHeader() {
               <Menu className="h-6 w-6" strokeWidth={1.5} />
             )}
           </button>
-          <Link
-            href="/"
-            aria-label="AMATO — דף הבית"
-            className="relative hidden h-9 w-28 transition-all duration-500 ease-in-out hover:opacity-80 md:block"
-          >
-            <Image
-              src="/images/logo.jpg"
-              alt="AMATO"
-              fill
-              priority
-              sizes="128px"
-              className="object-cover object-center mix-blend-screen"
-            />
-          </Link>
         </div>
 
-        {/* Center cell: logo on mobile, primary nav on desktop */}
-        <div className="flex items-center justify-self-center">
-          <Link
-            href="/"
-            aria-label="AMATO — דף הבית"
-            className="relative h-8 w-24 transition-all duration-500 ease-in-out hover:opacity-80 md:hidden"
-          >
-            <Image
-              src="/images/logo.jpg"
-              alt="AMATO"
-              fill
-              priority
-              sizes="96px"
-              className="object-cover object-center mix-blend-screen"
-            />
-          </Link>
-          <nav className="hidden items-center gap-6 font-sans text-[12px] font-medium tracking-[0.16em] text-white md:flex lg:gap-8">
-          {NAV_MENU.map((group) => (
-            <div key={group.label} className="group relative">
-              <Link
-                href={group.href}
-                className="flex items-center gap-1.5 py-4 transition-all duration-500 ease-in-out group-hover:opacity-60"
-              >
-                {group.label}
-                <ChevronDown
-                  className="h-3 w-3 transition-transform duration-300 ease-in-out group-hover:rotate-180"
-                  strokeWidth={1.5}
-                />
-              </Link>
-
-              {/* Hover dropdown panel */}
-              <div className="invisible absolute right-1/2 top-full z-50 min-w-[220px] translate-x-1/2 translate-y-1 opacity-0 transition-all duration-300 ease-in-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-                <div className="overflow-hidden rounded-sm border border-stone-200/70 bg-white py-2 shadow-xl shadow-black/10">
-                  {group.links.map((link) => (
-                    <Link
-                      key={link.label}
-                      href={link.href}
-                      className="block px-6 py-2.5 text-center font-sans text-[13px] tracking-[0.12em] text-neutral-700 transition-all duration-300 ease-in-out hover:bg-stone-50 hover:text-neutral-900"
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
-          <Link
-            href="/about"
-            className="py-4 transition-all duration-500 ease-in-out hover:opacity-60"
-          >
-            אודות
-          </Link>
-          </nav>
-        </div>
+        {/* Center cell: logo */}
+        <Link
+          href="/"
+          aria-label="AMATO — דף הבית"
+          className="relative h-8 w-24 justify-self-center transition-all duration-500 ease-in-out hover:opacity-80 lg:h-9 lg:w-28"
+        >
+          <Image
+            src="/images/logo.jpg"
+            alt="AMATO"
+            fill
+            priority
+            sizes="112px"
+            className="object-cover object-center mix-blend-screen"
+          />
+        </Link>
 
         {/* End cell (left in RTL): search + cart icons */}
         <div className="flex items-center justify-end gap-6">
@@ -308,9 +255,9 @@ export default function SiteHeader() {
         </div>
       </div>
 
-      {/* Mobile slide-down menu */}
+      {/* Slide-down menu (all breakpoints) */}
       <div
-        className={`md:hidden ${mobileOpen ? "pointer-events-auto" : "pointer-events-none"}`}
+        className={`${mobileOpen ? "pointer-events-auto" : "pointer-events-none"}`}
       >
         {/* Dim overlay */}
         <button
