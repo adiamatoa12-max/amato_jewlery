@@ -1,13 +1,11 @@
 import { notFound } from "next/navigation";
 import ProductView from "@/components/ProductView";
 import CustomerReviews from "@/components/CustomerReviews";
-import {
-  getAllMockHandles,
-  getMockProductByHandle,
-} from "@/lib/mock-data";
+import { getAllHandles, getProduct } from "@/lib/catalog";
 
-export function generateStaticParams() {
-  return getAllMockHandles().map((handle) => ({ handle }));
+export async function generateStaticParams() {
+  const handles = await getAllHandles();
+  return handles.map((handle) => ({ handle }));
 }
 
 export default async function ProductPage({
@@ -16,7 +14,7 @@ export default async function ProductPage({
   params: Promise<{ handle: string }>;
 }) {
   const { handle } = await params;
-  const product = getMockProductByHandle(handle);
+  const product = await getProduct(handle);
 
   if (!product) {
     notFound();
@@ -42,6 +40,7 @@ export default async function ProductPage({
             description: product.description,
             gallery: product.gallery,
             styledImage: product.styledImage,
+            variantId: product.variantId,
           }}
         />
       </main>

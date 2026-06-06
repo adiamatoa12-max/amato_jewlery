@@ -1,0 +1,124 @@
+// Unified catalog data layer.
+//
+// When real Shopify Storefront API credentials are present, this pulls live
+// products, collections, and inventory from Shopify and adapts them into the
+// view-model shape the UI already uses (MockProduct / MockCollection). When
+// credentials are missing or still the placeholder, it falls back to the
+// bundled mock data so local dev and previews keep working unchanged.
+//
+// SERVER-ONLY: imports process.env secrets and the Shopify client. Import this
+// from Server Components or Route Handlers only — never from a "use client"
+// module (the header search reaches it via /api/search instead).
+
+import {
+  COLLECTIONS,
+  getAllMockHandles,
+  getMockProductByHandle,
+  type MockCollection,
+  type MockProduct,
+  type MockProductWithCollection,
+} from "./mock-data";
+import {
+  getCollectionProducts,
+  getProductByHandle,
+  getProducts,
+} from "./shopify/operations";
+import type { Product as ShopifyProduct } from "./shopify/types";
+
+const DEFAULT_MATERIAL = "כסף סטרלינג 925 איכותי בציפוי זהב 14 קראט";
+
+/** True only when real (non-placeholder) Shopify credentials are configured. */
+export function isShopifyLive(): boolean {
+  const domain = process.env.SHOPIFY_STORE_DOMAIN;
+  const token = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN;
+  return Boolean(
+    domain && token && token !== "placeholder_token_for_now",
+  );
+}
+
+function badgeFromTags(tags: string[]): MockProduct["badge"] {
+  const lower = tags.map((t) => t.toLowerCase());
+  if (lower.includes("bestseller") || tags.includes("רב מכר")) {
+    return "bestseller";
+  }
+  if (lower.includes("new") || tags.includes("חדש")) return "new";
+  return undefined;
+}
+
+/** Map a live Shopify product onto the UI view-model. */
+function adapt(p: ShopifyProduct): MockProduct {
+  const images = p.images.map((i) => i.url);
+  const image = p.featuredImage?.url ?? images[0] ?? "";
+  const hoverImage = images.find((u) => u !== image) ?? image;
+  return {
+    id: p.id,
+    handle: p.handle,
+    title: p.title,
+    description: p.description,
+    price: Number(p.priceRange.minVariantPrice.amount),
+    currency: p.priceRange.minVariantPrice.currencyCode,
+    material: DEFAULT_MATERIAL,
+    availableForSale: p.availableForSale,
+    image,
+    hoverImage,
+    badge: badgeFromTags(p.tags),
+    gallery: images.length > 0 ? images : undefined,
+    styledImage: images[1],
+    variantId: p.variants[0]?.id,
+  };
+}
+
+/**
+ * Collections in the site's fixed order. Live mode pulls products for each of
+ * these handles from Shopify; the display titles/taglines stay site-defined so
+ * the storefront keeps its curated headings.
+ */
+export async function getCollections(): Promise<MockCollection[]> {
+  if (!isShopifyLive()) return COLLECTIONS;
+
+  const metas = COLLECTIONS.map(({ handle, title, enTitle, tagline }) => ({
+    handle,
+    title,
+    enTitle,
+    tagline,
+  }));
+
+  return Promise.all(
+    metas.map(async (m) => {
+      const products = await getCollectionProducts(m.handle, 12);
+      return { ...m, products: products.map(adapt) } satisfies MockCollection;
+    }),
+  );
+}
+
+export async function getProduct(
+  handle: string,
+): Promise<MockProductWithCollection | null> {
+  if (!isShopifyLive()) return getMockProductByHandle(handle);
+
+  const p = await getProductByHandle(handle);
+  if (!p) return null;
+  // Breadcrumb collection context isn't fetched per-product yet; link home.
+  return { ...adapt(p), collectionTitle: "AMATO", collectionHandle: "" };
+}
+
+export async function getAllHandles(): Promise<string[]> {
+  if (!isShopifyLive()) return getAllMockHandles();
+  const products = await getProducts({ first: 100 });
+  return products.map((p) => p.handle);
+}
+
+export async function searchProducts(query: string): Promise<MockProduct[]> {
+  const q = query.trim();
+  if (!q) return [];
+
+  if (!isShopifyLive()) {
+    const needle = q.toLowerCase();
+    return COLLECTIONS.flatMap((c) => c.products)
+      .filter((p) => p.title.toLowerCase().includes(needle))
+      .slice(0, 6);
+  }
+
+  const products = await getProducts({ first: 6, query: q });
+  return products.map(adapt);
+}

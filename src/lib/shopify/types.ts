@@ -23,6 +23,7 @@ export interface Product {
   handle: string;
   title: string;
   description: string;
+  tags: string[];
   availableForSale: boolean;
   priceRange: {
     minVariantPrice: Money;

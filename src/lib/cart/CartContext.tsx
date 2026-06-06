@@ -17,6 +17,8 @@ export interface CartItem {
   image: string;
   material: string;
   quantity: number;
+  /** Shopify variant id (merchandiseId), required for live checkout. */
+  variantId?: string;
 }
 
 export type AddToCartInput = Omit<CartItem, "quantity">;

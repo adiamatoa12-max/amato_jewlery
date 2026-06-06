@@ -59,6 +59,7 @@ export default function ProductCard({ product }: { product: MockProduct }) {
       currency: product.currency,
       image: product.image,
       material: product.material,
+      variantId: product.variantId,
     });
     setAdded(true);
     setTimeout(() => setAdded(false), 1400);

@@ -1,15 +1,22 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { Search, ShoppingBag, Menu, X, ChevronDown } from "lucide-react";
 import { useCart, formatPrice } from "@/lib/cart/CartContext";
-import { COLLECTIONS } from "@/lib/mock-data";
 
 type NavLink = { label: string; href: string };
 type NavGroup = { label: string; href: string; links: NavLink[] };
+
+type SearchResult = {
+  handle: string;
+  title: string;
+  price: number;
+  currency: string;
+  image: string;
+};
 
 const NAV_MENU: NavGroup[] = [
   {
@@ -85,18 +92,32 @@ export default function SiteHeader() {
     };
   }, [searchOpen]);
 
-  // Live search across the full catalog.
-  const allProducts = useMemo(
-    () => COLLECTIONS.flatMap((c) => c.products),
-    [],
-  );
-  const results = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) return [];
-    return allProducts
-      .filter((p) => p.title.toLowerCase().includes(q))
-      .slice(0, 6);
-  }, [query, allProducts]);
+  // Live search via /api/search (debounced). The route uses the catalog layer,
+  // so it returns live Shopify results when configured and the seeded catalog
+  // otherwise.
+  const [results, setResults] = useState<SearchResult[]>([]);
+  useEffect(() => {
+    const q = query.trim();
+    if (!q) {
+      setResults([]);
+      return;
+    }
+    const controller = new AbortController();
+    const t = window.setTimeout(() => {
+      fetch(`/api/search?q=${encodeURIComponent(q)}`, {
+        signal: controller.signal,
+      })
+        .then((r) => r.json())
+        .then((d: { results?: SearchResult[] }) => setResults(d.results ?? []))
+        .catch(() => {
+          /* aborted or network error — leave previous results */
+        });
+    }, 200);
+    return () => {
+      window.clearTimeout(t);
+      controller.abort();
+    };
+  }, [query]);
 
   // A solid, dedicated dark band that sits in its own space above the hero —
   // never overlapping the hero imagery. Deepens its shadow slightly on scroll.

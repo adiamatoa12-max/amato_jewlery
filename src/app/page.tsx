@@ -9,7 +9,8 @@ import ShoppableVideoFeed, {
   type VideoFeedItem,
 } from "@/components/ShoppableVideoFeed";
 import FooterLink, { type FooterLinkItem } from "@/components/FooterLink";
-import { COLLECTIONS, getMockProductByHandle } from "@/lib/mock-data";
+import { COLLECTIONS } from "@/lib/mock-data";
+import { getCollections, getProduct } from "@/lib/catalog";
 
 // Maps each lifestyle video to the product actually shown in the footage.
 // (Verified against a still frame from each clip — the file names are
@@ -22,23 +23,29 @@ const VIDEO_FEED: { video: string; handle: string }[] = [
   { video: "/videos/gold-hoops-lifestyle.mp4", handle: "clean-gold-bar-necklace" },
 ];
 
-function getVideoFeedItems(): VideoFeedItem[] {
-  return VIDEO_FEED.flatMap(({ video, handle }) => {
-    const product = getMockProductByHandle(handle);
-    if (!product) return [];
-    return [
-      {
+async function getVideoFeedItems(): Promise<VideoFeedItem[]> {
+  const items = await Promise.all(
+    VIDEO_FEED.map(async ({ video, handle }) => {
+      const product = await getProduct(handle);
+      if (!product) return null;
+      return {
         video,
         href: `/product/${product.handle}`,
         title: product.title,
         price: product.price,
         currency: product.currency,
-      },
-    ];
-  });
+      } satisfies VideoFeedItem;
+    }),
+  );
+  return items.filter((item): item is VideoFeedItem => item !== null);
 }
 
-export default function Home() {
+export default async function Home() {
+  const [collections, videoItems] = await Promise.all([
+    getCollections(),
+    getVideoFeedItems(),
+  ]);
+
   return (
     // Reserve the fixed announcement + header band (top-7 + h-14 = 5.25rem)
     // so the hero begins cleanly below the navigation, never under it.
@@ -54,11 +61,11 @@ export default function Home() {
         <FadeIn>
           <NewArrivalsIntro />
         </FadeIn>
-        {COLLECTIONS.map((collection) => (
+        {collections.map((collection) => (
           <CollectionSection key={collection.handle} collection={collection} />
         ))}
         <FadeIn>
-          <ShoppableVideoFeed items={getVideoFeedItems()} />
+          <ShoppableVideoFeed items={videoItems} />
         </FadeIn>
         <ThematicBanner />
         <Craftsmanship />

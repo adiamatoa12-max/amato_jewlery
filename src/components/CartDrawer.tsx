@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { X, Minus, Plus, ShoppingBag } from "lucide-react";
 import { useCart, formatPrice } from "@/lib/cart/CartContext";
@@ -16,6 +16,38 @@ export default function CartDrawer() {
     totalQuantity,
     currency,
   } = useCart();
+
+  const [checkingOut, setCheckingOut] = useState(false);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
+
+  async function handleCheckout() {
+    setCheckingOut(true);
+    setCheckoutError(null);
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          lines: items.map((i) => ({
+            variantId: i.variantId,
+            quantity: i.quantity,
+          })),
+        }),
+      });
+      const data = (await res.json()) as { url?: string; error?: string };
+      if (res.ok && data.url) {
+        window.location.href = data.url;
+        return;
+      }
+      setCheckoutError(
+        data.error ?? "לא ניתן להשלים את ההזמנה כרגע. נסו שוב מאוחר יותר.",
+      );
+    } catch {
+      setCheckoutError("שגיאת רשת. בדקו את החיבור ונסו שוב.");
+    } finally {
+      setCheckingOut(false);
+    }
+  }
 
   // Lock body scroll while the drawer is open + close on Escape.
   useEffect(() => {
@@ -165,10 +197,17 @@ export default function CartDrawer() {
             </p>
             <button
               type="button"
-              className="mt-6 flex w-full items-center justify-center rounded-full bg-neutral-900 px-8 py-4 text-sm font-medium tracking-[0.1em] text-white transition-all duration-500 ease-in-out hover:bg-neutral-700"
+              onClick={handleCheckout}
+              disabled={checkingOut}
+              className="mt-6 flex w-full items-center justify-center rounded-full bg-neutral-900 px-8 py-4 text-sm font-medium tracking-[0.1em] text-white transition-all duration-500 ease-in-out hover:bg-neutral-700 disabled:cursor-not-allowed disabled:bg-neutral-400"
             >
-              למעבר לקופה
+              {checkingOut ? "מעבירים לקופה…" : "למעבר לקופה"}
             </button>
+            {checkoutError && (
+              <p className="mt-3 text-center text-xs text-red-600">
+                {checkoutError}
+              </p>
+            )}
           </div>
         )}
       </aside>

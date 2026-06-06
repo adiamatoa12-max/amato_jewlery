@@ -17,6 +17,8 @@ export interface MockProduct {
   gallery?: string[];
   /** Optional lifestyle photo shown in the PDP "Styled for You" section. */
   styledImage?: string;
+  /** Shopify variant id (merchandiseId) used for cart/checkout when live. */
+  variantId?: string;
 }
 
 export interface MockCollection {
