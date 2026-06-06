@@ -19,6 +19,7 @@ import {
   type MockProductWithCollection,
 } from "./mock-data";
 import {
+  getCollections as getShopifyCollections,
   getCollectionProducts,
   getProductByHandle,
   getProducts,
@@ -80,27 +81,28 @@ function adapt(p: ShopifyProduct): MockProduct {
 }
 
 /**
- * Collections in the site's fixed order. Live mode pulls products for each of
- * these handles from Shopify; the display titles/taglines stay site-defined so
- * the storefront keeps its curated headings.
+ * Auto-discover the store's actual collections and their products. Headings and
+ * taglines come straight from Shopify (collection title/description). Empty
+ * collections are skipped so the homepage never shows a barren section.
  */
 export async function getCollections(): Promise<MockCollection[]> {
   if (!isShopifyLive()) return COLLECTIONS;
 
-  const metas = COLLECTIONS.map(({ handle, title, enTitle, tagline }) => ({
-    handle,
-    title,
-    enTitle,
-    tagline,
-  }));
-
   try {
-    return await Promise.all(
-      metas.map(async (m) => {
-        const products = await getCollectionProducts(m.handle, 12);
-        return { ...m, products: products.map(adapt) } satisfies MockCollection;
+    const collections = await getShopifyCollections(20);
+    const withProducts = await Promise.all(
+      collections.map(async (c) => {
+        const products = await getCollectionProducts(c.handle, 12);
+        return {
+          handle: c.handle,
+          title: c.title,
+          enTitle: c.title,
+          tagline: c.description ?? "",
+          products: products.map(adapt),
+        } satisfies MockCollection;
       }),
     );
+    return withProducts.filter((c) => c.products.length > 0);
   } catch (error) {
     warnFallback("getCollections", error);
     return COLLECTIONS;
