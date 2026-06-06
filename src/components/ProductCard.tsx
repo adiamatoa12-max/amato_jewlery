@@ -92,7 +92,7 @@ export default function ProductCard({ product }: { product: MockProduct }) {
                 aria-hidden={slide.hidden}
                 fill
                 sizes="(min-width: 1024px) 25vw, 50vw"
-                className="object-contain p-7 mix-blend-multiply transition-transform duration-700 ease-in-out group-hover:scale-[1.02]"
+                className="object-contain p-7 mix-blend-multiply transition-transform duration-[800ms] ease-in-out group-hover:scale-[1.06]"
               />
             </Link>
           ))}

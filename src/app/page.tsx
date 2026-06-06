@@ -45,13 +45,21 @@ export default function Home() {
     <div className="flex min-h-full flex-col pt-[5.25rem]">
       <main className="flex-1">
         <Hero />
-        <ShopByCategory />
-        <EssenceSection />
-        <NewArrivalsIntro />
+        <FadeIn>
+          <ShopByCategory />
+        </FadeIn>
+        <FadeIn>
+          <EssenceSection />
+        </FadeIn>
+        <FadeIn>
+          <NewArrivalsIntro />
+        </FadeIn>
         {COLLECTIONS.map((collection) => (
           <CollectionSection key={collection.handle} collection={collection} />
         ))}
-        <ShoppableVideoFeed items={getVideoFeedItems()} />
+        <FadeIn>
+          <ShoppableVideoFeed items={getVideoFeedItems()} />
+        </FadeIn>
         <ThematicBanner />
         <Craftsmanship />
       </main>
@@ -96,9 +104,11 @@ function CollectionSection({
       id={collection.handle}
       className="mx-auto max-w-7xl scroll-mt-24 px-6 py-16 lg:px-10 lg:py-24"
     >
-      <h2 className="mb-16 text-center font-display text-2xl font-bold uppercase tracking-[0.2em] text-neutral-900 lg:mb-20 lg:text-3xl">
-        {collection.enTitle}
-      </h2>
+      <FadeIn>
+        <h2 className="mb-16 text-center font-display text-2xl font-bold uppercase tracking-[0.2em] text-neutral-900 lg:mb-20 lg:text-3xl">
+          {collection.enTitle}
+        </h2>
+      </FadeIn>
 
       <div className="grid grid-cols-2 gap-x-10 gap-y-20 lg:grid-cols-4 lg:gap-x-16 lg:gap-y-28">
         {collection.products.map((product, i) => (
