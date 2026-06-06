@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Truck, Clock } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-const MESSAGES = [
-  "משלוח חינם עם שליח עד הבית",
-  "אספקה תוך 7-14 ימי עסקים",
+const MESSAGES: { icon: LucideIcon; text: string }[] = [
+  { icon: Truck, text: "משלוח חינם עם שליח עד הבית" },
+  { icon: Clock, text: "אספקה תוך 7-14 ימי עסקים" },
 ];
 
 const INTERVAL = 4000;
@@ -23,19 +25,20 @@ export default function AnnouncementBar() {
 
   return (
     <div
-      className="fixed inset-x-0 top-0 z-[60] flex h-9 items-center justify-center overflow-hidden bg-black px-4"
+      className="fixed inset-x-0 top-0 z-[60] flex h-9 items-center justify-center overflow-hidden bg-gradient-to-b from-neutral-900 to-black px-4"
       aria-live="polite"
     >
       <div className="relative h-4 w-full max-w-md">
-        {MESSAGES.map((message, i) => (
+        {MESSAGES.map(({ icon: Icon, text }, i) => (
           <p
-            key={message}
+            key={text}
             aria-hidden={i !== active}
-            className={`absolute inset-0 flex items-center justify-center whitespace-nowrap text-center text-[10px] font-light uppercase tracking-[0.28em] text-white/85 transition-opacity duration-700 ease-in-out ${
+            className={`absolute inset-0 flex items-center justify-center gap-2 whitespace-nowrap text-center text-[10px] font-light uppercase tracking-[0.26em] text-[#d9c187] transition-opacity duration-700 ease-in-out ${
               i === active ? "opacity-100" : "opacity-0"
             }`}
           >
-            {message}
+            <Icon className="h-3 w-3 shrink-0 text-[#c8a24c]" strokeWidth={1.5} />
+            <span>{text}</span>
           </p>
         ))}
       </div>
