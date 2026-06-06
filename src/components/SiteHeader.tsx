@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { Search, ShoppingBag, Menu, X, ChevronDown } from "lucide-react";
-import { useCart } from "@/lib/cart/CartContext";
+import { useCart, formatPrice } from "@/lib/cart/CartContext";
+import { COLLECTIONS } from "@/lib/mock-data";
 
 type NavLink = { label: string; href: string };
 type NavGroup = { label: string; href: string; links: NavLink[] };
@@ -43,6 +44,9 @@ export default function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [expanded, setExpanded] = useState<string | null>(null);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const searchInputRef = useRef<HTMLInputElement | null>(null);
   const { totalQuantity, openCart } = useCart();
   const pathname = usePathname();
 
@@ -53,9 +57,10 @@ export default function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close the mobile menu whenever the route changes.
+  // Close menus whenever the route changes.
   useEffect(() => {
     setMobileOpen(false);
+    setSearchOpen(false);
   }, [pathname]);
 
   // Lock body scroll while the mobile menu is open.
@@ -66,72 +71,108 @@ export default function SiteHeader() {
     };
   }, [mobileOpen]);
 
-  // Always dark so the gold AMATO logo reads cleanly; deepen slightly on scroll.
+  // Focus the search field when the panel opens; close it on Escape.
+  useEffect(() => {
+    if (!searchOpen) return;
+    const t = window.setTimeout(() => searchInputRef.current?.focus(), 80);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSearchOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      window.clearTimeout(t);
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [searchOpen]);
+
+  // Live search across the full catalog.
+  const allProducts = useMemo(
+    () => COLLECTIONS.flatMap((c) => c.products),
+    [],
+  );
+  const results = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return [];
+    return allProducts
+      .filter((p) => p.title.toLowerCase().includes(q))
+      .slice(0, 6);
+  }, [query, allProducts]);
+
+  // Transparent only over the homepage hero; a refined dark bar everywhere
+  // else (other pages have light backgrounds where white text would vanish)
+  // and once the user scrolls or opens search.
+  const transparent =
+    pathname === "/" && !scrolled && !searchOpen && !mobileOpen;
+
   return (
     <header
-      className={`fixed inset-x-0 top-9 z-50 border-b text-white backdrop-blur-md transition-all duration-500 ease-in-out ${
-        scrolled
-          ? "border-white/10 bg-black/95"
-          : "border-transparent bg-black/80"
+      className={`fixed inset-x-0 top-9 z-50 text-white transition-all duration-500 ease-in-out ${
+        transparent
+          ? "border-b border-transparent bg-transparent"
+          : "border-b border-white/10 bg-black/95 backdrop-blur-md"
       }`}
     >
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10">
-        <button
-          type="button"
-          onClick={() => setMobileOpen((o) => !o)}
-          className="-m-2 flex items-center p-2 transition-all duration-500 ease-in-out hover:opacity-60 md:hidden"
-          aria-label={mobileOpen ? "סגירת תפריט" : "תפריט"}
-          aria-expanded={mobileOpen}
-        >
-          {mobileOpen ? (
-            <X className="h-6 w-6" strokeWidth={1.5} />
-          ) : (
-            <Menu className="h-6 w-6" strokeWidth={1.5} />
-          )}
-        </button>
+      <div className="mx-auto grid h-20 max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-6 lg:h-[88px] lg:px-10">
+        {/* Start cell (right in RTL): hamburger + primary nav */}
+        <div className="flex items-center justify-start">
+          <button
+            type="button"
+            onClick={() => setMobileOpen((o) => !o)}
+            className="-m-2 flex items-center p-2 transition-all duration-500 ease-in-out hover:opacity-60 md:hidden"
+            aria-label={mobileOpen ? "סגירת תפריט" : "תפריט"}
+            aria-expanded={mobileOpen}
+          >
+            {mobileOpen ? (
+              <X className="h-6 w-6" strokeWidth={1.5} />
+            ) : (
+              <Menu className="h-6 w-6" strokeWidth={1.5} />
+            )}
+          </button>
 
-        <nav className="hidden items-center gap-9 text-xs tracking-[0.08em] md:flex">
-          {NAV_MENU.map((group) => (
-            <div key={group.label} className="group relative">
-              <Link
-                href={group.href}
-                className="flex items-center gap-1 py-7 transition-all duration-500 ease-in-out group-hover:opacity-60"
-              >
-                {group.label}
-                <ChevronDown
-                  className="h-3 w-3 transition-transform duration-300 ease-in-out group-hover:rotate-180"
-                  strokeWidth={1.5}
-                />
-              </Link>
+          <nav className="hidden items-center gap-10 text-[11px] font-light tracking-[0.18em] md:flex">
+            {NAV_MENU.map((group) => (
+              <div key={group.label} className="group relative">
+                <Link
+                  href={group.href}
+                  className="flex items-center gap-1.5 py-8 transition-all duration-500 ease-in-out group-hover:opacity-60"
+                >
+                  {group.label}
+                  <ChevronDown
+                    className="h-3 w-3 transition-transform duration-300 ease-in-out group-hover:rotate-180"
+                    strokeWidth={1.5}
+                  />
+                </Link>
 
-              {/* Hover dropdown panel */}
-              <div className="invisible absolute right-1/2 top-full z-50 min-w-[210px] translate-x-1/2 translate-y-1 opacity-0 transition-all duration-300 ease-in-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-                <div className="overflow-hidden rounded-sm border border-stone-200/70 bg-white py-2 shadow-xl shadow-black/10">
-                  {group.links.map((link) => (
-                    <Link
-                      key={link.label}
-                      href={link.href}
-                      className="block px-5 py-2.5 text-center text-[13px] tracking-[0.06em] text-neutral-600 transition-all duration-300 ease-in-out hover:bg-stone-50 hover:text-neutral-900"
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
+                {/* Hover dropdown panel */}
+                <div className="invisible absolute right-1/2 top-full z-50 min-w-[220px] translate-x-1/2 translate-y-1 opacity-0 transition-all duration-300 ease-in-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                  <div className="overflow-hidden rounded-sm border border-stone-200/70 bg-white py-2 shadow-xl shadow-black/10">
+                    {group.links.map((link) => (
+                      <Link
+                        key={link.label}
+                        href={link.href}
+                        className="block px-6 py-2.5 text-center text-[13px] tracking-[0.06em] text-neutral-600 transition-all duration-300 ease-in-out hover:bg-stone-50 hover:text-neutral-900"
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-          <Link
-            href="/about"
-            className="py-7 transition-all duration-500 ease-in-out hover:opacity-60"
-          >
-            אודות
-          </Link>
-        </nav>
+            ))}
+            <Link
+              href="/about"
+              className="py-8 transition-all duration-500 ease-in-out hover:opacity-60"
+            >
+              אודות
+            </Link>
+          </nav>
+        </div>
 
+        {/* Center cell: logo */}
         <Link
           href="/"
           aria-label="AMATO — דף הבית"
-          className="relative h-9 w-28 transition-all duration-500 ease-in-out hover:opacity-80 lg:h-10 lg:w-32"
+          className="relative h-9 w-28 justify-self-center transition-all duration-500 ease-in-out hover:opacity-80 lg:h-10 lg:w-32"
         >
           <Image
             src="/images/logo.jpg"
@@ -143,13 +184,20 @@ export default function SiteHeader() {
           />
         </Link>
 
-        <div className="flex items-center gap-5">
+        {/* End cell (left in RTL): icons */}
+        <div className="flex items-center justify-end gap-6">
           <button
             type="button"
-            aria-label="חיפוש"
+            aria-label={searchOpen ? "סגירת חיפוש" : "חיפוש"}
+            aria-expanded={searchOpen}
+            onClick={() => setSearchOpen((o) => !o)}
             className="transition-all duration-500 ease-in-out hover:opacity-60"
           >
-            <Search className="h-5 w-5" strokeWidth={1.5} />
+            {searchOpen ? (
+              <X className="h-5 w-5" strokeWidth={1.5} />
+            ) : (
+              <Search className="h-5 w-5" strokeWidth={1.5} />
+            )}
           </button>
           <button
             type="button"
@@ -164,6 +212,69 @@ export default function SiteHeader() {
               </span>
             )}
           </button>
+        </div>
+      </div>
+
+      {/* Slide-down search panel */}
+      <div
+        className={`overflow-hidden border-white/10 bg-black/95 backdrop-blur-md transition-all duration-400 ease-in-out ${
+          searchOpen
+            ? "max-h-[75vh] border-t opacity-100"
+            : "pointer-events-none max-h-0 border-t-0 opacity-0"
+        }`}
+      >
+        <div className="mx-auto max-w-3xl px-6 py-8 lg:py-10">
+          <form
+            onSubmit={(e) => e.preventDefault()}
+            className="flex items-center gap-3 border-b border-white/25 pb-3"
+          >
+            <Search className="h-5 w-5 shrink-0 text-white/60" strokeWidth={1.5} />
+            <input
+              ref={searchInputRef}
+              type="search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="חיפוש תכשיטים…"
+              className="w-full bg-transparent text-lg font-light tracking-[0.04em] text-white placeholder:text-white/40 focus:outline-none"
+            />
+          </form>
+
+          {query.trim() && (
+            <div className="mt-6">
+              {results.length === 0 ? (
+                <p className="text-sm tracking-[0.04em] text-white/50">
+                  לא נמצאו תוצאות עבור &quot;{query.trim()}&quot;.
+                </p>
+              ) : (
+                <ul className="divide-y divide-white/10">
+                  {results.map((p) => (
+                    <li key={p.handle}>
+                      <Link
+                        href={`/product/${p.handle}`}
+                        className="flex items-center gap-4 py-3 transition-colors duration-300 hover:opacity-70"
+                      >
+                        <span className="relative h-14 w-12 shrink-0 overflow-hidden rounded-sm bg-white/5">
+                          <Image
+                            src={p.image}
+                            alt={p.title}
+                            fill
+                            sizes="48px"
+                            className="object-contain p-1 mix-blend-screen"
+                          />
+                        </span>
+                        <span className="flex-1 text-sm font-light tracking-[0.04em] text-white">
+                          {p.title}
+                        </span>
+                        <span className="text-sm tabular-nums text-white/60">
+                          {formatPrice(p.price, p.currency)}
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )}
         </div>
       </div>
 
