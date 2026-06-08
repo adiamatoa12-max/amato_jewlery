@@ -128,9 +128,15 @@ function CollectionSection({
         </h2>
       </FadeIn>
 
-      <div className="grid grid-cols-2 gap-x-10 gap-y-20 lg:grid-cols-4 lg:gap-x-16 lg:gap-y-28">
+      {/* Centered flex wrap so partial rows (e.g. a lone 5th item) sit
+          centered instead of leaving empty space on the side. */}
+      <div className="flex flex-wrap justify-center gap-x-10 gap-y-20 lg:gap-x-16 lg:gap-y-28">
         {collection.products.map((product, i) => (
-          <FadeIn key={product.id} delay={i * 100}>
+          <FadeIn
+            key={product.id}
+            delay={i * 100}
+            className="w-[calc(50%-1.25rem)] lg:w-[calc(25%-3rem)]"
+          >
             <ProductCard product={product} />
           </FadeIn>
         ))}
