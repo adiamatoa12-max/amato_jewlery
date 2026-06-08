@@ -31,12 +31,16 @@ export default function ProductView({
   collectionTitle,
   collectionHandle,
 }: ProductViewProps) {
-  // Images only — explicitly exclude any video source from the gallery.
-  const gallery = (
-    product.gallery && product.gallery.length > 0
-      ? product.gallery
-      : [product.image, product.hoverImage]
-  ).filter((src) => src && !isVideoSrc(src));
+  // Images only — exclude any video source, then de-duplicate by URL so each
+  // unique image renders exactly once.
+  const gallery = Array.from(
+    new Set(
+      (product.gallery && product.gallery.length > 0
+        ? product.gallery
+        : [product.image, product.hoverImage]
+      ).filter((src) => src && !isVideoSrc(src)),
+    ),
+  );
 
   return (
     <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-16">

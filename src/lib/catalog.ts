@@ -85,7 +85,9 @@ function adapt(p: ShopifyProduct): MockProduct {
     hoverImage,
     badge: badgeFromTags(p.tags),
     gallery: images.length > 0 ? images : undefined,
-    styledImage: images[1],
+    // No separate "styled" image for live products — the gallery already shows
+    // every image, so reusing one here would duplicate it on the page.
+    styledImage: undefined,
     variantId: p.variants[0]?.id,
     videoUrl: firstVideoUrl(p),
   };
