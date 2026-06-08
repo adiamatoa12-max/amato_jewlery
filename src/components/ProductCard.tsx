@@ -25,8 +25,6 @@ export default function ProductCard({ product }: { product: MockProduct }) {
   const { addItem } = useCart();
   const [added, setAdded] = useState(false);
 
-  const hasVideo = Boolean(product.videoUrl);
-
   function quickAdd(e: React.MouseEvent) {
     e.preventDefault();
     e.stopPropagation();
@@ -47,33 +45,19 @@ export default function ProductCard({ product }: { product: MockProduct }) {
   return (
     <article className="group flex flex-col">
       <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-[#fafaf9] transition-all duration-500 ease-in-out group-hover:-translate-y-1 group-hover:shadow-[0_22px_45px_-18px_rgba(0,0,0,0.18)]">
-        {/* Single preview media — video if the product has one, else the image */}
+        {/* Static primary image only — videos live solely in the Featured section */}
         <Link
           href={`/product/${product.handle}`}
           aria-label={product.title}
           className="block h-full w-full"
         >
-          {hasVideo ? (
-            <video
-              className="h-full w-full object-cover transition-transform duration-[800ms] ease-in-out group-hover:scale-[1.04]"
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="metadata"
-              poster={product.image}
-            >
-              <source src={product.videoUrl} type="video/mp4" />
-            </video>
-          ) : (
-            <Image
-              src={product.image}
-              alt={product.title}
-              fill
-              sizes="(min-width: 1024px) 25vw, 50vw"
-              className="object-contain p-7 mix-blend-multiply transition-transform duration-[800ms] ease-in-out group-hover:scale-[1.06]"
-            />
-          )}
+          <Image
+            src={product.image}
+            alt={product.title}
+            fill
+            sizes="(min-width: 1024px) 25vw, 50vw"
+            className="object-contain p-7 mix-blend-multiply transition-transform duration-[800ms] ease-in-out group-hover:scale-[1.06]"
+          />
         </Link>
 
         {/* Merchandising badge — top-left, subtle, fades in on hover */}

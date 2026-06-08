@@ -22,14 +22,17 @@ import {
 // can never be mismatched. (Shopify products currently carry images, not video;
 // the card uses a product video automatically if one is ever added.)
 async function getVideoFeedItems(): Promise<VideoFeedItem[]> {
-  const products = await getFeaturedProducts(4);
-  return products.map((product) => ({
+  const products = await getFeaturedProducts(20);
+  // Featured = the products that actually have a video. Fall back to the first
+  // few products only if none have videos yet.
+  const withVideo = products.filter((p) => p.videoUrl);
+  const chosen = (withVideo.length > 0 ? withVideo : products).slice(0, 4);
+  return chosen.map((product) => ({
     href: `/product/${product.handle}`,
     title: product.title,
     price: product.price,
     currency: product.currency,
     image: product.image,
-    // Prioritise a real product video; the card falls back to image when absent.
     video: product.videoUrl,
   }));
 }
