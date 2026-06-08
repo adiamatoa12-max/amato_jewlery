@@ -5,6 +5,7 @@ import ProductCard from "@/components/ProductCard";
 import FadeIn from "@/components/FadeIn";
 import HeroCarousel from "@/components/HeroCarousel";
 import EssenceSection from "@/components/EssenceSection";
+import BundleShowcase from "@/components/BundleShowcase";
 import ShoppableVideoFeed, {
   type VideoFeedItem,
 } from "@/components/ShoppableVideoFeed";
@@ -56,6 +57,9 @@ export default async function Home() {
     <div className="flex min-h-full flex-col pt-[5.25rem]">
       <main className="flex-1">
         <Hero />
+        <FadeIn>
+          <BundleShowcase />
+        </FadeIn>
         <FadeIn>
           <ShopByCategory tiles={styleTiles} />
         </FadeIn>
