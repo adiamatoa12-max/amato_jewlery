@@ -20,16 +20,23 @@ interface ProductViewProps {
 // Real lifestyle photos fill the frame; cut-out product renders stay contained.
 const isPhoto = (src: string) => /\.jpe?g$/i.test(src);
 
+// Hard filter: anything that is a video source must never appear in the
+// image gallery (Shopify video CDN, or .mp4/.webm/.mov URLs).
+const isVideoSrc = (src: string) =>
+  /\/(cdn\/shop\/)?videos?\//i.test(src) || /\.(mp4|webm|mov|m3u8)(\?|$)/i.test(src);
+
 export default function ProductView({
   product,
   soldOut,
   collectionTitle,
   collectionHandle,
 }: ProductViewProps) {
-  const gallery =
+  // Images only — explicitly exclude any video source from the gallery.
+  const gallery = (
     product.gallery && product.gallery.length > 0
       ? product.gallery
-      : [product.image, product.hoverImage];
+      : [product.image, product.hoverImage]
+  ).filter((src) => src && !isVideoSrc(src));
 
   return (
     <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-16">
