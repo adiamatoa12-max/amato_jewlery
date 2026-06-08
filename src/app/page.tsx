@@ -17,30 +17,19 @@ import {
   type StyleTile,
 } from "@/lib/catalog";
 
-// The "In Motion" lifestyle clips. Each video is paired (by order) with one of
-// your live Shopify products, so its title/price/URL come straight from Shopify.
-const VIDEO_FILES = [
-  "/videos/silver-hoops-lifestyle.mp4",
-  "/videos/gold-pendant-lifestyle.mp4",
-  "/videos/geo-pendant-lifestyle.mp4",
-  "/videos/gold-hoops-lifestyle.mp4",
-];
-
+// Featured strip — mapped 1:1 from live Shopify products. Title, media (the
+// product's own image) and link all come from the SAME product object, so they
+// can never be mismatched. (Shopify products currently carry images, not video;
+// the card uses a product video automatically if one is ever added.)
 async function getVideoFeedItems(): Promise<VideoFeedItem[]> {
-  const products = await getFeaturedProducts(VIDEO_FILES.length);
-  return VIDEO_FILES.flatMap((video, i) => {
-    const product = products[i];
-    if (!product) return [];
-    return [
-      {
-        video,
-        href: `/product/${product.handle}`,
-        title: product.title,
-        price: product.price,
-        currency: product.currency,
-      } satisfies VideoFeedItem,
-    ];
-  });
+  const products = await getFeaturedProducts(4);
+  return products.map((product) => ({
+    href: `/product/${product.handle}`,
+    title: product.title,
+    price: product.price,
+    currency: product.currency,
+    image: product.image,
+  }));
 }
 
 export default async function Home() {
