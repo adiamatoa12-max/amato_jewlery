@@ -26,7 +26,7 @@ export default async function ProductPage({
 
   return (
     <div className="flex min-h-full flex-col pb-20 lg:pb-0">
-      <main className="mx-auto w-full max-w-7xl flex-1 px-6 pb-12 pt-[140px] lg:px-10 lg:pb-16 lg:pt-[160px]">
+      <main id="main-content" className="mx-auto w-full max-w-7xl flex-1 px-6 pb-12 pt-[140px] lg:px-10 lg:pb-16 lg:pt-[160px]">
         <ProductView
           soldOut={soldOut}
           collectionTitle={product.collectionTitle}

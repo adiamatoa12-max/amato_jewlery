@@ -149,12 +149,14 @@ export default function CustomerReviews({ handle }: { handle: string }) {
                 <input
                   type="text"
                   required
+                  aria-label="השם שלך"
                   placeholder="השם שלך"
                   className="mt-5 w-full border-b border-neutral-300 bg-transparent py-2 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-800 focus:outline-none"
                 />
                 <textarea
                   required
                   rows={4}
+                  aria-label="ספרו לנו על החוויה שלכם"
                   placeholder="ספרו לנו על החוויה שלכם..."
                   className="mt-5 w-full resize-none border-b border-neutral-300 bg-transparent py-2 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-800 focus:outline-none"
                 />

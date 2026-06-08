@@ -24,6 +24,7 @@ function FeedCard({ item }: { item: VideoFeedItem }) {
     >
       {item.video ? (
         <video
+          aria-hidden
           className="h-full w-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
           autoPlay
           muted
@@ -36,7 +37,7 @@ function FeedCard({ item }: { item: VideoFeedItem }) {
       ) : (
         <Image
           src={item.image}
-          alt={item.title}
+          alt=""
           fill
           sizes="(min-width: 1024px) 25vw, 50vw"
           className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"

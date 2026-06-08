@@ -30,7 +30,7 @@ const QUALITIES = [
 export default function AboutPage() {
   return (
     <div className="flex min-h-full flex-col">
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         {/* Hero */}
         <section className="relative h-[60vh] min-h-[420px] w-full overflow-hidden">
           <Image

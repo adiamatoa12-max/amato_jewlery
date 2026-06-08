@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Assistant, Frank_Ruhl_Libre, Montserrat } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/lib/cart/CartContext";
@@ -48,6 +47,13 @@ export default async function RootLayout({
       className={`${assistant.variable} ${frankRuhl.variable} ${montserrat.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-stone-50 text-neutral-900">
+        {/* Skip link — first focusable element for keyboard/SR users */}
+        <a
+          href="#main-content"
+          className="sr-only z-[100] rounded bg-white px-4 py-2 text-sm font-medium text-neutral-900 shadow focus:not-sr-only focus:fixed focus:end-4 focus:top-2"
+        >
+          דלג לתוכן הראשי
+        </a>
         <CartProvider>
           <InfoProvider>
             <AnnouncementBar />
@@ -58,19 +64,6 @@ export default async function RootLayout({
             <InfoDrawer />
           </InfoProvider>
         </CartProvider>
-
-        {/* Accessibility widget (UserWay) — loads on every page, bottom-left so
-            it never overlaps the bottom-right WhatsApp button. Activates only
-            when NEXT_PUBLIC_USERWAY_ACCOUNT is set (free account id from
-            userway.org). The widget manages its own (very high) z-index. */}
-        {process.env.NEXT_PUBLIC_USERWAY_ACCOUNT ? (
-          <Script
-            src="https://cdn.userway.org/widget.js"
-            data-account={process.env.NEXT_PUBLIC_USERWAY_ACCOUNT}
-            data-position="4"
-            strategy="afterInteractive"
-          />
-        ) : null}
       </body>
     </html>
   );

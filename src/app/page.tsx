@@ -48,7 +48,7 @@ export default async function Home() {
     // Reserve the fixed announcement + header band (top-7 + h-14 = 5.25rem)
     // so the hero begins cleanly below the navigation, never under it.
     <div className="flex min-h-full flex-col pt-[5.25rem]">
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         <Hero />
         <FadeIn>
           <ShopByCategory tiles={styleTiles} />
@@ -316,6 +316,7 @@ function Footer() {
             <form className="mt-5 flex items-center border-b border-neutral-300 pb-2">
               <input
                 type="email"
+                aria-label="כתובת אימייל לרישום לניוזלטר"
                 placeholder="כתובת אימייל"
                 className="w-full bg-transparent text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none"
               />

@@ -18,7 +18,7 @@ export default function PolicyPage({
 }) {
   return (
     <div className="flex min-h-full flex-col">
-      <main className="mx-auto w-full max-w-3xl flex-1 px-6 py-24 lg:py-32">
+      <main id="main-content" className="mx-auto w-full max-w-3xl flex-1 px-6 py-24 lg:py-32">
         <FadeIn>
           <p className="text-center text-xs tracking-[0.3em] text-[#b8902f]">
             {eyebrow}

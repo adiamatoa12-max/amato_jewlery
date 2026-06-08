@@ -210,6 +210,7 @@ export default function SiteHeader({
             <input
               ref={searchInputRef}
               type="search"
+              aria-label="חיפוש תכשיטים"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="חיפוש תכשיטים…"
