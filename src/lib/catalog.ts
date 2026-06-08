@@ -168,14 +168,12 @@ export interface StyleTile {
   image: string;
 }
 
-// Bundled fallback tiles for the "Shop by Style" grid. Handles point at the
-// real, populated collections: rings+necklaces live in amato-essentials,
-// earrings+bracelets in amato-signature.
+// Bundled fallback tiles for the "Shop by Style" grid — one per real,
+// populated collection. Replaced automatically by live tiles once these
+// collections have cover images in Shopify.
 const FALLBACK_STYLE_TILES: StyleTile[] = [
-  { handle: "amato-signature", label: "צמידים", image: "/collections/bracelets.png" },
-  { handle: "amato-essentials", label: "טבעות", image: "/collections/rings.png" },
-  { handle: "amato-essentials", label: "שרשראות", image: "/collections/necklaces.png" },
-  { handle: "amato-signature", label: "עגילים", image: "/collections/earrings.png" },
+  { handle: "amato-essentials", label: "Essentials", image: "/collections/necklaces.png" },
+  { handle: "amato-signature", label: "Signature", image: "/collections/earrings.png" },
 ];
 
 /**

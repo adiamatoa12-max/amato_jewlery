@@ -162,7 +162,7 @@ function ShopByCategory({ tiles }: { tiles: StyleTile[] }) {
       <h2 className="mt-4 text-center font-serif text-3xl font-light tracking-[0.04em] text-neutral-900 lg:text-4xl">
         קנו לפי סגנון
       </h2>
-      <div className="mt-12 grid grid-cols-2 gap-4 lg:mt-16 lg:grid-cols-4 lg:gap-6">
+      <div className="mx-auto mt-12 grid max-w-3xl grid-cols-2 gap-5 lg:mt-16 lg:gap-6">
         {tiles.map((tile, i) => (
           <Link
             key={`${tile.handle}-${i}`}
@@ -173,7 +173,7 @@ function ShopByCategory({ tiles }: { tiles: StyleTile[] }) {
               src={tile.image}
               alt={tile.label}
               fill
-              sizes="(min-width: 1024px) 25vw, 50vw"
+              sizes="(min-width: 768px) 384px, 50vw"
               className="object-cover transition-transform duration-[900ms] ease-in-out group-hover:scale-[1.06]"
             />
             {/* Soft overlay for legibility of the centered label */}
