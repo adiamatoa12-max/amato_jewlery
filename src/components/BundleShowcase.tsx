@@ -37,7 +37,7 @@ export default async function BundleShowcase() {
             collapses and isn't cropped. */}
         <div className="relative aspect-[3/4] w-full sm:aspect-[4/3] lg:aspect-[4/5]">
           <Image
-            src="/images/bundle.jpg"
+            src="/bundle.jpg"
             alt="באנדל הלוק המלא של AMATO"
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
