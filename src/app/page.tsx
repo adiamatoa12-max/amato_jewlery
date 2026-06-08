@@ -5,7 +5,6 @@ import ProductCard from "@/components/ProductCard";
 import FadeIn from "@/components/FadeIn";
 import HeroCarousel from "@/components/HeroCarousel";
 import EssenceSection from "@/components/EssenceSection";
-import BundleShowcase from "@/components/BundleShowcase";
 import ShoppableVideoFeed, {
   type VideoFeedItem,
 } from "@/components/ShoppableVideoFeed";
@@ -74,9 +73,6 @@ export default async function Home() {
         </FadeIn>
         <ThematicBanner />
         <Craftsmanship />
-        <FadeIn>
-          <BundleShowcase />
-        </FadeIn>
       </main>
       <Footer />
     </div>
