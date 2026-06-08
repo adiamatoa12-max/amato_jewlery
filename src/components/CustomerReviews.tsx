@@ -74,8 +74,8 @@ export default function CustomerReviews({ handle }: { handle: string }) {
       <div className="mx-auto max-w-4xl px-6 py-20 lg:px-10 lg:py-28">
         {/* Header */}
         <div className="flex flex-col items-center text-center">
-          <h2 className="font-display text-2xl font-bold uppercase tracking-[0.2em] text-neutral-900 lg:text-3xl">
-            Customer Reviews
+          <h2 className="font-display text-2xl font-bold tracking-[0.2em] text-neutral-900 lg:text-3xl">
+            ביקורות לקוחות
           </h2>
           {hasReviews ? (
             <div className="mt-5 flex items-center gap-3">

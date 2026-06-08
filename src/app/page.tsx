@@ -90,8 +90,8 @@ function Hero() {
         <p className="mb-5 text-[11px] font-medium uppercase tracking-[0.34em] text-white/75">
           AMATO
         </p>
-        <h1 className="font-serif text-[2.6rem] font-light uppercase leading-[1.05] tracking-[0.1em] sm:text-6xl sm:tracking-[0.12em] lg:text-7xl">
-          The New Essentials
+        <h1 className="font-serif text-[2.6rem] font-light leading-[1.05] tracking-[0.08em] sm:text-6xl sm:tracking-[0.1em] lg:text-7xl">
+          הקולקציה החדשה
         </h1>
         <p className="mt-6 max-w-md text-sm font-light leading-relaxed tracking-[0.02em] text-white/85 sm:text-base">
           קולקציית תכשיטי הפרימיום מכסף סטרלינג 925 וציפוי זהב 14 קראט.
@@ -100,7 +100,7 @@ function Hero() {
           href="#shop"
           className="mt-10 inline-flex items-center justify-center rounded-full bg-white px-10 py-4 text-xs font-medium uppercase tracking-[0.18em] text-neutral-900 shadow-lg shadow-black/10 transition-all duration-500 ease-in-out hover:bg-white/90 hover:shadow-xl sm:text-[13px]"
         >
-          Shop Full Collection
+          לקולקציה המלאה
         </Link>
       </div>
 
@@ -147,7 +147,7 @@ function ShopByCategory({ tiles }: { tiles: StyleTile[] }) {
       className="mx-auto max-w-7xl scroll-mt-24 px-6 pb-4 pt-16 lg:px-10 lg:pb-8 lg:pt-24"
     >
       <p className="text-center text-[11px] font-medium tracking-[0.3em] text-[#b8902f]">
-        SHOP BY STYLE
+        הקולקציות שלנו
       </p>
       <h2 className="mt-4 text-center font-serif text-3xl font-light tracking-[0.04em] text-neutral-900 lg:text-4xl">
         קנו לפי סגנון
@@ -173,7 +173,7 @@ function ShopByCategory({ tiles }: { tiles: StyleTile[] }) {
                 {tile.label}
               </span>
               <span className="text-[10px] font-medium uppercase tracking-[0.22em] text-white/80 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                Shop now
+                לרכישה
               </span>
             </span>
           </Link>
@@ -200,7 +200,7 @@ function ThematicBanner() {
             href="#geo-collection"
             className="inline-flex items-center rounded-full border border-white/80 px-9 py-3.5 text-xs font-medium tracking-[0.14em] text-white transition-all duration-500 ease-in-out hover:bg-white hover:text-neutral-900"
           >
-            Discover the Collection
+            גלו את הקולקציה
           </Link>
         </div>
       </section>
@@ -221,9 +221,9 @@ function Craftsmanship() {
         />
         <div className="absolute inset-0 bg-black/45" />
         <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center px-6 py-28 text-center text-white lg:py-36">
-          <p className="text-xs tracking-[0.3em] text-[#d4af6a]">CRAFTSMANSHIP</p>
+          <p className="text-xs tracking-[0.3em] text-[#d4af6a]">אומנות יד</p>
           <h2 className="mt-5 font-serif text-3xl font-light tracking-[0.04em] lg:text-5xl">
-            Quality in Every Detail
+            איכות בכל פרט
           </h2>
           <p className="mt-7 max-w-xl text-sm leading-loose text-white/85">
             כל פריט עובר ביקורת קפדנית — מהבחירה בחומרים ועד הגימור הסופי. כך
@@ -238,7 +238,7 @@ function Craftsmanship() {
 function NewArrivalsIntro() {
   return (
     <section className="mx-auto max-w-7xl px-6 pt-16 text-center lg:px-10 lg:pt-24">
-      <p className="text-xs tracking-[0.3em] text-[#b8902f]">THE AMATO SIGNATURE</p>
+      <p className="text-xs tracking-[0.3em] text-[#b8902f]">החתימה של AMATO</p>
     </section>
   );
 }
@@ -287,7 +287,7 @@ function Footer() {
               AMATO
             </span>
             <p className="mt-4 max-w-xs text-xs leading-relaxed text-neutral-500">
-              Minimalist jewelry, crafted with precision.
+              תכשיטים מינימליסטיים, עשויים בדייקנות.
             </p>
           </div>
 
@@ -353,7 +353,7 @@ function Footer() {
 
           {/* Center: copyright */}
           <span className="text-center text-xs tracking-[0.12em] text-neutral-400">
-            © {new Date().getFullYear()} AMATO. All rights reserved.
+            © {new Date().getFullYear()} AMATO. כל הזכויות שמורות.
           </span>
 
           {/* Right: payments */}

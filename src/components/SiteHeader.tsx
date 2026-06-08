@@ -127,29 +127,12 @@ export default function SiteHeader() {
         scrolled ? "shadow-lg shadow-black/30" : ""
       }`}
     >
-      <div className="mx-auto grid h-14 max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-6 lg:px-10">
-        {/* Start cell (right in RTL): menu toggle on every breakpoint */}
-        <div className="flex items-center justify-self-start">
-          <button
-            type="button"
-            onClick={() => setMobileOpen((o) => !o)}
-            className="-m-2 flex items-center p-2 transition-all duration-500 ease-in-out hover:opacity-60"
-            aria-label={mobileOpen ? "סגירת תפריט" : "תפריט"}
-            aria-expanded={mobileOpen}
-          >
-            {mobileOpen ? (
-              <X className="h-6 w-6" strokeWidth={1.5} />
-            ) : (
-              <Menu className="h-6 w-6" strokeWidth={1.5} />
-            )}
-          </button>
-        </div>
-
-        {/* Center cell: logo */}
+      <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-6 lg:px-10">
+        {/* Logo — leading (right) in RTL */}
         <Link
           href="/"
           aria-label="AMATO — דף הבית"
-          className="relative h-8 w-24 justify-self-center transition-all duration-500 ease-in-out hover:opacity-80 lg:h-9 lg:w-28"
+          className="relative h-8 w-24 transition-all duration-500 ease-in-out hover:opacity-80 lg:h-9 lg:w-28"
         >
           <Image
             src="/images/logo.jpg"
@@ -161,8 +144,8 @@ export default function SiteHeader() {
           />
         </Link>
 
-        {/* End cell (left in RTL): search + cart icons */}
-        <div className="flex items-center justify-end gap-6">
+        {/* Actions — trailing (left) in RTL: search · cart · menu */}
+        <div className="flex items-center gap-5">
           <button
             type="button"
             aria-label={searchOpen ? "סגירת חיפוש" : "חיפוש"}
@@ -187,6 +170,19 @@ export default function SiteHeader() {
               <span className="absolute -end-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#c8a24c] px-1 text-[10px] font-medium leading-none text-black ring-2 ring-black">
                 {totalQuantity}
               </span>
+            )}
+          </button>
+          <button
+            type="button"
+            onClick={() => setMobileOpen((o) => !o)}
+            className="-mr-2 flex items-center p-2 transition-all duration-500 ease-in-out hover:opacity-60"
+            aria-label={mobileOpen ? "סגירת תפריט" : "תפריט"}
+            aria-expanded={mobileOpen}
+          >
+            {mobileOpen ? (
+              <X className="h-6 w-6" strokeWidth={1.5} />
+            ) : (
+              <Menu className="h-6 w-6" strokeWidth={1.5} />
             )}
           </button>
         </div>

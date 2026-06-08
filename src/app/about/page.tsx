@@ -43,7 +43,7 @@ export default function AboutPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/15 to-black/40" />
           <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center text-white">
-            <p className="text-xs tracking-[0.3em] text-[#d4af6a]">ABOUT AMATO</p>
+            <p className="text-xs tracking-[0.3em] text-[#d4af6a]">אודות AMATO</p>
             <h1 className="mt-4 font-serif text-4xl font-light tracking-[0.06em] sm:text-5xl lg:text-6xl">
               הסיפור שלנו
             </h1>
@@ -117,14 +117,14 @@ export default function AboutPage() {
             <FadeIn delay={150}>
               <div className="flex flex-col lg:order-first">
                 <p className="text-xs tracking-[0.3em] text-[#b8902f]">
-                  PREMIUM UNBOXING
+                  חוויית פתיחה
                 </p>
                 <h2 className="mt-5 font-serif text-3xl font-light leading-tight text-neutral-900 lg:text-4xl">
-                  Experience the art of gifting.
+                  חוויית מתנה מושלמת.
                 </h2>
                 <p className="mt-7 max-w-md text-base leading-loose text-neutral-500">
-                  Every AMATO piece arrives in our signature premium packaging,
-                  crafted to make every unboxing a special moment.
+                  כל פריט של AMATO מגיע באריזת פרימיום ייחודית, שתוכננה כדי
+                  להפוך כל רגע פתיחה לחוויה מיוחדת.
                 </p>
               </div>
             </FadeIn>

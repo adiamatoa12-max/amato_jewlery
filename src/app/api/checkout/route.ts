@@ -15,7 +15,7 @@ interface CheckoutLine {
 export async function POST(request: Request) {
   if (!isShopifyLive()) {
     return NextResponse.json(
-      { error: "Live checkout is not configured yet." },
+      { error: "התשלום אינו זמין כרגע." },
       { status: 503 },
     );
   }
@@ -24,7 +24,7 @@ export async function POST(request: Request) {
   try {
     body = await request.json();
   } catch {
-    return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
+    return NextResponse.json({ error: "בקשה לא תקינה." }, { status: 400 });
   }
 
   const lines = (body.lines ?? [])
@@ -33,7 +33,7 @@ export async function POST(request: Request) {
 
   if (lines.length === 0) {
     return NextResponse.json(
-      { error: "No purchasable items in cart (missing variant ids)." },
+      { error: "אין פריטים זמינים לרכישה בסל." },
       { status: 400 },
     );
   }
@@ -42,8 +42,11 @@ export async function POST(request: Request) {
     const cart = await createCart(lines);
     return NextResponse.json({ url: cart.checkoutUrl });
   } catch (error) {
-    const message =
-      error instanceof Error ? error.message : "Failed to start checkout.";
-    return NextResponse.json({ error: message }, { status: 502 });
+    // Log the real (English) Shopify error server-side; show Hebrew to the user.
+    console.error("[checkout]", error);
+    return NextResponse.json(
+      { error: "אירעה שגיאה במעבר לתשלום. נסו שוב מאוחר יותר." },
+      { status: 502 },
+    );
   }
 }

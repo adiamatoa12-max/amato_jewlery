@@ -128,7 +128,7 @@ export async function getCollections(): Promise<MockCollection[]> {
       {
         handle: "all-products",
         title: "כל המוצרים",
-        enTitle: "ALL PRODUCTS",
+        enTitle: "כל המוצרים",
         tagline: "",
         products: allProducts,
       } satisfies MockCollection,

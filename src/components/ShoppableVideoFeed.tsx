@@ -50,10 +50,10 @@ export default function ShoppableVideoFeed({
   return (
     <section className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-24">
       <p className="text-center text-xs tracking-[0.3em] text-[#b8902f]">
-        SHOP THE LOOK
+        קנו את הלוק
       </p>
-      <h2 className="mt-4 text-center font-display text-2xl font-bold uppercase tracking-[0.2em] text-neutral-900 lg:text-3xl">
-        In Motion
+      <h2 className="mt-4 text-center font-display text-2xl font-bold tracking-[0.2em] text-neutral-900 lg:text-3xl">
+        בתנועה
       </h2>
       <div className="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-4">
         {items.map((item) => (

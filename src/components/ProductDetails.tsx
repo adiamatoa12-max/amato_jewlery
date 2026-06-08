@@ -143,7 +143,7 @@ export default function ProductDetails({
       {/* Styled for You */}
       {product.styledImage && (
         <div className="mt-12">
-          <p className="text-xs tracking-[0.3em] text-[#b8902f]">STYLED FOR YOU</p>
+          <p className="text-xs tracking-[0.3em] text-[#b8902f]">מסטיילינג בשבילך</p>
           <h2 className="mt-3 font-serif text-2xl font-light text-neutral-900">
             Styled for You
           </h2>
