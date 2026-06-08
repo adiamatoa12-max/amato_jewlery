@@ -168,12 +168,14 @@ export interface StyleTile {
   image: string;
 }
 
-/** Bundled fallback tiles for the "Shop by Style" grid. */
+// Bundled fallback tiles for the "Shop by Style" grid. Handles point at the
+// real, populated collections: rings+necklaces live in amato-essentials,
+// earrings+bracelets in amato-signature.
 const FALLBACK_STYLE_TILES: StyleTile[] = [
-  { handle: "geo-collection", label: "עגילים", image: "/collections/earrings.png" },
-  { handle: "the-cubans", label: "שרשראות", image: "/collections/necklaces.png" },
-  { handle: "clean-essentials", label: "טבעות", image: "/collections/rings.png" },
-  { handle: "clean-essentials", label: "צמידים", image: "/collections/bracelets.png" },
+  { handle: "amato-signature", label: "צמידים", image: "/collections/bracelets.png" },
+  { handle: "amato-essentials", label: "טבעות", image: "/collections/rings.png" },
+  { handle: "amato-essentials", label: "שרשראות", image: "/collections/necklaces.png" },
+  { handle: "amato-signature", label: "עגילים", image: "/collections/earrings.png" },
 ];
 
 /**
@@ -210,6 +212,33 @@ export async function getFeaturedProducts(limit = 4): Promise<MockProduct[]> {
   } catch (error) {
     warnFallback("getFeaturedProducts", error);
     return COLLECTIONS.flatMap((c) => c.products).slice(0, limit);
+  }
+}
+
+/** A single collection (title + products) by handle, for collection pages. */
+export async function getCollectionByHandle(
+  handle: string,
+): Promise<MockCollection | null> {
+  if (!isShopifyLive()) {
+    return COLLECTIONS.find((c) => c.handle === handle) ?? null;
+  }
+  try {
+    const [collections, products] = await Promise.all([
+      getShopifyCollections(30),
+      getCollectionProducts(handle, 50),
+    ]);
+    const meta = collections.find((c) => c.handle === handle);
+    if (!meta) return null;
+    return {
+      handle: meta.handle,
+      title: meta.title,
+      enTitle: meta.title,
+      tagline: meta.description ?? "",
+      products: products.map(adapt),
+    };
+  } catch (error) {
+    warnFallback("getCollectionByHandle", error);
+    return COLLECTIONS.find((c) => c.handle === handle) ?? null;
   }
 }
 

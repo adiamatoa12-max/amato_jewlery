@@ -166,7 +166,7 @@ function ShopByCategory({ tiles }: { tiles: StyleTile[] }) {
         {tiles.map((tile, i) => (
           <Link
             key={`${tile.handle}-${i}`}
-            href={`/#${tile.handle}`}
+            href={`/collections/${tile.handle}`}
             className="group relative block aspect-[3/4] overflow-hidden rounded-lg bg-[#f4f2ef]"
           >
             <Image
