@@ -33,24 +33,9 @@ export default function ProductView({
 
   return (
     <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-16">
-      {/* Images — right column in RTL (first child); scrolls normally */}
+      {/* Images — right column in RTL (first child); static photos only,
+          videos are intentionally excluded here to avoid duplicate media. */}
       <div className="flex flex-col gap-4 lg:gap-6">
-        {/* Product video takes priority as the lead media */}
-        {product.videoUrl && (
-          <div className="group relative aspect-[4/5] w-full overflow-hidden rounded-sm bg-[#f8f8f8]">
-            <video
-              className="h-full w-full object-cover"
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="metadata"
-              poster={product.image}
-            >
-              <source src={product.videoUrl} type="video/mp4" />
-            </video>
-          </div>
-        )}
         {gallery.map((src, i) => {
           const photo = isPhoto(src);
           return (
