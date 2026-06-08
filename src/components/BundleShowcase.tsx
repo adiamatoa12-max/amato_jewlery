@@ -32,15 +32,16 @@ export default async function BundleShowcase() {
 
   return (
     <section className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-24">
-      <div className="grid items-stretch overflow-hidden rounded-2xl bg-neutral-900 text-white lg:grid-cols-2">
-        {/* Image */}
-        <div className="relative aspect-[4/3] w-full lg:aspect-auto">
+      <div className="grid items-center overflow-hidden rounded-2xl bg-neutral-900 text-white lg:grid-cols-2">
+        {/* Image — defined portrait aspect (matches the photo) so it never
+            collapses and isn't cropped. */}
+        <div className="relative aspect-[3/4] w-full sm:aspect-[4/3] lg:aspect-[4/5]">
           <Image
             src="/images/bundle.jpg"
             alt="באנדל הלוק המלא של AMATO"
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
-            className="object-cover"
+            className="object-contain lg:object-cover"
           />
         </div>
 

@@ -58,9 +58,6 @@ export default async function Home() {
       <main className="flex-1">
         <Hero />
         <FadeIn>
-          <BundleShowcase />
-        </FadeIn>
-        <FadeIn>
           <ShopByCategory tiles={styleTiles} />
         </FadeIn>
         <FadeIn>
@@ -77,6 +74,9 @@ export default async function Home() {
         </FadeIn>
         <ThematicBanner />
         <Craftsmanship />
+        <FadeIn>
+          <BundleShowcase />
+        </FadeIn>
       </main>
       <Footer />
     </div>
