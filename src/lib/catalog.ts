@@ -139,6 +139,29 @@ export async function getCollections(): Promise<MockCollection[]> {
   }
 }
 
+export interface NavGroup {
+  label: string;
+  href: string;
+  links: { label: string; href: string }[];
+}
+
+/**
+ * Navigation groups for the slide-out menu, derived from the live collections
+ * (each collection becomes a group, its products the sub-links). Falls back to
+ * the bundled collections via getCollections() when not live.
+ */
+export async function getNavGroups(): Promise<NavGroup[]> {
+  const collections = await getCollections();
+  return collections.map((c) => ({
+    label: c.title,
+    href: `/#${c.handle}`,
+    links: c.products.slice(0, 8).map((p) => ({
+      label: p.title,
+      href: `/product/${p.handle}`,
+    })),
+  }));
+}
+
 export interface StyleTile {
   handle: string;
   label: string;

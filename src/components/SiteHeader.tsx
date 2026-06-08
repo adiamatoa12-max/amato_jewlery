@@ -47,7 +47,12 @@ const NAV_MENU: NavGroup[] = [
   },
 ];
 
-export default function SiteHeader() {
+export default function SiteHeader({
+  navGroups,
+}: {
+  navGroups?: NavGroup[];
+}) {
+  const groups = navGroups && navGroups.length > 0 ? navGroups : NAV_MENU;
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [expanded, setExpanded] = useState<string | null>(null);
@@ -275,7 +280,7 @@ export default function SiteHeader() {
           }`}
         >
           <div className="px-6 py-4 text-white">
-            {NAV_MENU.map((group) => {
+            {groups.map((group) => {
               const isOpen = expanded === group.label;
               return (
                 <div key={group.label} className="border-b border-white/10">

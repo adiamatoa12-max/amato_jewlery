@@ -8,6 +8,7 @@ import InfoDrawer from "@/components/InfoDrawer";
 import SiteHeader from "@/components/SiteHeader";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import { getNavGroups } from "@/lib/catalog";
 
 const assistant = Assistant({
   variable: "--font-sans",
@@ -32,11 +33,13 @@ export const metadata: Metadata = {
     "AMATO מעצבת תכשיטי פרימיום מינימליסטיים מכסף סטרלינג 925 בציפוי זהב 14 קראט — נועדו ללוות אותך בכל יום.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const navGroups = await getNavGroups();
+
   return (
     <html
       lang="he"
@@ -47,7 +50,7 @@ export default function RootLayout({
         <CartProvider>
           <InfoProvider>
             <AnnouncementBar />
-            <SiteHeader />
+            <SiteHeader navGroups={navGroups} />
             {children}
             <WhatsAppButton />
             <CartDrawer />
