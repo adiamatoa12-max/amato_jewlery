@@ -27,6 +27,7 @@ export default function ProductCard({ product }: { product: MockProduct }) {
   const [active, setActive] = useState(0);
   const trackRef = useRef<HTMLDivElement | null>(null);
 
+  const hasVideo = Boolean(product.videoUrl);
   const slides = [
     { src: product.image, alt: product.title, hidden: false },
     { src: product.hoverImage, alt: "", hidden: true },
@@ -72,32 +73,53 @@ export default function ProductCard({ product }: { product: MockProduct }) {
         onMouseEnter={() => scrollToSlide(1)}
         onMouseLeave={() => scrollToSlide(0)}
       >
-        {/* Swipeable image track — native scroll-snap (swipe on touch, hover-scroll on desktop) */}
-        <div
-          ref={trackRef}
-          onScroll={onScroll}
-          className="flex h-full w-full snap-x snap-mandatory overflow-x-auto scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        >
-          {slides.map((slide, i) => (
-            <Link
-              key={i}
-              href={`/product/${product.handle}`}
-              aria-label={i === 0 ? product.title : undefined}
-              aria-hidden={i === 0 ? undefined : true}
-              tabIndex={i === 0 ? undefined : -1}
-              className="relative h-full w-full shrink-0 snap-center"
+        {hasVideo ? (
+          /* Product video takes priority — fills the frame, autoplays muted */
+          <Link
+            href={`/product/${product.handle}`}
+            aria-label={product.title}
+            className="block h-full w-full"
+          >
+            <video
+              className="h-full w-full object-cover transition-transform duration-[800ms] ease-in-out group-hover:scale-[1.04]"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              poster={product.image}
             >
-              <Image
-                src={slide.src}
-                alt={slide.alt}
-                aria-hidden={slide.hidden}
-                fill
-                sizes="(min-width: 1024px) 25vw, 50vw"
-                className="object-contain p-7 mix-blend-multiply transition-transform duration-[800ms] ease-in-out group-hover:scale-[1.06]"
-              />
-            </Link>
-          ))}
-        </div>
+              <source src={product.videoUrl} type="video/mp4" />
+            </video>
+          </Link>
+        ) : (
+          /* Swipeable image track — native scroll-snap (swipe on touch, hover-scroll on desktop) */
+          <div
+            ref={trackRef}
+            onScroll={onScroll}
+            className="flex h-full w-full snap-x snap-mandatory overflow-x-auto scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            {slides.map((slide, i) => (
+              <Link
+                key={i}
+                href={`/product/${product.handle}`}
+                aria-label={i === 0 ? product.title : undefined}
+                aria-hidden={i === 0 ? undefined : true}
+                tabIndex={i === 0 ? undefined : -1}
+                className="relative h-full w-full shrink-0 snap-center"
+              >
+                <Image
+                  src={slide.src}
+                  alt={slide.alt}
+                  aria-hidden={slide.hidden}
+                  fill
+                  sizes="(min-width: 1024px) 25vw, 50vw"
+                  className="object-contain p-7 mix-blend-multiply transition-transform duration-[800ms] ease-in-out group-hover:scale-[1.06]"
+                />
+              </Link>
+            ))}
+          </div>
+        )}
 
         {/* Merchandising badge — top-left, subtle, fades in on hover */}
         {product.badge && !soldOut && (
@@ -128,8 +150,8 @@ export default function ProductCard({ product }: { product: MockProduct }) {
           </button>
         )}
 
-        {/* Dot indicators — mobile only (desktop reveals via hover) */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-3 z-20 flex justify-center gap-1.5 md:hidden">
+        {/* Dot indicators — mobile only (desktop reveals via hover); hidden for video */}
+        <div className={`pointer-events-none absolute inset-x-0 bottom-3 z-20 flex justify-center gap-1.5 md:hidden ${hasVideo ? "hidden" : ""}`}>
           {slides.map((_, i) => (
             <button
               key={i}

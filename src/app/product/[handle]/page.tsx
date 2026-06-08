@@ -43,6 +43,7 @@ export default async function ProductPage({
             gallery: product.gallery,
             styledImage: product.styledImage,
             variantId: product.variantId,
+            videoUrl: product.videoUrl,
           }}
         />
       </main>
