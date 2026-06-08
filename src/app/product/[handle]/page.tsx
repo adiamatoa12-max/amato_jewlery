@@ -14,7 +14,9 @@ export default async function ProductPage({
   params: Promise<{ handle: string }>;
 }) {
   const { handle } = await params;
-  const product = await getProduct(handle);
+  // Decode so non-ASCII (Hebrew) handles match Shopify exactly — the route
+  // param arrives percent-encoded.
+  const product = await getProduct(decodeURIComponent(handle));
 
   if (!product) {
     notFound();
