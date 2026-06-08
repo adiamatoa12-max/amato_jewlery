@@ -29,6 +29,8 @@ async function getVideoFeedItems(): Promise<VideoFeedItem[]> {
     price: product.price,
     currency: product.currency,
     image: product.image,
+    // Prioritise a real product video; the card falls back to image when absent.
+    video: product.videoUrl,
   }));
 }
 

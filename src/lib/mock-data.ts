@@ -19,6 +19,8 @@ export interface MockProduct {
   styledImage?: string;
   /** Shopify variant id (merchandiseId) used for cart/checkout when live. */
   variantId?: string;
+  /** First Shopify video media source, if the product has one. */
+  videoUrl?: string;
 }
 
 export interface MockCollection {

@@ -32,6 +32,22 @@ export const PRODUCT_FRAGMENT = /* GraphQL */ `
         }
       }
     }
+    media(first: 10) {
+      edges {
+        node {
+          mediaContentType
+          ... on Video {
+            sources {
+              url
+              mimeType
+            }
+            previewImage {
+              url
+            }
+          }
+        }
+      }
+    }
     variants(first: 50) {
       edges {
         node {

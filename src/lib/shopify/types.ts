@@ -10,6 +10,19 @@ export interface Image {
   height: number;
 }
 
+export interface VideoSource {
+  url: string;
+  mimeType: string;
+}
+
+export interface MediaNode {
+  mediaContentType: "IMAGE" | "VIDEO" | "EXTERNAL_VIDEO" | "MODEL_3D";
+  /** Present on Video media. */
+  sources?: VideoSource[];
+  /** Present on Video media. */
+  previewImage?: { url: string } | null;
+}
+
 export interface ProductVariant {
   id: string;
   title: string;
@@ -31,6 +44,7 @@ export interface Product {
   };
   featuredImage: Image | null;
   images: Image[];
+  media: MediaNode[];
   variants: ProductVariant[];
 }
 

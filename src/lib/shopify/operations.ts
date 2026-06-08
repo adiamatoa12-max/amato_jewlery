@@ -16,6 +16,7 @@ import type {
   Collection,
   Connection,
   Image,
+  MediaNode,
   Product,
   ProductVariant,
 } from "./types";
@@ -32,8 +33,9 @@ interface UserError {
 }
 
 // --- Raw GraphQL shapes (connections) before flattening ---
-type RawProduct = Omit<Product, "images" | "variants"> & {
+type RawProduct = Omit<Product, "images" | "media" | "variants"> & {
   images: Connection<Image>;
+  media: Connection<MediaNode>;
   variants: Connection<ProductVariant>;
 };
 
@@ -49,6 +51,7 @@ function reshapeProduct(product: RawProduct): Product {
   return {
     ...product,
     images: flatten(product.images),
+    media: flatten(product.media),
     variants: flatten(product.variants),
   };
 }

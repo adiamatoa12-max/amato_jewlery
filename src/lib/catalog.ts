@@ -57,6 +57,16 @@ function badgeFromTags(tags: string[]): MockProduct["badge"] {
   return undefined;
 }
 
+/** First playable video source from the product's media, if any. */
+function firstVideoUrl(p: ShopifyProduct): string | undefined {
+  const video = p.media?.find(
+    (m) => m.mediaContentType === "VIDEO" && m.sources && m.sources.length > 0,
+  );
+  if (!video?.sources) return undefined;
+  const mp4 = video.sources.find((s) => s.mimeType === "video/mp4");
+  return (mp4 ?? video.sources[0]).url;
+}
+
 /** Map a live Shopify product onto the UI view-model. */
 function adapt(p: ShopifyProduct): MockProduct {
   const images = p.images.map((i) => i.url);
@@ -77,6 +87,7 @@ function adapt(p: ShopifyProduct): MockProduct {
     gallery: images.length > 0 ? images : undefined,
     styledImage: images[1],
     variantId: p.variants[0]?.id,
+    videoUrl: firstVideoUrl(p),
   };
 }
 
