@@ -36,6 +36,11 @@ export const PRODUCT_FRAGMENT = /* GraphQL */ `
       edges {
         node {
           mediaContentType
+          ... on MediaImage {
+            image {
+              url
+            }
+          }
           ... on Video {
             sources {
               url

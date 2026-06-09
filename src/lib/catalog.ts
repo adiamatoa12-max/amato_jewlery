@@ -69,7 +69,13 @@ function firstVideoUrl(p: ShopifyProduct): string | undefined {
 
 /** Map a live Shopify product onto the UI view-model. */
 function adapt(p: ShopifyProduct): MockProduct {
-  const images = p.images.map((i) => i.url);
+  // Explicitly take IMAGE media only — never a VIDEO (or its preview) — so the
+  // gallery is built from static images and skips a leading video. Fall back to
+  // the images connection if media isn't populated.
+  const imageMedia = (p.media ?? [])
+    .filter((m) => m.mediaContentType === "IMAGE" && m.image?.url)
+    .map((m) => m.image!.url);
+  const images = imageMedia.length > 0 ? imageMedia : p.images.map((i) => i.url);
   const image = p.featuredImage?.url ?? images[0] ?? "";
   const hoverImage = images.find((u) => u !== image) ?? image;
   return {

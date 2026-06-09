@@ -10,7 +10,6 @@ interface ProductViewProps {
     hoverImage: string;
     gallery?: string[];
     styledImage?: string;
-    videoUrl?: string;
   };
   soldOut: boolean;
   collectionTitle: string;

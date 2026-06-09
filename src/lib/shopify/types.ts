@@ -17,6 +17,8 @@ export interface VideoSource {
 
 export interface MediaNode {
   mediaContentType: "IMAGE" | "VIDEO" | "EXTERNAL_VIDEO" | "MODEL_3D";
+  /** Present on MediaImage. */
+  image?: { url: string } | null;
   /** Present on Video media. */
   sources?: VideoSource[];
   /** Present on Video media. */
