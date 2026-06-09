@@ -21,6 +21,8 @@ export interface MockProduct {
   variantId?: string;
   /** First Shopify video media source, if the product has one. */
   videoUrl?: string;
+  /** Typed media list from Shopify (media_type + url) for the PDP gallery. */
+  galleryMedia?: { media_type: "IMAGE" | "VIDEO"; url: string }[];
 }
 
 export interface MockCollection {

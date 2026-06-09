@@ -96,6 +96,17 @@ function adapt(p: ShopifyProduct): MockProduct {
     styledImage: undefined,
     variantId: p.variants[0]?.id,
     videoUrl: firstVideoUrl(p),
+    galleryMedia: (p.media ?? [])
+      .map((m) => {
+        const isVid =
+          m.mediaContentType === "VIDEO" ||
+          m.mediaContentType === "EXTERNAL_VIDEO";
+        const url = isVid
+          ? (m.previewImage?.url ?? m.sources?.[0]?.url ?? "")
+          : (m.image?.url ?? "");
+        return { media_type: isVid ? ("VIDEO" as const) : ("IMAGE" as const), url };
+      })
+      .filter((m) => m.url),
   };
 }
 

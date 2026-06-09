@@ -43,6 +43,13 @@ export default async function ProductPage({
             gallery: product.gallery,
             styledImage: product.styledImage,
             variantId: product.variantId,
+            // Typed media for the gallery. Live products carry galleryMedia;
+            // bundled products fall back to their images, typed as IMAGE.
+            galleryMedia:
+              product.galleryMedia ??
+              (product.gallery ?? [product.image, product.hoverImage])
+                .filter(Boolean)
+                .map((url) => ({ media_type: "IMAGE" as const, url })),
           }}
         />
       </main>
