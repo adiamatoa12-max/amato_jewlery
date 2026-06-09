@@ -25,11 +25,6 @@ export default function ProductCard({ product }: { product: MockProduct }) {
   const { addItem } = useCart();
   const [added, setAdded] = useState(false);
 
-  const hasVideo = Boolean(product.videoUrl);
-  // A genuine second image (not just a repeat of the primary).
-  const hasSecondary =
-    Boolean(product.hoverImage) && product.hoverImage !== product.image;
-
   function quickAdd(e: React.MouseEvent) {
     e.preventDefault();
     e.stopPropagation();
@@ -48,54 +43,26 @@ export default function ProductCard({ product }: { product: MockProduct }) {
   }
 
   return (
-    <article className="group flex flex-col">
-      <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-[#fafaf9] transition-all duration-500 ease-in-out group-hover:-translate-y-1 group-hover:shadow-[0_22px_45px_-18px_rgba(0,0,0,0.18)]">
-        {/* Base media: product video (autoplays in view) or the primary image */}
+    <article className="flex flex-col">
+      <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-[#fafaf9]">
+        {/* 100% static — the single primary image, nothing else */}
         <Link
           href={`/product/${product.handle}`}
           aria-label={product.title}
           className="block h-full w-full"
         >
-          {hasVideo ? (
-            <video
-              aria-hidden
-              className="h-full w-full object-cover transition-transform duration-[800ms] ease-in-out group-hover:scale-[1.04]"
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="metadata"
-              poster={product.image}
-            >
-              <source src={product.videoUrl} type="video/mp4" />
-            </video>
-          ) : (
-            <Image
-              src={product.image}
-              alt=""
-              fill
-              sizes="(min-width: 1024px) 25vw, 50vw"
-              className="object-contain p-7 mix-blend-multiply transition-transform duration-[800ms] ease-in-out group-hover:scale-[1.06]"
-            />
-          )}
-
-          {/* Hover-to-reveal secondary image — desktop (hover-capable) only, so
-              it never triggers on touch and never blocks the video autoplay. */}
-          {hasSecondary && (
-            <Image
-              src={product.hoverImage}
-              alt=""
-              aria-hidden
-              fill
-              sizes="(min-width: 1024px) 25vw, 50vw"
-              className="object-contain p-7 mix-blend-multiply opacity-0 transition-opacity duration-500 ease-in-out [@media(hover:hover)]:group-hover:opacity-100"
-            />
-          )}
+          <Image
+            src={product.image}
+            alt={product.title}
+            fill
+            sizes="(min-width: 1024px) 25vw, 50vw"
+            className="object-contain p-7 mix-blend-multiply"
+          />
         </Link>
 
-        {/* Merchandising badge — top-left, subtle, fades in on hover */}
+        {/* Merchandising badge — always visible (no hover) */}
         {product.badge && !soldOut && (
-          <span className="absolute end-3 top-3 z-20 rounded-full bg-white/85 px-2 py-0.5 text-[9px] font-medium tracking-[0.14em] text-neutral-700 opacity-0 backdrop-blur transition-opacity duration-500 ease-in-out group-hover:opacity-100">
+          <span className="absolute end-3 top-3 z-20 rounded-full bg-white/85 px-2 py-0.5 text-[9px] font-medium tracking-[0.14em] text-neutral-700 backdrop-blur">
             {BADGES[product.badge]}
           </span>
         )}
@@ -106,13 +73,13 @@ export default function ProductCard({ product }: { product: MockProduct }) {
           </span>
         )}
 
-        {/* Quick Add — opposite top corner, small, fades in on hover */}
+        {/* Add to cart — always visible (no hover) */}
         {!soldOut && (
           <button
             type="button"
             onClick={quickAdd}
             aria-label={`הוספה מהירה — ${product.title}`}
-            className="absolute start-3 top-3 z-20 flex h-7 w-7 items-center justify-center rounded-full bg-white/85 text-neutral-700 opacity-0 backdrop-blur transition-all duration-500 ease-in-out hover:bg-neutral-900 hover:text-white group-hover:opacity-100"
+            className="absolute start-3 top-3 z-20 flex h-7 w-7 items-center justify-center rounded-full bg-white/90 text-neutral-700 backdrop-blur hover:bg-neutral-900 hover:text-white"
           >
             {added ? (
               <Check className="h-3.5 w-3.5" strokeWidth={1.75} />
@@ -121,19 +88,9 @@ export default function ProductCard({ product }: { product: MockProduct }) {
             )}
           </button>
         )}
-
-        {/* Thin Quick View button — appears on hover (desktop) */}
-        <div className="absolute inset-x-0 bottom-0 z-20 hidden justify-center p-3 opacity-0 transition-all duration-500 ease-in-out translate-y-2 group-hover:translate-y-0 group-hover:opacity-100 md:flex">
-          <Link
-            href={`/product/${product.handle}`}
-            className="rounded-full border border-neutral-900/70 bg-white/80 px-6 py-2 text-[11px] font-medium tracking-[0.12em] text-neutral-900 backdrop-blur transition-all duration-300 ease-in-out hover:bg-neutral-900 hover:text-white"
-          >
-            צפייה מהירה
-          </Link>
-        </div>
       </div>
 
-      {/* Title + price — centered below the image, clean and minimal */}
+      {/* Title + price */}
       <div className="mt-6 flex flex-col items-center gap-2 text-center">
         <h3 className="text-base font-semibold tracking-[0.02em] text-neutral-900">
           {product.title}
