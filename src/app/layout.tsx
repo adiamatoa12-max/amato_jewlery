@@ -8,6 +8,7 @@ import InfoDrawer from "@/components/InfoDrawer";
 import SiteHeader from "@/components/SiteHeader";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import AccessibilityButton from "@/components/AccessibilityButton";
 import { getNavGroups } from "@/lib/catalog";
 
 const assistant = Assistant({
@@ -60,6 +61,7 @@ export default async function RootLayout({
             <SiteHeader navGroups={navGroups} />
             {children}
             <WhatsAppButton />
+            <AccessibilityButton />
             <CartDrawer />
             <InfoDrawer />
           </InfoProvider>

@@ -14,6 +14,25 @@ html {
   font-size: 106.25%; /* ~17px */
 }
 
+/* --- Accessibility modes (toggled by AccessibilityButton) --- */
+
+/* Larger text: scales every rem-based size site-wide */
+html.a11y-large-text {
+  font-size: 125%;
+}
+
+/* High contrast: invert the whole page, then re-invert media so photos and
+   videos keep their natural colours. */
+html.a11y-contrast {
+  filter: invert(1) hue-rotate(180deg);
+  background: #ffffff;
+}
+html.a11y-contrast img,
+html.a11y-contrast video,
+html.a11y-contrast iframe {
+  filter: invert(1) hue-rotate(180deg);
+}
+
 body {
   background: #fafaf9; /* stone-50 */
   color: #262626; /* charcoal text for high-contrast, premium feel */
