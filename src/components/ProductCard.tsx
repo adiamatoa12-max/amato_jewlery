@@ -25,6 +25,11 @@ export default function ProductCard({ product }: { product: MockProduct }) {
   const { addItem } = useCart();
   const [added, setAdded] = useState(false);
 
+  const hasVideo = Boolean(product.videoUrl);
+  // A genuine second image (not just a repeat of the primary).
+  const hasSecondary =
+    Boolean(product.hoverImage) && product.hoverImage !== product.image;
+
   function quickAdd(e: React.MouseEvent) {
     e.preventDefault();
     e.stopPropagation();
@@ -45,19 +50,47 @@ export default function ProductCard({ product }: { product: MockProduct }) {
   return (
     <article className="group flex flex-col">
       <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-[#fafaf9] transition-all duration-500 ease-in-out group-hover:-translate-y-1 group-hover:shadow-[0_22px_45px_-18px_rgba(0,0,0,0.18)]">
-        {/* Static primary image only — videos live solely in the Featured section */}
+        {/* Base media: product video (autoplays in view) or the primary image */}
         <Link
           href={`/product/${product.handle}`}
           aria-label={product.title}
           className="block h-full w-full"
         >
-          <Image
-            src={product.image}
-            alt={product.title}
-            fill
-            sizes="(min-width: 1024px) 25vw, 50vw"
-            className="object-contain p-7 mix-blend-multiply transition-transform duration-[800ms] ease-in-out group-hover:scale-[1.06]"
-          />
+          {hasVideo ? (
+            <video
+              aria-hidden
+              className="h-full w-full object-cover transition-transform duration-[800ms] ease-in-out group-hover:scale-[1.04]"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              poster={product.image}
+            >
+              <source src={product.videoUrl} type="video/mp4" />
+            </video>
+          ) : (
+            <Image
+              src={product.image}
+              alt=""
+              fill
+              sizes="(min-width: 1024px) 25vw, 50vw"
+              className="object-contain p-7 mix-blend-multiply transition-transform duration-[800ms] ease-in-out group-hover:scale-[1.06]"
+            />
+          )}
+
+          {/* Hover-to-reveal secondary image — desktop (hover-capable) only, so
+              it never triggers on touch and never blocks the video autoplay. */}
+          {hasSecondary && (
+            <Image
+              src={product.hoverImage}
+              alt=""
+              aria-hidden
+              fill
+              sizes="(min-width: 1024px) 25vw, 50vw"
+              className="object-contain p-7 mix-blend-multiply opacity-0 transition-opacity duration-500 ease-in-out [@media(hover:hover)]:group-hover:opacity-100"
+            />
+          )}
         </Link>
 
         {/* Merchandising badge — top-left, subtle, fades in on hover */}
