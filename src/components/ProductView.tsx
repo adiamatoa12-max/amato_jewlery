@@ -30,23 +30,27 @@ export default function ProductView({
   collectionTitle,
   collectionHandle,
 }: ProductViewProps) {
-  // Images only — exclude any video source, then de-duplicate by URL so each
-  // unique image renders exactly once.
-  const gallery = Array.from(
-    new Set(
-      (product.gallery && product.gallery.length > 0
-        ? product.gallery
-        : [product.image, product.hoverImage]
-      ).filter((src) => src && !isVideoSrc(src)),
-    ),
+  // safeMedia: force-exclude every video source BEFORE any rendering, then
+  // de-duplicate by URL. This component has no <video> JSX and never reads raw
+  // media directly — it only ever maps over this filtered, image-only list.
+  const candidates =
+    product.gallery && product.gallery.length > 0
+      ? product.gallery
+      : [product.image, product.hoverImage];
+  const safeMedia = Array.from(
+    new Set(candidates.filter((src) => src && !isVideoSrc(src))),
   );
 
   return (
     <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-16">
-      {/* Images — right column in RTL (first child); static photos only,
-          videos are intentionally excluded here to avoid duplicate media. */}
+      {/* Images — right column in RTL (first child); static photos only.
+          No video tags exist in this component; safeMedia excludes any video. */}
       <div className="flex flex-col gap-4 lg:gap-6">
-        {gallery.map((src, i) => {
+        {safeMedia.length === 0 ? (
+          // No images and never a video — show a neutral placeholder frame.
+          <div className="aspect-[4/5] w-full rounded-sm bg-[#f4f2ef]" aria-hidden />
+        ) : null}
+        {safeMedia.map((src, i) => {
           const photo = isPhoto(src);
           return (
             <div
