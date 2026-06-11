@@ -37,32 +37,10 @@ export default function Home() {
 }
 
 /* ── Impact hero ─────────────────────────────────────────────────────── */
-/* ── 'The Gym Life' use cases (2×2) ──────────────────────────────────── */
-const USE_CASES = [
-  {
-    title: "לצלם בלי חצובה",
-    body: "מעמד יציב לכל סרטון אימון — בלי לסחוב ציוד מיותר.",
-    start: 1,
-    end: 6,
-  },
-  {
-    title: "תשכחו מהרצפה",
-    body: "הטלפון נשאר נצמד ובטוח — רחוק ממשקולות, זיעה ולכלוך.",
-    start: 7,
-    end: 11,
-  },
-  {
-    title: "זווית צפייה מושלמת",
-    body: "סטרימינג בגובה העיניים בזמן האימון, בדיוק איפה שצריך.",
-    start: 12,
-    end: 16,
-  },
-  {
-    title: "מתאים לכל סמארטפון",
-    body: "כולל טבעות מגנטיות מתאמות לכל דגם ולכל כיסוי.",
-    start: 17,
-    end: 22,
-  },
+/* ── 'The Gym Life' showcase videos (side by side) ───────────────────── */
+const GYM_VIDEOS = [
+  "/videos/vault-magnetic-demo.mp4",
+  "/videos/post_78.mp4",
 ];
 
 function UseCases() {
@@ -81,25 +59,14 @@ function UseCases() {
           </h2>
         </FadeIn>
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:gap-6">
-          {USE_CASES.map((c, i) => (
-            <FadeIn key={c.title} delay={i * 100}>
-              <div className="group relative aspect-[16/10] overflow-hidden rounded-xl border border-white/10 transition-colors duration-300 hover:border-[#c8a24c]/50">
+        <div className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-2">
+          {GYM_VIDEOS.map((src, i) => (
+            <FadeIn key={src} delay={i * 100}>
+              <div className="group relative aspect-[4/5] overflow-hidden rounded-2xl border border-white/10 transition-colors duration-300 hover:border-[#c8a24c]/50">
                 <AutoplayVideo
-                  src="/videos/vault-magnetic-demo.mp4"
-                  start={c.start}
-                  end={c.end}
+                  src={src}
                   className="absolute inset-0 h-full w-full object-cover"
                 />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-6">
-                  <h3 className="font-display text-xl font-extrabold tracking-tight text-white lg:text-2xl">
-                    {c.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-white/70">
-                    {c.body}
-                  </p>
-                </div>
               </div>
             </FadeIn>
           ))}
