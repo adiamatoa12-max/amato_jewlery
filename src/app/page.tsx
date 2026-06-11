@@ -483,10 +483,26 @@ function BundleBanner() {
 
 /* ── Complete Your Gear (complementary products) ─────────────────────── */
 const GEAR_PRODUCTS = [
-  { title: "טבעות מגנטיות (זוג נוסף)", price: "₪39" },
-  { title: "מכסה השייקר החלופי", price: "₪29" },
-  { title: "כדור ערבוב נירוסטה", price: "₪25" },
-  { title: "מברשת ניקוי לשייקר", price: "₪19" },
+  {
+    title: "טבעות מגנטיות (זוג נוסף)",
+    price: "₪39",
+    image: "/images/accessory-magnetic-ring.png",
+  },
+  {
+    title: "מגבת אימון פרימיום",
+    price: "₪45",
+    image: "/images/accessory-gym-towel.png",
+  },
+  {
+    title: "מברשת ניקוי לשייקר",
+    price: "₪19",
+    image: "/images/accessory-cleaning-brush.png",
+  },
+  {
+    title: "נרתיק מגנטי לאוזניות",
+    price: "₪35",
+    image: "/images/accessory-earphone-case.png",
+  },
 ];
 
 function CompleteGear() {
@@ -510,8 +526,14 @@ function CompleteGear() {
             <FadeIn key={p.title} delay={i * 80}>
               <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-zinc-900 transition-colors duration-300 hover:border-[#c8a24c]/50">
                 {/* Product image */}
-                <div className="relative aspect-square w-full overflow-hidden">
-                  <MediaPlaceholder className="absolute inset-0 h-full w-full" />
+                <div className="relative aspect-square w-full overflow-hidden bg-zinc-800">
+                  <Image
+                    src={p.image}
+                    alt={p.title}
+                    fill
+                    sizes="(min-width: 768px) 25vw, 100vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
                 {/* Details */}
                 <div className="flex flex-1 flex-col p-5 text-right">
