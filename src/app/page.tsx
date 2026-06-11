@@ -30,6 +30,7 @@ export default function Home() {
         <HorizontalStreaming />
         <Anatomy />
         <Compatibility />
+        <BundleBanner />
         <CompleteGear />
         <WhatsInTheBox />
       </main>
@@ -357,6 +358,40 @@ function Compatibility() {
           </div>
         </FadeIn>
       </div>
+    </section>
+  );
+}
+
+/* ── Bundle & Save banner ────────────────────────────────────────────── */
+function BundleBanner() {
+  return (
+    <section className="bg-[#0a0a0a] px-6 pb-4 lg:px-10">
+      <FadeIn>
+        <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 overflow-hidden rounded-2xl border border-[#c8a24c]/30 bg-gradient-to-l from-zinc-900 via-black to-zinc-900 px-8 py-10 text-center md:flex-row md:justify-between md:text-right lg:px-12">
+          <div className="md:max-w-2xl">
+            <p
+              className="text-xs font-bold uppercase tracking-[0.2em]"
+              style={{ color: GOLD }}
+            >
+              Bundle &amp; Save
+            </p>
+            <h2 className="mt-3 font-display text-2xl font-black tracking-tight text-white sm:text-3xl lg:text-4xl">
+              קנה סט אימון מלא וחסוך{" "}
+              <span style={{ color: GOLD }}>15%</span>
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed text-zinc-400 lg:text-base">
+              השייקר המגנטי + כל האביזרים המשלימים, במחיר משתלם במיוחד — לזמן
+              מוגבל בלבד.
+            </p>
+          </div>
+          <Link
+            href="#shop"
+            className="inline-flex shrink-0 items-center justify-center rounded-full bg-[#c8a24c] px-10 py-4 text-sm font-black uppercase tracking-[0.12em] text-black shadow-[0_0_30px_-4px_rgba(200,162,76,0.7)] transition-all duration-300 hover:bg-[#e0bd6a] hover:shadow-[0_0_44px_-4px_rgba(200,162,76,0.9)]"
+          >
+            קבל את ההנחה
+          </Link>
+        </div>
+      </FadeIn>
     </section>
   );
 }
