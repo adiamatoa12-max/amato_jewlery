@@ -1,6 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Instagram, Smartphone } from "lucide-react";
+import {
+  Instagram,
+  Smartphone,
+  Magnet,
+  ShieldCheck,
+  Droplet,
+  Grip,
+  type LucideIcon,
+} from "lucide-react";
 import FadeIn from "@/components/FadeIn";
 import FooterLink, { type FooterLinkItem } from "@/components/FooterLink";
 import MediaPlaceholder from "@/components/MediaPlaceholder";
@@ -139,23 +147,108 @@ function HorizontalStreaming() {
 }
 
 /* ── Anatomy of VAULT ────────────────────────────────────────────────── */
-const ANATOMY = [
-  "מגנט N52 עוצמתי",
-  "אטימה מוחלטת לנזילות (BPA-Free)",
-  "פיית שתייה היגיינית",
-  "ידית נשיאה ארגונומית",
+type Callout = {
+  icon: LucideIcon;
+  label: string;
+  align: "right" | "left";
+  /** Label box position, as a CSS style (percent of the image container). */
+  labelStyle: React.CSSProperties;
+  /** Anchor dot on the bottle, in % of the container. */
+  dot: { x: number; y: number };
+  /** Inner endpoint of the connector line, near the label, in % of container. */
+  line: { x: number; y: number };
+};
+
+const ANATOMY: Callout[] = [
+  {
+    icon: Droplet,
+    label: "פיית שתייה היגיינית",
+    align: "right",
+    labelStyle: { top: "13%", right: "2%" },
+    dot: { x: 49, y: 16 },
+    line: { x: 67, y: 17 },
+  },
+  {
+    icon: Magnet,
+    label: "מגנט N52 עוצמתי",
+    align: "right",
+    labelStyle: { top: "50%", right: "2%" },
+    dot: { x: 52, y: 54 },
+    line: { x: 67, y: 53 },
+  },
+  {
+    icon: Grip,
+    label: "ידית נשיאה ארגונומית",
+    align: "left",
+    labelStyle: { top: "11%", left: "2%" },
+    dot: { x: 45, y: 13 },
+    line: { x: 33, y: 15 },
+  },
+  {
+    icon: ShieldCheck,
+    label: "אטימה מוחלטת לנזילות (BPA-Free)",
+    align: "left",
+    labelStyle: { top: "45%", left: "2%" },
+    dot: { x: 48, y: 33 },
+    line: { x: 33, y: 47 },
+  },
 ];
 
-function AnatomyFeature({ text }: { text: string }) {
+/** A single floating callout: connector line + bottle dot + glowing label. */
+function AnatomyCallout({ icon: Icon, label, align, labelStyle, dot, line }: Callout) {
   return (
-    <div className="flex items-start gap-3">
+    <div className="group pointer-events-none absolute inset-0">
+      {/* Connector line (stretches with the container). */}
+      <svg
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        className="absolute inset-0 h-full w-full overflow-visible"
+        aria-hidden
+      >
+        <line
+          x1={line.x}
+          y1={line.y}
+          x2={dot.x}
+          y2={dot.y}
+          stroke={GOLD}
+          strokeWidth="0.25"
+          className="opacity-40 transition-opacity duration-300 group-hover:opacity-100"
+        />
+      </svg>
+
+      {/* Anchor dot on the bottle part. */}
       <span
-        className="mt-2 h-1.5 w-6 shrink-0 rounded-full"
-        style={{ backgroundColor: GOLD }}
-      />
-      <p className="text-sm font-medium leading-relaxed text-white/85 lg:text-base">
-        {text}
-      </p>
+        className="absolute -translate-x-1/2 -translate-y-1/2"
+        style={{ left: `${dot.x}%`, top: `${dot.y}%` }}
+        aria-hidden
+      >
+        <span
+          className="block h-2 w-2 rounded-full ring-2 ring-black/60 transition-transform duration-300 group-hover:scale-125"
+          style={{ backgroundColor: GOLD }}
+        />
+        <span
+          className="absolute inset-0 -m-1.5 rounded-full border opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          style={{ borderColor: GOLD }}
+        />
+      </span>
+
+      {/* Label — gold icon chip + glowing text. */}
+      <div
+        style={labelStyle}
+        className={`pointer-events-auto absolute flex max-w-[44%] items-center gap-2.5 ${
+          align === "right" ? "flex-row-reverse text-right" : "flex-row text-left"
+        }`}
+      >
+        <span
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border bg-black/70 backdrop-blur-sm transition-all duration-300 group-hover:shadow-[0_0_18px_-2px_rgba(200,162,76,0.7)]"
+          style={{ borderColor: `${GOLD}66`, color: GOLD }}
+        >
+          <Icon className="h-4 w-4" strokeWidth={1.75} />
+        </span>
+        <span className="text-xs font-semibold leading-snug text-white/85 transition-all duration-300 group-hover:text-[#c8a24c] group-hover:[text-shadow:0_0_14px_rgba(200,162,76,0.8)] lg:text-sm">
+          {label}
+        </span>
+      </div>
     </div>
   );
 }
@@ -164,34 +257,67 @@ function Anatomy() {
   return (
     <section
       id="shop"
-      className="scroll-mt-24 border-y border-white/10 bg-black px-6 py-20 lg:px-10 lg:py-28"
+      className="scroll-mt-24 border-y border-white/10 bg-zinc-950 px-6 py-20 lg:px-10 lg:py-28"
     >
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-5xl">
         <FadeIn>
-          <h2 className="text-center font-display text-3xl font-black tracking-tight text-white lg:text-5xl">
-            המבנה של VAULT
+          <p
+            className="text-center text-[11px] font-bold tracking-[0.3em]"
+            style={{ color: GOLD }}
+          >
+            הנדסה מדויקת
+          </p>
+          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-white lg:text-5xl">
+            המבנה המדויק של VAULT
           </h2>
         </FadeIn>
 
-        <div className="mt-14 grid items-center gap-10 lg:grid-cols-[1fr_auto_1fr] lg:gap-12">
-          {/* Right column (RTL-first): features 1–2 */}
-          <FadeIn className="flex flex-col gap-8 lg:text-right">
-            <AnatomyFeature text={ANATOMY[0]} />
-            <AnatomyFeature text={ANATOMY[1]} />
-          </FadeIn>
+        {/* Product image with floating callouts (lg+). */}
+        <FadeIn delay={120}>
+          <div className="relative mx-auto mt-14 hidden aspect-[3/2] w-full max-w-3xl lg:block">
+            <Image
+              src="/images/vault-product-image.png"
+              alt="שייקר VAULT המגנטי"
+              fill
+              sizes="(min-width: 1024px) 768px, 100vw"
+              className="rounded-2xl border border-white/10 object-cover"
+              priority={false}
+            />
+            {ANATOMY.map((c) => (
+              <AnatomyCallout key={c.label} {...c} />
+            ))}
+          </div>
+        </FadeIn>
 
-          {/* Center: product image */}
-          <FadeIn delay={120}>
-            <div className="relative mx-auto aspect-[3/4] w-full max-w-xs overflow-hidden rounded-2xl border border-white/10">
-              <MediaPlaceholder className="absolute inset-0 h-full w-full" />
-            </div>
-          </FadeIn>
-
-          {/* Left column: features 3–4 */}
-          <FadeIn delay={200} className="flex flex-col gap-8">
-            <AnatomyFeature text={ANATOMY[2]} />
-            <AnatomyFeature text={ANATOMY[3]} />
-          </FadeIn>
+        {/* Mobile / tablet: image + stacked feature list. */}
+        <div className="mt-12 lg:hidden">
+          <div className="relative mx-auto aspect-[3/2] w-full max-w-md overflow-hidden rounded-2xl border border-white/10">
+            <Image
+              src="/images/vault-product-image.png"
+              alt="שייקר VAULT המגנטי"
+              fill
+              sizes="100vw"
+              className="object-cover"
+            />
+          </div>
+          <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+            {ANATOMY.map(({ icon: Icon, label }) => (
+              <li
+                key={label}
+                className="group flex items-center gap-3 rounded-xl border border-white/10 bg-black/40 p-4 transition-colors duration-300 hover:border-[#c8a24c]/50"
+              >
+                <span
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border bg-black/70"
+                  style={{ borderColor: `${GOLD}66`, color: GOLD }}
+                >
+                  <Icon className="h-4 w-4" strokeWidth={1.75} />
+                </span>
+                <span className="text-sm font-semibold text-white/85 transition-colors duration-300 group-hover:text-[#c8a24c]">
+                  {label}
+                </span>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="mt-14 flex justify-center">
