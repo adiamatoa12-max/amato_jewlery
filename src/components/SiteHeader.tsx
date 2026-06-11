@@ -130,18 +130,23 @@ export default function SiteHeader({
         scrolled ? "shadow-lg shadow-black/30" : ""
       }`}
     >
-      <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-6 lg:px-10">
-        {/* Logo — leading (right) in RTL. Official VAULT mark. */}
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-10">
+        {/* Logo — leading (right) in RTL. Official VAULT mark, framed as a
+            premium black badge so the source white background disappears.
+            invert(1) hue-rotate(180deg): white bg → black (blends into badge),
+            black letters → white, gold accent inverts to blue then rotates
+            back to gold. */}
         <Link
           href="/"
           aria-label="VAULT — דף הבית"
-          className="flex items-center transition-all duration-500 ease-in-out hover:opacity-80"
+          className="inline-flex items-center rounded-lg border border-zinc-800 bg-black p-2 transition-all duration-500 ease-in-out hover:border-[#c8a24c]/50 hover:opacity-90"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/vault-logo.png"
             alt="VAULT Logo"
-            className="h-8 w-auto object-contain lg:h-10"
+            className="h-10 w-auto object-contain lg:h-11"
+            style={{ filter: "invert(1) hue-rotate(180deg)" }}
           />
         </Link>
 
@@ -285,14 +290,14 @@ export default function SiteHeader({
           aria-label="סגירת תפריט"
           tabIndex={mobileOpen ? 0 : -1}
           onClick={() => setMobileOpen(false)}
-          className={`fixed inset-x-0 bottom-0 top-[5.25rem] z-40 bg-black/40 transition-opacity duration-300 ${
+          className={`fixed inset-x-0 bottom-0 top-[5.75rem] z-40 bg-black/40 transition-opacity duration-300 ${
             mobileOpen ? "opacity-100" : "opacity-0"
           }`}
         />
 
         {/* Panel */}
         <nav
-          className={`fixed inset-x-0 top-[5.25rem] z-40 max-h-[calc(100vh-5.25rem)] overflow-y-auto border-t border-white/10 bg-black/95 backdrop-blur-md transition-all duration-300 ease-in-out ${
+          className={`fixed inset-x-0 top-[5.75rem] z-40 max-h-[calc(100vh-5.75rem)] overflow-y-auto border-t border-white/10 bg-black/95 backdrop-blur-md transition-all duration-300 ease-in-out ${
             mobileOpen
               ? "translate-y-0 opacity-100"
               : "-translate-y-3 opacity-0"

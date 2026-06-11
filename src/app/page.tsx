@@ -14,7 +14,7 @@ const goldButton =
 
 export default function Home() {
   return (
-    <div className="flex min-h-full flex-col bg-[#0a0a0a] pt-[5.25rem] text-white">
+    <div className="flex min-h-full flex-col bg-[#0a0a0a] pt-[5.75rem] text-white">
       <main id="main-content" className="flex-1">
         <Hero />
         <UseCases />

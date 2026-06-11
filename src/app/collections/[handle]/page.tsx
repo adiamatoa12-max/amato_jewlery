@@ -16,7 +16,7 @@ export default async function CollectionPage({
   }
 
   return (
-    <div className="flex min-h-full flex-col pt-[5.25rem]">
+    <div className="flex min-h-full flex-col pt-[5.75rem]">
       <main id="main-content" className="mx-auto w-full max-w-7xl flex-1 px-6 py-16 lg:px-10 lg:py-24">
         <FadeIn>
           <h1 className="text-center font-serif text-3xl font-light tracking-[0.04em] text-neutral-900 lg:text-4xl">
