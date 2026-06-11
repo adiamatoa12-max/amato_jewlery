@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Instagram, Magnet, Droplets, Leaf } from "lucide-react";
+import { Instagram } from "lucide-react";
 import FadeIn from "@/components/FadeIn";
 import FooterLink, { type FooterLinkItem } from "@/components/FooterLink";
 import MediaPlaceholder from "@/components/MediaPlaceholder";
@@ -8,17 +8,16 @@ const GOLD = "#c8a24c";
 
 // Reusable gold CTA with a glowing hover.
 const goldButton =
-  "inline-flex items-center justify-center rounded-full bg-[#c8a24c] px-12 py-4 text-sm font-bold uppercase tracking-[0.18em] text-black transition-all duration-300 ease-out hover:bg-[#e0bd6a] hover:shadow-[0_0_34px_-6px_rgba(200,162,76,0.65)]";
+  "inline-flex items-center justify-center rounded-full bg-[#c8a24c] px-12 py-4 text-sm font-bold uppercase tracking-[0.14em] text-black transition-all duration-300 ease-out hover:bg-[#e0bd6a] hover:shadow-[0_0_34px_-6px_rgba(200,162,76,0.65)]";
 
 export default function Home() {
   return (
     <div className="flex min-h-full flex-col bg-[#0a0a0a] pt-[5.25rem] text-white">
       <main id="main-content" className="flex-1">
         <ImpactHero />
-        <ProblemSolution />
-        <Features />
-        <MainProduct />
-        <Accessories />
+        <UseCases />
+        <Anatomy />
+        <WhatsInTheBox />
       </main>
       <Footer />
     </div>
@@ -33,15 +32,17 @@ function ImpactHero() {
       <MediaPlaceholder className="absolute inset-0 h-full w-full" />
       <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/45 to-black/85" />
 
-      <div dir="ltr" className="relative z-10 flex max-w-3xl flex-col items-center px-6 text-center">
-        <h1 className="font-display text-5xl font-black uppercase leading-[0.92] tracking-tight text-white sm:text-7xl lg:text-8xl">
-          The VAULT Shaker.
+      <div className="relative z-10 flex max-w-3xl flex-col items-center px-6 text-center">
+        <h1 className="font-display text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
+          האימון שלך. הטלפון שלך.
+          <br />
+          <span style={{ color: GOLD }}>נצמד בשנייה.</span>
         </h1>
-        <p className="mt-6 text-sm font-semibold uppercase tracking-[0.28em] text-white/80 sm:text-base">
-          Your Workout. Your Phone. Locked.
+        <p className="mt-6 max-w-xl text-sm font-medium leading-relaxed tracking-[0.02em] text-white/80 sm:text-base">
+          שייקר הפרימיום המגנטי שמשנה את חוקי המשחק בחדר הכושר.
         </p>
         <Link href="#shop" className={`mt-10 ${goldButton}`}>
-          Shop the Shaker
+          הזמן עכשיו את VAULT
         </Link>
       </div>
 
@@ -57,39 +58,55 @@ function ImpactHero() {
   );
 }
 
-/* ── Problem & Solution ──────────────────────────────────────────────── */
-function ProblemSolution() {
-  const panels = [
-    { label: "The Old Way", note: "Phone on the dirty gym floor." },
-    { label: "The VAULT Way", note: "Phone locked onto your shaker." },
-  ];
+/* ── 'The Gym Life' use cases (2×2) ──────────────────────────────────── */
+const USE_CASES = [
+  {
+    title: "לצלם בלי חצובה",
+    body: "מעמד יציב לכל סרטון אימון — בלי לסחוב ציוד מיותר.",
+  },
+  {
+    title: "תשכחו מהרצפה",
+    body: "הטלפון נשאר נצמד ובטוח — רחוק ממשקולות, זיעה ולכלוך.",
+  },
+  {
+    title: "זווית צפייה מושלמת",
+    body: "סטרימינג בגובה העיניים בזמן האימון, בדיוק איפה שצריך.",
+  },
+  {
+    title: "מתאים לכל סמארטפון",
+    body: "כולל טבעות מגנטיות מתאמות לכל דגם ולכל כיסוי.",
+  },
+];
+
+function UseCases() {
   return (
     <section className="bg-[#0a0a0a] px-6 py-20 lg:px-10 lg:py-28">
       <div className="mx-auto max-w-6xl">
         <FadeIn>
-          <h2
-            dir="ltr"
-            className="text-center font-display text-3xl font-black uppercase tracking-tight text-white sm:text-4xl lg:text-5xl"
+          <p
+            className="text-center text-[11px] font-bold tracking-[0.3em]"
+            style={{ color: GOLD }}
           >
-            No more dirty floors.
-            <br className="hidden sm:block" /> No more shaky tripods.
+            אורח חיים אתלטי
+          </p>
+          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-white lg:text-4xl">
+            בנוי לחיים בחדר הכושר
           </h2>
         </FadeIn>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-2 lg:gap-8">
-          {panels.map((p, i) => (
-            <FadeIn key={p.label} delay={i * 120}>
-              <div className="group relative aspect-[4/3] overflow-hidden rounded-xl border border-white/10">
+        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:gap-6">
+          {USE_CASES.map((c, i) => (
+            <FadeIn key={c.title} delay={i * 100}>
+              <div className="group relative aspect-[16/10] overflow-hidden rounded-xl border border-white/10 transition-colors duration-300 hover:border-[#c8a24c]/50">
                 <MediaPlaceholder className="absolute inset-0 h-full w-full" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div dir="ltr" className="absolute inset-x-0 bottom-0 p-6">
-                  <p
-                    className="text-xs font-bold uppercase tracking-[0.28em]"
-                    style={{ color: i === 0 ? "#9ca3af" : GOLD }}
-                  >
-                    {p.label}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-6">
+                  <h3 className="font-display text-xl font-extrabold tracking-tight text-white lg:text-2xl">
+                    {c.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-white/70">
+                    {c.body}
                   </p>
-                  <p className="mt-2 text-lg font-medium text-white">{p.note}</p>
                 </div>
               </div>
             </FadeIn>
@@ -100,130 +117,94 @@ function ProblemSolution() {
   );
 }
 
-/* ── Features grid ───────────────────────────────────────────────────── */
-const FEATURES = [
-  {
-    icon: Magnet,
-    title: "N52 Magnet",
-    body: "Strong enough for any phone case.",
-  },
-  {
-    icon: Droplets,
-    title: "Leak-Proof",
-    body: "100% secure seal for your bag.",
-  },
-  {
-    icon: Leaf,
-    title: "BPA-Free",
-    body: "Highest quality materials for performance.",
-  },
+/* ── Anatomy of VAULT ────────────────────────────────────────────────── */
+const ANATOMY = [
+  "מגנט N52 עוצמתי (מחזיק כל משקל)",
+  "אטימה מוחלטת לנזילות (BPA-Free)",
+  "פיית שתייה היגיינית ורחבה",
+  "ידית נשיאה ארגונומית",
 ];
 
-function Features() {
+function AnatomyFeature({ text }: { text: string }) {
   return (
-    <section className="border-y border-white/10 bg-black px-6 py-20 lg:px-10 lg:py-28">
-      <div dir="ltr" className="mx-auto grid max-w-6xl gap-10 sm:grid-cols-3 lg:gap-12">
-        {FEATURES.map(({ icon: Icon, title, body }, i) => (
-          <FadeIn key={title} delay={i * 120}>
-            <div className="flex flex-col items-center text-center">
-              <span
-                className="flex h-16 w-16 items-center justify-center rounded-full border"
-                style={{ borderColor: GOLD }}
-              >
-                <Icon className="h-7 w-7" style={{ color: GOLD }} strokeWidth={1.75} />
-              </span>
-              <h3 className="mt-6 font-display text-xl font-extrabold uppercase tracking-[0.1em] text-white">
-                {title}
-              </h3>
-              <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/60">
-                {body}
-              </p>
-            </div>
-          </FadeIn>
-        ))}
-      </div>
-    </section>
+    <div className="flex items-start gap-3">
+      <span
+        className="mt-2 h-1.5 w-6 shrink-0 rounded-full"
+        style={{ backgroundColor: GOLD }}
+      />
+      <p className="text-sm font-medium leading-relaxed text-white/85 lg:text-base">
+        {text}
+      </p>
+    </div>
   );
 }
 
-/* ── Main product ────────────────────────────────────────────────────── */
-function MainProduct() {
+function Anatomy() {
   return (
     <section
       id="shop"
-      className="scroll-mt-24 bg-[#0a0a0a] px-6 py-20 lg:px-10 lg:py-28"
+      className="scroll-mt-24 border-y border-white/10 bg-black px-6 py-20 lg:px-10 lg:py-28"
     >
-      <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      <div className="mx-auto max-w-6xl">
         <FadeIn>
-          <div className="relative aspect-square overflow-hidden rounded-2xl border border-white/10">
-            <MediaPlaceholder className="absolute inset-0 h-full w-full" />
-          </div>
+          <h2 className="text-center font-display text-3xl font-black tracking-tight text-white lg:text-5xl">
+            המבנה של VAULT
+          </h2>
         </FadeIn>
-        <FadeIn delay={120}>
-          <div className="flex flex-col">
-            <p
-              dir="ltr"
-              className="text-xs font-bold uppercase tracking-[0.3em]"
-              style={{ color: GOLD }}
-            >
-              The Hero Product
-            </p>
-            <h2 dir="ltr" className="mt-4 font-display text-4xl font-black uppercase leading-[0.95] tracking-tight text-white lg:text-5xl">
-              The VAULT Shaker
-            </h2>
-            <p className="mt-6 max-w-md text-base leading-relaxed text-white/70">
-              שייקר high-performance עם מעמד טלפון מגנטי מובנה — ערבוב מושלם,
-              אטימות מלאה נגד נזילות, והטלפון שלך נעול במקום לאורך כל האימון.
-            </p>
-            <Link href="/collections/amato-essentials" className={`mt-9 self-start ${goldButton}`}>
-              Shop the Shaker
-            </Link>
-          </div>
-        </FadeIn>
+
+        <div className="mt-14 grid items-center gap-10 lg:grid-cols-[1fr_auto_1fr] lg:gap-12">
+          {/* Right column (RTL-first): features 1–2 */}
+          <FadeIn className="flex flex-col gap-8 lg:text-right">
+            <AnatomyFeature text={ANATOMY[0]} />
+            <AnatomyFeature text={ANATOMY[1]} />
+          </FadeIn>
+
+          {/* Center: product image */}
+          <FadeIn delay={120}>
+            <div className="relative mx-auto aspect-[3/4] w-full max-w-xs overflow-hidden rounded-2xl border border-white/10">
+              <MediaPlaceholder className="absolute inset-0 h-full w-full" />
+            </div>
+          </FadeIn>
+
+          {/* Left column: features 3–4 */}
+          <FadeIn delay={200} className="flex flex-col gap-8">
+            <AnatomyFeature text={ANATOMY[2]} />
+            <AnatomyFeature text={ANATOMY[3]} />
+          </FadeIn>
+        </div>
+
+        <div className="mt-14 flex justify-center">
+          <Link href="#" className={goldButton}>
+            הזמן עכשיו את VAULT
+          </Link>
+        </div>
       </div>
     </section>
   );
 }
 
-/* ── Accessories ─────────────────────────────────────────────────────── */
-const ACCESSORIES = [
-  "Phone Mount",
-  "Mixing Ball",
-  "Leak-Proof Lid",
-  "Carry Sleeve",
-];
-
-function Accessories() {
+/* ── What's in the box strip ─────────────────────────────────────────── */
+function WhatsInTheBox() {
   return (
-    <section className="border-t border-white/10 bg-black px-6 py-20 lg:px-10 lg:py-28">
-      <div dir="ltr" className="mx-auto max-w-6xl">
-        <FadeIn>
-          <p
-            className="text-center text-[11px] font-bold uppercase tracking-[0.3em]"
+    <section className="bg-[#0a0a0a] px-6 py-12 lg:px-10">
+      <FadeIn>
+        <div className="mx-auto flex max-w-4xl flex-col items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-8 text-center sm:flex-row sm:justify-center sm:gap-4 sm:text-base">
+          <span
+            className="text-xs font-bold uppercase tracking-[0.2em]"
             style={{ color: GOLD }}
           >
-            Complete Your Setup
+            מה באריזה
+          </span>
+          <span className="hidden text-white/20 sm:inline">|</span>
+          <p className="text-sm font-medium text-white/85">
+            1x שייקר VAULT
+            <span className="mx-3 text-white/25">|</span>
+            2x טבעות מגנטיות מתאמות
+            <span className="mx-3 text-white/25">|</span>
+            100% ביטחון לטלפון שלך
           </p>
-          <h2 className="mt-4 text-center font-display text-3xl font-black uppercase tracking-tight text-white lg:text-4xl">
-            Accessories
-          </h2>
-        </FadeIn>
-
-        <div className="mt-12 grid grid-cols-2 gap-4 lg:mt-16 lg:grid-cols-4 lg:gap-6">
-          {ACCESSORIES.map((name, i) => (
-            <FadeIn key={name} delay={i * 100}>
-              <div className="group">
-                <div className="relative aspect-square overflow-hidden rounded-xl border border-white/10 transition-all duration-300 group-hover:border-[#c8a24c]/60">
-                  <MediaPlaceholder className="absolute inset-0 h-full w-full" />
-                </div>
-                <p className="mt-4 text-center text-sm font-semibold uppercase tracking-[0.12em] text-white/85">
-                  {name}
-                </p>
-              </div>
-            </FadeIn>
-          ))}
         </div>
-      </div>
+      </FadeIn>
     </section>
   );
 }
@@ -305,7 +286,7 @@ function Footer() {
               />
               <button
                 type="submit"
-                className="shrink-0 text-xs font-bold uppercase tracking-[0.08em] transition-colors duration-300 hover:text-[#c8a24c]"
+                className="shrink-0 text-xs font-bold uppercase tracking-[0.08em] transition-colors duration-300 hover:text-[#e0bd6a]"
                 style={{ color: GOLD }}
               >
                 הירשם
