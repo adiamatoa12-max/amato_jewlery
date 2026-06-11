@@ -6,6 +6,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { Search, ShoppingBag, Menu, X, ChevronDown } from "lucide-react";
 import { useCart, formatPrice } from "@/lib/cart/CartContext";
+import MediaPlaceholder, {
+  isMissingLocalMedia,
+} from "@/components/MediaPlaceholder";
 
 type NavLink = { label: string; href: string };
 type NavGroup = { label: string; href: string; links: NavLink[] };
@@ -128,20 +131,13 @@ export default function SiteHeader({
       }`}
     >
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-6 lg:px-10">
-        {/* Logo — leading (right) in RTL */}
+        {/* Logo — leading (right) in RTL. Text wordmark (image asset removed). */}
         <Link
           href="/"
           aria-label="PULSE — דף הבית"
-          className="relative h-8 w-24 transition-all duration-500 ease-in-out hover:opacity-80 lg:h-9 lg:w-28"
+          className="font-serif text-lg tracking-[0.35em] text-white transition-all duration-500 ease-in-out hover:opacity-80 lg:text-xl"
         >
-          <Image
-            src="/images/logo.jpg"
-            alt="PULSE"
-            fill
-            priority
-            sizes="112px"
-            className="object-cover object-center mix-blend-screen"
-          />
+          PULSE
         </Link>
 
         {/* Actions — trailing (left) in RTL: search · cart · menu */}
@@ -228,13 +224,17 @@ export default function SiteHeader({
                         className="flex items-center gap-4 py-3 transition-colors duration-300 hover:opacity-70"
                       >
                         <span className="relative h-14 w-12 shrink-0 overflow-hidden rounded-sm bg-white/5">
-                          <Image
-                            src={p.image}
-                            alt={p.title}
-                            fill
-                            sizes="48px"
-                            className="object-contain p-1 mix-blend-screen"
-                          />
+                          {isMissingLocalMedia(p.image) ? (
+                            <MediaPlaceholder className="absolute inset-0 h-full w-full" />
+                          ) : (
+                            <Image
+                              src={p.image}
+                              alt={p.title}
+                              fill
+                              sizes="48px"
+                              className="object-contain p-1 mix-blend-screen"
+                            />
+                          )}
                         </span>
                         <span className="flex-1 text-sm font-light tracking-[0.04em] text-white">
                           {p.title}

@@ -3,6 +3,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { formatPrice } from "@/lib/cart/CartContext";
+import MediaPlaceholder, {
+  isMissingLocalMedia,
+} from "@/components/MediaPlaceholder";
 
 // Every field is pulled from the SAME Shopify product, so title/media/link can
 // never drift apart. `video` is optional — used only if a product actually has
@@ -22,7 +25,7 @@ function FeedCard({ item }: { item: VideoFeedItem }) {
       href={item.href}
       className="group relative block aspect-[3/4] overflow-hidden rounded-sm bg-[#f8f8f8]"
     >
-      {item.video ? (
+      {item.video && !isMissingLocalMedia(item.video) ? (
         <video
           aria-hidden
           className="h-full w-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
@@ -34,6 +37,8 @@ function FeedCard({ item }: { item: VideoFeedItem }) {
         >
           <source src={item.video} type="video/mp4" />
         </video>
+      ) : isMissingLocalMedia(item.image) ? (
+        <MediaPlaceholder className="absolute inset-0 h-full w-full" />
       ) : (
         <Image
           src={item.image}

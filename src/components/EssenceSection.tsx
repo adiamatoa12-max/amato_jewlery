@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import MediaPlaceholder from "@/components/MediaPlaceholder";
 
 /**
  * "OUR ESSENCE" — a full-bleed, slow-motion video backdrop with a gentle
@@ -75,17 +76,7 @@ export default function EssenceSection() {
     >
       {/* Parallax media layer (overscanned so the drift never reveals edges) */}
       <div ref={mediaRef} className="absolute inset-0 will-change-transform">
-        <video
-          className="h-full w-full object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          poster="/images/lifestyle-portrait.png"
-        >
-          <source src="/videos/essence-loop.mp4" type="video/mp4" />
-        </video>
+        <MediaPlaceholder className="h-full w-full" />
       </div>
 
       {/* Warm, restrained overlay for text legibility */}

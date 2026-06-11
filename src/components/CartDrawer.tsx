@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { X, Minus, Plus, ShoppingBag } from "lucide-react";
 import { useCart, formatPrice } from "@/lib/cart/CartContext";
+import MediaPlaceholder, {
+  isMissingLocalMedia,
+} from "@/components/MediaPlaceholder";
 
 export default function CartDrawer() {
   const {
@@ -123,13 +126,17 @@ export default function CartDrawer() {
             {items.map((item) => (
               <li key={item.handle} className="flex gap-4 py-6">
                 <div className="relative h-24 w-20 shrink-0 overflow-hidden rounded-sm bg-neutral-100">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    sizes="80px"
-                    className="object-cover"
-                  />
+                  {isMissingLocalMedia(item.image) ? (
+                    <MediaPlaceholder className="absolute inset-0 h-full w-full" />
+                  ) : (
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      sizes="80px"
+                      className="object-cover"
+                    />
+                  )}
                 </div>
 
                 <div className="flex flex-1 flex-col">

@@ -9,6 +9,9 @@ import ShoppableVideoFeed, {
   type VideoFeedItem,
 } from "@/components/ShoppableVideoFeed";
 import FooterLink, { type FooterLinkItem } from "@/components/FooterLink";
+import MediaPlaceholder, {
+  isMissingLocalMedia,
+} from "@/components/MediaPlaceholder";
 import { COLLECTIONS } from "@/lib/mock-data";
 import {
   getCollections,
@@ -160,13 +163,17 @@ function ShopByCategory({ tiles }: { tiles: StyleTile[] }) {
             href={`/collections/${tile.handle}`}
             className="group relative block aspect-[3/4] overflow-hidden rounded-lg bg-[#f4f2ef]"
           >
-            <Image
-              src={tile.image}
-              alt={tile.label}
-              fill
-              sizes="(min-width: 768px) 384px, 50vw"
-              className="object-cover transition-transform duration-[900ms] ease-in-out group-hover:scale-[1.06]"
-            />
+            {isMissingLocalMedia(tile.image) ? (
+              <MediaPlaceholder className="absolute inset-0 h-full w-full" />
+            ) : (
+              <Image
+                src={tile.image}
+                alt={tile.label}
+                fill
+                sizes="(min-width: 768px) 384px, 50vw"
+                className="object-cover transition-transform duration-[900ms] ease-in-out group-hover:scale-[1.06]"
+              />
+            )}
             {/* Soft overlay for legibility of the centered label */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent transition-opacity duration-500 group-hover:from-black/60" />
             <span className="absolute inset-x-0 bottom-0 flex flex-col items-center gap-2 px-4 pb-6 text-center text-white">
@@ -188,13 +195,7 @@ function ThematicBanner() {
   return (
     <FadeIn>
       <section className="relative h-[55vh] min-h-[380px] w-full overflow-hidden">
-        <Image
-          src="/images/necklace-close.png"
-          alt="שייקר PULSE המגנטי בפעולה"
-          fill
-          sizes="100vw"
-          className="object-cover"
-        />
+        <MediaPlaceholder className="absolute inset-0 h-full w-full" />
         <div className="absolute inset-0 bg-black/25" />
         <div className="relative z-10 flex h-full items-center justify-center px-6">
           <Link
@@ -213,13 +214,7 @@ function Craftsmanship() {
   return (
     <FadeIn>
       <section className="relative w-full overflow-hidden">
-        <Image
-          src="/images/jewelry-stone.png"
-          alt="המלאכה של PULSE"
-          fill
-          sizes="100vw"
-          className="object-cover"
-        />
+        <MediaPlaceholder className="absolute inset-0 h-full w-full" />
         <div className="absolute inset-0 bg-black/45" />
         <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center px-6 py-28 text-center text-white lg:py-36">
           <p className="text-xs tracking-[0.3em] text-[#d4af6a]">ביצועים</p>

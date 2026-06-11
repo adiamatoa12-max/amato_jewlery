@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import MediaPlaceholder from "@/components/MediaPlaceholder";
 import { Gem, PenTool, ShieldCheck } from "lucide-react";
 import FadeIn from "@/components/FadeIn";
 
@@ -33,14 +33,7 @@ export default function AboutPage() {
       <main id="main-content" className="flex-1">
         {/* Hero */}
         <section className="relative h-[60vh] min-h-[420px] w-full overflow-hidden">
-          <Image
-            src="/images/hero-banner-women.jpg"
-            alt="האווירה של PULSE"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
+          <MediaPlaceholder className="absolute inset-0 h-full w-full" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/15 to-black/40" />
           <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center text-white">
             <p className="text-xs tracking-[0.3em] text-[#d4af6a]">אודות PULSE</p>
@@ -103,13 +96,7 @@ export default function AboutPage() {
             {/* Image */}
             <FadeIn>
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-neutral-900">
-                <Image
-                  src="/images/packaging.jpg"
-                  alt="האריזה הפרמיום של PULSE"
-                  fill
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-cover"
-                />
+                <MediaPlaceholder className="absolute inset-0 h-full w-full" />
               </div>
             </FadeIn>
 

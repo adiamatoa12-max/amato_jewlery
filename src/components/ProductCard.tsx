@@ -6,6 +6,9 @@ import { Plus, Check } from "lucide-react";
 import { useState } from "react";
 import { useCart } from "@/lib/cart/CartContext";
 import type { MockProduct } from "@/lib/mock-data";
+import MediaPlaceholder, {
+  isMissingLocalMedia,
+} from "@/components/MediaPlaceholder";
 
 function formatPrice(amount: number, currency: string) {
   return new Intl.NumberFormat("he-IL", {
@@ -51,13 +54,17 @@ export default function ProductCard({ product }: { product: MockProduct }) {
           aria-label={product.title}
           className="block h-full w-full"
         >
-          <Image
-            src={product.image}
-            alt={product.title}
-            fill
-            sizes="(min-width: 1024px) 25vw, 50vw"
-            className="object-contain p-7 mix-blend-multiply"
-          />
+          {isMissingLocalMedia(product.image) ? (
+            <MediaPlaceholder className="absolute inset-0 h-full w-full" />
+          ) : (
+            <Image
+              src={product.image}
+              alt={product.title}
+              fill
+              sizes="(min-width: 1024px) 25vw, 50vw"
+              className="object-contain p-7 mix-blend-multiply"
+            />
+          )}
         </Link>
 
         {/* Merchandising badge — always visible (no hover) */}

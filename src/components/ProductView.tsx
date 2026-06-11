@@ -3,6 +3,9 @@
 import Image from "next/image";
 import ProductDetails from "@/components/ProductDetails";
 import type { AddToCartInput } from "@/lib/cart/CartContext";
+import MediaPlaceholder, {
+  isMissingLocalMedia,
+} from "@/components/MediaPlaceholder";
 
 interface GalleryMedia {
   media_type: string;
@@ -31,12 +34,14 @@ export default function ProductView({
   collectionTitle,
   collectionHandle,
 }: ProductViewProps) {
-  // Strictly images: keep only IMAGE media, then de-duplicate by url.
+  // Strictly images: keep only IMAGE media, drop any deleted-local path, then
+  // de-duplicate by url.
   const galleryMedia = Array.from(
     new Set(
       (product.galleryMedia ?? [])
         .filter((media) => media.media_type === "IMAGE")
-        .map((media) => media.url),
+        .map((media) => media.url)
+        .filter((url) => !isMissingLocalMedia(url)),
     ),
   );
 
@@ -47,7 +52,7 @@ export default function ProductView({
       {/* Media column — right in RTL. Renders only the IMAGE list above. */}
       <div className="flex flex-col gap-4 lg:gap-6">
         {galleryMedia.length === 0 ? (
-          <div className="aspect-[4/5] w-full rounded-sm bg-[#f4f2ef]" aria-hidden />
+          <MediaPlaceholder className="aspect-[4/5] w-full rounded-sm" />
         ) : null}
         {galleryMedia.map((src, i) => {
           const photo = isPhoto(src);
