@@ -452,29 +452,43 @@ function BundleBanner() {
   return (
     <section className="bg-[#0a0a0a] px-6 pb-4 lg:px-10">
       <FadeIn>
-        <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 overflow-hidden rounded-2xl border border-[#c8a24c]/30 bg-gradient-to-l from-zinc-900 via-black to-zinc-900 px-8 py-10 text-center md:flex-row md:justify-between md:text-right lg:px-12">
-          <div className="md:max-w-2xl">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-8 overflow-hidden rounded-2xl border border-[#c8a24c]/30 bg-zinc-950 p-8 md:grid-cols-2 lg:p-12">
+          {/* Visual — DOM-first: top on mobile, right column in RTL desktop */}
+          <div className="w-full bg-transparent">
+            <Image
+              src="/images/accessory-bundle-set.png"
+              alt="סט VAULT המלא — שייקר ואביזרים"
+              width={1200}
+              height={900}
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="mx-auto h-auto w-full object-contain"
+              priority={false}
+            />
+          </div>
+
+          {/* Content — left column in RTL desktop */}
+          <div className="text-center md:text-right">
             <p
               className="text-xs font-bold uppercase tracking-[0.2em]"
               style={{ color: GOLD }}
             >
               Bundle &amp; Save
             </p>
-            <h2 className="mt-3 font-display text-2xl font-black tracking-tight text-white sm:text-3xl lg:text-4xl">
+            <h2 className="mt-3 font-display text-3xl font-black tracking-tight text-white lg:text-4xl">
               קנה סט אימון מלא וחסוך{" "}
               <span style={{ color: GOLD }}>15%</span>
             </h2>
-            <p className="mt-3 text-sm leading-relaxed text-zinc-400 lg:text-base">
+            <p className="mt-4 text-sm leading-relaxed text-zinc-300 lg:text-base">
               השייקר המגנטי + כל האביזרים המשלימים, במחיר משתלם במיוחד — לזמן
               מוגבל בלבד.
             </p>
+            <Link
+              href="#shop"
+              className="mt-8 inline-flex items-center justify-center rounded-full bg-[#c8a24c] px-10 py-4 text-sm font-black uppercase tracking-[0.12em] text-black shadow-[0_0_30px_-4px_rgba(200,162,76,0.7)] transition-all duration-300 hover:bg-[#e0bd6a] hover:shadow-[0_0_44px_-4px_rgba(200,162,76,0.9)]"
+            >
+              קנה את הסט המלא וחסוך
+            </Link>
           </div>
-          <Link
-            href="#shop"
-            className="inline-flex shrink-0 items-center justify-center rounded-full bg-[#c8a24c] px-10 py-4 text-sm font-black uppercase tracking-[0.12em] text-black shadow-[0_0_30px_-4px_rgba(200,162,76,0.7)] transition-all duration-300 hover:bg-[#e0bd6a] hover:shadow-[0_0_44px_-4px_rgba(200,162,76,0.9)]"
-          >
-            קבל את ההנחה
-          </Link>
         </div>
       </FadeIn>
     </section>
