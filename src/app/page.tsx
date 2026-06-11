@@ -40,6 +40,12 @@ function ImpactHero() {
       {/* Text pinned LEFT: in RTL, justify-end aligns to the visual left. */}
       <div className="relative z-10 flex h-full w-full items-center justify-end px-6 lg:px-16">
         <div className="max-w-xl text-right">
+          <p
+            className="mb-4 text-sm font-bold uppercase tracking-widest"
+            style={{ color: GOLD }}
+          >
+            חזק יותר. איכותי יותר. חכם יותר.
+          </p>
           <h1 className="font-display text-4xl font-black leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
             האימון שלך. הטלפון שלך.
             <br />

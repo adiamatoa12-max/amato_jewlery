@@ -135,10 +135,28 @@ export default function SiteHeader({
         <Link
           href="/"
           aria-label="VAULT — דף הבית"
-          className="font-serif text-lg tracking-[0.35em] text-white transition-all duration-500 ease-in-out hover:opacity-80 lg:text-xl"
+          className="font-display text-lg font-extrabold uppercase tracking-[0.3em] text-white transition-all duration-500 ease-in-out hover:opacity-80 lg:text-xl"
         >
           VAULT
         </Link>
+
+        {/* Desktop inline nav — centered, hidden on mobile */}
+        <nav className="hidden items-center gap-8 md:flex">
+          {[
+            { label: "חנות", href: "/#shop" },
+            { label: "אביזרים", href: "/#shop" },
+            { label: "שאלות נפוצות", href: "/faq" },
+            { label: "צור קשר", href: "mailto:adiamato119@gmail.com" },
+          ].map((l) => (
+            <Link
+              key={l.label}
+              href={l.href}
+              className="text-[13px] font-medium tracking-[0.06em] text-white/80 transition-colors duration-300 hover:text-[#c8a24c]"
+            >
+              {l.label}
+            </Link>
+          ))}
+        </nav>
 
         {/* Actions — trailing (left) in RTL: search · cart · menu */}
         <div className="flex items-center gap-5">
@@ -171,7 +189,7 @@ export default function SiteHeader({
           <button
             type="button"
             onClick={() => setMobileOpen((o) => !o)}
-            className="-mr-2 flex items-center p-2 transition-all duration-500 ease-in-out hover:opacity-60"
+            className="-mr-2 flex items-center p-2 transition-all duration-500 ease-in-out hover:opacity-60 md:hidden"
             aria-label={mobileOpen ? "סגירת תפריט" : "תפריט"}
             aria-expanded={mobileOpen}
           >
