@@ -20,7 +20,7 @@ const GOLD = "#c8a24c";
 
 // Reusable gold CTA with a glowing hover.
 const goldButton =
-  "inline-flex items-center justify-center rounded-full bg-[#c8a24c] px-12 py-4 text-sm font-bold uppercase tracking-[0.14em] text-black transition-all duration-300 ease-out hover:bg-[#e0bd6a] hover:shadow-[0_0_34px_-6px_rgba(200,162,76,0.65)]";
+  "inline-flex w-full items-center justify-center rounded-full bg-[#c8a24c] px-12 py-4 text-sm font-bold uppercase tracking-[0.14em] text-black transition-all duration-300 ease-out hover:bg-[#e0bd6a] hover:shadow-[0_0_34px_-6px_rgba(200,162,76,0.65)] sm:w-auto";
 
 export default function Home() {
   return (
@@ -326,13 +326,13 @@ function Compatibility() {
           </div>
         </FadeIn>
 
-        {/* Content — sits on the LEFT in RTL */}
+        {/* Content — centered on mobile, sits on the LEFT in RTL desktop */}
         <FadeIn delay={120}>
-          <div className="text-right">
+          <div className="text-center md:text-right">
             <h2 className="font-display text-3xl font-black tracking-tight text-white lg:text-4xl">
               מתאים לכל סמארטפון!
             </h2>
-            <p className="mt-6 max-w-md text-sm leading-relaxed text-zinc-400 lg:text-base">
+            <p className="mx-auto mt-6 max-w-md text-sm leading-relaxed text-zinc-400 md:mx-0 lg:text-base">
               כל שייקר של VAULT מגיע עם שתי טבעות מתכת דקות במיוחד. פשוט מדביקים
               את הטבעת על הטלפון או על הכיסוי, ומקבלים חיבור מגנטי עוצמתי לכל
               מכשיר — אייפון או אנדרואיד.
@@ -340,7 +340,10 @@ function Compatibility() {
 
             <ul className="mt-8 space-y-4">
               {RING_OPTIONS.map((o) => (
-                <li key={o.title} className="flex items-start gap-3">
+                <li
+                  key={o.title}
+                  className="flex items-start justify-center gap-3 text-right md:justify-start"
+                >
                   <CheckCircle
                     className="mt-0.5 h-5 w-5 shrink-0"
                     style={{ color: GOLD }}

@@ -7,7 +7,7 @@ const GOLD = "#c8a24c";
 const SLIDES = ["/images/hero-main.png", "/images/hero-2.png"];
 
 const goldButton =
-  "inline-flex items-center justify-center rounded-full bg-[#c8a24c] px-12 py-4 text-sm font-bold uppercase tracking-[0.14em] text-black transition-all duration-300 ease-out hover:bg-[#e0bd6a] hover:shadow-[0_0_34px_-6px_rgba(200,162,76,0.65)]";
+  "inline-flex w-full items-center justify-center rounded-full bg-[#c8a24c] px-12 py-4 text-sm font-bold uppercase tracking-[0.14em] text-black transition-all duration-300 ease-out hover:bg-[#e0bd6a] hover:shadow-[0_0_34px_-6px_rgba(200,162,76,0.65)] sm:w-auto";
 
 export default function Hero() {
   const [active, setActive] = useState(0);
@@ -39,19 +39,19 @@ export default function Hero() {
       {/* Readability scrim — darker on the LEFT where the text sits. */}
       <div className="absolute inset-0 bg-gradient-to-l from-transparent via-black/55 to-black/90" />
 
-      {/* Static text block, pinned LEFT (RTL justify-end). Never fades/moves. */}
-      <div className="relative z-10 flex h-full w-full items-center justify-end px-6 lg:px-16">
-        <div className="max-w-xl text-right">
+      {/* Text block — centered on mobile, pinned LEFT (RTL justify-end) on desktop. */}
+      <div className="relative z-10 flex h-full w-full items-center justify-center px-5 sm:px-6 md:justify-end lg:px-16">
+        <div className="max-w-xl text-center md:text-right">
           <p
-            className="mb-4 text-sm font-bold tracking-widest"
+            className="mb-4 text-xs font-bold tracking-widest sm:text-sm"
             style={{ color: GOLD }}
           >
             פיתוח מתקדם. איכות ללא פשרות. מחיר ללא תחרות.
           </p>
-          <h1 className="mb-6 font-display text-5xl font-extrabold leading-tight text-white md:text-6xl">
+          <h1 className="mb-6 font-display text-4xl font-extrabold leading-tight text-white sm:text-5xl md:text-6xl">
             מעלים את רמת האימון שלך.
           </h1>
-          <p className="mb-8 max-w-md text-lg leading-relaxed text-zinc-300">
+          <p className="mx-auto mb-8 max-w-md text-base leading-relaxed text-zinc-300 sm:text-lg md:mx-0">
             שייקר הפרימיום היחיד בעולם עם מגנט עוצמתי שמעגן את השייקר ואת הטלפון
             שלך בצורה מושלמת.
           </p>
