@@ -298,30 +298,18 @@ function Anatomy() {
 
 /* ── Compatibility (magnetic rings) ──────────────────────────────────── */
 const RING_OPTIONS = [
-  {
-    title: "אופציה 1",
-    body: "בתוך הכיסוי (אחיזה חזקה).",
-    bgPos: "left center",
-  },
-  {
-    title: "אופציה 2",
-    body: "על גבי הכיסוי (אחיזה חזקה מאוד).",
-    bgPos: "center center",
-  },
-  {
-    title: "אופציה 3",
-    body: "ישירות על המכשיר (אחיזה מקסימלית).",
-    bgPos: "right center",
-  },
+  { title: "אופציה 1", body: "בתוך הכיסוי (אחיזה חזקה)." },
+  { title: "אופציה 2", body: "על גבי הכיסוי (אחיזה חזקה מאוד)." },
+  { title: "אופציה 3", body: "ישירות על המכשיר (אחיזה מקסימלית)." },
 ];
 
 function Compatibility() {
   return (
     <section className="bg-zinc-950 px-6 py-16 lg:px-10 lg:py-24">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 md:grid-cols-2">
-        {/* Left column — content (RTL: appears on the right) */}
+      <div className="mx-auto max-w-4xl">
+        {/* Intro text — RTL, right-aligned */}
         <FadeIn>
-          <div className="text-right">
+          <div className="mx-auto max-w-2xl text-right">
             <p
               className="text-xs font-bold tracking-[0.2em]"
               style={{ color: GOLD }}
@@ -331,51 +319,50 @@ function Compatibility() {
             <h2 className="mt-4 font-display text-3xl font-black tracking-tight text-white lg:text-4xl">
               מתאים לכל סמארטפון!
             </h2>
-            <p className="mt-6 max-w-md text-sm leading-relaxed text-zinc-400 lg:text-base">
+            <p className="mt-6 text-sm leading-relaxed text-zinc-400 lg:text-base">
               כל שייקר של VAULT מגיע עם שתי טבעות מתכת דקות במיוחד — פשוט
               מדביקים על הטלפון או על הכיסוי, ומקבלים חיבור מגנטי עוצמתי לכל
               מכשיר, אייפון או אנדרואיד.
             </p>
-            <Link href="#shop" className={`mt-9 ${goldButton}`}>
-              הזמן עכשיו
-            </Link>
           </div>
         </FadeIn>
 
-        {/* Right column — 3 option cards */}
+        {/* Transparent compatibility image — centered, blends with bg-zinc-950 */}
         <FadeIn delay={120}>
-          <div className="flex flex-col gap-4">
+          <div className="mx-auto mt-12 w-full max-w-4xl bg-transparent">
+            <Image
+              src="/images/compatibility-options-removebg-preview.png"
+              alt="VAULT Mounting Options"
+              width={1200}
+              height={800}
+              sizes="(min-width: 1024px) 896px, 100vw"
+              className="h-auto w-full object-contain"
+            />
+          </div>
+
+          {/* Labels aligned under the three phones */}
+          <div className="mx-auto mt-6 grid max-w-4xl grid-cols-3 gap-4">
             {RING_OPTIONS.map((o) => (
-              <div
-                key={o.title}
-                className="flex items-center gap-4 rounded-2xl border border-white/5 bg-zinc-900 p-4 transition-colors duration-300 hover:border-[#c8a24c]/40"
-              >
-                {/* Phone visual cropped from the compatibility image */}
-                <div
-                  className="h-20 w-16 shrink-0 rounded-lg bg-zinc-800 bg-no-repeat"
-                  style={{
-                    backgroundImage:
-                      "url('/images/compatibility-options.png')",
-                    backgroundSize: "auto 130%",
-                    backgroundPosition: o.bgPos,
-                  }}
-                  aria-hidden
-                />
-                <div className="text-right">
-                  <h3
-                    className="text-base font-bold"
-                    style={{ color: GOLD }}
-                  >
-                    {o.title}
-                  </h3>
-                  <p className="mt-1 text-sm leading-relaxed text-zinc-400">
-                    {o.body}
-                  </p>
-                </div>
+              <div key={o.title} className="text-center">
+                <h3
+                  className="text-sm font-bold lg:text-base"
+                  style={{ color: GOLD }}
+                >
+                  {o.title}
+                </h3>
+                <p className="mt-1 text-xs leading-relaxed text-zinc-400 lg:text-sm">
+                  {o.body}
+                </p>
               </div>
             ))}
           </div>
         </FadeIn>
+
+        <div className="mt-12 flex justify-center">
+          <Link href="#shop" className={goldButton}>
+            הזמן עכשיו
+          </Link>
+        </div>
       </div>
     </section>
   );
