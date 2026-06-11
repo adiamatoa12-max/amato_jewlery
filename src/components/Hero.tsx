@@ -43,20 +43,19 @@ export default function Hero() {
       <div className="relative z-10 flex h-full w-full items-center justify-end px-6 lg:px-16">
         <div className="max-w-xl text-right">
           <p
-            className="mb-4 text-sm font-bold uppercase tracking-widest"
+            className="mb-4 text-sm font-bold tracking-widest"
             style={{ color: GOLD }}
           >
-            חזק יותר. איכותי יותר. חכם יותר.
+            פיתוח מתקדם. איכות ללא פשרות. מחיר ללא תחרות.
           </p>
-          <h1 className="font-display text-4xl font-black leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
-            האימון שלך. הטלפון שלך.
-            <br />
-            <span style={{ color: GOLD }}>נצמד בשנייה.</span>
+          <h1 className="mb-6 font-display text-5xl font-extrabold leading-tight text-white md:text-6xl">
+            מעלים את רמת האימון שלך.
           </h1>
-          <p className="mt-6 max-w-md text-sm font-medium leading-relaxed tracking-[0.02em] text-white/80 sm:text-base">
-            שייקר הפרימיום המגנטי שמשנה את חוקי המשחק בחדר הכושר.
+          <p className="mb-8 max-w-md text-lg leading-relaxed text-zinc-300">
+            שייקר הפרימיום היחיד בעולם עם מגנט עוצמתי שמעגן את השייקר ואת הטלפון
+            שלך בצורה מושלמת.
           </p>
-          <Link href="#shop" className={`mt-9 ${goldButton}`}>
+          <Link href="#shop" className={goldButton}>
             הזמן עכשיו את VAULT
           </Link>
         </div>
