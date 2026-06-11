@@ -30,6 +30,7 @@ export default function Home() {
         <HorizontalStreaming />
         <Anatomy />
         <Compatibility />
+        <CompleteGear />
         <WhatsInTheBox />
       </main>
       <Footer />
@@ -355,6 +356,65 @@ function Compatibility() {
             </Link>
           </div>
         </FadeIn>
+      </div>
+    </section>
+  );
+}
+
+/* ── Complete Your Gear (complementary products) ─────────────────────── */
+const GEAR_PRODUCTS = [
+  { title: "טבעות מגנטיות (זוג נוסף)", price: "₪39" },
+  { title: "מכסה השייקר החלופי", price: "₪29" },
+  { title: "כדור ערבוב נירוסטה", price: "₪25" },
+  { title: "מברשת ניקוי לשייקר", price: "₪19" },
+];
+
+function CompleteGear() {
+  return (
+    <section className="bg-[#0a0a0a] px-6 py-20 lg:px-10 lg:py-24">
+      <div className="mx-auto max-w-6xl">
+        <FadeIn>
+          <p
+            className="text-center text-[11px] font-bold tracking-[0.3em]"
+            style={{ color: GOLD }}
+          >
+            אביזרים משלימים
+          </p>
+          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-white lg:text-4xl">
+            השלם את הציוד שלך
+          </h2>
+        </FadeIn>
+
+        <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-4">
+          {GEAR_PRODUCTS.map((p, i) => (
+            <FadeIn key={p.title} delay={i * 80}>
+              <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-zinc-900 transition-colors duration-300 hover:border-[#c8a24c]/50">
+                {/* Product image */}
+                <div className="relative aspect-square w-full overflow-hidden">
+                  <MediaPlaceholder className="absolute inset-0 h-full w-full" />
+                </div>
+                {/* Details */}
+                <div className="flex flex-1 flex-col p-5 text-right">
+                  <h3 className="text-sm font-bold leading-snug text-white lg:text-base">
+                    {p.title}
+                  </h3>
+                  <p
+                    className="mt-2 text-base font-bold tabular-nums"
+                    style={{ color: GOLD }}
+                  >
+                    {p.price}
+                  </p>
+                  <Link
+                    href="#shop"
+                    className="mt-5 inline-flex items-center justify-center rounded-full border border-[#c8a24c] px-5 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-[#c8a24c] transition-all duration-300 hover:bg-[#c8a24c] hover:text-black"
+                  >
+                    הוספה מהירה
+                  </Link>
+                </div>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
       </div>
     </section>
   );
