@@ -59,13 +59,13 @@ function UseCases() {
           </h2>
         </FadeIn>
 
-        <div className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="mx-auto mt-14 grid max-w-5xl grid-cols-1 gap-2 md:grid-cols-2">
           {GYM_VIDEOS.map((src, i) => (
             <FadeIn key={src} delay={i * 100}>
-              <div className="group relative aspect-[4/5] overflow-hidden rounded-2xl border border-white/10 transition-colors duration-300 hover:border-[#c8a24c]/50">
+              <div className="group relative aspect-video overflow-hidden rounded-2xl border border-white/10 transition-colors duration-300 hover:border-[#c8a24c]/50">
                 <AutoplayVideo
                   src={src}
-                  className="absolute inset-0 h-full w-full object-cover"
+                  className="absolute inset-0 h-full w-full object-cover object-center"
                 />
               </div>
             </FadeIn>
