@@ -6,6 +6,7 @@ import {
   ShieldCheck,
   Droplet,
   Grip,
+  CheckCircle,
   type LucideIcon,
 } from "lucide-react";
 import FadeIn from "@/components/FadeIn";
@@ -306,63 +307,54 @@ const RING_OPTIONS = [
 function Compatibility() {
   return (
     <section className="bg-zinc-950 px-6 py-16 lg:px-10 lg:py-24">
-      <div className="mx-auto max-w-4xl">
-        {/* Intro text — RTL, right-aligned */}
+      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 md:grid-cols-2">
+        {/* Visuals — DOM-first so it sits on the RIGHT in RTL */}
         <FadeIn>
-          <div className="mx-auto max-w-2xl text-right">
-            <p
-              className="text-xs font-bold tracking-[0.2em]"
-              style={{ color: GOLD }}
-            >
-              טבעות מגנטיות לטלפון (2 יחידות מתנה בכל מארז)
-            </p>
-            <h2 className="mt-4 font-display text-3xl font-black tracking-tight text-white lg:text-4xl">
-              מתאים לכל סמארטפון!
-            </h2>
-            <p className="mt-6 text-sm leading-relaxed text-zinc-400 lg:text-base">
-              כל שייקר של VAULT מגיע עם שתי טבעות מתכת דקות במיוחד — פשוט
-              מדביקים על הטלפון או על הכיסוי, ומקבלים חיבור מגנטי עוצמתי לכל
-              מכשיר, אייפון או אנדרואיד.
-            </p>
-          </div>
-        </FadeIn>
-
-        {/* Transparent compatibility image — centered, blends with bg-zinc-950 */}
-        <FadeIn delay={120}>
-          <div className="mx-auto mt-12 w-full max-w-4xl bg-transparent">
+          <div className="mx-auto w-full max-w-md bg-transparent">
             <Image
               src="/images/compatibility-options-removebg-preview.png"
               alt="VAULT Mounting Options"
               width={1200}
               height={800}
-              sizes="(min-width: 1024px) 896px, 100vw"
+              sizes="(min-width: 768px) 420px, 80vw"
               className="h-auto w-full object-contain"
             />
           </div>
-
-          {/* Labels aligned under the three phones */}
-          <div className="mx-auto mt-6 grid max-w-4xl grid-cols-3 gap-4">
-            {RING_OPTIONS.map((o) => (
-              <div key={o.title} className="text-center">
-                <h3
-                  className="text-sm font-bold lg:text-base"
-                  style={{ color: GOLD }}
-                >
-                  {o.title}
-                </h3>
-                <p className="mt-1 text-xs leading-relaxed text-zinc-400 lg:text-sm">
-                  {o.body}
-                </p>
-              </div>
-            ))}
-          </div>
         </FadeIn>
 
-        <div className="mt-12 flex justify-center">
-          <Link href="#shop" className={goldButton}>
-            הזמן עכשיו
-          </Link>
-        </div>
+        {/* Content — sits on the LEFT in RTL */}
+        <FadeIn delay={120}>
+          <div className="text-right">
+            <h2 className="font-display text-3xl font-black tracking-tight text-white lg:text-4xl">
+              מתאים לכל סמארטפון!
+            </h2>
+            <p className="mt-6 max-w-md text-sm leading-relaxed text-zinc-400 lg:text-base">
+              כל שייקר של VAULT מגיע עם שתי טבעות מתכת דקות במיוחד. פשוט מדביקים
+              את הטבעת על הטלפון או על הכיסוי, ומקבלים חיבור מגנטי עוצמתי לכל
+              מכשיר — אייפון או אנדרואיד.
+            </p>
+
+            <ul className="mt-8 space-y-4">
+              {RING_OPTIONS.map((o) => (
+                <li key={o.title} className="flex items-start gap-3">
+                  <CheckCircle
+                    className="mt-0.5 h-5 w-5 shrink-0"
+                    style={{ color: GOLD }}
+                    strokeWidth={1.75}
+                  />
+                  <p className="text-sm leading-relaxed text-zinc-300 lg:text-base">
+                    <span className="font-bold text-white">{o.title}:</span>{" "}
+                    {o.body}
+                  </p>
+                </li>
+              ))}
+            </ul>
+
+            <Link href="#shop" className={`mt-9 ${goldButton}`}>
+              הזמן עכשיו
+            </Link>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );
