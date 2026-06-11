@@ -7,6 +7,7 @@ import {
   Droplet,
   Grip,
   CheckCircle,
+  Star,
   type LucideIcon,
 } from "lucide-react";
 import FadeIn from "@/components/FadeIn";
@@ -30,6 +31,7 @@ export default function Home() {
         <HorizontalStreaming />
         <Anatomy />
         <Compatibility />
+        <Reviews />
         <BundleBanner />
         <CompleteGear />
         <WhatsInTheBox />
@@ -357,6 +359,89 @@ function Compatibility() {
             </Link>
           </div>
         </FadeIn>
+      </div>
+    </section>
+  );
+}
+
+/* ── Customer reviews ────────────────────────────────────────────────── */
+const REVIEWS = [
+  {
+    name: "דניאל כהן",
+    role: "מתאמן קרוספיט",
+    rating: 5,
+    text: "המגנט פשוט מטורף. הטלפון נצמד חזק ולא זז גם באמצע סט כפיפות. שדרוג רציני לאימון.",
+  },
+  {
+    name: "נועה לוי",
+    role: "מאמנת כושר",
+    rating: 5,
+    text: "אטום לחלוטין, קל לניקוי, והעמדה לטלפון מושלמת לצילום סרטונים. לא מוותרת עליו.",
+  },
+  {
+    name: "איתי ברקוביץ׳",
+    role: "רץ למרחקים",
+    rating: 5,
+    text: "איכות בנייה פרימיום שמרגישים ביד. הטבעות המגנטיות מחזיקות גם על הכיסוי. ממליץ בחום.",
+  },
+  {
+    name: "מאיה פרץ",
+    role: "יוגה ופילאטיס",
+    rating: 4,
+    text: "עיצוב נקי ויוקרתי, נצמד לכל משטח מתכתי בחדר. הייתי שמחה לעוד צבעים, אבל מעולה!",
+  },
+];
+
+function StarRating({ rating }: { rating: number }) {
+  return (
+    <div className="flex items-center gap-0.5" aria-label={`דירוג ${rating} מתוך 5`}>
+      {Array.from({ length: 5 }).map((_, i) => (
+        <Star
+          key={i}
+          className="h-4 w-4"
+          style={{ color: GOLD }}
+          fill={i < rating ? GOLD : "transparent"}
+          strokeWidth={1.5}
+        />
+      ))}
+    </div>
+  );
+}
+
+function Reviews() {
+  return (
+    <section className="bg-[#0a0a0a] px-6 py-20 lg:px-10 lg:py-28">
+      <div className="mx-auto max-w-6xl">
+        <FadeIn>
+          <p
+            className="text-center text-[11px] font-bold tracking-[0.3em]"
+            style={{ color: GOLD }}
+          >
+            לקוחות מספרים
+          </p>
+          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-white lg:text-4xl">
+            מה אומרים על VAULT
+          </h2>
+        </FadeIn>
+
+        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {REVIEWS.map((r, i) => (
+            <FadeIn key={r.name} delay={i * 80}>
+              <figure className="flex h-full flex-col rounded-2xl border border-white/10 bg-zinc-900 p-6 text-right transition-colors duration-300 hover:border-[#c8a24c]/40">
+                <div className="flex justify-end">
+                  <StarRating rating={r.rating} />
+                </div>
+                <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-zinc-300">
+                  “{r.text}”
+                </blockquote>
+                <figcaption className="mt-6 border-t border-white/10 pt-4">
+                  <p className="text-sm font-bold text-white">{r.name}</p>
+                  <p className="mt-0.5 text-xs text-zinc-500">{r.role}</p>
+                </figcaption>
+              </figure>
+            </FadeIn>
+          ))}
+        </div>
       </div>
     </section>
   );
