@@ -8,7 +8,7 @@ import MediaPlaceholder from "@/components/MediaPlaceholder";
  * parallax drift and a centered text block that fades in on scroll.
  *
  * Drop a looping clip at /public/videos/essence-loop.mp4 (a slow pan of the
- * model wearing PULSE pieces). Until then, the lifestyle portrait is used as
+ * model wearing VAULT pieces). Until then, the lifestyle portrait is used as
  * the poster so the section still renders cleanly.
  */
 export default function EssenceSection() {
@@ -95,7 +95,7 @@ export default function EssenceSection() {
           תוכנן לתנועה, בנוי לביצועים.
         </h2>
         <p className="mt-7 max-w-lg text-sm leading-loose text-white/80 lg:text-base">
-          השייקר המגנטי של PULSE משלב מעמד טלפון מובנה, אטימות מושלמת וכדור ערבוב
+          השייקר המגנטי של VAULT משלב מעמד טלפון מובנה, אטימות מושלמת וכדור ערבוב
           יעיל — כל מה שצריך לאימון, לריצה ולכל יום פעיל.
         </p>
       </div>

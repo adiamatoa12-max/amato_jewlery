@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import PolicyPage from "@/components/PolicyPage";
 
 export const metadata: Metadata = {
-  title: "שאלות נפוצות — PULSE",
+  title: "שאלות נפוצות — VAULT",
   description:
-    "שאלות נפוצות על המוצרים, ההזמנות, המשלוחים והטיפול בתכשיטי PULSE.",
+    "שאלות נפוצות על המוצרים, ההזמנות, המשלוחים והטיפול בתכשיטי VAULT.",
 };
 
 export default function FaqPage() {

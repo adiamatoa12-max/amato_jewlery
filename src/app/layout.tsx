@@ -24,14 +24,14 @@ const frankRuhl = Frank_Ruhl_Libre({
 
 const montserrat = Montserrat({
   variable: "--font-display",
-  weight: ["500", "600", "700"],
+  weight: ["500", "600", "700", "800", "900"],
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "PULSE — השייקר המגנטי המוביל לאימון",
+  title: "VAULT — השייקר המגנטי המוביל לאימון",
   description:
-    "PULSE — השייקר המגנטי הראשון בעולם עם מעמד טלפון מובנה. עיצוב high-performance לחדר הכושר, לריצה ולכל אורח חיים אקטיבי.",
+    "VAULT — השייקר המגנטי הראשון בעולם עם מעמד טלפון מובנה. עיצוב high-performance לחדר הכושר, לריצה ולכל אורח חיים אקטיבי.",
 };
 
 export default async function RootLayout({

@@ -134,10 +134,10 @@ export default function SiteHeader({
         {/* Logo — leading (right) in RTL. Text wordmark (image asset removed). */}
         <Link
           href="/"
-          aria-label="PULSE — דף הבית"
+          aria-label="VAULT — דף הבית"
           className="font-serif text-lg tracking-[0.35em] text-white transition-all duration-500 ease-in-out hover:opacity-80 lg:text-xl"
         >
-          PULSE
+          VAULT
         </Link>
 
         {/* Actions — trailing (left) in RTL: search · cart · menu */}

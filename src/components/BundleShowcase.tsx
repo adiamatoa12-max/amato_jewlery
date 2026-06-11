@@ -3,13 +3,13 @@ import Link from "next/link";
 import { getProduct } from "@/lib/catalog";
 
 // When you create the Shopify product with the English title
-// "The PULSE Full Look Bundle", Shopify generates this handle automatically.
+// "The VAULT Full Look Bundle", Shopify generates this handle automatically.
 // Until the product exists, the CTA falls back to WhatsApp.
 const BUNDLE_HANDLE = "the-amato-full-look-bundle";
 const WHATSAPP = "972585838005";
 
 const DESCRIPTION =
-  "הלוק המלא של PULSE. סט שנבחר בקפידה על ידי המעצבים שלנו ליצירת הופעה שלמה ומדויקת. המארז כולל 3 שרשראות שכבות, סט טבעות חותם ועגילי חישוק זוויתיים. רכשו את הלוק המלא ותיהנו מ-15% הנחה על הקנייה.";
+  "הלוק המלא של VAULT. סט שנבחר בקפידה על ידי המעצבים שלנו ליצירת הופעה שלמה ומדויקת. המארז כולל 3 שרשראות שכבות, סט טבעות חותם ועגילי חישוק זוויתיים. רכשו את הלוק המלא ותיהנו מ-15% הנחה על הקנייה.";
 
 function formatPrice(amount: number, currency: string) {
   return new Intl.NumberFormat("he-IL", {
@@ -38,7 +38,7 @@ export default async function BundleShowcase() {
         <div className="relative aspect-[3/4] w-full sm:aspect-[4/3] lg:aspect-[4/5]">
           <Image
             src="/bundle.jpg"
-            alt="באנדל הלוק המלא של PULSE"
+            alt="באנדל הלוק המלא של VAULT"
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
             className="object-contain lg:object-cover"

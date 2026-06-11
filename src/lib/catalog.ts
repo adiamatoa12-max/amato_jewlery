@@ -279,7 +279,7 @@ export async function getProduct(
     const p = await getProductByHandle(handle);
     if (p) {
       // Breadcrumb collection context isn't fetched per-product yet; link home.
-      return { ...adapt(p), collectionTitle: "PULSE", collectionHandle: "" };
+      return { ...adapt(p), collectionTitle: "VAULT", collectionHandle: "" };
     }
     // Live store doesn't carry this handle (e.g. the bundled products behind the
     // "In Motion" videos) — fall back to the bundled catalog so the link resolves.
