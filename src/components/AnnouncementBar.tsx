@@ -1,12 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Truck, Clock } from "lucide-react";
+import { Zap } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 const MESSAGES: { icon: LucideIcon; text: string }[] = [
-  { icon: Truck, text: "משלוח חינם עם שליח עד הבית" },
-  { icon: Clock, text: "אספקה תוך 7-14 ימי עסקים" },
+  { icon: Zap, text: "השייקר המגנטי הראשון בעולם - עכשיו בהשקה!" },
 ];
 
 const INTERVAL = 4000;

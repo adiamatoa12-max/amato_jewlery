@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import PolicyPage from "@/components/PolicyPage";
 
 export const metadata: Metadata = {
-  title: "שאלות נפוצות — AMATO",
+  title: "שאלות נפוצות — PULSE",
   description:
-    "שאלות נפוצות על המוצרים, ההזמנות, המשלוחים והטיפול בתכשיטי AMATO.",
+    "שאלות נפוצות על המוצרים, ההזמנות, המשלוחים והטיפול בתכשיטי PULSE.",
 };
 
 export default function FaqPage() {

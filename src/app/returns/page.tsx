@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import PolicyPage from "@/components/PolicyPage";
 
 export const metadata: Metadata = {
-  title: "החלפות והחזרות — AMATO",
+  title: "החלפות והחזרות — PULSE",
   description:
-    "מדיניות ההחלפות וההחזרות של AMATO — ניתן להחליף או להחזיר פריטים תוך 30 יום מיום הקבלה, כל עוד הם במצב חדש ובאריזתם המקורית.",
+    "מדיניות ההחלפות וההחזרות של PULSE — ניתן להחליף או להחזיר פריטים תוך 30 יום מיום הקבלה, כל עוד הם במצב חדש ובאריזתם המקורית.",
 };
 
 export default function ReturnsPage() {

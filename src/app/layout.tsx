@@ -29,9 +29,9 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "AMATO — תכשיטי פרימיום",
+  title: "PULSE — השייקר המגנטי המוביל לאימון",
   description:
-    "AMATO מעצבת תכשיטי פרימיום מינימליסטיים מכסף סטרלינג 925 בציפוי זהב 14 קראט — נועדו ללוות אותך בכל יום.",
+    "PULSE — השייקר המגנטי הראשון בעולם עם מעמד טלפון מובנה. עיצוב high-performance לחדר הכושר, לריצה ולכל אורח חיים אקטיבי.",
 };
 
 export default async function RootLayout({

@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import PolicyPage from "@/components/PolicyPage";
 
 export const metadata: Metadata = {
-  title: "מדריך מידות — AMATO",
+  title: "מדריך מידות — PULSE",
   description:
-    "מדריך המידות של AMATO — איך למדוד היקף אצבע לטבעת ולבחור אורך שרשרת מתאים.",
+    "מדריך המידות של PULSE — איך למדוד היקף אצבע לטבעת ולבחור אורך שרשרת מתאים.",
 };
 
 export default function SizingPage() {

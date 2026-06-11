@@ -20,30 +20,25 @@ type SearchResult = {
 
 const NAV_MENU: NavGroup[] = [
   {
-    label: "סדרת הגיאומטריה",
-    href: "/#geo-collection",
+    label: "השייקר",
+    href: "/#shop",
     links: [
-      { label: "עגילי חישוק", href: "/product/silver-hoop-earrings" },
-      { label: "שרשראות תליון", href: "/product/geo-pendant-necklace" },
-      { label: "טבעות חותם", href: "/product/geo-signet-ring" },
+      { label: "השייקר המגנטי", href: "/#shop" },
+      { label: "איך זה עובד", href: "/#shop" },
     ],
   },
   {
-    label: "חוליות על-זמניות",
-    href: "/#the-cubans",
+    label: "אביזרים",
+    href: "/#shop",
     links: [
-      { label: "שרשראות קצרות", href: "/product/cuban-chain-necklace" },
-      { label: "שרשראות ארוכות", href: "/#the-cubans" },
-      { label: "צמידים", href: "/product/cuban-chain-bracelet" },
+      { label: "מעמד טלפון", href: "/#shop" },
+      { label: "כדורי ערבוב", href: "/#shop" },
     ],
   },
   {
-    label: "סדרת ה-Signature",
-    href: "/#clean-essentials",
-    links: [
-      { label: "פריטי בייסיק", href: "/product/clean-band-ring" },
-      { label: "תכשיטי סטייטמנט", href: "/product/clean-gold-bar-necklace" },
-    ],
+    label: "אודות",
+    href: "/about",
+    links: [{ label: "הסיפור שלנו", href: "/about" }],
   },
 ];
 
@@ -136,12 +131,12 @@ export default function SiteHeader({
         {/* Logo — leading (right) in RTL */}
         <Link
           href="/"
-          aria-label="AMATO — דף הבית"
+          aria-label="PULSE — דף הבית"
           className="relative h-8 w-24 transition-all duration-500 ease-in-out hover:opacity-80 lg:h-9 lg:w-28"
         >
           <Image
             src="/images/logo.jpg"
-            alt="AMATO"
+            alt="PULSE"
             fill
             priority
             sizes="112px"

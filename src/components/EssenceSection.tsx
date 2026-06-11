@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
  * parallax drift and a centered text block that fades in on scroll.
  *
  * Drop a looping clip at /public/videos/essence-loop.mp4 (a slow pan of the
- * model wearing AMATO pieces). Until then, the lifestyle portrait is used as
+ * model wearing PULSE pieces). Until then, the lifestyle portrait is used as
  * the poster so the section still renders cleanly.
  */
 export default function EssenceSection() {
@@ -101,11 +101,11 @@ export default function EssenceSection() {
           המהות שלנו
         </p>
         <h2 className="mt-7 font-serif text-3xl font-light leading-tight tracking-[0.04em] lg:text-5xl">
-          מעוצב בכוונה, נלבש בקלות.
+          תוכנן לתנועה, בנוי לביצועים.
         </h2>
         <p className="mt-7 max-w-lg text-sm leading-loose text-white/80 lg:text-base">
-          כל פריט של AMATO עשוי מכסף סטרלינג 925 בציפוי זהב 14 קראט — קווים
-          מינימליסטיים שנועדו ללוות אתכם, יום אחר יום.
+          השייקר המגנטי של PULSE משלב מעמד טלפון מובנה, אטימות מושלמת וכדור ערבוב
+          יעיל — כל מה שצריך לאימון, לריצה ולכל יום פעיל.
         </p>
       </div>
     </section>

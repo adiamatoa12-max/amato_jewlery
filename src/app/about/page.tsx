@@ -4,9 +4,9 @@ import { Gem, PenTool, ShieldCheck } from "lucide-react";
 import FadeIn from "@/components/FadeIn";
 
 export const metadata: Metadata = {
-  title: "הסיפור שלנו — AMATO",
+  title: "הסיפור שלנו — PULSE",
   description:
-    "AMATO — תכשיטי פרימיום מינימליסטיים מכסף סטרלינג 925 בציפוי זהב 14 קראט. עיצוב נקי, איכות בלתי מתפשרת ואלגנטיות שלא יוצאת מהאופנה.",
+    "PULSE — תכשיטי פרימיום מינימליסטיים מכסף סטרלינג 925 בציפוי זהב 14 קראט. עיצוב נקי, איכות בלתי מתפשרת ואלגנטיות שלא יוצאת מהאופנה.",
 };
 
 const QUALITIES = [
@@ -35,7 +35,7 @@ export default function AboutPage() {
         <section className="relative h-[60vh] min-h-[420px] w-full overflow-hidden">
           <Image
             src="/images/hero-banner-women.jpg"
-            alt="האווירה של AMATO"
+            alt="האווירה של PULSE"
             fill
             priority
             sizes="100vw"
@@ -43,7 +43,7 @@ export default function AboutPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/15 to-black/40" />
           <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center text-white">
-            <p className="text-xs tracking-[0.3em] text-[#d4af6a]">אודות AMATO</p>
+            <p className="text-xs tracking-[0.3em] text-[#d4af6a]">אודות PULSE</p>
             <h1 className="mt-4 font-serif text-4xl font-light tracking-[0.06em] sm:text-5xl lg:text-6xl">
               הסיפור שלנו
             </h1>
@@ -59,7 +59,7 @@ export default function AboutPage() {
           </FadeIn>
           <FadeIn delay={120}>
             <p className="mx-auto mt-8 max-w-2xl text-base leading-loose text-neutral-500">
-              AMATO נולדה מתוך אמונה אחת פשוטה — שתכשיט אמיתי לא צריך לצעוק כדי
+              PULSE נולדה מתוך אמונה אחת פשוטה — שתכשיט אמיתי לא צריך לצעוק כדי
               להבחין בו. אנחנו מעצבים תכשיטים מינימליסטיים מכסף סטרלינג 925
               איכותי בציפוי זהב 14 קראט, כאלה שנועדו ללוות אותך בכל יום. כל
               פריט נוצר בתשומת לב לפרטים הקטנים, מתוך מחויבות לחומרים מהאיכות
@@ -105,7 +105,7 @@ export default function AboutPage() {
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-neutral-900">
                 <Image
                   src="/images/packaging.jpg"
-                  alt="האריזה הפרמיום של AMATO"
+                  alt="האריזה הפרמיום של PULSE"
                   fill
                   sizes="(min-width: 1024px) 50vw, 100vw"
                   className="object-cover"
@@ -123,7 +123,7 @@ export default function AboutPage() {
                   חוויית מתנה מושלמת.
                 </h2>
                 <p className="mt-7 max-w-md text-base leading-loose text-neutral-500">
-                  כל פריט של AMATO מגיע באריזת פרימיום ייחודית, שתוכננה כדי
+                  כל פריט של PULSE מגיע באריזת פרימיום ייחודית, שתוכננה כדי
                   להפוך כל רגע פתיחה לחוויה מיוחדת.
                 </p>
               </div>

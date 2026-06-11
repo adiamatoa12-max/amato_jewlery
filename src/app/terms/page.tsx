@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import PolicyPage from "@/components/PolicyPage";
 
 export const metadata: Metadata = {
-  title: "תקנון האתר — AMATO",
+  title: "תקנון האתר — PULSE",
   description:
-    "תקנון השימוש באתר AMATO — תנאי השימוש, מדיניות הרכישה, קניין רוחני ופרטיות.",
+    "תקנון השימוש באתר PULSE — תנאי השימוש, מדיניות הרכישה, קניין רוחני ופרטיות.",
 };
 
 export default function TermsPage() {
@@ -12,7 +12,7 @@ export default function TermsPage() {
     <PolicyPage
       eyebrow="TERMS"
       title="תקנון האתר"
-      intro="השימוש באתר AMATO ורכישת מוצרים דרכו כפופים לתנאים המפורטים להלן. אנא קרא אותם בעיון לפני ביצוע הזמנה."
+      intro="השימוש באתר PULSE ורכישת מוצרים דרכו כפופים לתנאים המפורטים להלן. אנא קרא אותם בעיון לפני ביצוע הזמנה."
       sections={[
         {
           heading: "כללי",
@@ -28,7 +28,7 @@ export default function TermsPage() {
         },
         {
           heading: "קניין רוחני",
-          body: "כל התכנים באתר — לרבות עיצובים, תמונות, טקסטים וסימני מסחר — הם רכושה הבלעדי של AMATO ואין לעשות בהם שימוש ללא אישור בכתב.",
+          body: "כל התכנים באתר — לרבות עיצובים, תמונות, טקסטים וסימני מסחר — הם רכושה הבלעדי של PULSE ואין לעשות בהם שימוש ללא אישור בכתב.",
         },
         {
           heading: "פרטיות",

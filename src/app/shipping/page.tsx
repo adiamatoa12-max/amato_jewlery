@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import PolicyPage from "@/components/PolicyPage";
 
 export const metadata: Metadata = {
-  title: "מדיניות משלוחים — AMATO",
+  title: "מדיניות משלוחים — PULSE",
   description:
-    "פרטי המשלוח של AMATO — משלוח חינם בשליחות עד הבית, זמני אספקה, אזורי חלוקה ומעקב אחר ההזמנה.",
+    "פרטי המשלוח של PULSE — משלוח חינם בשליחות עד הבית, זמני אספקה, אזורי חלוקה ומעקב אחר ההזמנה.",
 };
 
 export default function ShippingPage() {

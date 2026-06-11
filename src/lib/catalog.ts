@@ -26,7 +26,7 @@ import {
 } from "./shopify/operations";
 import type { Product as ShopifyProduct } from "./shopify/types";
 
-const DEFAULT_MATERIAL = "כסף סטרלינג 925 איכותי בציפוי זהב 14 קראט";
+const DEFAULT_MATERIAL = "טריטן עמיד ללא BPA · מכסה אטום נגד נזילות · מגנט חזק ומעמד טלפון מובנה";
 
 /**
  * Log a Shopify failure and signal that we're serving the bundled catalog
@@ -279,7 +279,7 @@ export async function getProduct(
     const p = await getProductByHandle(handle);
     if (p) {
       // Breadcrumb collection context isn't fetched per-product yet; link home.
-      return { ...adapt(p), collectionTitle: "AMATO", collectionHandle: "" };
+      return { ...adapt(p), collectionTitle: "PULSE", collectionHandle: "" };
     }
     // Live store doesn't carry this handle (e.g. the bundled products behind the
     // "In Motion" videos) — fall back to the bundled catalog so the link resolves.

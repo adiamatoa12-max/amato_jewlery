@@ -82,19 +82,20 @@ function Hero() {
 
       <div className="relative z-10 flex max-w-2xl flex-col items-center px-6 text-center text-white">
         <p className="mb-5 text-[11px] font-medium uppercase tracking-[0.34em] text-white/75">
-          AMATO
+          PULSE
         </p>
         <h1 className="font-serif text-[2.6rem] font-light leading-[1.05] tracking-[0.08em] sm:text-6xl sm:tracking-[0.1em] lg:text-7xl">
-          הקולקציה החדשה
+          השייקר המגנטי
         </h1>
         <p className="mt-6 max-w-md text-sm font-light leading-relaxed tracking-[0.02em] text-white/85 sm:text-base">
-          קולקציית תכשיטי הפרימיום מכסף סטרלינג 925 וציפוי זהב 14 קראט.
+          שייקר high-performance עם מעמד טלפון מגנטי מובנה — לאימון, לריצה ולכל
+          יום. ערבוב מושלם, אחיזה יציבה, והטלפון תמיד מולך.
         </p>
         <Link
           href="#shop"
           className="mt-10 inline-flex items-center justify-center rounded-full bg-white px-10 py-4 text-xs font-medium uppercase tracking-[0.18em] text-neutral-900 shadow-lg shadow-black/10 transition-all duration-500 ease-in-out hover:bg-white/90 hover:shadow-xl sm:text-[13px]"
         >
-          לקולקציה המלאה
+          לרכישת השייקר
         </Link>
       </div>
 
@@ -147,10 +148,10 @@ function ShopByCategory({ tiles }: { tiles: StyleTile[] }) {
       className="mx-auto max-w-7xl scroll-mt-24 px-6 pb-4 pt-16 lg:px-10 lg:pb-8 lg:pt-24"
     >
       <p className="text-center text-[11px] font-medium tracking-[0.3em] text-[#b8902f]">
-        הקולקציות שלנו
+        הקטגוריות שלנו
       </p>
       <h2 className="mt-4 text-center font-serif text-3xl font-light tracking-[0.04em] text-neutral-900 lg:text-4xl">
-        קנו לפי סגנון
+        קנו לפי שימוש
       </h2>
       <div className="mx-auto mt-12 grid max-w-3xl grid-cols-2 gap-5 lg:mt-16 lg:gap-6">
         {tiles.map((tile, i) => (
@@ -189,7 +190,7 @@ function ThematicBanner() {
       <section className="relative h-[55vh] min-h-[380px] w-full overflow-hidden">
         <Image
           src="/images/necklace-close.png"
-          alt="קולקציית AMATO במבט קרוב"
+          alt="שייקר PULSE המגנטי בפעולה"
           fill
           sizes="100vw"
           className="object-cover"
@@ -197,10 +198,10 @@ function ThematicBanner() {
         <div className="absolute inset-0 bg-black/25" />
         <div className="relative z-10 flex h-full items-center justify-center px-6">
           <Link
-            href="#geo-collection"
+            href="#shop"
             className="inline-flex items-center rounded-full border border-white/80 px-9 py-3.5 text-xs font-medium tracking-[0.14em] text-white transition-all duration-500 ease-in-out hover:bg-white hover:text-neutral-900"
           >
-            גלו את הקולקציה
+            גלו את השייקר
           </Link>
         </div>
       </section>
@@ -214,20 +215,20 @@ function Craftsmanship() {
       <section className="relative w-full overflow-hidden">
         <Image
           src="/images/jewelry-stone.png"
-          alt="המלאכה של AMATO"
+          alt="המלאכה של PULSE"
           fill
           sizes="100vw"
           className="object-cover"
         />
         <div className="absolute inset-0 bg-black/45" />
         <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center px-6 py-28 text-center text-white lg:py-36">
-          <p className="text-xs tracking-[0.3em] text-[#d4af6a]">אומנות יד</p>
+          <p className="text-xs tracking-[0.3em] text-[#d4af6a]">ביצועים</p>
           <h2 className="mt-5 font-serif text-3xl font-light tracking-[0.04em] lg:text-5xl">
             איכות בכל פרט
           </h2>
           <p className="mt-7 max-w-xl text-sm leading-loose text-white/85">
-            כל פריט עובר ביקורת קפדנית — מהבחירה בחומרים ועד הגימור הסופי. כך
-            אנחנו מבטיחים תכשיט שנשאר יפה הרבה מעבר ליום שבו קיבלת אותו.
+            כל שייקר עובר בדיקת איכות קפדנית — מהמגנט החזק ועד אטימות מושלמת נגד
+            נזילות. בנוי מחומרים עמידים וללא BPA, לשנים של אימונים.
           </p>
         </div>
       </section>
@@ -238,7 +239,7 @@ function Craftsmanship() {
 function NewArrivalsIntro() {
   return (
     <section className="mx-auto max-w-7xl px-6 pt-16 text-center lg:px-10 lg:pt-24">
-      <p className="text-xs tracking-[0.3em] text-[#b8902f]">החתימה של AMATO</p>
+      <p className="text-xs tracking-[0.3em] text-[#b8902f]">החתימה של PULSE</p>
     </section>
   );
 }
@@ -284,10 +285,10 @@ function Footer() {
           {/* Brand */}
           <div className="col-span-2 lg:col-span-1">
             <span className="font-serif text-xl tracking-[0.35em] text-neutral-900">
-              AMATO
+              PULSE
             </span>
             <p className="mt-4 max-w-xs text-xs leading-relaxed text-neutral-500">
-              תכשיטים מינימליסטיים, עשויים בדייקנות.
+              שייקר מגנטי high-performance לאורח חיים אקטיבי.
             </p>
           </div>
 
@@ -308,7 +309,7 @@ function Footer() {
           {/* Newsletter */}
           <div className="col-span-2 lg:col-span-1">
             <h3 className="text-xs font-medium tracking-[0.16em] text-neutral-900">
-              הצטרפו ל-AMATO
+              הצטרפו ל-PULSE
             </h3>
             <p className="mt-4 text-xs leading-relaxed text-neutral-500">
               גישה מוקדמת לפריטים חדשים ותצוגות מקדימות של קולקציות.
@@ -354,7 +355,7 @@ function Footer() {
 
           {/* Center: copyright */}
           <span className="text-center text-xs tracking-[0.12em] text-neutral-400">
-            © {new Date().getFullYear()} AMATO. כל הזכויות שמורות.
+            © {new Date().getFullYear()} PULSE. כל הזכויות שמורות.
           </span>
 
           {/* Right: payments */}
