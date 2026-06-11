@@ -131,13 +131,18 @@ export default function SiteHeader({
       }`}
     >
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-6 lg:px-10">
-        {/* Logo — leading (right) in RTL. Text wordmark (image asset removed). */}
+        {/* Logo — leading (right) in RTL. Official VAULT mark. */}
         <Link
           href="/"
           aria-label="VAULT — דף הבית"
-          className="font-display text-lg font-extrabold uppercase tracking-[0.3em] text-white transition-all duration-500 ease-in-out hover:opacity-80 lg:text-xl"
+          className="flex items-center transition-all duration-500 ease-in-out hover:opacity-80"
         >
-          VAULT
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/vault-logo.png"
+            alt="VAULT Logo"
+            className="h-8 w-auto object-contain lg:h-10"
+          />
         </Link>
 
         {/* Desktop inline nav — centered, hidden on mobile */}

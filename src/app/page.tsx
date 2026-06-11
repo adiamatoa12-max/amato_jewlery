@@ -4,6 +4,7 @@ import { Instagram, Smartphone } from "lucide-react";
 import FadeIn from "@/components/FadeIn";
 import FooterLink, { type FooterLinkItem } from "@/components/FooterLink";
 import MediaPlaceholder from "@/components/MediaPlaceholder";
+import Hero from "@/components/Hero";
 
 const GOLD = "#c8a24c";
 
@@ -15,7 +16,7 @@ export default function Home() {
   return (
     <div className="flex min-h-full flex-col bg-[#0a0a0a] pt-[5.25rem] text-white">
       <main id="main-content" className="flex-1">
-        <ImpactHero />
+        <Hero />
         <UseCases />
         <HorizontalStreaming />
         <Anatomy />
@@ -28,41 +29,6 @@ export default function Home() {
 }
 
 /* ── Impact hero ─────────────────────────────────────────────────────── */
-function ImpactHero() {
-  return (
-    <section
-      className="relative flex min-h-[90vh] w-full items-center overflow-hidden bg-black bg-cover bg-center"
-      style={{ backgroundImage: "url('/images/hero-main.png')" }}
-    >
-      {/* Readability scrim — darker on the LEFT where the text sits. */}
-      <div className="absolute inset-0 bg-gradient-to-l from-transparent via-black/55 to-black/90" />
-
-      {/* Text pinned LEFT: in RTL, justify-end aligns to the visual left. */}
-      <div className="relative z-10 flex h-full w-full items-center justify-end px-6 lg:px-16">
-        <div className="max-w-xl text-right">
-          <p
-            className="mb-4 text-sm font-bold uppercase tracking-widest"
-            style={{ color: GOLD }}
-          >
-            חזק יותר. איכותי יותר. חכם יותר.
-          </p>
-          <h1 className="font-display text-4xl font-black leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
-            האימון שלך. הטלפון שלך.
-            <br />
-            <span style={{ color: GOLD }}>נצמד בשנייה.</span>
-          </h1>
-          <p className="mt-6 max-w-md text-sm font-medium leading-relaxed tracking-[0.02em] text-white/80 sm:text-base">
-            שייקר הפרימיום המגנטי שמשנה את חוקי המשחק בחדר הכושר.
-          </p>
-          <Link href="#shop" className={`mt-9 ${goldButton}`}>
-            הזמן עכשיו את VAULT
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ── 'The Gym Life' use cases (2×2) ──────────────────────────────────── */
 const USE_CASES = [
   {
