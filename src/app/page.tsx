@@ -35,18 +35,26 @@ const USE_CASES = [
   {
     title: "לצלם בלי חצובה",
     body: "מעמד יציב לכל סרטון אימון — בלי לסחוב ציוד מיותר.",
+    start: 1,
+    end: 6,
   },
   {
     title: "תשכחו מהרצפה",
     body: "הטלפון נשאר נצמד ובטוח — רחוק ממשקולות, זיעה ולכלוך.",
+    start: 7,
+    end: 11,
   },
   {
     title: "זווית צפייה מושלמת",
     body: "סטרימינג בגובה העיניים בזמן האימון, בדיוק איפה שצריך.",
+    start: 12,
+    end: 16,
   },
   {
     title: "מתאים לכל סמארטפון",
     body: "כולל טבעות מגנטיות מתאמות לכל דגם ולכל כיסוי.",
+    start: 17,
+    end: 22,
   },
 ];
 
@@ -72,6 +80,8 @@ function UseCases() {
               <div className="group relative aspect-[16/10] overflow-hidden rounded-xl border border-white/10 transition-colors duration-300 hover:border-[#c8a24c]/50">
                 <AutoplayVideo
                   src="/videos/vault-magnetic-demo.mp4"
+                  start={c.start}
+                  end={c.end}
                   className="absolute inset-0 h-full w-full object-cover"
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
