@@ -27,32 +27,28 @@ export default function Home() {
 /* ── Impact hero ─────────────────────────────────────────────────────── */
 function ImpactHero() {
   return (
-    <section className="relative flex min-h-[calc(100vh-5.25rem)] w-full items-center justify-center overflow-hidden bg-black">
-      {/* Video background — drop /videos/hero-shaker.mp4 in to replace this. */}
-      <MediaPlaceholder className="absolute inset-0 h-full w-full" />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/45 to-black/85" />
+    <section
+      className="relative flex min-h-[90vh] w-full items-center overflow-hidden bg-black bg-cover bg-center"
+      style={{ backgroundImage: "url('/images/hero-main.png')" }}
+    >
+      {/* Readability scrim — darker on the LEFT where the text sits. */}
+      <div className="absolute inset-0 bg-gradient-to-l from-transparent via-black/55 to-black/90" />
 
-      <div className="relative z-10 flex max-w-3xl flex-col items-center px-6 text-center">
-        <h1 className="font-display text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
-          האימון שלך. הטלפון שלך.
-          <br />
-          <span style={{ color: GOLD }}>נצמד בשנייה.</span>
-        </h1>
-        <p className="mt-6 max-w-xl text-sm font-medium leading-relaxed tracking-[0.02em] text-white/80 sm:text-base">
-          שייקר הפרימיום המגנטי שמשנה את חוקי המשחק בחדר הכושר.
-        </p>
-        <Link href="#shop" className={`mt-10 ${goldButton}`}>
-          הזמן עכשיו את VAULT
-        </Link>
-      </div>
-
-      <div className="absolute inset-x-0 bottom-7 z-10 flex justify-center">
-        <span
-          className="h-9 w-[1px]"
-          style={{
-            background: `linear-gradient(to bottom, transparent, ${GOLD}, transparent)`,
-          }}
-        />
+      {/* Text pinned LEFT: in RTL, justify-end aligns to the visual left. */}
+      <div className="relative z-10 flex h-full w-full items-center justify-end px-6 lg:px-16">
+        <div className="max-w-xl text-right">
+          <h1 className="font-display text-4xl font-black leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
+            האימון שלך. הטלפון שלך.
+            <br />
+            <span style={{ color: GOLD }}>נצמד בשנייה.</span>
+          </h1>
+          <p className="mt-6 max-w-md text-sm font-medium leading-relaxed tracking-[0.02em] text-white/80 sm:text-base">
+            שייקר הפרימיום המגנטי שמשנה את חוקי המשחק בחדר הכושר.
+          </p>
+          <Link href="#shop" className={`mt-9 ${goldButton}`}>
+            הזמן עכשיו את VAULT
+          </Link>
+        </div>
       </div>
     </section>
   );
@@ -119,9 +115,9 @@ function UseCases() {
 
 /* ── Anatomy of VAULT ────────────────────────────────────────────────── */
 const ANATOMY = [
-  "מגנט N52 עוצמתי (מחזיק כל משקל)",
+  "מגנט N52 עוצמתי",
   "אטימה מוחלטת לנזילות (BPA-Free)",
-  "פיית שתייה היגיינית ורחבה",
+  "פיית שתייה היגיינית",
   "ידית נשיאה ארגונומית",
 ];
 
