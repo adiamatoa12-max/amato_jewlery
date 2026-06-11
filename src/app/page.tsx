@@ -28,6 +28,7 @@ export default function Home() {
       <main id="main-content" className="flex-1">
         <Hero />
         <UseCases />
+        <MicroConversion />
         <HorizontalStreaming />
         <Anatomy />
         <Compatibility />
@@ -77,6 +78,24 @@ function UseCases() {
           ))}
         </div>
       </div>
+    </section>
+  );
+}
+
+/* ── Micro-conversion CTA (between the video sections) ───────────────── */
+function MicroConversion() {
+  return (
+    <section className="bg-[#0a0a0a] px-5 py-12 sm:px-6 lg:px-10">
+      <FadeIn>
+        <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 rounded-2xl border border-[#c8a24c]/40 bg-zinc-900 px-6 py-10 text-center sm:px-10">
+          <h2 className="font-display text-2xl font-black tracking-tight text-white sm:text-3xl">
+            מוכן לשדרג את האימון שלך?
+          </h2>
+          <Link href="#shop" className={`w-full sm:w-auto ${goldButton}`}>
+            הזמן את ה-VAULT שלך עכשיו
+          </Link>
+        </div>
+      </FadeIn>
     </section>
   );
 }
