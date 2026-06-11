@@ -478,7 +478,45 @@ function TikTokIcon({ className }: { className?: string }) {
   );
 }
 
-const PAYMENTS = ["VISA", "Mastercard", "PayPal", "Apple Pay", "bit"];
+/* Branded payment / security marks rendered as small icon badges. */
+function VisaIcon() {
+  return (
+    <span className="inline-flex h-6 w-10 items-center justify-center rounded bg-white">
+      <span className="font-display text-[11px] font-black italic tracking-tight text-[#1a1f71]">
+        VISA
+      </span>
+    </span>
+  );
+}
+
+function MastercardIcon() {
+  return (
+    <span className="inline-flex h-6 w-10 items-center justify-center rounded bg-white">
+      <svg viewBox="0 0 32 20" className="h-4" aria-hidden>
+        <circle cx="13" cy="10" r="6" fill="#EB001B" />
+        <circle cx="19" cy="10" r="6" fill="#F79E1B" />
+        <path d="M16 5.2a6 6 0 0 0 0 9.6 6 6 0 0 0 0-9.6z" fill="#FF5F00" />
+      </svg>
+    </span>
+  );
+}
+
+function ApplePayIcon() {
+  return (
+    <span className="inline-flex h-6 w-10 items-center justify-center gap-0.5 rounded bg-white text-black">
+      <svg viewBox="0 0 24 24" className="h-3" fill="currentColor" aria-hidden>
+        <path d="M16.3 12.9c0-1.9 1.6-2.8 1.6-2.9-.9-1.3-2.2-1.5-2.7-1.5-1.1-.1-2.2.7-2.8.7-.6 0-1.5-.6-2.4-.6-1.2 0-2.4.7-3 1.8-1.3 2.2-.3 5.5.9 7.3.6.9 1.3 1.9 2.2 1.8.9 0 1.2-.6 2.3-.6 1 0 1.3.6 2.3.5 1 0 1.6-.9 2.2-1.8.4-.6.6-1.2.8-1.8-1.7-.6-1.7-2.1-1.7-2.4zM14.6 7.3c.5-.6.8-1.4.7-2.3-.7 0-1.6.5-2.1 1.1-.5.5-.9 1.4-.7 2.2.8.1 1.6-.4 2.1-1z" />
+      </svg>
+      <span className="text-[10px] font-semibold">Pay</span>
+    </span>
+  );
+}
+
+const PAYMENT_ICONS = [
+  { key: "visa", label: "Visa", Icon: VisaIcon },
+  { key: "mastercard", label: "Mastercard", Icon: MastercardIcon },
+  { key: "applepay", label: "Apple Pay", Icon: ApplePayIcon },
+];
 
 function Footer() {
   return (
@@ -556,13 +594,10 @@ function Footer() {
             © {new Date().getFullYear()} VAULT. כל הזכויות שמורות.
           </span>
 
-          <div className="flex flex-wrap items-center justify-center gap-1.5 sm:justify-end">
-            {PAYMENTS.map((p) => (
-              <span
-                key={p}
-                className="inline-flex h-6 items-center rounded-sm border border-white/15 px-2 text-[9px] font-medium tracking-[0.06em] text-white/50"
-              >
-                {p}
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:justify-end">
+            {PAYMENT_ICONS.map(({ key, label, Icon }) => (
+              <span key={key} aria-label={label} title={label}>
+                <Icon />
               </span>
             ))}
           </div>
