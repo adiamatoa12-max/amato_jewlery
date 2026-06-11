@@ -747,7 +747,7 @@ function Footer() {
           </div>
 
           <span className="text-center text-xs tracking-[0.12em] text-white/40">
-            © {new Date().getFullYear()} VAULT. כל הזכויות שמורות.
+            © VAULT 2026. כל הזכויות שמורות.
           </span>
 
           <div className="flex flex-wrap items-center justify-center gap-2 sm:justify-end">
