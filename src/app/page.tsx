@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Instagram, Smartphone } from "lucide-react";
 import FadeIn from "@/components/FadeIn";
 import FooterLink, { type FooterLinkItem } from "@/components/FooterLink";
@@ -16,6 +17,7 @@ export default function Home() {
       <main id="main-content" className="flex-1">
         <ImpactHero />
         <UseCases />
+        <HorizontalStreaming />
         <Anatomy />
         <Compatibility />
         <WhatsInTheBox />
@@ -109,6 +111,42 @@ function UseCases() {
             </FadeIn>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── Horizontal streaming ────────────────────────────────────────────── */
+function HorizontalStreaming() {
+  return (
+    <section className="bg-[#0a0a0a] px-6 py-16 lg:px-10">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 md:grid-cols-2 lg:gap-16">
+        {/* Text — right column in RTL */}
+        <FadeIn>
+          <div className="text-right">
+            <h2 className="font-display text-3xl font-black leading-tight tracking-tight text-white lg:text-4xl">
+              לא משדרים את המשחק בחדר כושר?
+            </h2>
+            <p className="mt-6 max-w-md text-sm leading-relaxed text-zinc-400 lg:text-base">
+              חברו את הטלפון לרוחב (Landscape) ותיהנו מזווית צפייה מושלמת.
+              הפתרון האולטימטיבי לסטרימינג של משחקי ספורט, סדרות, או מעקב אחרי
+              סרטוני אימון ישירות ממתקן המשקולות, בלי להחזיק את המכשיר ביד.
+            </p>
+          </div>
+        </FadeIn>
+
+        {/* Image — left column on desktop, on TOP on mobile */}
+        <FadeIn delay={120} className="order-first md:order-none">
+          <div className="relative aspect-video overflow-hidden rounded-2xl border border-zinc-800">
+            <Image
+              src="/images/horizontal-stream.png"
+              alt="טלפון מחובר לרוחב לשייקר VAULT בחדר כושר"
+              fill
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="object-cover"
+            />
+          </div>
+        </FadeIn>
       </div>
     </section>
   );
