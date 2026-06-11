@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Instagram } from "lucide-react";
+import { Instagram, Smartphone } from "lucide-react";
 import FadeIn from "@/components/FadeIn";
 import FooterLink, { type FooterLinkItem } from "@/components/FooterLink";
 import MediaPlaceholder from "@/components/MediaPlaceholder";
@@ -17,6 +17,7 @@ export default function Home() {
         <ImpactHero />
         <UseCases />
         <Anatomy />
+        <Compatibility />
         <WhatsInTheBox />
       </main>
       <Footer />
@@ -174,6 +175,70 @@ function Anatomy() {
             הזמן עכשיו את VAULT
           </Link>
         </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── Compatibility (magnetic rings) ──────────────────────────────────── */
+const RING_OPTIONS = [
+  { title: "אופציה 1", body: "בתוך הכיסוי (אחיזה חזקה)." },
+  { title: "אופציה 2", body: "על גבי הכיסוי (אחיזה חזקה מאוד)." },
+  { title: "אופציה 3", body: "ישירות על המכשיר (אחיזה מקסימלית)." },
+];
+
+function Compatibility() {
+  return (
+    <section className="bg-zinc-950 px-6 py-16 lg:px-10">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        {/* Right column (RTL-first): text content */}
+        <FadeIn>
+          <div className="text-right">
+            <h2 className="font-display text-3xl font-black tracking-tight text-white lg:text-4xl">
+              מתאים לכל סמארטפון!
+            </h2>
+            <p className="mt-6 max-w-md text-sm leading-relaxed text-zinc-400 lg:text-base">
+              כל שייקר של VAULT מגיע עם שתי טבעות מתכת דקות במיוחד (עם דבק
+              דו-צדדי חזק). פשוט הדביקו את הטבעת על הטלפון או על הכיסוי שלכם,
+              והבטיחו חיבור מגנטי עוצמתי - גם לאייפון וגם לאנדרואיד.
+            </p>
+            <Link href="#shop" className={`mt-9 ${goldButton}`}>
+              הזמן עכשיו
+            </Link>
+          </div>
+        </FadeIn>
+
+        {/* Left column: the 3 ring options */}
+        <FadeIn delay={120}>
+          <div>
+            <p
+              className="text-right text-xs font-bold tracking-[0.2em]"
+              style={{ color: GOLD }}
+            >
+              טבעות מגנטיות לטלפון (2 יחידות מתנה בכל מארז)
+            </p>
+            <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
+              {RING_OPTIONS.map((o) => (
+                <div
+                  key={o.title}
+                  className="rounded-xl border border-zinc-800 bg-black p-6 text-right"
+                >
+                  <Smartphone
+                    className="h-7 w-7"
+                    style={{ color: GOLD }}
+                    strokeWidth={1.5}
+                  />
+                  <h3 className="mt-4 text-base font-bold text-white">
+                    {o.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+                    {o.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );
