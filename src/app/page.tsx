@@ -5,6 +5,7 @@ import FadeIn from "@/components/FadeIn";
 import FooterLink, { type FooterLinkItem } from "@/components/FooterLink";
 import MediaPlaceholder from "@/components/MediaPlaceholder";
 import Hero from "@/components/Hero";
+import AutoplayVideo from "@/components/AutoplayVideo";
 
 const GOLD = "#c8a24c";
 
@@ -69,8 +70,11 @@ function UseCases() {
           {USE_CASES.map((c, i) => (
             <FadeIn key={c.title} delay={i * 100}>
               <div className="group relative aspect-[16/10] overflow-hidden rounded-xl border border-white/10 transition-colors duration-300 hover:border-[#c8a24c]/50">
-                <MediaPlaceholder className="absolute inset-0 h-full w-full" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+                <AutoplayVideo
+                  src="/videos/vault-magnetic-demo.mp4"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-6">
                   <h3 className="font-display text-xl font-extrabold tracking-tight text-white lg:text-2xl">
                     {c.title}
