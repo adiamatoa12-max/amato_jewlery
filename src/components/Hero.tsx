@@ -40,7 +40,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-l from-transparent via-black/55 to-black/90" />
 
       {/* Text block — centered on mobile, pinned LEFT (RTL justify-end) on desktop. */}
-      <div className="relative z-10 flex h-full w-full items-center justify-center px-5 sm:px-6 md:justify-end lg:px-16">
+      <div className="relative z-10 flex h-full w-full items-center justify-center px-6 py-12 md:justify-end lg:px-16">
         <div className="max-w-xl text-center md:text-right">
           <p
             className="mb-4 text-xs font-bold tracking-widest sm:text-sm"
@@ -55,7 +55,10 @@ export default function Hero() {
             שייקר הפרימיום היחיד בעולם עם מגנט עוצמתי שמעגן את השייקר ואת הטלפון
             שלך בצורה מושלמת.
           </p>
-          <Link href="#shop" className={goldButton}>
+          <Link
+            href="#shop"
+            className={`mx-auto max-w-xs sm:mx-0 sm:max-w-none ${goldButton}`}
+          >
             הזמן עכשיו את VAULT
           </Link>
         </div>
