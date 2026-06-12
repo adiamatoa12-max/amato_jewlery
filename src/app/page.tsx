@@ -489,27 +489,55 @@ function BundleBanner() {
           </div>
 
           {/* Content — left column in RTL desktop */}
-          <div className="text-center md:text-right">
+          <div className="flex flex-col items-center text-center md:items-end md:text-right">
             <p
-              className="text-xs font-bold uppercase tracking-[0.2em]"
+              className="text-xs font-bold uppercase tracking-[0.25em]"
               style={{ color: GOLD }}
             >
               Bundle &amp; Save
             </p>
-            <h2 className="mt-3 font-display text-3xl font-black tracking-tight text-white lg:text-4xl">
+            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-white lg:text-4xl">
               קנה סט אימון מלא וחסוך{" "}
               <span style={{ color: GOLD }}>15%</span>
             </h2>
-            <p className="mt-4 text-sm leading-relaxed text-zinc-300 lg:text-base">
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-zinc-300 lg:text-base">
               השייקר המגנטי + כל האביזרים המשלימים, במחיר משתלם במיוחד — לזמן
               מוגבל בלבד.
             </p>
+
+            {/* Price-anchoring box */}
+            <div className="mt-7 inline-flex items-center gap-4 rounded-2xl border border-yellow-600/30 bg-black/40 px-6 py-4">
+              <div className="flex flex-col items-center">
+                <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-zinc-500">
+                  מחיר מלא
+                </span>
+                <span className="text-lg font-bold text-zinc-500 line-through decoration-zinc-600">
+                  520₪
+                </span>
+              </div>
+              <span className="h-10 w-px bg-yellow-600/20" aria-hidden />
+              <div className="flex flex-col items-center">
+                <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-zinc-400">
+                  מחיר מבצע
+                </span>
+                <span
+                  className="font-display text-3xl font-black leading-none lg:text-4xl"
+                  style={{ color: GOLD }}
+                >
+                  רק 400₪
+                </span>
+              </div>
+            </div>
+
             <Link
               href="#shop"
-              className="mt-8 inline-flex items-center justify-center rounded-full bg-[#c8a24c] px-10 py-4 text-sm font-black uppercase tracking-[0.12em] text-black shadow-[0_0_30px_-4px_rgba(200,162,76,0.7)] transition-all duration-300 hover:bg-[#e0bd6a] hover:shadow-[0_0_44px_-4px_rgba(200,162,76,0.9)]"
+              className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-[#c8a24c] px-10 py-4 text-sm font-black uppercase tracking-[0.12em] text-black shadow-[0_0_30px_-4px_rgba(200,162,76,0.7)] transition-all duration-300 hover:bg-[#e0bd6a] hover:shadow-[0_0_44px_-4px_rgba(200,162,76,0.9)] sm:w-auto"
             >
-              קנה את הסט המלא וחסוך
+              קנה עכשיו ב-400₪
             </Link>
+            <p className="mt-3 text-xs font-medium tracking-wide text-zinc-400">
+              חיסכון של 120₪ במבצע השקה בלבד
+            </p>
           </div>
         </div>
       </FadeIn>
