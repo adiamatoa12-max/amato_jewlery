@@ -15,6 +15,7 @@ import FooterLink, { type FooterLinkItem } from "@/components/FooterLink";
 import MediaPlaceholder from "@/components/MediaPlaceholder";
 import Hero from "@/components/Hero";
 import AutoplayVideo from "@/components/AutoplayVideo";
+import FaqAccordion from "@/components/FaqAccordion";
 
 const GOLD = "#c8a24c";
 
@@ -33,6 +34,7 @@ export default function Home() {
         <Anatomy />
         <Compatibility />
         <Reviews />
+        <FaqAccordion />
         <BundleBanner />
         <CompleteGear />
         <WhatsInTheBox />
