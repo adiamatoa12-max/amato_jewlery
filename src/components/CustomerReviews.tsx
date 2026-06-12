@@ -56,12 +56,37 @@ function Stars({ rating, className = "" }: { rating: number; className?: string 
   );
 }
 
+// Shown for any product without handle-specific reviews (e.g. the main shaker).
+const DEFAULT_REVIEWS: Review[] = [
+  {
+    name: "דניאל לוי",
+    rating: 5,
+    date: "יוני 2026",
+    verified: true,
+    body: "סוף סוף שייקר שלא נוזל לי בתיק אחרי האימון. המגנט פשוט גאוני, אני תולה אותו על המכשיר בחדר כושר ולא צריך לדאוג איפה להניח אותו.",
+  },
+  {
+    name: "רוני כהן",
+    rating: 5,
+    date: "יוני 2026",
+    verified: true,
+    body: "קניתי בגלל הקטע של המגנט ולא האמנתי כמה זה נוח. האיכות של הפלסטיק מרגישה מאוד עמידה ויוקרתית.",
+  },
+  {
+    name: "עידן מ.",
+    rating: 5,
+    date: "מאי 2026",
+    verified: true,
+    body: "נראה אש, מרגיש מאוד מקצועי. המגנט באמת נצמד חזק לכל מתקן ברזל במועדון. הפסיקו לשאול אותי איפה קניתי.",
+  },
+];
+
 export default function CustomerReviews({ handle }: { handle: string }) {
   const [open, setOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [rating, setRating] = useState(5);
 
-  const reviews = REVIEWS_BY_HANDLE[handle] ?? [];
+  const reviews = REVIEWS_BY_HANDLE[handle] ?? DEFAULT_REVIEWS;
   const hasReviews = reviews.length > 0;
   const average = hasReviews
     ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
@@ -69,7 +94,7 @@ export default function CustomerReviews({ handle }: { handle: string }) {
 
   return (
     <section className="border-t border-white/10 bg-zinc-950">
-      <div className="mx-auto max-w-4xl px-6 py-20 lg:px-10 lg:py-28">
+      <div className="mx-auto max-w-6xl px-6 py-20 lg:px-10 lg:py-28">
         {/* Header */}
         <div className="flex flex-col items-center text-center">
           <h2 className="font-display text-2xl font-bold tracking-[0.2em] text-white lg:text-3xl">
@@ -169,28 +194,26 @@ export default function CustomerReviews({ handle }: { handle: string }) {
           </div>
         </div>
 
-        {/* Review list */}
-        <ul className="mt-14 flex flex-col divide-y divide-white/10">
+        {/* Review grid */}
+        <ul className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
           {reviews.map((review) => (
-            <li key={review.name} className="py-8 first:pt-0">
-              <div className="flex items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
-                  <span className="text-sm font-medium text-white">
-                    {review.name}
-                  </span>
-                  {review.verified && (
-                    <span className="inline-flex items-center gap-1 text-[11px] tracking-[0.04em] text-emerald-400">
-                      <BadgeCheck className="h-3.5 w-3.5" strokeWidth={1.75} />
-                      רכישה מאומתת
-                    </span>
-                  )}
-                </div>
-                <span className="shrink-0 text-xs text-zinc-500">{review.date}</span>
-              </div>
-              <Stars rating={review.rating} className="mt-3" />
-              <p className="mt-4 text-sm leading-relaxed text-zinc-300">
-                {review.body}
+            <li
+              key={review.name}
+              className="flex h-full flex-col rounded-2xl border border-white/10 bg-zinc-900 p-6 transition-colors duration-300 hover:border-[#c8a24c]/40"
+            >
+              <Stars rating={review.rating} />
+              <p className="mt-4 flex-1 text-sm leading-relaxed text-zinc-300">
+                “{review.body}”
               </p>
+              <div className="mt-6 flex items-center justify-between gap-3 border-t border-white/10 pt-4">
+                <span className="text-sm font-bold text-white">{review.name}</span>
+                {review.verified && (
+                  <span className="inline-flex items-center gap-1 text-[11px] tracking-[0.04em] text-emerald-400">
+                    <BadgeCheck className="h-3.5 w-3.5" strokeWidth={1.75} />
+                    רכישה מאומתת
+                  </span>
+                )}
+              </div>
             </li>
           ))}
         </ul>
