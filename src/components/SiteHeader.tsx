@@ -141,10 +141,13 @@ export default function SiteHeader({
           aria-label="VAULT — דף הבית"
           className="inline-flex items-center rounded-lg border border-zinc-800 bg-black p-2 transition-all duration-500 ease-in-out hover:border-[#c8a24c]/50 hover:opacity-90"
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/images/vault-logo.png"
             alt="VAULT Logo"
+            width={1774}
+            height={887}
+            priority
+            sizes="88px"
             className="h-10 w-auto object-contain lg:h-11"
             style={{ filter: "invert(1) hue-rotate(180deg)" }}
           />
