@@ -26,42 +26,35 @@ export default function Hero() {
     return () => window.clearInterval(id);
   }, []);
 
-  return (
-    <section className="relative flex min-h-[90vh] w-full items-center overflow-hidden bg-black">
-      {/* Background slider — crossfading layers. Only these fade; text is static. */}
+  const dots = (
+    <div className="mt-10 flex items-center justify-center gap-2.5 lg:justify-end">
       {SLIDES.map((slide, i) => (
-        <div
+        <button
           key={slide.src}
-          aria-hidden
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-            i === active ? "opacity-100" : "opacity-0"
+          type="button"
+          onClick={() => setActive(i)}
+          aria-label={`מעבר לתמונה ${i + 1}`}
+          aria-current={i === active}
+          className={`h-2 rounded-full transition-all duration-500 ease-in-out ${
+            i === active ? "w-6 bg-[#c8a24c]" : "w-2 bg-white/40 hover:bg-white/70"
           }`}
-        >
-          <Image
-            src={slide.src}
-            alt={slide.alt}
-            fill
-            priority={i === 0}
-            sizes="100vw"
-            className="object-cover object-center"
-          />
-        </div>
+        />
       ))}
+    </div>
+  );
 
-      {/* Legibility overlay: even darkening + a deeper scrim on the LEFT (text side). */}
-      <div className="absolute inset-0 bg-black/40" />
-      <div className="absolute inset-0 bg-gradient-to-l from-transparent via-black/40 to-black/80" />
-
-      {/* Text block — centered on mobile, pinned LEFT (RTL justify-end) on desktop. */}
-      <div className="relative z-10 flex h-full w-full items-center justify-center px-6 py-12 md:justify-end lg:px-16">
-        <div className="max-w-xl text-center md:text-right">
+  return (
+    <section className="relative flex min-h-[90vh] w-full overflow-hidden bg-black lg:grid lg:grid-cols-2 lg:overflow-visible">
+      {/* CONTENT — overlaid+centered on mobile; right column on a solid dark panel on desktop */}
+      <div className="relative z-10 flex min-h-[90vh] w-full items-center justify-center px-6 py-12 lg:min-h-0 lg:justify-end lg:bg-zinc-950 lg:px-16">
+        <div className="max-w-xl text-center lg:max-w-2xl lg:text-right">
           <p
             className="mb-4 text-xs font-bold tracking-widest sm:text-sm"
             style={{ color: GOLD }}
           >
             פיתוח מתקדם. איכות ללא פשרות. מחיר ללא תחרות.
           </p>
-          <h1 className="mb-6 font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
+          <h1 className="mb-6 font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl md:text-5xl lg:text-5xl">
             <span style={{ color: GOLD }}>VAULT</span>: השייקר המגנטי הראשון
             בעולם שמשחרר לך את הידיים לצלם את האימון.
           </h1>
@@ -71,24 +64,35 @@ export default function Hero() {
           >
             הזמן עכשיו את VAULT
           </Link>
+          {dots}
         </div>
       </div>
 
-      {/* Dot indicators */}
-      <div className="absolute inset-x-0 bottom-6 z-10 flex items-center justify-center gap-2.5">
+      {/* VISUAL — full-bleed background on mobile; left column slider on desktop */}
+      <div className="absolute inset-0 lg:relative lg:inset-auto lg:h-auto lg:bg-black">
         {SLIDES.map((slide, i) => (
-          <button
+          <div
             key={slide.src}
-            type="button"
-            onClick={() => setActive(i)}
-            aria-label={`מעבר לתמונה ${i + 1}`}
-            aria-current={i === active}
-            className={`h-2 rounded-full transition-all duration-500 ease-in-out ${
-              i === active ? "w-6 bg-[#c8a24c]" : "w-2 bg-white/40 hover:bg-white/70"
+            aria-hidden
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              i === active ? "opacity-100" : "opacity-0"
             }`}
-          />
+          >
+            <Image
+              src={slide.src}
+              alt={slide.alt}
+              fill
+              priority={i === 0}
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover object-center lg:object-contain"
+            />
+          </div>
         ))}
       </div>
+
+      {/* Legibility overlay — mobile only (desktop text sits on the solid panel) */}
+      <div className="absolute inset-0 bg-black/40 lg:hidden" />
+      <div className="absolute inset-0 bg-gradient-to-l from-transparent via-black/40 to-black/80 lg:hidden" />
     </section>
   );
 }
