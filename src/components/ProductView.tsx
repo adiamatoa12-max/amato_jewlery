@@ -4,13 +4,14 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  Lock,
+  Gem,
   Truck,
-  ShieldCheck,
+  RotateCcw,
   Magnet,
   Droplet,
   Smartphone,
   ChevronDown,
+  Check,
 } from "lucide-react";
 import { useCart, formatPrice, type AddToCartInput } from "@/lib/cart/CartContext";
 import MediaPlaceholder, {
@@ -38,10 +39,12 @@ interface ProductViewProps {
 }
 
 const TRUST_BADGES = [
-  { icon: Lock, label: "תשלום מאובטח", sub: "מוצפן ומאומת" },
+  { icon: Gem, label: "חומרים באיכות פרימיום", sub: "טריטן עמיד ללא BPA" },
+  { icon: RotateCcw, label: "החזר כספי 30 יום", sub: "התחייבות מלאה" },
   { icon: Truck, label: "משלוח מהיר", sub: "חינם לכל הארץ" },
-  { icon: ShieldCheck, label: "אחריות מלאה", sub: "על כל מוצר" },
 ];
+
+const BUNDLE_DISCOUNT = 0.15;
 
 const MAGNETIC_FEATURES = [
   {
@@ -70,6 +73,20 @@ export default function ProductView({
   collectionHandle,
 }: ProductViewProps) {
   const { addItem } = useCart();
+  const [bundle, setBundle] = useState(false);
+
+  // Pricing: single unit vs. 2-pack with the launch discount.
+  const unit = product.price;
+  const bundleWas = unit * 2;
+  const bundleNow = Math.round(unit * 2 * (1 - BUNDLE_DISCOUNT));
+  const bundleSaves = bundleWas - bundleNow;
+  const displayPrice = bundle ? bundleNow : unit;
+
+  // Bundle = add the unit twice; single = once.
+  const addToCart = () => {
+    addItem(product);
+    if (bundle) addItem(product);
+  };
 
   // Strictly images: IMAGE media only, drop deleted-local paths, de-dupe.
   const images = Array.from(
@@ -100,9 +117,24 @@ export default function ProductView({
             {product.title}
           </h1>
 
-          <p className="mt-5 font-display text-3xl font-extrabold tabular-nums text-white">
-            {formatPrice(product.price, product.currency)}
-          </p>
+          <div className="mt-5 flex items-end gap-3">
+            <p className="font-display text-3xl font-extrabold tabular-nums text-white">
+              {formatPrice(displayPrice, product.currency)}
+            </p>
+            {bundle && (
+              <>
+                <span className="pb-1 text-base tabular-nums text-zinc-500 line-through">
+                  {formatPrice(bundleWas, product.currency)}
+                </span>
+                <span
+                  className="pb-1 text-xs font-bold tracking-wide"
+                  style={{ color: GOLD }}
+                >
+                  חיסכון {formatPrice(bundleSaves, product.currency)}
+                </span>
+              </>
+            )}
+          </div>
 
           <p
             className={`mt-5 flex items-center gap-2 text-xs font-medium tracking-[0.08em] ${
@@ -121,14 +153,36 @@ export default function ProductView({
             {product.description}
           </p>
 
+          {/* Bundle selector */}
+          <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <BundleOption
+              selected={!bundle}
+              onSelect={() => setBundle(false)}
+              title="יחידה בודדת"
+              priceLabel={formatPrice(unit, product.currency)}
+            />
+            <BundleOption
+              selected={bundle}
+              onSelect={() => setBundle(true)}
+              title="2 יחידות"
+              priceLabel={formatPrice(bundleNow, product.currency)}
+              badge="15% הנחה"
+              note={`חוסכים ${formatPrice(bundleSaves, product.currency)}`}
+            />
+          </div>
+
           {/* Add to cart — prominent gold CTA */}
           <button
             type="button"
             disabled={soldOut}
-            onClick={() => addItem(product)}
-            className="mt-8 inline-flex w-full items-center justify-center rounded-full bg-[#c8a24c] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(200,162,76,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#e0bd6a] hover:shadow-[0_0_46px_-4px_rgba(200,162,76,0.95)] active:scale-95 disabled:cursor-not-allowed disabled:bg-zinc-700 disabled:text-zinc-400 disabled:shadow-none"
+            onClick={addToCart}
+            className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#c8a24c] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(200,162,76,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#e0bd6a] hover:shadow-[0_0_46px_-4px_rgba(200,162,76,0.95)] active:scale-95 disabled:cursor-not-allowed disabled:bg-zinc-700 disabled:text-zinc-400 disabled:shadow-none"
           >
-            {soldOut ? "אזל מהמלאי" : "הוספה לסל"}
+            {soldOut
+              ? "אזל מהמלאי"
+              : bundle
+                ? `הוספה לסל — 2 יחידות`
+                : "הוספה לסל"}
           </button>
 
           {/* Trust badges */}
@@ -236,21 +290,79 @@ export default function ProductView({
       {/* Mobile sticky add-to-cart bar */}
       <div className="fixed inset-x-0 bottom-0 z-30 flex items-center gap-4 border-t border-white/10 bg-black/95 px-5 py-3 backdrop-blur-md lg:hidden">
         <div className="flex min-w-0 flex-col leading-tight">
-          <span className="truncate text-[11px] text-zinc-400">{product.title}</span>
+          <span className="truncate text-[11px] text-zinc-400">
+            {bundle ? "2 יחידות · 15% הנחה" : product.title}
+          </span>
           <span className="text-base font-bold tabular-nums text-white">
-            {formatPrice(product.price, product.currency)}
+            {formatPrice(displayPrice, product.currency)}
           </span>
         </div>
         <button
           type="button"
           disabled={soldOut}
-          onClick={() => addItem(product)}
+          onClick={addToCart}
           className="flex flex-1 items-center justify-center rounded-full bg-[#c8a24c] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#e0bd6a] active:scale-95 disabled:bg-zinc-700 disabled:text-zinc-400"
         >
           {soldOut ? "אזל מהמלאי" : "הוספה לסל"}
         </button>
       </div>
     </>
+  );
+}
+
+function BundleOption({
+  selected,
+  onSelect,
+  title,
+  priceLabel,
+  badge,
+  note,
+}: {
+  selected: boolean;
+  onSelect: () => void;
+  title: string;
+  priceLabel: string;
+  badge?: string;
+  note?: string;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onSelect}
+      aria-pressed={selected}
+      className={`relative flex flex-col items-start gap-1 rounded-2xl border bg-zinc-900 p-4 text-right transition-all duration-300 ${
+        selected
+          ? "border-[#c8a24c] shadow-[0_0_24px_-8px_rgba(200,162,76,0.7)]"
+          : "border-white/10 hover:border-white/30"
+      }`}
+    >
+      {badge && (
+        <span
+          className="absolute -top-2 left-3 rounded-full px-2 py-0.5 text-[10px] font-black tracking-wide text-black"
+          style={{ backgroundColor: GOLD }}
+        >
+          {badge}
+        </span>
+      )}
+      <span className="flex w-full items-center justify-between">
+        <span className="text-sm font-bold text-white">{title}</span>
+        <span
+          className={`flex h-4 w-4 items-center justify-center rounded-full border ${
+            selected ? "border-[#c8a24c] bg-[#c8a24c]" : "border-white/30"
+          }`}
+        >
+          {selected && <Check className="h-3 w-3 text-black" strokeWidth={3} />}
+        </span>
+      </span>
+      <span className="font-display text-lg font-extrabold tabular-nums text-white">
+        {priceLabel}
+      </span>
+      {note && (
+        <span className="text-[11px] font-bold" style={{ color: GOLD }}>
+          {note}
+        </span>
+      )}
+    </button>
   );
 }
 
