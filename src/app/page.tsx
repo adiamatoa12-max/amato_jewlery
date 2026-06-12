@@ -8,6 +8,8 @@ import {
   Grip,
   CheckCircle,
   Star,
+  Truck,
+  Lock,
   type LucideIcon,
 } from "lucide-react";
 import FadeIn from "@/components/FadeIn";
@@ -655,26 +657,33 @@ function CompleteGear() {
   );
 }
 
-/* ── What's in the box strip ─────────────────────────────────────────── */
+/* ── Trust & guarantees banner ───────────────────────────────────────── */
+const TRUST_ITEMS = [
+  { icon: Truck, label: "משלוח מהיר לכל הארץ" },
+  { icon: ShieldCheck, label: "אחריות מלאה על המוצר" },
+  { icon: Lock, label: "רכישה מאובטחת ומוצפנת" },
+];
+
 function WhatsInTheBox() {
   return (
-    <section className="bg-[#0a0a0a] px-6 py-12 lg:px-10">
+    <section className="border-t border-white/10 bg-zinc-950 px-6 py-10 lg:px-10">
       <FadeIn>
-        <div className="mx-auto flex max-w-4xl flex-col items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-8 text-center sm:flex-row sm:justify-center sm:gap-4 sm:text-base">
-          <span
-            className="text-xs font-bold uppercase tracking-[0.2em]"
-            style={{ color: GOLD }}
-          >
-            מה באריזה
-          </span>
-          <span className="hidden text-white/20 sm:inline">|</span>
-          <p className="text-sm font-medium text-white/85">
-            1x שייקר VAULT
-            <span className="mx-3 text-white/25">|</span>
-            2x טבעות מגנטיות מתאמות
-            <span className="mx-3 text-white/25">|</span>
-            100% ביטחון לטלפון שלך
-          </p>
+        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-3">
+          {TRUST_ITEMS.map(({ icon: Icon, label }) => (
+            <div
+              key={label}
+              className="flex flex-col items-center gap-3 text-center"
+            >
+              <Icon
+                className="h-7 w-7"
+                style={{ color: GOLD }}
+                strokeWidth={1.5}
+              />
+              <span className="text-sm font-medium tracking-wide text-white/90 lg:text-base">
+                {label}
+              </span>
+            </div>
+          ))}
         </div>
       </FadeIn>
     </section>
