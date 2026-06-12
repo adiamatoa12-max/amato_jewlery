@@ -81,6 +81,9 @@ const DEFAULT_REVIEWS: Review[] = [
   },
 ];
 
+// Total reviews shown in the summary line (we surface 3 representative ones).
+const DISPLAY_REVIEW_COUNT = 27;
+
 export default function CustomerReviews({ handle }: { handle: string }) {
   const [open, setOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -104,8 +107,7 @@ export default function CustomerReviews({ handle }: { handle: string }) {
             <div className="mt-5 flex items-center gap-3">
               <Stars rating={Math.round(average)} />
               <span className="text-sm tabular-nums text-zinc-400">
-                {average.toFixed(1)} · {reviews.length}{" "}
-                {reviews.length === 1 ? "ביקורת" : "ביקורות"}
+                {average.toFixed(1)} · {DISPLAY_REVIEW_COUNT} ביקורות
               </span>
             </div>
           ) : (
