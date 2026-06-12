@@ -54,7 +54,7 @@ export default function InfoDrawer() {
                 {content.eyebrow}
               </span>
             )}
-            <h2 className="font-serif text-xl font-light text-neutral-900">
+            <h2 className="font-display text-xl font-extrabold tracking-tight text-neutral-900">
               {content?.title}
             </h2>
           </div>

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Accessibility, X } from "lucide-react";
 
-const STORAGE_KEY = "amato-a11y";
+const STORAGE_KEY = "vault-a11y";
 
 interface A11ySettings {
   contrast: boolean;

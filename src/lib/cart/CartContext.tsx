@@ -36,7 +36,7 @@ interface CartContextValue {
   closeCart: () => void;
 }
 
-const STORAGE_KEY = "amato-cart";
+const STORAGE_KEY = "vault-cart";
 
 const CartContext = createContext<CartContextValue | null>(null);
 

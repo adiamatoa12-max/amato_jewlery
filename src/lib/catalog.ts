@@ -202,8 +202,8 @@ export interface StyleTile {
 // populated collection. Replaced automatically by live tiles once these
 // collections have cover images in Shopify.
 const FALLBACK_STYLE_TILES: StyleTile[] = [
-  { handle: "amato-essentials", label: "Essentials", image: "/collections/necklaces.png" },
-  { handle: "amato-signature", label: "Signature", image: "/collections/earrings.png" },
+  { handle: "shakers", label: "Shakers", image: "/images/vault-product-image.png" },
+  { handle: "accessories", label: "Accessories", image: "/images/accessory-bundle-set.png" },
 ];
 
 /**
