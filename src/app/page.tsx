@@ -21,6 +21,11 @@ import FaqAccordion from "@/components/FaqAccordion";
 
 const GOLD = "#c8a24c";
 
+// Main product. The handle has Hebrew chars, so encode it for a safe URL;
+// the [handle] route decodes it back before the Shopify lookup.
+const PRODUCT_HANDLE = "vault-השייקר-המגנטי";
+const PRODUCT_URL = `/product/${encodeURIComponent(PRODUCT_HANDLE)}`;
+
 // Reusable gold CTA with a glowing hover.
 const goldButton =
   "inline-flex w-full items-center justify-center rounded-full bg-[#c8a24c] px-12 py-4 text-sm font-bold uppercase tracking-[0.14em] text-black transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#e0bd6a] hover:shadow-[0_0_34px_-6px_rgba(200,162,76,0.65)] active:scale-95 active:shadow-[0_0_48px_-2px_rgba(200,162,76,0.95)] sm:w-auto";
@@ -95,7 +100,7 @@ function MicroConversion() {
           <h2 className="font-display text-2xl font-black tracking-tight text-white sm:text-3xl">
             מוכן לשדרג את האימון שלך?
           </h2>
-          <Link href="#shop" className={`w-full sm:w-auto ${goldButton}`}>
+          <Link href={PRODUCT_URL} className={`w-full sm:w-auto ${goldButton}`}>
             הזמן את ה-VAULT שלך עכשיו
           </Link>
         </div>
@@ -315,7 +320,7 @@ function Anatomy() {
         </div>
 
         <div className="mt-14 flex justify-center">
-          <Link href="#shop" className={goldButton}>
+          <Link href={PRODUCT_URL} className={goldButton}>
             הזמן עכשיו את VAULT
           </Link>
         </div>
@@ -380,7 +385,7 @@ function Compatibility() {
               ))}
             </ul>
 
-            <Link href="#shop" className={`mt-9 ${goldButton}`}>
+            <Link href={PRODUCT_URL} className={`mt-9 ${goldButton}`}>
               הזמן עכשיו
             </Link>
           </div>
@@ -534,7 +539,7 @@ function BundleBanner() {
             </div>
 
             <Link
-              href="#shop"
+              href={PRODUCT_URL}
               className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-[#c8a24c] px-10 py-4 text-sm font-black uppercase tracking-[0.12em] text-black shadow-[0_0_30px_-4px_rgba(200,162,76,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#e0bd6a] hover:shadow-[0_0_44px_-4px_rgba(200,162,76,0.9)] active:scale-95 active:shadow-[0_0_56px_-2px_rgba(200,162,76,1)] sm:w-auto"
             >
               קנה עכשיו ב-400₪
@@ -642,7 +647,7 @@ function CompleteGear() {
                     {p.price}
                   </p>
                   <Link
-                    href="#shop"
+                    href={PRODUCT_URL}
                     className="mt-5 inline-flex items-center justify-center rounded-full border border-[#c8a24c] px-5 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-[#c8a24c] transition-all duration-300 ease-out hover:scale-[1.03] hover:bg-[#c8a24c] hover:text-black hover:shadow-[0_0_24px_-4px_rgba(200,162,76,0.8)] active:scale-95"
                   >
                     הוספה מהירה

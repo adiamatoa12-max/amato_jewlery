@@ -30,7 +30,7 @@ export default function AnnouncementBar() {
         {MESSAGES.map((msg, i) => (
           <Link
             key={msg}
-            href="/#shop"
+            href={`/product/${encodeURIComponent("vault-השייקר-המגנטי")}`}
             aria-hidden={i !== active}
             tabIndex={i === active ? 0 : -1}
             className={`absolute inset-0 flex items-center justify-center gap-2 whitespace-nowrap text-center font-sans text-[10px] font-semibold tracking-[0.08em] text-[#f4e0a0] antialiased transition-opacity duration-700 ease-in-out hover:text-white sm:text-[12px] sm:tracking-[0.12em] ${

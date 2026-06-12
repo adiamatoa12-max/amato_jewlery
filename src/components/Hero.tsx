@@ -5,6 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 
 const GOLD = "#c8a24c";
+// Main product — Hebrew handle, encoded for a safe URL (route decodes it).
+const PRODUCT_URL = `/product/${encodeURIComponent("vault-השייקר-המגנטי")}`;
 const SLIDES = [
   { src: "/images/vault-shaker-hero.png", alt: "שייקר VAULT המגנטי עם מעמד טלפון" },
   { src: "/images/vault-shaker-unboxing.png", alt: "אריזת השייקר המגנטי של VAULT" },
@@ -59,7 +61,7 @@ export default function Hero() {
             בעולם שמשחרר לך את הידיים לצלם את האימון.
           </h1>
           <Link
-            href="#shop"
+            href={PRODUCT_URL}
             className={`mx-auto max-w-xs sm:mx-0 sm:max-w-none ${goldButton}`}
           >
             הזמן עכשיו את VAULT
