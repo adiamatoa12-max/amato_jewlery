@@ -540,6 +540,33 @@ function BundleBanner() {
             <p className="mt-3 text-xs font-medium tracking-wide text-zinc-400">
               חיסכון של 120₪ במבצע השקה בלבד
             </p>
+
+            {/* Launch-stock progress bar */}
+            <div className="mt-7 w-full max-w-xs">
+              <div className="mb-2 flex items-center justify-between text-[11px] font-bold tracking-wide">
+                <span className="text-zinc-300">85% מהמלאי להשקה נמכר</span>
+              </div>
+              <div
+                className="h-2 w-full overflow-hidden rounded-full bg-black"
+                role="progressbar"
+                aria-valuenow={85}
+                aria-valuemin={0}
+                aria-valuemax={100}
+                aria-label="אחוז המלאי שנמכר"
+              >
+                <div
+                  className="h-full rounded-full"
+                  style={{
+                    width: "85%",
+                    backgroundColor: GOLD,
+                    boxShadow: "0 0 12px -2px rgba(200,162,76,0.8)",
+                  }}
+                />
+              </div>
+              <p className="mt-2 text-[11px] font-medium tracking-wide text-zinc-500">
+                המבצע מסתיים ברגע שהמלאי יאזל
+              </p>
+            </div>
           </div>
         </div>
       </FadeIn>
