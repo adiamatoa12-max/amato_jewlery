@@ -28,10 +28,38 @@ const montserrat = Montserrat({
   subsets: ["latin"],
 });
 
+const SITE_URL = "https://vaultshaker.vercel.app";
+const TITLE = "VAULT | השייקר המגנטי הראשון בעולם לאימון מושלם";
+const DESCRIPTION =
+  "שדרגו את האימון שלכם עם VAULT - שייקר פרימיום עם מגנט N52 עוצמתי המצמיד את הסמארטפון שלכם לכל משטח מתכתי. מושלם לצילום אימונים ללא ידיים.";
+
 export const metadata: Metadata = {
-  title: "VAULT — השייקר המגנטי המוביל לאימון",
-  description:
-    "VAULT — השייקר המגנטי הראשון בעולם עם מעמד טלפון מובנה. עיצוב high-performance לחדר הכושר, לריצה ולכל אורח חיים אקטיבי.",
+  metadataBase: new URL(SITE_URL),
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "he_IL",
+    siteName: "VAULT",
+    url: SITE_URL,
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [
+      {
+        url: "/images/vault-shaker-hero.png",
+        width: 1200,
+        height: 1500,
+        alt: "שייקר VAULT המגנטי",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+    images: ["/images/vault-shaker-hero.png"],
+  },
 };
 
 export default async function RootLayout({
