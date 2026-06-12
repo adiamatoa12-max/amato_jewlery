@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import FadeIn from "@/components/FadeIn";
 
 const GOLD = "#c8a24c";
 
@@ -34,17 +35,19 @@ export default function FaqAccordion() {
   return (
     <section className="bg-[#0a0a0a] px-5 py-20 sm:px-6 lg:px-10 lg:py-28">
       <div className="mx-auto max-w-3xl">
-        <p
-          className="text-center text-[11px] font-bold tracking-[0.3em]"
-          style={{ color: GOLD }}
-        >
-          FAQ
-        </p>
-        <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-white lg:text-4xl">
-          שאלות נפוצות
-        </h2>
+        <FadeIn>
+          <p
+            className="text-center text-[11px] font-bold tracking-[0.3em]"
+            style={{ color: GOLD }}
+          >
+            FAQ
+          </p>
+          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-white lg:text-4xl">
+            שאלות נפוצות
+          </h2>
+        </FadeIn>
 
-        <div className="mt-12 divide-y divide-white/10 border-y border-white/10">
+        <FadeIn delay={120} className="mt-12 divide-y divide-white/10 border-y border-white/10">
           {FAQS.map((item, i) => {
             const isOpen = open === i;
             return (
@@ -88,7 +91,7 @@ export default function FaqAccordion() {
               </div>
             );
           })}
-        </div>
+        </FadeIn>
       </div>
     </section>
   );
