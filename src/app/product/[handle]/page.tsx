@@ -3,6 +3,10 @@ import ProductView from "@/components/ProductView";
 import CustomerReviews from "@/components/CustomerReviews";
 import { getAllHandles, getProduct } from "@/lib/catalog";
 
+// ISR: refresh live product data every 60s. dynamicParams (default true) lets
+// products added after the last build render on first request.
+export const revalidate = 60;
+
 export async function generateStaticParams() {
   const handles = await getAllHandles();
   return handles.map((handle) => ({ handle }));

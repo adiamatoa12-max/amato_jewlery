@@ -97,9 +97,23 @@ function getConfig(): { endpoint: string; token: string } {
 export async function shopifyFetch<TData, TVariables = Record<string, unknown>>(
   options: ShopifyFetchOptions<TVariables>,
 ): Promise<TData> {
-  const { query, variables, tags, cache = "force-cache", revalidate, headers } =
-    options;
+  // Default to time-based ISR (60s) with a shared cache tag so new Shopify
+  // products/collections sync automatically — without requiring a redeploy —
+  // and can also be purged on demand via revalidateTag("shopify").
+  const {
+    query,
+    variables,
+    tags = ["shopify"],
+    cache,
+    revalidate = 60,
+    headers,
+  } = options;
   const { endpoint, token } = getConfig();
+
+  // `cache` and `next.revalidate` are mutually exclusive — only send `cache`
+  // when the caller explicitly opts out of revalidation.
+  const cacheInit: RequestInit =
+    cache !== undefined ? { cache } : { next: { revalidate, tags } };
 
   let response: Response;
   try {
@@ -112,10 +126,7 @@ export async function shopifyFetch<TData, TVariables = Record<string, unknown>>(
         ...headers,
       },
       body: JSON.stringify({ query, variables }),
-      cache,
-      ...(tags || revalidate !== undefined
-        ? { next: { ...(tags ? { tags } : {}), ...(revalidate !== undefined ? { revalidate } : {}) } }
-        : {}),
+      ...cacheInit,
     });
   } catch (error) {
     throw new ShopifyError("Network error while contacting Shopify.", {

@@ -33,6 +33,9 @@ const TITLE = "VAULT | השייקר המגנטי הראשון בעולם לאי�
 const DESCRIPTION =
   "שדרגו את האימון שלכם עם VAULT - שייקר פרימיום עם מגנט N52 עוצמתי המצמיד את הסמארטפון שלכם לכל משטח מתכתי. מושלם לצילום אימונים ללא ידיים.";
 
+// Re-render every 60s (ISR) so live Shopify nav/products sync without redeploy.
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: TITLE,

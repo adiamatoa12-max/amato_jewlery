@@ -3,6 +3,9 @@ import ProductCard from "@/components/ProductCard";
 import FadeIn from "@/components/FadeIn";
 import { getCollectionByHandle } from "@/lib/catalog";
 
+// ISR: refresh live collection data every 60s.
+export const revalidate = 60;
+
 export default async function CollectionPage({
   params,
 }: {
