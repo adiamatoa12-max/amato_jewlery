@@ -607,7 +607,10 @@ const GEAR_PRODUCTS = [
 
 function CompleteGear() {
   return (
-    <section className="bg-[#0a0a0a] px-6 py-20 lg:px-10 lg:py-24">
+    <section
+      id="accessories"
+      className="scroll-mt-24 bg-[#0a0a0a] px-6 py-20 lg:px-10 lg:py-24"
+    >
       <div className="mx-auto max-w-6xl">
         <FadeIn>
           <p

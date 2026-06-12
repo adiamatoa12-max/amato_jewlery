@@ -32,10 +32,10 @@ const NAV_MENU: NavGroup[] = [
   },
   {
     label: "אביזרים",
-    href: "/#shop",
+    href: "/#accessories",
     links: [
-      { label: "מעמד טלפון", href: "/#shop" },
-      { label: "כדורי ערבוב", href: "/#shop" },
+      { label: "מעמד טלפון", href: "/#accessories" },
+      { label: "כדורי ערבוב", href: "/#accessories" },
     ],
   },
   {
@@ -157,7 +157,7 @@ export default function SiteHeader({
         <nav className="hidden items-center gap-8 md:flex">
           {[
             { label: "חנות", href: "/#shop" },
-            { label: "אביזרים", href: "/#shop" },
+            { label: "אביזרים", href: "/#accessories" },
             { label: "שאלות נפוצות", href: "/faq" },
             { label: "צור קשר", href: "mailto:adiamato119@gmail.com" },
           ].map((l) => (
