@@ -21,7 +21,7 @@ const GOLD = "#c8a24c";
 
 // Reusable gold CTA with a glowing hover.
 const goldButton =
-  "inline-flex w-full items-center justify-center rounded-full bg-[#c8a24c] px-12 py-4 text-sm font-bold uppercase tracking-[0.14em] text-black transition-all duration-300 ease-out hover:bg-[#e0bd6a] hover:shadow-[0_0_34px_-6px_rgba(200,162,76,0.65)] sm:w-auto";
+  "inline-flex w-full items-center justify-center rounded-full bg-[#c8a24c] px-12 py-4 text-sm font-bold uppercase tracking-[0.14em] text-black transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#e0bd6a] hover:shadow-[0_0_34px_-6px_rgba(200,162,76,0.65)] active:scale-95 active:shadow-[0_0_48px_-2px_rgba(200,162,76,0.95)] sm:w-auto";
 
 export default function Home() {
   return (
@@ -451,7 +451,7 @@ function Reviews() {
         <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {REVIEWS.map((r, i) => (
             <FadeIn key={r.name} delay={i * 80}>
-              <figure className="flex h-full flex-col rounded-2xl border border-white/10 bg-zinc-900 p-6 text-right transition-colors duration-300 hover:border-[#c8a24c]/40">
+              <figure className="flex h-full flex-col rounded-2xl border border-white/10 bg-zinc-900 p-6 text-right transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:border-[#c8a24c]/40 hover:shadow-[0_16px_44px_-16px_rgba(200,162,76,0.4)]">
                 <div className="flex justify-end">
                   <StarRating rating={r.rating} />
                 </div>
@@ -533,7 +533,7 @@ function BundleBanner() {
 
             <Link
               href="#shop"
-              className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-[#c8a24c] px-10 py-4 text-sm font-black uppercase tracking-[0.12em] text-black shadow-[0_0_30px_-4px_rgba(200,162,76,0.7)] transition-all duration-300 hover:bg-[#e0bd6a] hover:shadow-[0_0_44px_-4px_rgba(200,162,76,0.9)] sm:w-auto"
+              className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-[#c8a24c] px-10 py-4 text-sm font-black uppercase tracking-[0.12em] text-black shadow-[0_0_30px_-4px_rgba(200,162,76,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#e0bd6a] hover:shadow-[0_0_44px_-4px_rgba(200,162,76,0.9)] active:scale-95 active:shadow-[0_0_56px_-2px_rgba(200,162,76,1)] sm:w-auto"
             >
               קנה עכשיו ב-400₪
             </Link>
@@ -590,7 +590,7 @@ function CompleteGear() {
         <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-4">
           {GEAR_PRODUCTS.map((p, i) => (
             <FadeIn key={p.title} delay={i * 80}>
-              <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-zinc-900 transition-colors duration-300 hover:border-[#c8a24c]/50">
+              <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-zinc-900 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:border-[#c8a24c]/50 hover:shadow-[0_16px_44px_-16px_rgba(200,162,76,0.45)]">
                 {/* Product image */}
                 <div className="relative aspect-square w-full overflow-hidden bg-zinc-800">
                   <Image
@@ -614,7 +614,7 @@ function CompleteGear() {
                   </p>
                   <Link
                     href="#shop"
-                    className="mt-5 inline-flex items-center justify-center rounded-full border border-[#c8a24c] px-5 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-[#c8a24c] transition-all duration-300 hover:bg-[#c8a24c] hover:text-black"
+                    className="mt-5 inline-flex items-center justify-center rounded-full border border-[#c8a24c] px-5 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-[#c8a24c] transition-all duration-300 ease-out hover:scale-[1.03] hover:bg-[#c8a24c] hover:text-black hover:shadow-[0_0_24px_-4px_rgba(200,162,76,0.8)] active:scale-95"
                   >
                     הוספה מהירה
                   </Link>
