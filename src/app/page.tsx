@@ -712,9 +712,9 @@ const FOOTER_LINKS: Record<
   policies: {
     title: "מדיניות",
     links: [
-      { label: "משלוחים", href: "/shipping" },
-      { label: "החלפות והחזרות", href: "/returns" },
-      { label: "תקנון האתר", href: "/terms" },
+      { label: "מדיניות משלוחים", href: "/shipping" },
+      { label: "החזרות וזיכויים", href: "/returns" },
+      { label: "תנאי שימוש", href: "/terms" },
     ],
   },
 };
