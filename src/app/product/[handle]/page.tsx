@@ -29,8 +29,8 @@ export default async function ProductPage({
   const soldOut = !product.availableForSale;
 
   return (
-    <div className="flex min-h-full flex-col pb-20 lg:pb-0">
-      <main id="main-content" className="mx-auto w-full max-w-7xl flex-1 px-6 pb-12 pt-[140px] lg:px-10 lg:pb-16 lg:pt-[160px]">
+    <div className="flex min-h-full flex-col bg-[#0a0a0a] pb-20 text-white lg:pb-0">
+      <main id="main-content" className="mx-auto w-full max-w-7xl flex-1 px-6 pb-16 pt-[140px] lg:px-10 lg:pb-24 lg:pt-[160px]">
         <ProductView
           soldOut={soldOut}
           collectionTitle={product.collectionTitle}

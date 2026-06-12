@@ -47,7 +47,7 @@ function Stars({ rating, className = "" }: { rating: number; className?: string 
         <Star
           key={i}
           className={`h-3.5 w-3.5 ${
-            i < rating ? "fill-[#c8a24c] text-[#c8a24c]" : "fill-transparent text-stone-300"
+            i < rating ? "fill-[#c8a24c] text-[#c8a24c]" : "fill-transparent text-zinc-700"
           }`}
           strokeWidth={1.5}
         />
@@ -68,23 +68,23 @@ export default function CustomerReviews({ handle }: { handle: string }) {
     : 0;
 
   return (
-    <section className="border-t border-stone-200/70 bg-white">
+    <section className="border-t border-white/10 bg-zinc-950">
       <div className="mx-auto max-w-4xl px-6 py-20 lg:px-10 lg:py-28">
         {/* Header */}
         <div className="flex flex-col items-center text-center">
-          <h2 className="font-display text-2xl font-bold tracking-[0.2em] text-neutral-900 lg:text-3xl">
+          <h2 className="font-display text-2xl font-bold tracking-[0.2em] text-white lg:text-3xl">
             ביקורות לקוחות
           </h2>
           {hasReviews ? (
             <div className="mt-5 flex items-center gap-3">
               <Stars rating={Math.round(average)} />
-              <span className="text-sm tabular-nums text-neutral-500">
+              <span className="text-sm tabular-nums text-zinc-400">
                 {average.toFixed(1)} · {reviews.length}{" "}
                 {reviews.length === 1 ? "ביקורת" : "ביקורות"}
               </span>
             </div>
           ) : (
-            <p className="mt-5 text-sm text-neutral-500">
+            <p className="mt-5 text-sm text-zinc-400">
               עדיין אין ביקורות — היו הראשונים לשתף את החוויה שלכם.
             </p>
           )}
@@ -94,7 +94,7 @@ export default function CustomerReviews({ handle }: { handle: string }) {
               setOpen((o) => !o);
               setSubmitted(false);
             }}
-            className="mt-8 inline-flex items-center rounded-full border border-neutral-800 px-8 py-3 text-xs font-medium tracking-[0.12em] text-neutral-900 transition-all duration-500 ease-in-out hover:bg-neutral-800 hover:text-white"
+            className="mt-8 inline-flex items-center rounded-full border border-[#c8a24c]/50 px-8 py-3 text-xs font-bold tracking-[0.12em] text-[#c8a24c] transition-all duration-300 ease-in-out hover:bg-[#c8a24c] hover:text-black"
           >
             כתבו ביקורת
           </button>
@@ -108,7 +108,7 @@ export default function CustomerReviews({ handle }: { handle: string }) {
         >
           <div className="overflow-hidden">
             {submitted ? (
-              <p className="rounded-sm bg-stone-50 px-6 py-8 text-center text-sm text-neutral-600">
+              <p className="rounded-sm bg-zinc-900 px-6 py-8 text-center text-sm text-zinc-300">
                 תודה על המשוב! הביקורת שלך תפורסם לאחר אישור.
               </p>
             ) : (
@@ -117,10 +117,10 @@ export default function CustomerReviews({ handle }: { handle: string }) {
                   e.preventDefault();
                   setSubmitted(true);
                 }}
-                className="mx-auto max-w-xl rounded-sm border border-stone-200/70 bg-stone-50 p-6 lg:p-8"
+                className="mx-auto max-w-xl rounded-sm border border-white/10 bg-zinc-900 p-6 lg:p-8"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-xs tracking-[0.08em] text-neutral-500">
+                  <span className="text-xs tracking-[0.08em] text-zinc-400">
                     הדירוג שלך
                   </span>
                   <div className="flex items-center gap-1">
@@ -136,7 +136,7 @@ export default function CustomerReviews({ handle }: { handle: string }) {
                           className={`h-5 w-5 ${
                             i < rating
                               ? "fill-[#c8a24c] text-[#c8a24c]"
-                              : "fill-transparent text-stone-300"
+                              : "fill-transparent text-zinc-700"
                           }`}
                           strokeWidth={1.5}
                         />
@@ -149,18 +149,18 @@ export default function CustomerReviews({ handle }: { handle: string }) {
                   required
                   aria-label="השם שלך"
                   placeholder="השם שלך"
-                  className="mt-5 w-full border-b border-neutral-300 bg-transparent py-2 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-800 focus:outline-none"
+                  className="mt-5 w-full border-b border-white/20 bg-transparent py-2 text-sm text-white placeholder:text-zinc-500 focus:border-[#c8a24c] focus:outline-none"
                 />
                 <textarea
                   required
                   rows={4}
                   aria-label="ספרו לנו על החוויה שלכם"
                   placeholder="ספרו לנו על החוויה שלכם..."
-                  className="mt-5 w-full resize-none border-b border-neutral-300 bg-transparent py-2 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-800 focus:outline-none"
+                  className="mt-5 w-full resize-none border-b border-white/20 bg-transparent py-2 text-sm text-white placeholder:text-zinc-500 focus:border-[#c8a24c] focus:outline-none"
                 />
                 <button
                   type="submit"
-                  className="mt-6 inline-flex items-center rounded-full bg-neutral-800 px-8 py-3 text-xs font-medium tracking-[0.12em] text-white transition-all duration-500 ease-in-out hover:bg-neutral-700"
+                  className="mt-6 inline-flex items-center rounded-full bg-[#c8a24c] px-8 py-3 text-xs font-bold tracking-[0.12em] text-black transition-all duration-300 ease-in-out hover:bg-[#e0bd6a]"
                 >
                   שליחת הביקורת
                 </button>
@@ -170,25 +170,25 @@ export default function CustomerReviews({ handle }: { handle: string }) {
         </div>
 
         {/* Review list */}
-        <ul className="mt-14 flex flex-col divide-y divide-stone-200/70">
+        <ul className="mt-14 flex flex-col divide-y divide-white/10">
           {reviews.map((review) => (
             <li key={review.name} className="py-8 first:pt-0">
               <div className="flex items-center justify-between gap-4">
                 <div className="flex items-center gap-3">
-                  <span className="text-sm font-medium text-neutral-900">
+                  <span className="text-sm font-medium text-white">
                     {review.name}
                   </span>
                   {review.verified && (
-                    <span className="inline-flex items-center gap-1 text-[11px] tracking-[0.04em] text-emerald-600">
+                    <span className="inline-flex items-center gap-1 text-[11px] tracking-[0.04em] text-emerald-400">
                       <BadgeCheck className="h-3.5 w-3.5" strokeWidth={1.75} />
                       רכישה מאומתת
                     </span>
                   )}
                 </div>
-                <span className="shrink-0 text-xs text-neutral-400">{review.date}</span>
+                <span className="shrink-0 text-xs text-zinc-500">{review.date}</span>
               </div>
               <Stars rating={review.rating} className="mt-3" />
-              <p className="mt-4 text-sm leading-relaxed text-neutral-600">
+              <p className="mt-4 text-sm leading-relaxed text-zinc-300">
                 {review.body}
               </p>
             </li>
