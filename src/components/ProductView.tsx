@@ -64,8 +64,6 @@ const MAGNETIC_FEATURES = [
   },
 ];
 
-const isPhoto = (src: string) => /\.jpe?g$/i.test(src);
-
 export default function ProductView({
   product,
   soldOut,
@@ -218,9 +216,7 @@ export default function ProductView({
                 fill
                 priority
                 sizes="(min-width: 1024px) 50vw, 100vw"
-                className={`transition-transform duration-700 ease-in-out hover:scale-105 ${
-                  isPhoto(active) ? "object-cover" : "object-contain p-6"
-                }`}
+                className="object-cover object-center transition-transform duration-700 ease-in-out hover:scale-105"
               />
             )}
           </div>
@@ -246,7 +242,7 @@ export default function ProductView({
                     alt=""
                     fill
                     sizes="120px"
-                    className={isPhoto(src) ? "object-cover" : "object-contain p-1.5"}
+                    className="object-cover object-center"
                   />
                 </button>
               ))}

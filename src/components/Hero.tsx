@@ -86,7 +86,7 @@ export default function Hero() {
               fill
               priority={i === 0}
               sizes="(min-width: 1024px) 50vw, 100vw"
-              className="object-cover object-center lg:object-contain"
+              className="object-cover object-center"
             />
           </div>
         ))}
