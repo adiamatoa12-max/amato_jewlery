@@ -313,7 +313,7 @@ function Anatomy() {
         </div>
 
         <div className="mt-14 flex justify-center">
-          <Link href="#" className={goldButton}>
+          <Link href="#shop" className={goldButton}>
             הזמן עכשיו את VAULT
           </Link>
         </div>
@@ -692,7 +692,7 @@ const FOOTER_LINKS: Record<
       { label: "אודות", href: "/about" },
       { label: "צור קשר", href: "mailto:adiamato119@gmail.com" },
       { label: "שאלות נפוצות (FAQ)", panel: "faq" },
-      { label: "מדריך מידות", panel: "sizing" },
+      { label: "מפרט המוצר", panel: "sizing" },
     ],
   },
   policies: {
@@ -808,7 +808,7 @@ function Footer() {
         <div className="mt-14 grid grid-cols-1 items-center gap-6 border-t border-white/10 pt-8 sm:grid-cols-3">
           <div className="flex items-center justify-center gap-4 text-white/60 sm:justify-start">
             <a
-              href="https://www.instagram.com/amato.jewelry/"
+              href="https://www.instagram.com/vaultshaker/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
@@ -817,7 +817,9 @@ function Footer() {
               <Instagram className="h-[18px] w-[18px]" strokeWidth={1.5} />
             </a>
             <a
-              href="#"
+              href="https://www.tiktok.com/@vaultshaker"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="TikTok"
               className="flex items-center transition-colors duration-300 hover:text-[#c8a24c]"
             >

@@ -229,10 +229,10 @@ export default function SiteHeader({
             <input
               ref={searchInputRef}
               type="search"
-              aria-label="חיפוש תכשיטים"
+              aria-label="חיפוש מוצרים"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="חיפוש תכשיטים…"
+              placeholder="חיפוש מוצרים…"
               className="w-full bg-transparent text-lg font-light tracking-[0.04em] text-white placeholder:text-white/40 focus:outline-none"
             />
           </form>
