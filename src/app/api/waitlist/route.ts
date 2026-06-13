@@ -1,13 +1,5 @@
 import { NextResponse } from "next/server";
-import { promises as fs } from "fs";
-import path from "path";
-
-interface Signup {
-  name: string;
-  email: string;
-  phone?: string;
-  ts: string;
-}
+import { addSignup, type Signup } from "@/lib/waitlist-store";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 // Optional phone — lenient: 7–15 digits once separators are stripped.
@@ -19,9 +11,9 @@ const PHONE_RE = /^\+?[0-9]{7,15}$/;
  * Persistence order:
  *  1. Always logged to the server (visible in Vercel runtime logs).
  *  2. Forwarded to Mailchimp when MAILCHIMP_API_KEY / _AUDIENCE_ID / _SERVER
- *     are configured (durable list — recommended for production).
- *  3. Best-effort append to data/waitlist.json (works in local dev; the
- *     filesystem is ephemeral on serverless hosts).
+ *     are configured.
+ *  3. Saved to the durable store — Vercel KV in production (survives redeploys),
+ *     or a local JSON file in development.
  */
 export async function POST(request: Request) {
   let body: { name?: string; email?: string; phone?: string };
@@ -85,20 +77,12 @@ export async function POST(request: Request) {
     }
   }
 
-  // 3) Best-effort local JSON file (dev convenience).
+  // 3) Durable store — Vercel KV in production, local JSON file in dev.
   try {
-    const file = path.join(process.cwd(), "data", "waitlist.json");
-    await fs.mkdir(path.dirname(file), { recursive: true });
-    let list: Signup[] = [];
-    try {
-      list = JSON.parse(await fs.readFile(file, "utf8"));
-    } catch {
-      /* no file yet */
-    }
-    list.push(signup);
-    await fs.writeFile(file, JSON.stringify(list, null, 2), "utf8");
-  } catch {
-    /* read-only filesystem (serverless) — logging above is the fallback */
+    await addSignup(signup);
+  } catch (err) {
+    console.error("[waitlist] store error", err);
+    // Non-fatal — the signup is still in the logs above.
   }
 
   return NextResponse.json({ ok: true });
