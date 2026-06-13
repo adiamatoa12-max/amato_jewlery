@@ -10,6 +10,7 @@ export default function WaitlistModal() {
   const { isOpen, closeWaitlist } = useWaitlist();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">(
     "idle",
   );
@@ -33,6 +34,7 @@ export default function WaitlistModal() {
       setStatus("idle");
       setName("");
       setEmail("");
+      setPhone("");
     }, 300);
     return () => window.clearTimeout(t);
   }, [isOpen]);
@@ -44,7 +46,11 @@ export default function WaitlistModal() {
       const res = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: name.trim(), email: email.trim() }),
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          phone: phone.trim(),
+        }),
       });
       setStatus(res.ok ? "done" : "error");
     } catch {
@@ -140,6 +146,18 @@ export default function WaitlistModal() {
                 onChange={(e) => setEmail(e.target.value)}
                 aria-label="כתובת אימייל"
                 placeholder="כתובת אימייל"
+                dir="ltr"
+                className="w-full rounded-full border border-white/15 bg-black px-5 py-3 text-right text-sm text-white placeholder:text-zinc-500 focus:border-[#c8a24c] focus:outline-none"
+              />
+              <input
+                type="tel"
+                inputMode="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                // Lenient: digits, spaces, +, -, (), 7–15 chars. Optional field.
+                pattern="[0-9+()\-\s]{7,15}"
+                aria-label="מספר טלפון (לא חובה)"
+                placeholder="מספר טלפון (לא חובה)"
                 dir="ltr"
                 className="w-full rounded-full border border-white/15 bg-black px-5 py-3 text-right text-sm text-white placeholder:text-zinc-500 focus:border-[#c8a24c] focus:outline-none"
               />

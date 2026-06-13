@@ -5,10 +5,13 @@ import path from "path";
 interface Signup {
   name: string;
   email: string;
+  phone?: string;
   ts: string;
 }
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// Optional phone — lenient: 7–15 digits once separators are stripped.
+const PHONE_RE = /^\+?[0-9]{7,15}$/;
 
 /**
  * Capture a waitlist signup.
@@ -21,7 +24,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
  *     filesystem is ephemeral on serverless hosts).
  */
 export async function POST(request: Request) {
-  let body: { name?: string; email?: string };
+  let body: { name?: string; email?: string; phone?: string };
   try {
     body = await request.json();
   } catch {
@@ -30,14 +33,27 @@ export async function POST(request: Request) {
 
   const name = (body.name ?? "").trim();
   const email = (body.email ?? "").trim().toLowerCase();
+  const phone = (body.phone ?? "").trim();
   if (!name || !EMAIL_RE.test(email)) {
     return NextResponse.json(
       { error: "אנא הזינו שם וכתובת אימייל תקינה." },
       { status: 400 },
     );
   }
+  // Phone is optional, but if provided it must look like a phone number.
+  if (phone && !PHONE_RE.test(phone.replace(/[\s()-]/g, ""))) {
+    return NextResponse.json(
+      { error: "מספר הטלפון אינו תקין." },
+      { status: 400 },
+    );
+  }
 
-  const signup: Signup = { name, email, ts: new Date().toISOString() };
+  const signup: Signup = {
+    name,
+    email,
+    ...(phone ? { phone } : {}),
+    ts: new Date().toISOString(),
+  };
 
   // 1) Always log — reliable capture even on read-only/ephemeral hosts.
   console.log("[waitlist]", JSON.stringify(signup));
@@ -59,7 +75,7 @@ export async function POST(request: Request) {
           body: JSON.stringify({
             email_address: email,
             status: "subscribed",
-            merge_fields: { FNAME: name },
+            merge_fields: { FNAME: name, ...(phone ? { PHONE: phone } : {}) },
           }),
         },
       );
