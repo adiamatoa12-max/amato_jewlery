@@ -130,7 +130,9 @@ export default function CartDrawer() {
             </button>
           </div>
         ) : (
-          <ul className="flex-1 divide-y divide-white/10 overflow-y-auto px-6">
+          // Scrollable content area — cart items (top) + upsell scroll together.
+          <div className="flex-1 overflow-y-auto">
+          <ul className="divide-y divide-white/10 px-6">
             {items.map((item) => (
               <li key={item.handle} className="flex gap-4 py-6">
                 <div className="relative h-24 w-20 shrink-0 overflow-hidden rounded-lg bg-zinc-800">
@@ -196,55 +198,54 @@ export default function CartDrawer() {
               </li>
             ))}
           </ul>
-        )}
 
-        {/* Complete your setup — accessory upsell */}
-        {items.length > 0 && upsells.length > 0 && (
-          <div className="border-t border-white/10 px-6 py-5">
-            <p
-              className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em]"
-              style={{ color: GOLD }}
-            >
-              השלימו את הסט שלכם
-            </p>
-            <ul className="flex flex-col gap-2.5">
-              {upsells.map((a) => (
-                <li
-                  key={a.handle}
-                  className="flex items-center gap-3 rounded-xl border border-white/10 bg-zinc-900 p-2.5"
-                >
-                  <span className="relative h-11 w-11 shrink-0 overflow-hidden rounded-lg bg-zinc-800">
-                    <Image
-                      src={a.image}
-                      alt={a.title}
-                      fill
-                      sizes="44px"
-                      className="object-cover"
-                    />
-                  </span>
-                  <div className="flex min-w-0 flex-1 flex-col">
-                    <span className="truncate text-xs font-medium text-white">
+          {/* Complete your setup — compact horizontal-scroll accessory upsell */}
+          {upsells.length > 0 && (
+            <div className="border-t border-white/10 px-6 py-5">
+              <p
+                className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em]"
+                style={{ color: GOLD }}
+              >
+                השלימו את הסט שלכם
+              </p>
+              <ul className="-mx-1 flex gap-3 overflow-x-auto px-1 pb-1">
+                {upsells.map((a) => (
+                  <li
+                    key={a.handle}
+                    className="flex w-32 shrink-0 flex-col rounded-xl border border-white/10 bg-zinc-900 p-2"
+                  >
+                    <span className="relative h-20 w-full overflow-hidden rounded-lg bg-zinc-800">
+                      <Image
+                        src={a.image}
+                        alt={a.title}
+                        fill
+                        sizes="120px"
+                        className="object-cover"
+                      />
+                    </span>
+                    <span className="mt-2 line-clamp-2 text-[11px] font-medium leading-tight text-white">
                       {a.title}
                     </span>
                     <span
-                      className="text-xs font-bold tabular-nums"
+                      className="mt-1 text-xs font-bold tabular-nums"
                       style={{ color: GOLD }}
                     >
                       {formatPrice(a.price, a.currency)}
                     </span>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => addItem(a)}
-                    aria-label={`הוספת ${a.title}`}
-                    className="flex shrink-0 items-center gap-1 rounded-full border border-[#c8a24c]/50 px-3.5 py-1.5 text-xs font-bold text-[#c8a24c] transition-all duration-300 hover:bg-[#c8a24c] hover:text-black"
-                  >
-                    <Plus className="h-3.5 w-3.5" strokeWidth={2.5} />
-                    הוסף
-                  </button>
-                </li>
-              ))}
-            </ul>
+                    <button
+                      type="button"
+                      onClick={() => addItem(a)}
+                      aria-label={`הוספת ${a.title}`}
+                      className="mt-2 flex items-center justify-center gap-1 rounded-full border border-[#c8a24c]/50 py-1.5 text-xs font-bold text-[#c8a24c] transition-all duration-300 hover:bg-[#c8a24c] hover:text-black"
+                    >
+                      <Plus className="h-3.5 w-3.5" strokeWidth={2.5} />
+                      הוסף
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           </div>
         )}
 
