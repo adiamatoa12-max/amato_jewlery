@@ -98,6 +98,16 @@ export const CART_FRAGMENT = /* GraphQL */ `
               amount
               currencyCode
             }
+            subtotalAmount {
+              amount
+              currencyCode
+            }
+          }
+          discountAllocations {
+            discountedAmount {
+              amount
+              currencyCode
+            }
           }
           merchandise {
             ... on ProductVariant {

@@ -61,7 +61,8 @@ export interface Collection {
 export interface CartLine {
   id: string;
   quantity: number;
-  cost: { totalAmount: Money };
+  cost: { totalAmount: Money; subtotalAmount: Money };
+  discountAllocations: { discountedAmount: Money }[];
   merchandise: {
     id: string;
     title: string;

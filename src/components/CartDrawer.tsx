@@ -27,6 +27,57 @@ export default function CartDrawer() {
   const [checkingOut, setCheckingOut] = useState(false);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
 
+  // Live Shopify pricing (reflects automatic discounts). Null = use local math.
+  type Pricing = {
+    currency: string;
+    subtotal: number;
+    lineCosts: Record<string, { list: number; final: number }>;
+  };
+  const [pricing, setPricing] = useState<Pricing | null>(null);
+
+  // Re-price (debounced) whenever the variant-backed lines change while open.
+  const variantKey = items
+    .filter((i) => i.variantId)
+    .map((i) => `${i.variantId}:${i.quantity}`)
+    .join(",");
+  useEffect(() => {
+    const lines = items
+      .filter((i) => i.variantId)
+      .map((i) => ({ variantId: i.variantId, quantity: i.quantity }));
+    if (!isOpen || lines.length === 0) {
+      setPricing(null);
+      return;
+    }
+    const controller = new AbortController();
+    const t = window.setTimeout(() => {
+      fetch("/api/cart/price", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ lines }),
+        signal: controller.signal,
+      })
+        .then((r) => r.json())
+        .then((d) => setPricing(d?.priced ? d : null))
+        .catch(() => {
+          /* aborted or offline → keep local math */
+        });
+    }, 300);
+    return () => {
+      window.clearTimeout(t);
+      controller.abort();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [variantKey, isOpen]);
+
+  // Accessories (no variantId) are priced locally and added to the Shopify
+  // subtotal; everything with a variant is priced live (post-discount).
+  const accessorySum = items
+    .filter((i) => !i.variantId)
+    .reduce((s, i) => s + i.price * i.quantity, 0);
+  const displayCurrency = pricing?.currency ?? currency;
+  const displayedSubtotal = pricing ? pricing.subtotal + accessorySum : totalPrice;
+  const hasDiscount = !!pricing && totalPrice - displayedSubtotal > 0.5;
+
   // Accessories not already in the cart — surfaced as "complete your setup".
   const inCart = new Set(items.map((i) => i.handle));
   const upsells = ACCESSORIES.filter((a) => !inCart.has(a.handle));
@@ -154,9 +205,30 @@ export default function CartDrawer() {
                     <h3 className="text-sm font-medium leading-snug text-white">
                       {item.title}
                     </h3>
-                    <p className="shrink-0 text-sm font-bold tabular-nums text-white">
-                      {formatPrice(item.price * item.quantity, item.currency)}
-                    </p>
+                    {(() => {
+                      const lc = pricing?.lineCosts?.[item.handle];
+                      const discounted = lc && lc.list - lc.final > 0.5;
+                      if (discounted) {
+                        return (
+                          <span className="flex shrink-0 flex-col items-end leading-tight">
+                            <span className="text-xs tabular-nums text-zinc-500 line-through">
+                              {formatPrice(lc!.list, displayCurrency)}
+                            </span>
+                            <span
+                              className="text-sm font-bold tabular-nums"
+                              style={{ color: GOLD }}
+                            >
+                              {formatPrice(lc!.final, displayCurrency)}
+                            </span>
+                          </span>
+                        );
+                      }
+                      return (
+                        <p className="shrink-0 text-sm font-bold tabular-nums text-white">
+                          {formatPrice(item.price * item.quantity, item.currency)}
+                        </p>
+                      );
+                    })()}
                   </div>
 
                   <div className="mt-auto flex items-center justify-between pt-4">
@@ -254,10 +326,23 @@ export default function CartDrawer() {
           <div className="border-t border-white/10 px-6 py-6">
             <div className="flex items-center justify-between text-sm">
               <span className="tracking-[0.08em] text-zinc-400">סכום ביניים</span>
-              <span className="font-display text-lg font-extrabold tabular-nums text-white">
-                {formatPrice(totalPrice, currency)}
+              <span className="flex items-baseline gap-2">
+                {hasDiscount && (
+                  <span className="text-sm tabular-nums text-zinc-500 line-through">
+                    {formatPrice(totalPrice, displayCurrency)}
+                  </span>
+                )}
+                <span className="font-display text-lg font-extrabold tabular-nums text-white">
+                  {formatPrice(displayedSubtotal, displayCurrency)}
+                </span>
               </span>
             </div>
+            {hasDiscount && (
+              <p className="mt-1 text-xs font-bold" style={{ color: GOLD }}>
+                הנחת מבצע הוחלה — חסכת{" "}
+                {formatPrice(totalPrice - displayedSubtotal, displayCurrency)}
+              </p>
+            )}
             <p className="mt-1 text-xs text-zinc-500">
               משלוח ומיסים מחושבים בקופה.
             </p>
