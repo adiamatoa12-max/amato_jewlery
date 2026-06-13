@@ -15,6 +15,8 @@ import {
 } from "lucide-react";
 import { useCart, formatPrice, type AddToCartInput } from "@/lib/cart/CartContext";
 import { ACCESSORIES } from "@/lib/accessories";
+import { WAITLIST_MODE } from "@/lib/config";
+import WaitlistButton from "@/components/WaitlistButton";
 import MediaPlaceholder, {
   isMissingLocalMedia,
 } from "@/components/MediaPlaceholder";
@@ -158,6 +160,9 @@ export default function ProductView({
             {product.description}
           </p>
 
+          {/* Purchase controls — hidden in pre-launch waitlist mode */}
+          {!WAITLIST_MODE && (
+          <>
           {/* Bundle selector */}
           <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
             <BundleOption
@@ -236,20 +241,26 @@ export default function ProductView({
               })}
             </ul>
           </div>
+          </>
+          )}
 
-          {/* Add to cart — prominent gold CTA */}
-          <button
-            type="button"
-            disabled={soldOut}
-            onClick={addToCart}
-            className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#c8a24c] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(200,162,76,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#e0bd6a] hover:shadow-[0_0_46px_-4px_rgba(200,162,76,0.95)] active:scale-95 disabled:cursor-not-allowed disabled:bg-zinc-700 disabled:text-zinc-400 disabled:shadow-none"
-          >
-            {soldOut
-              ? "אזל מהמלאי"
-              : bundle
-                ? `הוספה לסל — 2 יחידות`
-                : "הוספה לסל"}
-          </button>
+          {/* CTA — Add to Cart, or "get notified" in waitlist mode */}
+          {WAITLIST_MODE ? (
+            <WaitlistButton className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#c8a24c] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(200,162,76,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#e0bd6a] hover:shadow-[0_0_46px_-4px_rgba(200,162,76,0.95)] active:scale-95" />
+          ) : (
+            <button
+              type="button"
+              disabled={soldOut}
+              onClick={addToCart}
+              className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#c8a24c] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(200,162,76,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#e0bd6a] hover:shadow-[0_0_46px_-4px_rgba(200,162,76,0.95)] active:scale-95 disabled:cursor-not-allowed disabled:bg-zinc-700 disabled:text-zinc-400 disabled:shadow-none"
+            >
+              {soldOut
+                ? "אזל מהמלאי"
+                : bundle
+                  ? `הוספה לסל — 2 יחידות`
+                  : "הוספה לסל"}
+            </button>
+          )}
 
           {/* Trust badges */}
           <ul className="mt-8 grid grid-cols-3 gap-3 border-y border-white/10 py-6">
@@ -361,14 +372,18 @@ export default function ProductView({
             {formatPrice(displayPrice, product.currency)}
           </span>
         </div>
-        <button
-          type="button"
-          disabled={soldOut}
-          onClick={addToCart}
-          className="flex flex-1 items-center justify-center rounded-full bg-[#c8a24c] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#e0bd6a] active:scale-95 disabled:bg-zinc-700 disabled:text-zinc-400"
-        >
-          {soldOut ? "אזל מהמלאי" : "הוספה לסל"}
-        </button>
+        {WAITLIST_MODE ? (
+          <WaitlistButton className="flex flex-1 items-center justify-center rounded-full bg-[#c8a24c] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#e0bd6a] active:scale-95" />
+        ) : (
+          <button
+            type="button"
+            disabled={soldOut}
+            onClick={addToCart}
+            className="flex flex-1 items-center justify-center rounded-full bg-[#c8a24c] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#e0bd6a] active:scale-95 disabled:bg-zinc-700 disabled:text-zinc-400"
+          >
+            {soldOut ? "אזל מהמלאי" : "הוספה לסל"}
+          </button>
+        )}
       </div>
     </>
   );

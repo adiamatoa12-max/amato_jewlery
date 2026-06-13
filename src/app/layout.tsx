@@ -5,6 +5,8 @@ import { CartProvider } from "@/lib/cart/CartContext";
 import CartDrawer from "@/components/CartDrawer";
 import { InfoProvider } from "@/lib/info/InfoContext";
 import InfoDrawer from "@/components/InfoDrawer";
+import { WaitlistProvider } from "@/lib/waitlist/WaitlistContext";
+import WaitlistModal from "@/components/WaitlistModal";
 import SiteHeader from "@/components/SiteHeader";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -88,13 +90,16 @@ export default async function RootLayout({
         </a>
         <CartProvider>
           <InfoProvider>
-            <AnnouncementBar />
-            <SiteHeader navGroups={navGroups} />
-            {children}
-            <WhatsAppButton />
-            <AccessibilityButton />
-            <CartDrawer />
-            <InfoDrawer />
+            <WaitlistProvider>
+              <AnnouncementBar />
+              <SiteHeader navGroups={navGroups} />
+              {children}
+              <WhatsAppButton />
+              <AccessibilityButton />
+              <CartDrawer />
+              <InfoDrawer />
+              <WaitlistModal />
+            </WaitlistProvider>
           </InfoProvider>
         </CartProvider>
       </body>

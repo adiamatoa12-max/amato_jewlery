@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { WAITLIST_MODE } from "@/lib/config";
+import WaitlistButton from "@/components/WaitlistButton";
 
 const GOLD = "#c8a24c";
 // Main product — Hebrew handle, encoded for a safe URL (route decodes it).
@@ -60,12 +62,18 @@ export default function Hero() {
             <span style={{ color: GOLD }}>VAULT</span>: השייקר המגנטי הראשון
             בעולם שמשחרר לך את הידיים לצלם את האימון.
           </h1>
-          <Link
-            href={PRODUCT_URL}
-            className={`mx-auto max-w-xs sm:mx-0 sm:max-w-none ${goldButton}`}
-          >
-            הזמן עכשיו את VAULT
-          </Link>
+          {WAITLIST_MODE ? (
+            <WaitlistButton
+              className={`mx-auto max-w-xs sm:mx-0 sm:max-w-none ${goldButton}`}
+            />
+          ) : (
+            <Link
+              href={PRODUCT_URL}
+              className={`mx-auto max-w-xs sm:mx-0 sm:max-w-none ${goldButton}`}
+            >
+              הזמן עכשיו את VAULT
+            </Link>
+          )}
           {dots}
         </div>
       </div>
