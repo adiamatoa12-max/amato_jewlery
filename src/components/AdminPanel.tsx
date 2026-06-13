@@ -17,12 +17,17 @@ export default function AdminPanel() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [signups, setSignups] = useState<Signup[]>([]);
+  const [store, setStore] = useState<"kv" | "file" | null>(null);
 
   const loadData = useCallback(async () => {
     const res = await fetch("/api/admin/waitlist", { cache: "no-store" });
     if (res.ok) {
-      const data = (await res.json()) as { signups: Signup[] };
+      const data = (await res.json()) as {
+        signups: Signup[];
+        store?: "kv" | "file";
+      };
       setSignups(data.signups ?? []);
+      setStore(data.store ?? null);
       setAuthed(true);
       return true;
     }
@@ -56,6 +61,25 @@ export default function AdminPanel() {
     await fetch("/api/admin/login", { method: "DELETE" });
     setAuthed(false);
     setSignups([]);
+  }
+
+  function downloadCsv() {
+    const esc = (v: string) => `"${String(v).replace(/"/g, '""')}"`;
+    const rows = [
+      ["שם", "אימייל", "טלפון", "תאריך"],
+      ...signups.map((s) => [s.name, s.email, s.phone ?? "", s.ts]),
+    ];
+    const csv = rows.map((r) => r.map(esc).join(",")).join("\r\n");
+    // BOM so Excel renders Hebrew (UTF-8) correctly.
+    const blob = new Blob(["﻿" + csv], {
+      type: "text/csv;charset=utf-8;",
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `vault-waitlist-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
   }
 
   if (checking) {
@@ -109,18 +133,46 @@ export default function AdminPanel() {
   return (
     <main className="min-h-screen bg-[#0a0a0a] px-5 py-10 text-white sm:px-10">
       <div className="mx-auto max-w-4xl">
-        <div className="flex items-center justify-between">
-          <h1 className="font-display text-2xl font-black tracking-tight">
-            רשימת המתנה{" "}
-            <span style={{ color: GOLD }}>({signups.length})</span>
-          </h1>
-          <button
-            type="button"
-            onClick={handleLogout}
-            className="text-xs font-bold uppercase tracking-[0.12em] text-zinc-400 transition-colors hover:text-white"
-          >
-            התנתקות
-          </button>
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <h1 className="font-display text-2xl font-black tracking-tight">
+              רשימת המתנה{" "}
+              <span style={{ color: GOLD }}>({signups.length})</span>
+            </h1>
+            {store && (
+              <span
+                className={`rounded-full border px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.1em] ${
+                  store === "kv"
+                    ? "border-emerald-500/40 text-emerald-400"
+                    : "border-white/15 text-zinc-500"
+                }`}
+                title={
+                  store === "kv"
+                    ? "מאוחסן ב-Vercel KV — נשמר לצמיתות"
+                    : "קובץ מקומי (פיתוח) — לא נשמר ב-Production"
+                }
+              >
+                {store === "kv" ? "Vercel KV" : "Local file"}
+              </span>
+            )}
+          </div>
+          <div className="flex items-center gap-4">
+            <button
+              type="button"
+              onClick={downloadCsv}
+              disabled={signups.length === 0}
+              className="rounded-full bg-[#c8a24c] px-5 py-2 text-xs font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#e0bd6a] active:scale-95 disabled:cursor-not-allowed disabled:bg-zinc-700 disabled:text-zinc-500"
+            >
+              הורדת CSV
+            </button>
+            <button
+              type="button"
+              onClick={handleLogout}
+              className="text-xs font-bold uppercase tracking-[0.12em] text-zinc-400 transition-colors hover:text-white"
+            >
+              התנתקות
+            </button>
+          </div>
         </div>
 
         {signups.length === 0 ? (

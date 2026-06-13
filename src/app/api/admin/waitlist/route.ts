@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { ADMIN_COOKIE, expectedSession } from "@/lib/admin";
-import { getSignups } from "@/lib/waitlist-store";
+import { getSignups, storeBackend } from "@/lib/waitlist-store";
 
 /** Return the captured waitlist signups (newest first). Guarded by middleware
  * AND here. Reads from Vercel KV in production, local JSON file in dev. */
@@ -15,5 +15,9 @@ export async function GET() {
   let signups = await getSignups().catch(() => []);
   signups = [...signups].reverse(); // newest first
 
-  return NextResponse.json({ signups, count: signups.length });
+  return NextResponse.json({
+    signups,
+    count: signups.length,
+    store: storeBackend(),
+  });
 }
