@@ -18,6 +18,8 @@ import MediaPlaceholder from "@/components/MediaPlaceholder";
 import Hero from "@/components/Hero";
 import AutoplayVideo from "@/components/AutoplayVideo";
 import FaqAccordion from "@/components/FaqAccordion";
+import WaitlistButton from "@/components/WaitlistButton";
+import { WAITLIST_MODE } from "@/lib/config";
 
 const GOLD = "#c8a24c";
 
@@ -25,6 +27,24 @@ const GOLD = "#c8a24c";
 // the [handle] route decodes it back before the Shopify lookup.
 const PRODUCT_HANDLE = "vault-השייקר-המגנטי";
 const PRODUCT_URL = `/product/${encodeURIComponent(PRODUCT_HANDLE)}`;
+
+/** Primary CTA — "get notified" in pre-launch waitlist mode, else a shop link. */
+function PrimaryCta({
+  className,
+  label,
+  href = PRODUCT_URL,
+}: {
+  className: string;
+  label: string;
+  href?: string;
+}) {
+  if (WAITLIST_MODE) return <WaitlistButton className={className} />;
+  return (
+    <Link href={href} className={className}>
+      {label}
+    </Link>
+  );
+}
 
 // Reusable gold CTA with a glowing hover.
 const goldButton =
@@ -100,9 +120,10 @@ function MicroConversion() {
           <h2 className="font-display text-2xl font-black tracking-tight text-white sm:text-3xl">
             מוכנים לשדרג את האימון שלכם?
           </h2>
-          <Link href={PRODUCT_URL} className={`w-full sm:w-auto ${goldButton}`}>
-            הזמינו את ה-VAULT שלכם עכשיו
-          </Link>
+          <PrimaryCta
+            className={`w-full sm:w-auto ${goldButton}`}
+            label="הזמינו את ה-VAULT שלכם עכשיו"
+          />
         </div>
       </FadeIn>
     </section>
@@ -320,9 +341,7 @@ function Anatomy() {
         </div>
 
         <div className="mt-14 flex justify-center">
-          <Link href={PRODUCT_URL} className={goldButton}>
-            הזמינו עכשיו את VAULT
-          </Link>
+          <PrimaryCta className={goldButton} label="הזמינו עכשיו את VAULT" />
         </div>
       </div>
     </section>
@@ -385,9 +404,7 @@ function Compatibility() {
               ))}
             </ul>
 
-            <Link href={PRODUCT_URL} className={`mt-9 ${goldButton}`}>
-              הזמינו עכשיו
-            </Link>
+            <PrimaryCta className={`mt-9 ${goldButton}`} label="הזמינו עכשיו" />
           </div>
         </FadeIn>
       </div>
@@ -514,41 +531,44 @@ function BundleBanner() {
               מוגבל בלבד.
             </p>
 
-            {/* Price-anchoring box */}
-            <div className="mt-7 inline-flex items-center gap-4 rounded-2xl border border-yellow-600/30 bg-black/40 px-6 py-4">
-              <div className="flex flex-col items-center">
-                <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-zinc-500">
-                  מחיר מלא
-                </span>
-                <span className="text-lg font-bold text-zinc-500 line-through decoration-zinc-600">
-                  520₪
-                </span>
+            {/* Price-anchoring box — hidden pre-launch */}
+            {!WAITLIST_MODE && (
+              <div className="mt-7 inline-flex items-center gap-4 rounded-2xl border border-yellow-600/30 bg-black/40 px-6 py-4">
+                <div className="flex flex-col items-center">
+                  <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-zinc-500">
+                    מחיר מלא
+                  </span>
+                  <span className="text-lg font-bold text-zinc-500 line-through decoration-zinc-600">
+                    520₪
+                  </span>
+                </div>
+                <span className="h-10 w-px bg-yellow-600/20" aria-hidden />
+                <div className="flex flex-col items-center">
+                  <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-zinc-400">
+                    מחיר מבצע
+                  </span>
+                  <span
+                    className="font-display text-3xl font-black leading-none lg:text-4xl"
+                    style={{ color: GOLD }}
+                  >
+                    רק 400₪
+                  </span>
+                </div>
               </div>
-              <span className="h-10 w-px bg-yellow-600/20" aria-hidden />
-              <div className="flex flex-col items-center">
-                <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-zinc-400">
-                  מחיר מבצע
-                </span>
-                <span
-                  className="font-display text-3xl font-black leading-none lg:text-4xl"
-                  style={{ color: GOLD }}
-                >
-                  רק 400₪
-                </span>
-              </div>
-            </div>
+            )}
 
-            <Link
-              href={PRODUCT_URL}
+            <PrimaryCta
               className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-[#c8a24c] px-10 py-4 text-sm font-black uppercase tracking-[0.12em] text-black shadow-[0_0_30px_-4px_rgba(200,162,76,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#e0bd6a] hover:shadow-[0_0_44px_-4px_rgba(200,162,76,0.9)] active:scale-95 active:shadow-[0_0_56px_-2px_rgba(200,162,76,1)] sm:w-auto"
-            >
-              קנו עכשיו ב-400₪
-            </Link>
-            <p className="mt-3 text-xs font-medium tracking-wide text-zinc-400">
-              חיסכון של 120₪ במבצע השקה בלבד
-            </p>
+              label="קנו עכשיו ב-400₪"
+            />
+            {!WAITLIST_MODE && (
+              <p className="mt-3 text-xs font-medium tracking-wide text-zinc-400">
+                חיסכון של 120₪ במבצע השקה בלבד
+              </p>
+            )}
 
-            {/* Launch-stock progress bar */}
+            {/* Launch-stock progress bar — hidden pre-launch */}
+            {!WAITLIST_MODE && (
             <div className="mt-7 w-full max-w-xs">
               <div className="mb-2 flex items-center justify-between text-[11px] font-bold tracking-wide">
                 <span className="text-zinc-300">85% מהמלאי להשקה נמכר</span>
@@ -574,6 +594,7 @@ function BundleBanner() {
                 המבצע מסתיים ברגע שהמלאי יאזל
               </p>
             </div>
+            )}
           </div>
         </div>
       </FadeIn>
@@ -643,18 +664,31 @@ function CompleteGear() {
                   <h3 className="text-sm font-bold leading-snug text-white lg:text-base">
                     {p.title}
                   </h3>
-                  <p
-                    className="mt-2 text-base font-bold tabular-nums"
-                    style={{ color: GOLD }}
-                  >
-                    {p.price}
-                  </p>
-                  <Link
-                    href={PRODUCT_URL}
-                    className="mt-5 inline-flex items-center justify-center rounded-full border border-[#c8a24c] px-5 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-[#c8a24c] transition-all duration-300 ease-out hover:scale-[1.03] hover:bg-[#c8a24c] hover:text-black hover:shadow-[0_0_24px_-4px_rgba(200,162,76,0.8)] active:scale-95"
-                  >
-                    הוספה מהירה
-                  </Link>
+                  {WAITLIST_MODE ? (
+                    <p className="mt-2 text-xs font-semibold" style={{ color: GOLD }}>
+                      זמין בקרוב
+                    </p>
+                  ) : (
+                    <p
+                      className="mt-2 text-base font-bold tabular-nums"
+                      style={{ color: GOLD }}
+                    >
+                      {p.price}
+                    </p>
+                  )}
+                  {WAITLIST_MODE ? (
+                    <WaitlistButton
+                      label="הירשמו לעדכונים"
+                      className="mt-5 inline-flex items-center justify-center rounded-full border border-[#c8a24c] px-5 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-[#c8a24c] transition-all duration-300 ease-out hover:scale-[1.03] hover:bg-[#c8a24c] hover:text-black hover:shadow-[0_0_24px_-4px_rgba(200,162,76,0.8)] active:scale-95"
+                    />
+                  ) : (
+                    <Link
+                      href={PRODUCT_URL}
+                      className="mt-5 inline-flex items-center justify-center rounded-full border border-[#c8a24c] px-5 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-[#c8a24c] transition-all duration-300 ease-out hover:scale-[1.03] hover:bg-[#c8a24c] hover:text-black hover:shadow-[0_0_24px_-4px_rgba(200,162,76,0.8)] active:scale-95"
+                    >
+                      הוספה מהירה
+                    </Link>
+                  )}
                 </div>
               </div>
             </FadeIn>

@@ -5,6 +5,8 @@ import Image from "next/image";
 import { X, Minus, Plus, ShoppingBag } from "lucide-react";
 import { useCart, formatPrice } from "@/lib/cart/CartContext";
 import { ACCESSORIES } from "@/lib/accessories";
+import { WAITLIST_MODE } from "@/lib/config";
+import WaitlistButton from "@/components/WaitlistButton";
 import MediaPlaceholder, {
   isMissingLocalMedia,
 } from "@/components/MediaPlaceholder";
@@ -205,7 +207,7 @@ export default function CartDrawer() {
                     <h3 className="text-sm font-medium leading-snug text-white">
                       {item.title}
                     </h3>
-                    {(() => {
+                    {!WAITLIST_MODE && (() => {
                       const lc = pricing?.lineCosts?.[item.handle];
                       const discounted = lc && lc.list - lc.final > 0.5;
                       if (discounted) {
@@ -298,21 +300,38 @@ export default function CartDrawer() {
                     <span className="mt-2 line-clamp-2 text-[11px] font-medium leading-tight text-white">
                       {a.title}
                     </span>
-                    <span
-                      className="mt-1 text-xs font-bold tabular-nums"
-                      style={{ color: GOLD }}
-                    >
-                      {formatPrice(a.price, a.currency)}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => addItem(a)}
-                      aria-label={`הוספת ${a.title}`}
-                      className="mt-2 flex items-center justify-center gap-1 rounded-full border border-[#c8a24c]/50 py-1.5 text-xs font-bold text-[#c8a24c] transition-all duration-300 hover:bg-[#c8a24c] hover:text-black"
-                    >
-                      <Plus className="h-3.5 w-3.5" strokeWidth={2.5} />
-                      הוסף
-                    </button>
+                    {WAITLIST_MODE ? (
+                      <>
+                        <span
+                          className="mt-1 text-[11px] font-bold"
+                          style={{ color: GOLD }}
+                        >
+                          זמין בקרוב
+                        </span>
+                        <WaitlistButton
+                          label="הירשמו"
+                          className="mt-2 flex items-center justify-center rounded-full border border-[#c8a24c]/50 py-1.5 text-xs font-bold text-[#c8a24c] transition-all duration-300 hover:bg-[#c8a24c] hover:text-black"
+                        />
+                      </>
+                    ) : (
+                      <>
+                        <span
+                          className="mt-1 text-xs font-bold tabular-nums"
+                          style={{ color: GOLD }}
+                        >
+                          {formatPrice(a.price, a.currency)}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => addItem(a)}
+                          aria-label={`הוספת ${a.title}`}
+                          className="mt-2 flex items-center justify-center gap-1 rounded-full border border-[#c8a24c]/50 py-1.5 text-xs font-bold text-[#c8a24c] transition-all duration-300 hover:bg-[#c8a24c] hover:text-black"
+                        >
+                          <Plus className="h-3.5 w-3.5" strokeWidth={2.5} />
+                          הוסף
+                        </button>
+                      </>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -321,8 +340,8 @@ export default function CartDrawer() {
           </div>
         )}
 
-        {/* Footer / checkout */}
-        {items.length > 0 && (
+        {/* Footer / checkout — hidden pre-launch (no purchasing) */}
+        {items.length > 0 && !WAITLIST_MODE && (
           <div className="border-t border-white/10 px-6 py-6">
             <div className="flex items-center justify-between text-sm">
               <span className="tracking-[0.08em] text-zinc-400">סכום ביניים</span>

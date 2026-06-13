@@ -124,37 +124,49 @@ export default function ProductView({
             {product.title}
           </h1>
 
-          <div className="mt-5 flex items-end gap-3">
-            <p className="font-display text-3xl font-extrabold tabular-nums text-white">
-              {formatPrice(displayPrice, product.currency)}
+          {WAITLIST_MODE ? (
+            /* Pre-launch: no price — invite the visitor to the waitlist. */
+            <p
+              className="mt-4 text-sm font-semibold tracking-[0.02em]"
+              style={{ color: GOLD }}
+            >
+              זמין בקרוב — הירשמו לעדכונים וקבלו עדיפות בהשקה
             </p>
-            {bundle && (
-              <>
-                <span className="pb-1 text-base tabular-nums text-zinc-500 line-through">
-                  {formatPrice(bundleWas, product.currency)}
-                </span>
-                <span
-                  className="pb-1 text-xs font-bold tracking-wide"
-                  style={{ color: GOLD }}
-                >
-                  חיסכון {formatPrice(bundleSaves, product.currency)}
-                </span>
-              </>
-            )}
-          </div>
+          ) : (
+            <>
+              <div className="mt-5 flex items-end gap-3">
+                <p className="font-display text-3xl font-extrabold tabular-nums text-white">
+                  {formatPrice(displayPrice, product.currency)}
+                </p>
+                {bundle && (
+                  <>
+                    <span className="pb-1 text-base tabular-nums text-zinc-500 line-through">
+                      {formatPrice(bundleWas, product.currency)}
+                    </span>
+                    <span
+                      className="pb-1 text-xs font-bold tracking-wide"
+                      style={{ color: GOLD }}
+                    >
+                      חיסכון {formatPrice(bundleSaves, product.currency)}
+                    </span>
+                  </>
+                )}
+              </div>
 
-          <p
-            className={`mt-5 flex items-center gap-2 text-xs font-medium tracking-[0.08em] ${
-              soldOut ? "text-zinc-500" : "text-emerald-400"
-            }`}
-          >
-            <span
-              className={`h-1.5 w-1.5 rounded-full ${
-                soldOut ? "bg-zinc-500" : "bg-emerald-400"
-              }`}
-            />
-            {soldOut ? "אזל מהמלאי" : "במלאי — מוכן למשלוח"}
-          </p>
+              <p
+                className={`mt-5 flex items-center gap-2 text-xs font-medium tracking-[0.08em] ${
+                  soldOut ? "text-zinc-500" : "text-emerald-400"
+                }`}
+              >
+                <span
+                  className={`h-1.5 w-1.5 rounded-full ${
+                    soldOut ? "bg-zinc-500" : "bg-emerald-400"
+                  }`}
+                />
+                {soldOut ? "אזל מהמלאי" : "במלאי — מוכן למשלוח"}
+              </p>
+            </>
+          )}
 
           <p className="mt-6 max-w-md text-sm leading-relaxed text-zinc-400">
             {product.description}
@@ -366,11 +378,21 @@ export default function ProductView({
       <div className="fixed inset-x-0 bottom-0 z-30 flex items-center gap-4 border-t border-white/10 bg-black/95 px-5 py-3 backdrop-blur-md lg:hidden">
         <div className="flex min-w-0 flex-col leading-tight">
           <span className="truncate text-[11px] text-zinc-400">
-            {bundle ? "2 יחידות · 15% הנחה" : product.title}
+            {WAITLIST_MODE
+              ? product.title
+              : bundle
+                ? "2 יחידות · 15% הנחה"
+                : product.title}
           </span>
-          <span className="text-base font-bold tabular-nums text-white">
-            {formatPrice(displayPrice, product.currency)}
-          </span>
+          {WAITLIST_MODE ? (
+            <span className="text-xs font-semibold" style={{ color: GOLD }}>
+              זמין בקרוב
+            </span>
+          ) : (
+            <span className="text-base font-bold tabular-nums text-white">
+              {formatPrice(displayPrice, product.currency)}
+            </span>
+          )}
         </div>
         {WAITLIST_MODE ? (
           <WaitlistButton className="flex flex-1 items-center justify-center rounded-full bg-[#c8a24c] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#e0bd6a] active:scale-95" />
