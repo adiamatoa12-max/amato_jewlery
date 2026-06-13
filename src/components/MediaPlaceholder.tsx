@@ -1,10 +1,15 @@
 // Shared placeholder for media whose local files were removed. Renders a clean
 // dark block so the layout never collapses and no 404s are requested.
 
-/** True for paths into the cleared local folders (these would 404). */
+/** True only for paths into folders that were cleared (these would 404).
+ * Current top-level /images/*.png and /videos/*.mp4 assets exist and render. */
 export function isMissingLocalMedia(src?: string | null): boolean {
   if (!src) return true;
-  return /^\/(images|videos|collections)\//.test(src) || src === "/bundle.jpg";
+  return (
+    /^\/images\/products\//.test(src) ||
+    /^\/collections\//.test(src) ||
+    src === "/bundle.jpg"
+  );
 }
 
 export default function MediaPlaceholder({

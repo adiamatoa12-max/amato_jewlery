@@ -14,6 +14,7 @@ import {
   Check,
 } from "lucide-react";
 import { useCart, formatPrice, type AddToCartInput } from "@/lib/cart/CartContext";
+import { ACCESSORIES } from "@/lib/accessories";
 import MediaPlaceholder, {
   isMissingLocalMedia,
 } from "@/components/MediaPlaceholder";
@@ -80,10 +81,16 @@ export default function ProductView({
   const bundleSaves = bundleWas - bundleNow;
   const displayPrice = bundle ? bundleNow : unit;
 
-  // Bundle = add the unit twice; single = once.
+  // Accessory add-ons selected via the in-buy-box checklist.
+  const [addOns, setAddOns] = useState<Record<string, boolean>>({});
+  const toggleAddOn = (handle: string) =>
+    setAddOns((prev) => ({ ...prev, [handle]: !prev[handle] }));
+
+  // Bundle = add the unit twice; single = once. Then add any selected add-ons.
   const addToCart = () => {
     addItem(product);
     if (bundle) addItem(product);
+    ACCESSORIES.filter((a) => addOns[a.handle]).forEach((a) => addItem(a));
   };
 
   // Strictly images: IMAGE media only, drop deleted-local paths, de-dupe.
@@ -167,6 +174,67 @@ export default function ProductView({
               badge="15% הנחה"
               note={`חוסכים ${formatPrice(bundleSaves, product.currency)}`}
             />
+          </div>
+
+          {/* In-buy-box accessory upsell — minimalist checklist */}
+          <div className="mt-6">
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-500">
+              השלימו את הסט
+            </p>
+            <ul className="flex flex-col gap-2">
+              {ACCESSORIES.map((a) => {
+                const checked = !!addOns[a.handle];
+                return (
+                  <li key={a.handle}>
+                    <button
+                      type="button"
+                      onClick={() => toggleAddOn(a.handle)}
+                      aria-pressed={checked}
+                      className={`flex w-full items-center gap-3 rounded-xl border bg-zinc-900/60 p-2.5 text-right transition-all duration-200 ${
+                        checked
+                          ? "border-[#c8a24c]/70"
+                          : "border-white/10 hover:border-white/25"
+                      }`}
+                    >
+                      {/* Custom gold checkbox */}
+                      <span
+                        className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md border transition-all duration-200 ${
+                          checked
+                            ? "border-[#c8a24c] bg-[#c8a24c]"
+                            : "border-white/30"
+                        }`}
+                      >
+                        {checked && (
+                          <Check className="h-3.5 w-3.5 text-black" strokeWidth={3} />
+                        )}
+                      </span>
+                      {/* Thumbnail */}
+                      <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-zinc-800">
+                        <Image
+                          src={a.image}
+                          alt={a.title}
+                          fill
+                          sizes="40px"
+                          className="object-cover"
+                        />
+                      </span>
+                      {/* Title + price */}
+                      <span className="flex flex-1 items-center justify-between gap-2">
+                        <span className="text-xs font-medium leading-tight text-white">
+                          {a.title}
+                        </span>
+                        <span
+                          className="shrink-0 text-xs font-bold tabular-nums"
+                          style={{ color: GOLD }}
+                        >
+                          {formatPrice(a.price, a.currency)}
+                        </span>
+                      </span>
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
 
           {/* Add to cart — prominent gold CTA */}

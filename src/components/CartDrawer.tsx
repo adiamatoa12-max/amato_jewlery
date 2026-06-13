@@ -4,15 +4,19 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { X, Minus, Plus, ShoppingBag } from "lucide-react";
 import { useCart, formatPrice } from "@/lib/cart/CartContext";
+import { ACCESSORIES } from "@/lib/accessories";
 import MediaPlaceholder, {
   isMissingLocalMedia,
 } from "@/components/MediaPlaceholder";
+
+const GOLD = "#c8a24c";
 
 export default function CartDrawer() {
   const {
     items,
     isOpen,
     closeCart,
+    addItem,
     removeItem,
     updateQuantity,
     totalPrice,
@@ -22,6 +26,10 @@ export default function CartDrawer() {
 
   const [checkingOut, setCheckingOut] = useState(false);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
+
+  // Accessories not already in the cart — surfaced as "complete your setup".
+  const inCart = new Set(items.map((i) => i.handle));
+  const upsells = ACCESSORIES.filter((a) => !inCart.has(a.handle));
 
   async function handleCheckout() {
     setCheckingOut(true);
@@ -72,7 +80,7 @@ export default function CartDrawer() {
       <div
         aria-hidden={!isOpen}
         onClick={closeCart}
-        className={`fixed inset-0 z-[60] bg-black/40 transition-opacity duration-500 ease-in-out ${
+        className={`fixed inset-0 z-[60] bg-black/60 transition-opacity duration-500 ease-in-out ${
           isOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       />
@@ -86,14 +94,14 @@ export default function CartDrawer() {
           right: 0,
           transform: isOpen ? "translateX(0)" : "translateX(100%)",
         }}
-        className="fixed inset-y-0 z-[70] flex w-full max-w-md flex-col bg-stone-50 shadow-2xl transition-transform duration-500 ease-in-out"
+        className="fixed inset-y-0 z-[70] flex w-full max-w-md flex-col border-l border-white/10 bg-[#0a0a0a] text-white shadow-2xl transition-transform duration-500 ease-in-out"
       >
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-stone-200/70 px-6 py-5">
-          <h2 className="font-serif text-xl font-light text-neutral-900">
+        <div className="flex items-center justify-between border-b border-white/10 px-6 py-5">
+          <h2 className="font-display text-lg font-extrabold tracking-tight text-white">
             העגלה שלך
             {totalQuantity > 0 && (
-              <span className="ms-2 text-sm text-neutral-400">
+              <span className="ms-2 text-sm font-normal text-zinc-500">
                 ({totalQuantity})
               </span>
             )}
@@ -102,7 +110,7 @@ export default function CartDrawer() {
             type="button"
             onClick={closeCart}
             aria-label="סגירה"
-            className="transition-all duration-500 ease-in-out hover:opacity-60"
+            className="transition-all duration-300 ease-in-out hover:text-[#c8a24c]"
           >
             <X className="h-5 w-5" strokeWidth={1.5} />
           </button>
@@ -111,21 +119,21 @@ export default function CartDrawer() {
         {/* Items */}
         {items.length === 0 ? (
           <div className="flex flex-1 flex-col items-center justify-center gap-4 px-6 text-center">
-            <ShoppingBag className="h-10 w-10 text-neutral-300" strokeWidth={1} />
-            <p className="text-sm text-neutral-500">העגלה שלך ריקה כרגע.</p>
+            <ShoppingBag className="h-10 w-10 text-zinc-700" strokeWidth={1} />
+            <p className="text-sm text-zinc-400">העגלה שלך ריקה כרגע.</p>
             <button
               type="button"
               onClick={closeCart}
-              className="text-xs tracking-[0.1em] text-neutral-900 underline-offset-4 transition-all duration-500 ease-in-out hover:underline"
+              className="text-xs tracking-[0.1em] text-[#c8a24c] underline-offset-4 transition-all duration-300 ease-in-out hover:underline"
             >
               המשך לקנות
             </button>
           </div>
         ) : (
-          <ul className="flex-1 divide-y divide-stone-200/70 overflow-y-auto px-6">
+          <ul className="flex-1 divide-y divide-white/10 overflow-y-auto px-6">
             {items.map((item) => (
               <li key={item.handle} className="flex gap-4 py-6">
-                <div className="relative h-24 w-20 shrink-0 overflow-hidden rounded-sm bg-neutral-100">
+                <div className="relative h-24 w-20 shrink-0 overflow-hidden rounded-lg bg-zinc-800">
                   {isMissingLocalMedia(item.image) ? (
                     <MediaPlaceholder className="absolute inset-0 h-full w-full" />
                   ) : (
@@ -141,23 +149,23 @@ export default function CartDrawer() {
 
                 <div className="flex flex-1 flex-col">
                   <div className="flex items-start justify-between gap-3">
-                    <h3 className="font-serif text-base font-normal leading-snug text-neutral-900">
+                    <h3 className="text-sm font-medium leading-snug text-white">
                       {item.title}
                     </h3>
-                    <p className="shrink-0 text-sm tabular-nums text-neutral-900">
+                    <p className="shrink-0 text-sm font-bold tabular-nums text-white">
                       {formatPrice(item.price * item.quantity, item.currency)}
                     </p>
                   </div>
 
                   <div className="mt-auto flex items-center justify-between pt-4">
-                    <div className="flex items-center rounded-full border border-stone-300">
+                    <div className="flex items-center rounded-full border border-white/15">
                       <button
                         type="button"
                         aria-label="הפחתת כמות"
                         onClick={() =>
                           updateQuantity(item.handle, item.quantity - 1)
                         }
-                        className="flex h-8 w-8 items-center justify-center transition-all duration-300 ease-in-out hover:bg-stone-100"
+                        className="flex h-8 w-8 items-center justify-center transition-all duration-300 ease-in-out hover:bg-white/10"
                       >
                         <Minus className="h-3.5 w-3.5" strokeWidth={1.5} />
                       </button>
@@ -170,7 +178,7 @@ export default function CartDrawer() {
                         onClick={() =>
                           updateQuantity(item.handle, item.quantity + 1)
                         }
-                        className="flex h-8 w-8 items-center justify-center transition-all duration-300 ease-in-out hover:bg-stone-100"
+                        className="flex h-8 w-8 items-center justify-center transition-all duration-300 ease-in-out hover:bg-white/10"
                       >
                         <Plus className="h-3.5 w-3.5" strokeWidth={1.5} />
                       </button>
@@ -179,7 +187,7 @@ export default function CartDrawer() {
                     <button
                       type="button"
                       onClick={() => removeItem(item.handle)}
-                      className="text-xs tracking-[0.08em] text-neutral-400 transition-all duration-500 ease-in-out hover:text-neutral-900"
+                      className="text-xs tracking-[0.08em] text-zinc-500 transition-all duration-300 ease-in-out hover:text-white"
                     >
                       הסרה
                     </button>
@@ -190,28 +198,78 @@ export default function CartDrawer() {
           </ul>
         )}
 
+        {/* Complete your setup — accessory upsell */}
+        {items.length > 0 && upsells.length > 0 && (
+          <div className="border-t border-white/10 px-6 py-5">
+            <p
+              className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em]"
+              style={{ color: GOLD }}
+            >
+              השלימו את הסט שלכם
+            </p>
+            <ul className="flex flex-col gap-2.5">
+              {upsells.map((a) => (
+                <li
+                  key={a.handle}
+                  className="flex items-center gap-3 rounded-xl border border-white/10 bg-zinc-900 p-2.5"
+                >
+                  <span className="relative h-11 w-11 shrink-0 overflow-hidden rounded-lg bg-zinc-800">
+                    <Image
+                      src={a.image}
+                      alt={a.title}
+                      fill
+                      sizes="44px"
+                      className="object-cover"
+                    />
+                  </span>
+                  <div className="flex min-w-0 flex-1 flex-col">
+                    <span className="truncate text-xs font-medium text-white">
+                      {a.title}
+                    </span>
+                    <span
+                      className="text-xs font-bold tabular-nums"
+                      style={{ color: GOLD }}
+                    >
+                      {formatPrice(a.price, a.currency)}
+                    </span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => addItem(a)}
+                    aria-label={`הוספת ${a.title}`}
+                    className="flex shrink-0 items-center gap-1 rounded-full border border-[#c8a24c]/50 px-3.5 py-1.5 text-xs font-bold text-[#c8a24c] transition-all duration-300 hover:bg-[#c8a24c] hover:text-black"
+                  >
+                    <Plus className="h-3.5 w-3.5" strokeWidth={2.5} />
+                    הוסף
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         {/* Footer / checkout */}
         {items.length > 0 && (
-          <div className="border-t border-stone-200/70 px-6 py-6">
+          <div className="border-t border-white/10 px-6 py-6">
             <div className="flex items-center justify-between text-sm">
-              <span className="tracking-[0.08em] text-neutral-500">סכום ביניים</span>
-              <span className="text-lg tabular-nums text-neutral-900">
+              <span className="tracking-[0.08em] text-zinc-400">סכום ביניים</span>
+              <span className="font-display text-lg font-extrabold tabular-nums text-white">
                 {formatPrice(totalPrice, currency)}
               </span>
             </div>
-            <p className="mt-1 text-xs text-neutral-400">
+            <p className="mt-1 text-xs text-zinc-500">
               משלוח ומיסים מחושבים בקופה.
             </p>
             <button
               type="button"
               onClick={handleCheckout}
               disabled={checkingOut}
-              className="mt-6 flex w-full items-center justify-center rounded-full bg-neutral-900 px-8 py-4 text-sm font-medium tracking-[0.1em] text-white transition-all duration-500 ease-in-out hover:bg-neutral-700 disabled:cursor-not-allowed disabled:bg-neutral-400"
+              className="mt-6 flex w-full items-center justify-center rounded-full bg-[#c8a24c] px-8 py-4 text-sm font-black uppercase tracking-[0.1em] text-black shadow-[0_0_30px_-6px_rgba(200,162,76,0.7)] transition-all duration-300 ease-in-out hover:bg-[#e0bd6a] active:scale-95 disabled:cursor-not-allowed disabled:bg-zinc-700 disabled:text-zinc-400 disabled:shadow-none"
             >
               {checkingOut ? "מעבירים לקופה…" : "למעבר לקופה"}
             </button>
             {checkoutError && (
-              <p className="mt-3 text-center text-xs text-red-600">
+              <p className="mt-3 text-center text-xs text-red-400">
                 {checkoutError}
               </p>
             )}
