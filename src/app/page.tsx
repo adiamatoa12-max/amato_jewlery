@@ -70,7 +70,7 @@ function UseCases() {
             אורח חיים אתלטי
           </p>
           <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-white lg:text-4xl">
-            בנוי לחיים בחדר הכושר
+            בנוי למתאמנים בחדר הכושר
           </h2>
         </FadeIn>
 
@@ -98,10 +98,10 @@ function MicroConversion() {
       <FadeIn>
         <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 rounded-2xl border border-[#c8a24c]/40 bg-zinc-900 px-6 py-10 text-center sm:px-10">
           <h2 className="font-display text-2xl font-black tracking-tight text-white sm:text-3xl">
-            מוכן לשדרג את האימון שלך?
+            מוכנים לשדרג את האימון שלכם?
           </h2>
           <Link href={PRODUCT_URL} className={`w-full sm:w-auto ${goldButton}`}>
-            הזמן את ה-VAULT שלך עכשיו
+            הזמינו את ה-VAULT שלכם עכשיו
           </Link>
         </div>
       </FadeIn>
@@ -321,7 +321,7 @@ function Anatomy() {
 
         <div className="mt-14 flex justify-center">
           <Link href={PRODUCT_URL} className={goldButton}>
-            הזמן עכשיו את VAULT
+            הזמינו עכשיו את VAULT
           </Link>
         </div>
       </div>
@@ -361,9 +361,9 @@ function Compatibility() {
               מתאים לכל סמארטפון!
             </h2>
             <p className="mx-auto mt-6 max-w-md text-sm leading-relaxed text-zinc-400 md:mx-0 lg:text-base">
-              כל שייקר של VAULT מגיע עם שתי טבעות מתכת דקות במיוחד. פשוט מדביקים
-              את הטבעת על הטלפון או על הכיסוי, ומקבלים חיבור מגנטי עוצמתי לכל
-              מכשיר — אייפון או אנדרואיד.
+              כל שייקר VAULT מגיע עם שתי טבעות מתכת דקות במיוחד. הדביקו אחת על
+              הטלפון או על הכיסוי, וקבלו חיבור מגנטי עוצמתי לכל מכשיר — אייפון
+              או אנדרואיד.
             </p>
 
             <ul className="mt-8 space-y-4">
@@ -386,7 +386,7 @@ function Compatibility() {
             </ul>
 
             <Link href={PRODUCT_URL} className={`mt-9 ${goldButton}`}>
-              הזמן עכשיו
+              הזמינו עכשיו
             </Link>
           </div>
         </FadeIn>
@@ -506,7 +506,7 @@ function BundleBanner() {
               Bundle &amp; Save
             </p>
             <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-white lg:text-4xl">
-              קנה סט אימון מלא וחסוך{" "}
+              קנו סט אימון מלא וחסכו{" "}
               <span style={{ color: GOLD }}>15%</span>
             </h2>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-zinc-300 lg:text-base">
@@ -542,7 +542,7 @@ function BundleBanner() {
               href={PRODUCT_URL}
               className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-[#c8a24c] px-10 py-4 text-sm font-black uppercase tracking-[0.12em] text-black shadow-[0_0_30px_-4px_rgba(200,162,76,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#e0bd6a] hover:shadow-[0_0_44px_-4px_rgba(200,162,76,0.9)] active:scale-95 active:shadow-[0_0_56px_-2px_rgba(200,162,76,1)] sm:w-auto"
             >
-              קנה עכשיו ב-400₪
+              קנו עכשיו ב-400₪
             </Link>
             <p className="mt-3 text-xs font-medium tracking-wide text-zinc-400">
               חיסכון של 120₪ במבצע השקה בלבד
@@ -620,7 +620,7 @@ function CompleteGear() {
             אביזרים משלימים
           </p>
           <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-white lg:text-4xl">
-            השלם את הציוד שלך
+            השלימו את הציוד שלכם
           </h2>
         </FadeIn>
 
@@ -816,7 +816,7 @@ function Footer() {
                 className="shrink-0 text-xs font-bold uppercase tracking-[0.08em] transition-colors duration-300 hover:text-[#e0bd6a]"
                 style={{ color: GOLD }}
               >
-                הירשם
+                הירשמו
               </button>
             </form>
           </div>

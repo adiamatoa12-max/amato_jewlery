@@ -71,7 +71,7 @@ export default function Hero() {
               href={PRODUCT_URL}
               className={`mx-auto max-w-xs sm:mx-0 sm:max-w-none ${goldButton}`}
             >
-              הזמן עכשיו את VAULT
+              הזמינו עכשיו את VAULT
             </Link>
           )}
           {dots}
