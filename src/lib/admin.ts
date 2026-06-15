@@ -2,6 +2,10 @@
 
 export const ADMIN_COOKIE = "admin_session";
 
+// Hardcoded admin password — no environment variable needed.
+// (Trade-off: this lives in source/git. Fine for a private leads panel.)
+export const ADMIN_PASSWORD = "adi001994";
+
 /** SHA-256 hex — works in both the Edge (middleware) and Node runtimes. */
 export async function sha256Hex(input: string): Promise<string> {
   const data = new TextEncoder().encode(input);
@@ -13,8 +17,6 @@ export async function sha256Hex(input: string): Promise<string> {
 
 /** The opaque session value stored in the cookie = hash of the admin password.
  * The raw password is never placed in the cookie. */
-export async function expectedSession(): Promise<string | null> {
-  const pwd = process.env.ADMIN_PASSWORD;
-  if (!pwd) return null;
-  return sha256Hex(`vault-admin:${pwd}`);
+export async function expectedSession(): Promise<string> {
+  return sha256Hex(`vault-admin:${ADMIN_PASSWORD}`);
 }

@@ -9,10 +9,6 @@ import { ADMIN_COOKIE, expectedSession } from "@/lib/admin";
  */
 export async function middleware(req: NextRequest) {
   const expected = await expectedSession();
-  if (!expected) {
-    // ADMIN_PASSWORD not configured → admin is fully locked.
-    return NextResponse.json({ error: "admin disabled" }, { status: 503 });
-  }
   const session = req.cookies.get(ADMIN_COOKIE)?.value;
   if (session !== expected) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
