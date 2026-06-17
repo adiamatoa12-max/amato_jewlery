@@ -50,7 +50,7 @@ export default function Hero() {
   return (
     <section className="relative flex min-h-[90vh] w-full overflow-hidden bg-black lg:grid lg:grid-cols-2 lg:overflow-visible">
       {/* CONTENT — overlaid+centered on mobile; right column on a solid dark panel on desktop */}
-      <div className="relative z-10 flex min-h-[90vh] w-full items-center justify-center px-6 py-12 lg:min-h-0 lg:justify-end lg:bg-zinc-950 lg:px-16">
+      <div className="relative z-10 flex min-h-[90vh] w-full items-center justify-center px-6 py-12 lg:min-h-0 lg:justify-end lg:bg-zinc-950 lg:px-16 lg:shadow-[-24px_0_70px_-24px_rgba(0,0,0,0.85)]">
         <div className="max-w-xl text-center lg:max-w-2xl lg:text-right">
           <p
             className="mb-4 text-xs font-bold tracking-widest sm:text-sm"
@@ -98,16 +98,6 @@ export default function Hero() {
             />
           </div>
         ))}
-
-        {/* Soft radial gold glow behind the product — adds depth & makes it pop. */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 mix-blend-screen"
-          style={{
-            background:
-              "radial-gradient(circle at 50% 48%, rgba(200,162,76,0.28), rgba(200,162,76,0.08) 32%, transparent 62%)",
-          }}
-        />
       </div>
 
       {/* Legibility overlay — mobile only (desktop text sits on the solid panel) */}
