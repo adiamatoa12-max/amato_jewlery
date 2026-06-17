@@ -15,7 +15,7 @@ const SLIDES = [
 ];
 
 const goldButton =
-  "inline-flex w-full items-center justify-center rounded-full bg-[#c8a24c] px-12 py-4 text-sm font-bold uppercase tracking-[0.14em] text-black transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#e0bd6a] hover:shadow-[0_0_34px_-6px_rgba(200,162,76,0.65)] active:scale-95 active:shadow-[0_0_48px_-2px_rgba(200,162,76,0.95)] sm:w-auto";
+  "inline-flex w-full items-center justify-center rounded-full bg-[#c8a24c] px-12 py-4 text-sm font-bold uppercase tracking-[0.14em] text-black transition-all duration-300 ease-out hover:scale-105 hover:bg-[#e0bd6a] hover:shadow-[0_0_34px_-6px_rgba(200,162,76,0.65)] active:scale-95 active:shadow-[0_0_48px_-2px_rgba(200,162,76,0.95)] sm:w-auto";
 
 export default function Hero() {
   const [active, setActive] = useState(0);

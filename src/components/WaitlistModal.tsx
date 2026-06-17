@@ -164,7 +164,7 @@ export default function WaitlistModal() {
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className="mt-1 inline-flex w-full items-center justify-center rounded-full bg-[#c8a24c] px-8 py-3.5 text-sm font-black uppercase tracking-[0.12em] text-black transition-all duration-300 hover:bg-[#e0bd6a] active:scale-95 disabled:cursor-not-allowed disabled:opacity-60"
+                className="mt-1 inline-flex w-full items-center justify-center rounded-full bg-[#c8a24c] px-8 py-3.5 text-sm font-black uppercase tracking-[0.12em] text-black transition-all duration-300 ease-out hover:scale-105 hover:bg-[#e0bd6a] active:scale-95 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {status === "sending" ? "שולח…" : "הירשמו לעדכונים"}
               </button>

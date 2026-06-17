@@ -126,8 +126,10 @@ export default function SiteHeader({
   // never overlapping the hero imagery. Deepens its shadow slightly on scroll.
   return (
     <header
-      className={`fixed inset-x-0 top-7 z-50 bg-black text-white transition-shadow duration-500 ease-in-out ${
-        scrolled ? "shadow-lg shadow-black/30" : ""
+      className={`fixed inset-x-0 top-7 z-50 text-white backdrop-blur-md transition-all duration-500 ease-in-out ${
+        scrolled
+          ? "bg-black/90 shadow-lg shadow-black/30"
+          : "bg-black/60"
       }`}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-10">

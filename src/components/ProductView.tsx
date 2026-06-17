@@ -357,7 +357,7 @@ export default function ProductView({
           {MAGNETIC_FEATURES.map(({ icon: Icon, title, body }) => (
             <div
               key={title}
-              className="flex flex-col items-center rounded-2xl border border-white/10 bg-zinc-900 p-8 text-center transition-colors duration-300 hover:border-[#c8a24c]/50"
+              className="flex flex-col items-center rounded-2xl border border-white/10 bg-zinc-900 p-8 text-center shadow-[0_10px_30px_-12px_rgba(0,0,0,0.7)] transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[#c8a24c]/50 hover:shadow-[0_16px_44px_-16px_rgba(200,162,76,0.35)]"
             >
               <span
                 className="flex h-14 w-14 items-center justify-center rounded-full border bg-black/40"
