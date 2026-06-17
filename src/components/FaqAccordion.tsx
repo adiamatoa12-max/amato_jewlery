@@ -33,7 +33,7 @@ export default function FaqAccordion() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="bg-[#0a0a0a] px-5 py-20 sm:px-6 lg:px-10 lg:py-28">
+    <section className="bg-[#121212] px-5 py-24 sm:px-6 lg:px-10 lg:py-36">
       <div className="mx-auto max-w-3xl">
         <FadeIn>
           <p

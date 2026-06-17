@@ -98,6 +98,16 @@ export default function Hero() {
             />
           </div>
         ))}
+
+        {/* Soft radial gold glow behind the product — adds depth & makes it pop. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 mix-blend-screen"
+          style={{
+            background:
+              "radial-gradient(circle at 50% 48%, rgba(200,162,76,0.28), rgba(200,162,76,0.08) 32%, transparent 62%)",
+          }}
+        />
       </div>
 
       {/* Legibility overlay — mobile only (desktop text sits on the solid panel) */}

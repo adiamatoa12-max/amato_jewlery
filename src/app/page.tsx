@@ -80,7 +80,7 @@ const GYM_VIDEOS = [
 
 function UseCases() {
   return (
-    <section className="bg-[#0a0a0a] px-6 py-20 lg:px-10 lg:py-28">
+    <section className="bg-[#121212] px-6 py-24 lg:px-10 lg:py-36">
       <div className="mx-auto max-w-6xl">
         <FadeIn>
           <p
@@ -114,7 +114,7 @@ function UseCases() {
 /* ── Micro-conversion CTA (between the video sections) ───────────────── */
 function MicroConversion() {
   return (
-    <section className="bg-[#0a0a0a] px-5 py-12 sm:px-6 lg:px-10">
+    <section className="bg-[#0a0a0a] px-5 py-16 sm:px-6 lg:px-10">
       <FadeIn>
         <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 rounded-2xl border border-[#c8a24c]/40 bg-zinc-900 px-6 py-10 text-center sm:px-10">
           <h2 className="font-display text-2xl font-black tracking-tight text-white sm:text-3xl">
@@ -133,7 +133,7 @@ function MicroConversion() {
 /* ── Horizontal streaming ────────────────────────────────────────────── */
 function HorizontalStreaming() {
   return (
-    <section className="bg-[#0a0a0a] px-6 py-16 lg:px-10">
+    <section className="bg-[#121212] px-6 py-24 lg:px-10 lg:py-32">
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 md:grid-cols-2 lg:gap-16">
         {/* Text — right column in RTL */}
         <FadeIn>
@@ -277,7 +277,7 @@ function Anatomy() {
   return (
     <section
       id="shop"
-      className="scroll-mt-24 border-y border-white/10 bg-zinc-950 px-6 py-20 lg:px-10 lg:py-28"
+      className="scroll-mt-24 border-y border-white/10 bg-[#0a0a0a] px-6 py-24 lg:px-10 lg:py-36"
     >
       <div className="mx-auto max-w-5xl">
         <FadeIn>
@@ -357,7 +357,7 @@ const RING_OPTIONS = [
 
 function Compatibility() {
   return (
-    <section className="bg-zinc-950 px-6 py-16 lg:px-10 lg:py-24">
+    <section className="bg-[#121212] px-6 py-24 lg:px-10 lg:py-32">
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 md:grid-cols-2">
         {/* Visuals — DOM-first so it sits on the RIGHT in RTL */}
         <FadeIn>
@@ -458,7 +458,7 @@ function StarRating({ rating }: { rating: number }) {
 
 function Reviews() {
   return (
-    <section className="bg-[#0a0a0a] px-6 py-20 lg:px-10 lg:py-28">
+    <section className="bg-[#0a0a0a] px-6 py-24 lg:px-10 lg:py-36">
       <div className="mx-auto max-w-6xl">
         <FadeIn>
           <p
@@ -630,7 +630,7 @@ function CompleteGear() {
   return (
     <section
       id="accessories"
-      className="scroll-mt-24 bg-[#0a0a0a] px-6 py-20 lg:px-10 lg:py-24"
+      className="scroll-mt-24 bg-[#121212] px-6 py-24 lg:px-10 lg:py-32"
     >
       <div className="mx-auto max-w-6xl">
         <FadeIn>
@@ -708,7 +708,7 @@ const TRUST_ITEMS = [
 
 function WhatsInTheBox() {
   return (
-    <section className="border-t border-white/10 bg-zinc-950 px-6 py-10 lg:px-10">
+    <section className="border-t border-white/10 bg-[#0a0a0a] px-6 py-14 lg:px-10">
       <FadeIn>
         <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-3">
           {TRUST_ITEMS.map(({ icon: Icon, label }) => (
