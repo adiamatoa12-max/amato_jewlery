@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 
-const GOLD = "#c8a24c";
+const GOLD = "#2e9bff";
 
 interface Signup {
   name: string;
@@ -96,7 +96,7 @@ export default function AdminPanel() {
       <main className="flex min-h-screen items-center justify-center bg-[#0a0a0a] px-5">
         <form
           onSubmit={handleLogin}
-          className="w-full max-w-sm rounded-2xl border border-[#c8a24c]/30 bg-zinc-950 p-8 text-center"
+          className="w-full max-w-sm rounded-2xl border border-[#2e9bff]/30 bg-zinc-950 p-8 text-center"
         >
           <p
             className="text-[11px] font-bold uppercase tracking-[0.3em]"
@@ -115,11 +115,11 @@ export default function AdminPanel() {
             onChange={(e) => setPassword(e.target.value)}
             aria-label="סיסמה"
             placeholder="סיסמה"
-            className="mt-6 w-full rounded-full border border-white/15 bg-black px-5 py-3 text-center text-sm text-white placeholder:text-zinc-500 focus:border-[#c8a24c] focus:outline-none"
+            className="mt-6 w-full rounded-full border border-white/15 bg-black px-5 py-3 text-center text-sm text-white placeholder:text-zinc-500 focus:border-[#2e9bff] focus:outline-none"
           />
           <button
             type="submit"
-            className="mt-4 w-full rounded-full bg-[#c8a24c] px-8 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition-all duration-300 hover:bg-[#e0bd6a] active:scale-95"
+            className="mt-4 w-full rounded-full bg-[#2e9bff] px-8 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition-all duration-300 hover:bg-[#5cb3ff] active:scale-95"
           >
             כניסה
           </button>
@@ -161,7 +161,7 @@ export default function AdminPanel() {
               type="button"
               onClick={downloadCsv}
               disabled={signups.length === 0}
-              className="rounded-full bg-[#c8a24c] px-5 py-2 text-xs font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#e0bd6a] active:scale-95 disabled:cursor-not-allowed disabled:bg-zinc-700 disabled:text-zinc-500"
+              className="rounded-full bg-[#2e9bff] px-5 py-2 text-xs font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#5cb3ff] active:scale-95 disabled:cursor-not-allowed disabled:bg-zinc-700 disabled:text-zinc-500"
             >
               הורדת CSV
             </button>

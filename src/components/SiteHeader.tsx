@@ -141,7 +141,7 @@ export default function SiteHeader({
         <Link
           href="/"
           aria-label="VAULT — דף הבית"
-          className="inline-flex items-center rounded-lg border border-zinc-800 bg-black p-2 transition-all duration-500 ease-in-out hover:border-[#c8a24c]/50 hover:opacity-90"
+          className="inline-flex items-center rounded-lg border border-zinc-800 bg-black p-2 transition-all duration-500 ease-in-out hover:border-[#2e9bff]/50 hover:opacity-90"
         >
           <Image
             src="/images/vault-logo.png"
@@ -166,7 +166,7 @@ export default function SiteHeader({
             <Link
               key={l.label}
               href={l.href}
-              className="text-[13px] font-medium tracking-[0.06em] text-white/80 transition-colors duration-300 hover:text-[#c8a24c]"
+              className="text-[13px] font-medium tracking-[0.06em] text-white/80 transition-colors duration-300 hover:text-[#2e9bff]"
             >
               {l.label}
             </Link>
@@ -202,7 +202,7 @@ export default function SiteHeader({
             <span className="relative">
               <ShoppingBag className="h-5 w-5" strokeWidth={1.5} />
               {totalQuantity > 0 && (
-                <span className="absolute -end-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#c8a24c] px-1 text-[10px] font-medium leading-none text-black ring-2 ring-black">
+                <span className="absolute -end-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#2e9bff] px-1 text-[10px] font-medium leading-none text-black ring-2 ring-black">
                   {totalQuantity}
                 </span>
               )}

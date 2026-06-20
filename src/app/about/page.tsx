@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ShieldCheck, Magnet, Dumbbell } from "lucide-react";
 import FadeIn from "@/components/FadeIn";
 
-const GOLD = "#c8a24c";
+const GOLD = "#2e9bff";
 
 export const metadata: Metadata = {
   title: "הסיפור שלנו — VAULT",

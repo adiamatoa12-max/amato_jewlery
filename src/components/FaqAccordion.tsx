@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import FadeIn from "@/components/FadeIn";
 
-const GOLD = "#c8a24c";
+const GOLD = "#2e9bff";
 
 const FAQS = [
   {

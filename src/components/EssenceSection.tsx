@@ -88,7 +88,7 @@ export default function EssenceSection() {
           revealed ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
         }`}
       >
-        <p className="text-[11px] font-medium tracking-[0.5em] text-[#d4af6a]">
+        <p className="text-[11px] font-medium tracking-[0.5em] text-[#5cb3ff]">
           המהות שלנו
         </p>
         <h2 className="mt-7 font-serif text-3xl font-light leading-tight tracking-[0.04em] lg:text-5xl">

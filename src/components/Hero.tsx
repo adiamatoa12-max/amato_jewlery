@@ -6,7 +6,7 @@ import Image from "next/image";
 import { WAITLIST_MODE } from "@/lib/config";
 import WaitlistButton from "@/components/WaitlistButton";
 
-const GOLD = "#c8a24c";
+const GOLD = "#2e9bff";
 // Main product — Hebrew handle, encoded for a safe URL (route decodes it).
 const PRODUCT_URL = `/product/${encodeURIComponent("vault-השייקר-המגנטי")}`;
 const SLIDES = [
@@ -15,7 +15,7 @@ const SLIDES = [
 ];
 
 const goldButton =
-  "inline-flex w-full items-center justify-center rounded-full bg-[#c8a24c] px-12 py-4 text-sm font-bold uppercase tracking-[0.14em] text-black transition-all duration-300 ease-out hover:scale-105 hover:bg-[#e0bd6a] hover:shadow-[0_0_34px_-6px_rgba(200,162,76,0.65)] active:scale-95 active:shadow-[0_0_48px_-2px_rgba(200,162,76,0.95)] sm:w-auto";
+  "inline-flex w-full items-center justify-center rounded-full bg-[#2e9bff] px-12 py-4 text-sm font-bold uppercase tracking-[0.14em] text-black transition-all duration-300 ease-out hover:scale-105 hover:bg-[#5cb3ff] hover:shadow-[0_0_34px_-6px_rgba(46,155,255,0.65)] active:scale-95 active:shadow-[0_0_48px_-2px_rgba(46,155,255,0.95)] sm:w-auto";
 
 export default function Hero() {
   const [active, setActive] = useState(0);
@@ -40,7 +40,7 @@ export default function Hero() {
           aria-label={`מעבר לתמונה ${i + 1}`}
           aria-current={i === active}
           className={`h-2 rounded-full transition-all duration-500 ease-in-out ${
-            i === active ? "w-6 bg-[#c8a24c]" : "w-2 bg-white/40 hover:bg-white/70"
+            i === active ? "w-6 bg-[#2e9bff]" : "w-2 bg-white/40 hover:bg-white/70"
           }`}
         />
       ))}

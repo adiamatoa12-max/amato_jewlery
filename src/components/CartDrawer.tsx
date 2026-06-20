@@ -12,7 +12,7 @@ import MediaPlaceholder, {
   isMissingLocalMedia,
 } from "@/components/MediaPlaceholder";
 
-const GOLD = "#c8a24c";
+const GOLD = "#2e9bff";
 
 export default function CartDrawer() {
   const {
@@ -169,7 +169,7 @@ export default function CartDrawer() {
             type="button"
             onClick={closeCart}
             aria-label="סגירה"
-            className="transition-all duration-300 ease-in-out hover:text-[#c8a24c]"
+            className="transition-all duration-300 ease-in-out hover:text-[#2e9bff]"
           >
             <X className="h-5 w-5" strokeWidth={1.5} />
           </button>
@@ -183,7 +183,7 @@ export default function CartDrawer() {
             <button
               type="button"
               onClick={closeCart}
-              className="text-xs tracking-[0.1em] text-[#c8a24c] underline-offset-4 transition-all duration-300 ease-in-out hover:underline"
+              className="text-xs tracking-[0.1em] text-[#2e9bff] underline-offset-4 transition-all duration-300 ease-in-out hover:underline"
             >
               המשך לקנות
             </button>
@@ -316,7 +316,7 @@ export default function CartDrawer() {
                         </span>
                         <WaitlistButton
                           label="הירשמו"
-                          className="mt-2 flex items-center justify-center rounded-full border border-[#c8a24c]/50 py-1.5 text-xs font-bold text-[#c8a24c] transition-all duration-300 hover:bg-[#c8a24c] hover:text-black"
+                          className="mt-2 flex items-center justify-center rounded-full border border-[#2e9bff]/50 py-1.5 text-xs font-bold text-[#2e9bff] transition-all duration-300 hover:bg-[#2e9bff] hover:text-black"
                         />
                       </>
                     ) : (
@@ -331,7 +331,7 @@ export default function CartDrawer() {
                           type="button"
                           onClick={() => addItem(a)}
                           aria-label={`הוספת ${a.title}`}
-                          className="mt-2 flex items-center justify-center gap-1 rounded-full border border-[#c8a24c]/50 py-1.5 text-xs font-bold text-[#c8a24c] transition-all duration-300 hover:bg-[#c8a24c] hover:text-black"
+                          className="mt-2 flex items-center justify-center gap-1 rounded-full border border-[#2e9bff]/50 py-1.5 text-xs font-bold text-[#2e9bff] transition-all duration-300 hover:bg-[#2e9bff] hover:text-black"
                         >
                           <Plus className="h-3.5 w-3.5" strokeWidth={2.5} />
                           הוסף
@@ -375,7 +375,7 @@ export default function CartDrawer() {
               type="button"
               onClick={handleCheckout}
               disabled={checkingOut}
-              className="mt-6 flex w-full items-center justify-center rounded-full bg-[#c8a24c] px-8 py-4 text-sm font-black uppercase tracking-[0.1em] text-black shadow-[0_0_30px_-6px_rgba(200,162,76,0.7)] transition-all duration-300 ease-in-out hover:bg-[#e0bd6a] active:scale-95 disabled:cursor-not-allowed disabled:bg-zinc-700 disabled:text-zinc-400 disabled:shadow-none"
+              className="mt-6 flex w-full items-center justify-center rounded-full bg-[#2e9bff] px-8 py-4 text-sm font-black uppercase tracking-[0.1em] text-black shadow-[0_0_30px_-6px_rgba(46,155,255,0.7)] transition-all duration-300 ease-in-out hover:bg-[#5cb3ff] active:scale-95 disabled:cursor-not-allowed disabled:bg-zinc-700 disabled:text-zinc-400 disabled:shadow-none"
             >
               {checkingOut ? "מעבירים לקופה…" : "למעבר לקופה"}
             </button>

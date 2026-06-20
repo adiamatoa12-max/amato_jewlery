@@ -22,7 +22,7 @@ import MediaPlaceholder, {
   isMissingLocalMedia,
 } from "@/components/MediaPlaceholder";
 
-const GOLD = "#c8a24c";
+const GOLD = "#2e9bff";
 
 interface GalleryMedia {
   media_type: string;
@@ -129,7 +129,7 @@ export default function ProductView({
           </h1>
 
           {/* Electric mixer feature highlight */}
-          <div className="mt-5 flex items-start gap-2.5 rounded-xl border border-[#c8a24c]/30 bg-[#c8a24c]/[0.06] px-4 py-3">
+          <div className="mt-5 flex items-start gap-2.5 rounded-xl border border-[#2e9bff]/30 bg-[#2e9bff]/[0.06] px-4 py-3">
             <Zap
               className="mt-0.5 h-5 w-5 shrink-0"
               style={{ color: GOLD }}
@@ -227,7 +227,7 @@ export default function ProductView({
                       aria-pressed={checked}
                       className={`flex w-full items-center gap-3 rounded-xl border bg-zinc-900/60 p-2.5 text-right transition-all duration-200 ${
                         checked
-                          ? "border-[#c8a24c]/70"
+                          ? "border-[#2e9bff]/70"
                           : "border-white/10 hover:border-white/25"
                       }`}
                     >
@@ -235,7 +235,7 @@ export default function ProductView({
                       <span
                         className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md border transition-all duration-200 ${
                           checked
-                            ? "border-[#c8a24c] bg-[#c8a24c]"
+                            ? "border-[#2e9bff] bg-[#2e9bff]"
                             : "border-white/30"
                         }`}
                       >
@@ -277,13 +277,13 @@ export default function ProductView({
 
           {/* CTA — Add to Cart, or "get notified" in waitlist mode */}
           {WAITLIST_MODE ? (
-            <WaitlistButton className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#c8a24c] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(200,162,76,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#e0bd6a] hover:shadow-[0_0_46px_-4px_rgba(200,162,76,0.95)] active:scale-95" />
+            <WaitlistButton className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#2e9bff] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(46,155,255,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#5cb3ff] hover:shadow-[0_0_46px_-4px_rgba(46,155,255,0.95)] active:scale-95" />
           ) : (
             <button
               type="button"
               disabled={soldOut}
               onClick={addToCart}
-              className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#c8a24c] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(200,162,76,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#e0bd6a] hover:shadow-[0_0_46px_-4px_rgba(200,162,76,0.95)] active:scale-95 disabled:cursor-not-allowed disabled:bg-zinc-700 disabled:text-zinc-400 disabled:shadow-none"
+              className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#2e9bff] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(46,155,255,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#5cb3ff] hover:shadow-[0_0_46px_-4px_rgba(46,155,255,0.95)] active:scale-95 disabled:cursor-not-allowed disabled:bg-zinc-700 disabled:text-zinc-400 disabled:shadow-none"
             >
               {soldOut
                 ? "אזל מהמלאי"
@@ -343,7 +343,7 @@ export default function ProductView({
                   aria-current={i === activeImg}
                   className={`relative aspect-square overflow-hidden rounded-lg border bg-zinc-900 transition-all duration-300 ${
                     i === activeImg
-                      ? "border-[#c8a24c]"
+                      ? "border-[#2e9bff]"
                       : "border-white/10 opacity-60 hover:opacity-100"
                   }`}
                 >
@@ -376,7 +376,7 @@ export default function ProductView({
           {MAGNETIC_FEATURES.map(({ icon: Icon, title, body }) => (
             <div
               key={title}
-              className="flex flex-col items-center rounded-2xl border border-white/10 bg-zinc-900 p-8 text-center shadow-[0_10px_30px_-12px_rgba(0,0,0,0.7)] transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[#c8a24c]/50 hover:shadow-[0_16px_44px_-16px_rgba(200,162,76,0.35)]"
+              className="flex flex-col items-center rounded-2xl border border-white/10 bg-zinc-900 p-8 text-center shadow-[0_10px_30px_-12px_rgba(0,0,0,0.7)] transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[#2e9bff]/50 hover:shadow-[0_16px_44px_-16px_rgba(46,155,255,0.35)]"
             >
               <span
                 className="flex h-14 w-14 items-center justify-center rounded-full border bg-black/40"
@@ -414,13 +414,13 @@ export default function ProductView({
           )}
         </div>
         {WAITLIST_MODE ? (
-          <WaitlistButton className="flex flex-1 items-center justify-center rounded-full bg-[#c8a24c] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#e0bd6a] active:scale-95" />
+          <WaitlistButton className="flex flex-1 items-center justify-center rounded-full bg-[#2e9bff] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#5cb3ff] active:scale-95" />
         ) : (
           <button
             type="button"
             disabled={soldOut}
             onClick={addToCart}
-            className="flex flex-1 items-center justify-center rounded-full bg-[#c8a24c] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#e0bd6a] active:scale-95 disabled:bg-zinc-700 disabled:text-zinc-400"
+            className="flex flex-1 items-center justify-center rounded-full bg-[#2e9bff] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#5cb3ff] active:scale-95 disabled:bg-zinc-700 disabled:text-zinc-400"
           >
             {soldOut ? "אזל מהמלאי" : "הוספה לסל"}
           </button>
@@ -452,7 +452,7 @@ function BundleOption({
       aria-pressed={selected}
       className={`relative flex flex-col items-start gap-1 rounded-2xl border bg-zinc-900 p-4 text-right transition-all duration-300 ${
         selected
-          ? "border-[#c8a24c] shadow-[0_0_24px_-8px_rgba(200,162,76,0.7)]"
+          ? "border-[#2e9bff] shadow-[0_0_24px_-8px_rgba(46,155,255,0.7)]"
           : "border-white/10 hover:border-white/30"
       }`}
     >
@@ -468,7 +468,7 @@ function BundleOption({
         <span className="text-sm font-bold text-white">{title}</span>
         <span
           className={`flex h-4 w-4 items-center justify-center rounded-full border ${
-            selected ? "border-[#c8a24c] bg-[#c8a24c]" : "border-white/30"
+            selected ? "border-[#2e9bff] bg-[#2e9bff]" : "border-white/30"
           }`}
         >
           {selected && <Check className="h-3 w-3 text-black" strokeWidth={3} />}
