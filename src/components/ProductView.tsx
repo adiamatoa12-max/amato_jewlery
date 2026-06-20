@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import { useCart, formatPrice, type AddToCartInput } from "@/lib/cart/CartContext";
 import { ACCESSORIES } from "@/lib/accessories";
-import { WAITLIST_MODE } from "@/lib/config";
+import { WAITLIST_MODE, EXTRAS_AVAILABLE } from "@/lib/config";
 import WaitlistButton from "@/components/WaitlistButton";
 import MediaPlaceholder, {
   isMissingLocalMedia,
@@ -92,7 +92,10 @@ export default function ProductView({
   const addToCart = () => {
     addItem(product);
     if (bundle) addItem(product);
-    ACCESSORIES.filter((a) => addOns[a.handle]).forEach((a) => addItem(a));
+    // Accessory add-ons are disabled while extras are out of stock.
+    if (EXTRAS_AVAILABLE) {
+      ACCESSORIES.filter((a) => addOns[a.handle]).forEach((a) => addItem(a));
+    }
   };
 
   // Strictly images: IMAGE media only, drop deleted-local paths, de-dupe.
@@ -193,7 +196,8 @@ export default function ProductView({
             />
           </div>
 
-          {/* In-buy-box accessory upsell — minimalist checklist */}
+          {/* In-buy-box accessory upsell — hidden while extras are out of stock */}
+          {EXTRAS_AVAILABLE && (
           <div className="mt-6">
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-500">
               השלימו את הסט
@@ -253,6 +257,7 @@ export default function ProductView({
               })}
             </ul>
           </div>
+          )}
           </>
           )}
 
