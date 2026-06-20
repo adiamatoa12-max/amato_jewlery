@@ -128,6 +128,18 @@ export default function ProductView({
             {product.title}
           </h1>
 
+          {/* Founder's Edition — exclusive prototype run */}
+          <p
+            dir="ltr"
+            className="mt-3 flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.22em]"
+          >
+            <span style={{ color: "#C8A24C" }}>Founder&apos;s Edition</span>
+            <span className="text-zinc-600" aria-hidden>
+              |
+            </span>
+            <span className="text-zinc-300">Limited to 5 Units</span>
+          </p>
+
           {/* Electric mixer feature highlight */}
           <div className="mt-5 flex items-start gap-2.5 rounded-xl border border-[#A7C7E7]/30 bg-[#A7C7E7]/[0.06] px-4 py-3">
             <Zap

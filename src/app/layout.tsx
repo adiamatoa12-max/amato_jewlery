@@ -82,7 +82,7 @@ export default async function RootLayout({
       dir="rtl"
       className={`${assistant.variable} ${frankRuhl.variable} ${montserrat.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-stone-50 text-neutral-900">
+      <body className="min-h-full bg-[#111111] text-zinc-100">
         <AnalyticsNoscript />
         {/* Skip link — first focusable element for keyboard/SR users */}
         <a

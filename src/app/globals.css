@@ -34,8 +34,8 @@ html.a11y-contrast iframe {
 }
 
 body {
-  background: #fafaf9; /* stone-50 */
-  color: #262626; /* charcoal text for high-contrast, premium feel */
+  background: #111111; /* charcoal — premium dark theme across all pages */
+  color: #f4f4f5; /* soft off-white (zinc-100) — avoids halation */
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
   line-height: 1.6; /* elegant, airy line-height */
   -webkit-font-smoothing: antialiased;
