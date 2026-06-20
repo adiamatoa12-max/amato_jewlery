@@ -12,6 +12,7 @@ import {
   Smartphone,
   ChevronDown,
   Check,
+  Zap,
 } from "lucide-react";
 import { useCart, formatPrice, type AddToCartInput } from "@/lib/cart/CartContext";
 import { ACCESSORIES } from "@/lib/accessories";
@@ -126,6 +127,19 @@ export default function ProductView({
           <h1 className="mt-4 font-display text-4xl font-black leading-tight tracking-tight text-white lg:text-5xl">
             {product.title}
           </h1>
+
+          {/* Electric mixer feature highlight */}
+          <div className="mt-5 flex items-start gap-2.5 rounded-xl border border-[#c8a24c]/30 bg-[#c8a24c]/[0.06] px-4 py-3">
+            <Zap
+              className="mt-0.5 h-5 w-5 shrink-0"
+              style={{ color: GOLD }}
+              strokeWidth={2}
+            />
+            <p className="text-sm leading-relaxed text-zinc-200">
+              <span className="font-bold text-white">מיקסר חשמלי מובנה</span> —
+              ערבוב בלחיצת כפתור לשייק חלק ומושלם בכל פעם, בלי גושים.
+            </p>
+          </div>
 
           {WAITLIST_MODE ? (
             /* Pre-launch: no price — invite the visitor to the waitlist. */
