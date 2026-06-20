@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ProductView from "@/components/ProductView";
 import CustomerReviews from "@/components/CustomerReviews";
@@ -6,6 +7,40 @@ import { getAllHandles, getProduct } from "@/lib/catalog";
 // ISR: refresh live product data every 60s. dynamicParams (default true) lets
 // products added after the last build render on first request.
 export const revalidate = 60;
+
+// Per-product SEO: meta title/description + Open Graph & Twitter cards.
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ handle: string }>;
+}): Promise<Metadata> {
+  const { handle } = await params;
+  const product = await getProduct(decodeURIComponent(handle));
+  if (!product) return { title: "מוצר לא נמצא — VAULT" };
+
+  const title = /vault/i.test(product.title)
+    ? product.title
+    : `${product.title} — VAULT`;
+  const description =
+    product.description?.replace(/\s+/g, " ").trim().slice(0, 160) ||
+    "שייקר VAULT המגנטי — ביצועים גבוהים, מעמד טלפון מובנה ואטימה מושלמת.";
+  const images = product.image ? [product.image] : undefined;
+
+  return {
+    title,
+    description,
+    alternates: { canonical: `/product/${encodeURIComponent(product.handle)}` },
+    openGraph: {
+      type: "website",
+      locale: "he_IL",
+      siteName: "VAULT",
+      title,
+      description,
+      images,
+    },
+    twitter: { card: "summary_large_image", title, description, images },
+  };
+}
 
 export async function generateStaticParams() {
   const handles = await getAllHandles();

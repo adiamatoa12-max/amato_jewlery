@@ -8,6 +8,7 @@ import {
   useMemo,
   useState,
 } from "react";
+import { trackAddToCart } from "@/lib/analytics";
 
 export interface CartItem {
   handle: string;
@@ -82,6 +83,12 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       return [...prev, { ...product, quantity: 1 }];
     });
     setIsOpen(true);
+    trackAddToCart({
+      content_name: product.title,
+      content_ids: [product.handle],
+      value: product.price,
+      currency: product.currency,
+    });
   }, []);
 
   const removeItem = useCallback((handle: string) => {

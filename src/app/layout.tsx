@@ -8,6 +8,7 @@ import InfoDrawer from "@/components/InfoDrawer";
 import { WaitlistProvider } from "@/lib/waitlist/WaitlistContext";
 import WaitlistModal from "@/components/WaitlistModal";
 import { WAITLIST_MODE } from "@/lib/config";
+import Analytics, { AnalyticsNoscript } from "@/components/Analytics";
 import SiteHeader from "@/components/SiteHeader";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -82,6 +83,7 @@ export default async function RootLayout({
       className={`${assistant.variable} ${frankRuhl.variable} ${montserrat.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-stone-50 text-neutral-900">
+        <AnalyticsNoscript />
         {/* Skip link — first focusable element for keyboard/SR users */}
         <a
           href="#main-content"
@@ -103,6 +105,7 @@ export default async function RootLayout({
             </WaitlistProvider>
           </InfoProvider>
         </CartProvider>
+        <Analytics />
       </body>
     </html>
   );

@@ -7,6 +7,7 @@ import { useCart, formatPrice } from "@/lib/cart/CartContext";
 import { ACCESSORIES } from "@/lib/accessories";
 import { WAITLIST_MODE } from "@/lib/config";
 import WaitlistButton from "@/components/WaitlistButton";
+import { trackInitiateCheckout } from "@/lib/analytics";
 import MediaPlaceholder, {
   isMissingLocalMedia,
 } from "@/components/MediaPlaceholder";
@@ -87,6 +88,11 @@ export default function CartDrawer() {
   async function handleCheckout() {
     setCheckingOut(true);
     setCheckoutError(null);
+    trackInitiateCheckout({
+      value: totalPrice,
+      currency,
+      num_items: totalQuantity,
+    });
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",
