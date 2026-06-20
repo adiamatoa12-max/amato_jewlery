@@ -84,11 +84,11 @@ export default function EssenceSection() {
 
       {/* Centered text block */}
       <div
-        className={`relative z-10 flex max-w-2xl flex-col items-center px-6 text-center text-white transition-all duration-[1200ms] ease-out ${
+        className={`relative z-10 flex max-w-2xl flex-col items-center px-6 text-center text-zinc-100 transition-all duration-[1200ms] ease-out ${
           revealed ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
         }`}
       >
-        <p className="text-[11px] font-medium tracking-[0.5em] text-[#5cb3ff]">
+        <p className="text-[11px] font-medium tracking-[0.5em] text-[#C2DCF0]">
           המהות שלנו
         </p>
         <h2 className="mt-7 font-serif text-3xl font-light leading-tight tracking-[0.04em] lg:text-5xl">

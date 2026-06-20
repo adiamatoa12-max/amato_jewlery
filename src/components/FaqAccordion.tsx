@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import FadeIn from "@/components/FadeIn";
 
-const GOLD = "#2e9bff";
+const GOLD = "#A7C7E7";
 
 const FAQS = [
   {
@@ -33,7 +33,7 @@ export default function FaqAccordion() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="bg-[#121212] px-5 py-24 sm:px-6 lg:px-10 lg:py-36">
+    <section className="bg-[#18181b] px-5 py-24 sm:px-6 lg:px-10 lg:py-36">
       <div className="mx-auto max-w-3xl">
         <FadeIn>
           <p
@@ -42,7 +42,7 @@ export default function FaqAccordion() {
           >
             FAQ
           </p>
-          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-white lg:text-4xl">
+          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-100 lg:text-4xl">
             שאלות נפוצות
           </h2>
         </FadeIn>
@@ -60,7 +60,7 @@ export default function FaqAccordion() {
                 >
                   <span
                     className={`font-display text-base font-bold tracking-tight transition-colors duration-200 lg:text-lg ${
-                      isOpen ? "" : "text-white"
+                      isOpen ? "" : "text-zinc-100"
                     }`}
                     style={isOpen ? { color: GOLD } : undefined}
                   >

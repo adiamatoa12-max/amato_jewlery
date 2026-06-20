@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ShieldCheck, Magnet, Dumbbell } from "lucide-react";
 import FadeIn from "@/components/FadeIn";
 
-const GOLD = "#2e9bff";
+const GOLD = "#A7C7E7";
 
 export const metadata: Metadata = {
   title: "הסיפור שלנו — VAULT",
@@ -31,7 +31,7 @@ const PILLARS = [
 
 export default function AboutPage() {
   return (
-    <div className="flex min-h-full flex-col bg-[#0a0a0a] text-white">
+    <div className="flex min-h-full flex-col bg-[#111111] text-zinc-100">
       <main id="main-content" className="flex-1">
         {/* Hero */}
         <section className="relative h-[60vh] min-h-[420px] w-full overflow-hidden">
@@ -60,7 +60,7 @@ export default function AboutPage() {
         {/* Section 1 — Our Story */}
         <section className="mx-auto max-w-3xl px-5 py-20 text-center sm:px-6 lg:py-28">
           <FadeIn>
-            <h2 className="font-display text-3xl font-black tracking-tight text-white lg:text-4xl">
+            <h2 className="font-display text-3xl font-black tracking-tight text-zinc-100 lg:text-4xl">
               נולדנו בחדר הכושר
             </h2>
           </FadeIn>
@@ -79,7 +79,7 @@ export default function AboutPage() {
         <section className="border-y border-white/10 bg-zinc-950">
           <div className="mx-auto max-w-6xl px-5 py-20 sm:px-6 lg:px-10 lg:py-28">
             <FadeIn>
-              <h2 className="text-center font-display text-3xl font-black tracking-tight text-white lg:text-4xl">
+              <h2 className="text-center font-display text-3xl font-black tracking-tight text-zinc-100 lg:text-4xl">
                 למה VAULT?
               </h2>
             </FadeIn>
@@ -93,7 +93,7 @@ export default function AboutPage() {
                     >
                       <Icon className="h-6 w-6" strokeWidth={1.75} />
                     </span>
-                    <h3 className="mt-6 font-display text-xl font-extrabold tracking-tight text-white">
+                    <h3 className="mt-6 font-display text-xl font-extrabold tracking-tight text-zinc-100">
                       {title}
                     </h3>
                     <p className="mt-4 max-w-xs text-sm leading-relaxed text-zinc-400">
@@ -131,7 +131,7 @@ export default function AboutPage() {
                 >
                   הנדסה מדויקת
                 </p>
-                <h2 className="mt-5 font-display text-3xl font-black leading-tight tracking-tight text-white lg:text-4xl">
+                <h2 className="mt-5 font-display text-3xl font-black leading-tight tracking-tight text-zinc-100 lg:text-4xl">
                   כל פרט נבנה לביצועים.
                 </h2>
                 <p className="mx-auto mt-7 max-w-md text-base leading-loose text-zinc-400 lg:mx-0">
@@ -155,7 +155,7 @@ export default function AboutPage() {
             </p>
           </FadeIn>
           <FadeIn delay={120}>
-            <p className="mx-auto mt-8 max-w-2xl font-display text-2xl font-black leading-relaxed text-white lg:text-3xl">
+            <p className="mx-auto mt-8 max-w-2xl font-display text-2xl font-black leading-relaxed text-zinc-100 lg:text-3xl">
               להפוך כל אימון לחכם, חזק ונקי יותר — עם ציוד שתוכנן בלי פשרות,
               לאנשים שלא מתפשרים.
             </p>

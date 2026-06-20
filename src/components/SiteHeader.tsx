@@ -126,7 +126,7 @@ export default function SiteHeader({
   // never overlapping the hero imagery. Deepens its shadow slightly on scroll.
   return (
     <header
-      className={`fixed inset-x-0 top-7 z-50 text-white backdrop-blur-md transition-all duration-500 ease-in-out ${
+      className={`fixed inset-x-0 top-7 z-50 text-zinc-100 backdrop-blur-md transition-all duration-500 ease-in-out ${
         scrolled
           ? "bg-black/90 shadow-lg shadow-black/30"
           : "bg-black/60"
@@ -141,7 +141,7 @@ export default function SiteHeader({
         <Link
           href="/"
           aria-label="VAULT — דף הבית"
-          className="inline-flex items-center rounded-lg border border-zinc-800 bg-black p-2 transition-all duration-500 ease-in-out hover:border-[#2e9bff]/50 hover:opacity-90"
+          className="inline-flex items-center rounded-lg border border-zinc-800 bg-[#111111] p-2 transition-all duration-500 ease-in-out hover:border-[#A7C7E7]/50 hover:opacity-90"
         >
           <Image
             src="/images/vault-logo.png"
@@ -166,7 +166,7 @@ export default function SiteHeader({
             <Link
               key={l.label}
               href={l.href}
-              className="text-[13px] font-medium tracking-[0.06em] text-white/80 transition-colors duration-300 hover:text-[#2e9bff]"
+              className="text-[13px] font-medium tracking-[0.06em] text-white/80 transition-colors duration-300 hover:text-[#A7C7E7]"
             >
               {l.label}
             </Link>
@@ -202,7 +202,7 @@ export default function SiteHeader({
             <span className="relative">
               <ShoppingBag className="h-5 w-5" strokeWidth={1.5} />
               {totalQuantity > 0 && (
-                <span className="absolute -end-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#2e9bff] px-1 text-[10px] font-medium leading-none text-black ring-2 ring-black">
+                <span className="absolute -end-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#A7C7E7] px-1 text-[10px] font-medium leading-none text-black ring-2 ring-black">
                   {totalQuantity}
                 </span>
               )}
@@ -245,7 +245,7 @@ export default function SiteHeader({
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="חיפוש מוצרים…"
-              className="w-full bg-transparent text-lg font-light tracking-[0.04em] text-white placeholder:text-white/40 focus:outline-none"
+              className="w-full bg-transparent text-lg font-light tracking-[0.04em] text-zinc-100 placeholder:text-white/40 focus:outline-none"
             />
           </form>
 
@@ -276,7 +276,7 @@ export default function SiteHeader({
                             />
                           )}
                         </span>
-                        <span className="flex-1 text-sm font-light tracking-[0.04em] text-white">
+                        <span className="flex-1 text-sm font-light tracking-[0.04em] text-zinc-100">
                           {p.title}
                         </span>
                         <span className="text-sm tabular-nums text-white/60">
@@ -315,7 +315,7 @@ export default function SiteHeader({
               : "-translate-y-3 opacity-0"
           }`}
         >
-          <div className="px-6 py-4 text-white">
+          <div className="px-6 py-4 text-zinc-100">
             {groups.map((group) => {
               const isOpen = expanded === group.label;
               return (
@@ -351,7 +351,7 @@ export default function SiteHeader({
                           <Link
                             key={link.label}
                             href={link.href}
-                            className="py-3 pr-4 text-sm text-white/70 transition-colors duration-300 hover:text-white"
+                            className="py-3 pr-4 text-sm text-white/70 transition-colors duration-300 hover:text-zinc-100"
                           >
                             {link.label}
                           </Link>
@@ -364,7 +364,7 @@ export default function SiteHeader({
             })}
             <Link
               href="/about"
-              className="block py-5 text-sm tracking-[0.08em] text-white"
+              className="block py-5 text-sm tracking-[0.08em] text-zinc-100"
             >
               אודות
             </Link>

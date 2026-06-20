@@ -23,7 +23,7 @@ export default function AddToCartButton({
         type="button"
         disabled={soldOut}
         onClick={() => addItem(product)}
-        className="mt-10 flex w-full items-center justify-center rounded-full bg-neutral-900 px-8 py-4 text-sm font-medium tracking-[0.1em] text-white transition-all duration-500 ease-in-out hover:bg-neutral-700 disabled:cursor-not-allowed disabled:bg-neutral-400 sm:max-w-sm"
+        className="mt-10 flex w-full items-center justify-center rounded-full bg-neutral-900 px-8 py-4 text-sm font-medium tracking-[0.1em] text-zinc-100 transition-all duration-500 ease-in-out hover:bg-neutral-700 disabled:cursor-not-allowed disabled:bg-neutral-400 sm:max-w-sm"
       >
         {soldOut ? "אזל מהמלאי" : "הוסף לעגלה"}
       </button>
@@ -35,7 +35,7 @@ export default function AddToCartButton({
       type="button"
       disabled={soldOut}
       onClick={() => addItem(product)}
-      className="flex w-full items-center justify-center gap-1.5 rounded-full bg-neutral-900 px-5 py-3 text-xs font-medium tracking-[0.08em] text-white transition-all duration-500 ease-in-out hover:bg-neutral-700 disabled:cursor-not-allowed disabled:bg-neutral-400"
+      className="flex w-full items-center justify-center gap-1.5 rounded-full bg-neutral-900 px-5 py-3 text-xs font-medium tracking-[0.08em] text-zinc-100 transition-all duration-500 ease-in-out hover:bg-neutral-700 disabled:cursor-not-allowed disabled:bg-neutral-400"
     >
       {soldOut ? "עדכנו אותי" : "הוספה לסל"}
       {soldOut ? (

@@ -6,7 +6,7 @@ import Image from "next/image";
 import { WAITLIST_MODE } from "@/lib/config";
 import WaitlistButton from "@/components/WaitlistButton";
 
-const GOLD = "#2e9bff";
+const GOLD = "#A7C7E7";
 // Main product — Hebrew handle, encoded for a safe URL (route decodes it).
 const PRODUCT_URL = `/product/${encodeURIComponent("vault-השייקר-המגנטי")}`;
 const SLIDES = [
@@ -15,7 +15,7 @@ const SLIDES = [
 ];
 
 const goldButton =
-  "inline-flex w-full items-center justify-center rounded-full bg-[#2e9bff] px-12 py-4 text-sm font-bold uppercase tracking-[0.14em] text-black transition-all duration-300 ease-out hover:scale-105 hover:bg-[#5cb3ff] hover:shadow-[0_0_34px_-6px_rgba(46,155,255,0.65)] active:scale-95 active:shadow-[0_0_48px_-2px_rgba(46,155,255,0.95)] sm:w-auto";
+  "inline-flex w-full items-center justify-center rounded-full bg-[#A7C7E7] px-12 py-4 text-sm font-bold uppercase tracking-[0.14em] text-black transition-all duration-300 ease-out hover:scale-105 hover:bg-[#C2DCF0] hover:shadow-[0_0_34px_-6px_rgba(167, 199, 231,0.65)] active:scale-95 active:shadow-[0_0_48px_-2px_rgba(167, 199, 231,0.95)] sm:w-auto";
 
 export default function Hero() {
   const [active, setActive] = useState(0);
@@ -40,7 +40,7 @@ export default function Hero() {
           aria-label={`מעבר לתמונה ${i + 1}`}
           aria-current={i === active}
           className={`h-2 rounded-full transition-all duration-500 ease-in-out ${
-            i === active ? "w-6 bg-[#2e9bff]" : "w-2 bg-white/40 hover:bg-white/70"
+            i === active ? "w-6 bg-[#A7C7E7]" : "w-2 bg-white/40 hover:bg-white/70"
           }`}
         />
       ))}
@@ -48,7 +48,7 @@ export default function Hero() {
   );
 
   return (
-    <section className="relative flex min-h-[90vh] w-full overflow-hidden bg-black lg:grid lg:grid-cols-2 lg:overflow-visible">
+    <section className="relative flex min-h-[90vh] w-full overflow-hidden bg-[#111111] lg:grid lg:grid-cols-2 lg:overflow-visible">
       {/* CONTENT — overlaid+centered on mobile; right column on a solid dark panel on desktop */}
       <div className="relative z-10 flex min-h-[90vh] w-full items-center justify-center px-6 py-12 lg:min-h-0 lg:justify-end lg:bg-zinc-950 lg:px-16 lg:shadow-[-24px_0_70px_-24px_rgba(0,0,0,0.85)]">
         <div className="max-w-xl text-center lg:max-w-2xl lg:text-right">
@@ -58,7 +58,7 @@ export default function Hero() {
           >
             פיתוח מתקדם. איכות ללא פשרות. מחיר ללא תחרות.
           </p>
-          <h1 className="mb-6 font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl md:text-5xl lg:text-5xl">
+          <h1 className="mb-6 font-display text-3xl font-extrabold leading-tight text-zinc-100 sm:text-4xl md:text-5xl lg:text-5xl">
             <span style={{ color: GOLD }}>VAULT</span>: השייקר המגנטי הראשון
             בעולם שמשחרר לך את הידיים לצלם את האימון.
           </h1>
@@ -79,7 +79,7 @@ export default function Hero() {
       </div>
 
       {/* VISUAL — full-bleed background on mobile; left column slider on desktop */}
-      <div className="absolute inset-0 lg:relative lg:inset-auto lg:h-auto lg:bg-black">
+      <div className="absolute inset-0 lg:relative lg:inset-auto lg:h-auto lg:bg-[#111111]">
         {SLIDES.map((slide, i) => (
           <div
             key={slide.src}

@@ -51,7 +51,7 @@ function FeedCard({ item }: { item: VideoFeedItem }) {
 
       {/* Semi-transparent gradient + product info overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/5 to-transparent transition-opacity duration-500 group-hover:from-black/65" />
-      <div className="absolute inset-x-0 bottom-0 flex flex-col items-center gap-1 px-4 pb-5 text-center text-white">
+      <div className="absolute inset-x-0 bottom-0 flex flex-col items-center gap-1 px-4 pb-5 text-center text-zinc-100">
         <span className="text-sm font-light tracking-[0.06em]">
           {item.title}
         </span>
@@ -71,7 +71,7 @@ export default function ShoppableVideoFeed({
   if (items.length === 0) return null;
   return (
     <section className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-24">
-      <p className="text-center text-xs tracking-[0.3em] text-[#1f6fd0]">
+      <p className="text-center text-xs tracking-[0.3em] text-[#81A1C1]">
         בפעולה
       </p>
       <h2 className="mt-4 text-center font-display text-2xl font-bold tracking-[0.2em] text-neutral-900 lg:text-3xl">

@@ -86,7 +86,7 @@ export default function ProductCard({ product }: { product: MockProduct }) {
             type="button"
             onClick={quickAdd}
             aria-label={`הוספה מהירה — ${product.title}`}
-            className="absolute start-3 top-3 z-20 flex h-7 w-7 items-center justify-center rounded-full bg-white/90 text-neutral-700 backdrop-blur hover:bg-neutral-900 hover:text-white"
+            className="absolute start-3 top-3 z-20 flex h-7 w-7 items-center justify-center rounded-full bg-white/90 text-neutral-700 backdrop-blur hover:bg-neutral-900 hover:text-zinc-100"
           >
             {added ? (
               <Check className="h-3.5 w-3.5" strokeWidth={1.75} />

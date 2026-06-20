@@ -22,7 +22,7 @@ import MediaPlaceholder, {
   isMissingLocalMedia,
 } from "@/components/MediaPlaceholder";
 
-const GOLD = "#2e9bff";
+const GOLD = "#A7C7E7";
 
 interface GalleryMedia {
   media_type: string;
@@ -124,19 +124,19 @@ export default function ProductView({
             {collectionTitle}
           </Link>
 
-          <h1 className="mt-4 font-display text-4xl font-black leading-tight tracking-tight text-white lg:text-5xl">
+          <h1 className="mt-4 font-display text-4xl font-black leading-tight tracking-tight text-zinc-100 lg:text-5xl">
             {product.title}
           </h1>
 
           {/* Electric mixer feature highlight */}
-          <div className="mt-5 flex items-start gap-2.5 rounded-xl border border-[#2e9bff]/30 bg-[#2e9bff]/[0.06] px-4 py-3">
+          <div className="mt-5 flex items-start gap-2.5 rounded-xl border border-[#A7C7E7]/30 bg-[#A7C7E7]/[0.06] px-4 py-3">
             <Zap
               className="mt-0.5 h-5 w-5 shrink-0"
               style={{ color: GOLD }}
               strokeWidth={2}
             />
             <p className="text-sm leading-relaxed text-zinc-200">
-              <span className="font-bold text-white">מיקסר חשמלי מובנה</span> —
+              <span className="font-bold text-zinc-100">מיקסר חשמלי מובנה</span> —
               ערבוב בלחיצת כפתור לשייק חלק ומושלם בכל פעם, בלי גושים.
             </p>
           </div>
@@ -152,7 +152,7 @@ export default function ProductView({
           ) : (
             <>
               <div className="mt-5 flex items-end gap-3">
-                <p className="font-display text-3xl font-extrabold tabular-nums text-white">
+                <p className="font-display text-3xl font-extrabold tabular-nums text-zinc-100">
                   {formatPrice(displayPrice, product.currency)}
                 </p>
                 {bundle && (
@@ -227,7 +227,7 @@ export default function ProductView({
                       aria-pressed={checked}
                       className={`flex w-full items-center gap-3 rounded-xl border bg-zinc-900/60 p-2.5 text-right transition-all duration-200 ${
                         checked
-                          ? "border-[#2e9bff]/70"
+                          ? "border-[#A7C7E7]/70"
                           : "border-white/10 hover:border-white/25"
                       }`}
                     >
@@ -235,7 +235,7 @@ export default function ProductView({
                       <span
                         className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md border transition-all duration-200 ${
                           checked
-                            ? "border-[#2e9bff] bg-[#2e9bff]"
+                            ? "border-[#A7C7E7] bg-[#A7C7E7]"
                             : "border-white/30"
                         }`}
                       >
@@ -255,7 +255,7 @@ export default function ProductView({
                       </span>
                       {/* Title + price */}
                       <span className="flex flex-1 items-center justify-between gap-2">
-                        <span className="text-xs font-medium leading-tight text-white">
+                        <span className="text-xs font-medium leading-tight text-zinc-100">
                           {a.title}
                         </span>
                         <span
@@ -277,13 +277,13 @@ export default function ProductView({
 
           {/* CTA — Add to Cart, or "get notified" in waitlist mode */}
           {WAITLIST_MODE ? (
-            <WaitlistButton className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#2e9bff] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(46,155,255,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#5cb3ff] hover:shadow-[0_0_46px_-4px_rgba(46,155,255,0.95)] active:scale-95" />
+            <WaitlistButton className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#A7C7E7] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(167, 199, 231,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#C2DCF0] hover:shadow-[0_0_46px_-4px_rgba(167, 199, 231,0.95)] active:scale-95" />
           ) : (
             <button
               type="button"
               disabled={soldOut}
               onClick={addToCart}
-              className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#2e9bff] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(46,155,255,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#5cb3ff] hover:shadow-[0_0_46px_-4px_rgba(46,155,255,0.95)] active:scale-95 disabled:cursor-not-allowed disabled:bg-zinc-700 disabled:text-zinc-400 disabled:shadow-none"
+              className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#A7C7E7] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(167, 199, 231,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#C2DCF0] hover:shadow-[0_0_46px_-4px_rgba(167, 199, 231,0.95)] active:scale-95 disabled:cursor-not-allowed disabled:bg-zinc-700 disabled:text-zinc-400 disabled:shadow-none"
             >
               {soldOut
                 ? "אזל מהמלאי"
@@ -298,7 +298,7 @@ export default function ProductView({
             {TRUST_BADGES.map(({ icon: Icon, label, sub }) => (
               <li key={label} className="flex flex-col items-center gap-2 text-center">
                 <Icon className="h-6 w-6" style={{ color: GOLD }} strokeWidth={1.5} />
-                <span className="text-xs font-bold text-white">{label}</span>
+                <span className="text-xs font-bold text-zinc-100">{label}</span>
                 <span className="text-[11px] leading-tight text-zinc-500">{sub}</span>
               </li>
             ))}
@@ -343,7 +343,7 @@ export default function ProductView({
                   aria-current={i === activeImg}
                   className={`relative aspect-square overflow-hidden rounded-lg border bg-zinc-900 transition-all duration-300 ${
                     i === activeImg
-                      ? "border-[#2e9bff]"
+                      ? "border-[#A7C7E7]"
                       : "border-white/10 opacity-60 hover:opacity-100"
                   }`}
                 >
@@ -369,14 +369,14 @@ export default function ProductView({
         >
           Magnetic Performance
         </p>
-        <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-white lg:text-4xl">
+        <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-100 lg:text-4xl">
           הטכנולוגיה שמאחורי VAULT
         </h2>
         <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
           {MAGNETIC_FEATURES.map(({ icon: Icon, title, body }) => (
             <div
               key={title}
-              className="flex flex-col items-center rounded-2xl border border-white/10 bg-zinc-900 p-8 text-center shadow-[0_10px_30px_-12px_rgba(0,0,0,0.7)] transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[#2e9bff]/50 hover:shadow-[0_16px_44px_-16px_rgba(46,155,255,0.35)]"
+              className="flex flex-col items-center rounded-2xl border border-white/10 bg-zinc-900 p-8 text-center shadow-[0_10px_30px_-12px_rgba(0,0,0,0.7)] transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[#A7C7E7]/50 hover:shadow-[0_16px_44px_-16px_rgba(167, 199, 231,0.35)]"
             >
               <span
                 className="flex h-14 w-14 items-center justify-center rounded-full border bg-black/40"
@@ -384,7 +384,7 @@ export default function ProductView({
               >
                 <Icon className="h-6 w-6" strokeWidth={1.75} />
               </span>
-              <h3 className="mt-6 font-display text-lg font-extrabold tracking-tight text-white">
+              <h3 className="mt-6 font-display text-lg font-extrabold tracking-tight text-zinc-100">
                 {title}
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-zinc-400">{body}</p>
@@ -408,19 +408,19 @@ export default function ProductView({
               זמין בקרוב
             </span>
           ) : (
-            <span className="text-base font-bold tabular-nums text-white">
+            <span className="text-base font-bold tabular-nums text-zinc-100">
               {formatPrice(displayPrice, product.currency)}
             </span>
           )}
         </div>
         {WAITLIST_MODE ? (
-          <WaitlistButton className="flex flex-1 items-center justify-center rounded-full bg-[#2e9bff] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#5cb3ff] active:scale-95" />
+          <WaitlistButton className="flex flex-1 items-center justify-center rounded-full bg-[#A7C7E7] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#C2DCF0] active:scale-95" />
         ) : (
           <button
             type="button"
             disabled={soldOut}
             onClick={addToCart}
-            className="flex flex-1 items-center justify-center rounded-full bg-[#2e9bff] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#5cb3ff] active:scale-95 disabled:bg-zinc-700 disabled:text-zinc-400"
+            className="flex flex-1 items-center justify-center rounded-full bg-[#A7C7E7] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#C2DCF0] active:scale-95 disabled:bg-zinc-700 disabled:text-zinc-400"
           >
             {soldOut ? "אזל מהמלאי" : "הוספה לסל"}
           </button>
@@ -452,7 +452,7 @@ function BundleOption({
       aria-pressed={selected}
       className={`relative flex flex-col items-start gap-1 rounded-2xl border bg-zinc-900 p-4 text-right transition-all duration-300 ${
         selected
-          ? "border-[#2e9bff] shadow-[0_0_24px_-8px_rgba(46,155,255,0.7)]"
+          ? "border-[#A7C7E7] shadow-[0_0_24px_-8px_rgba(167, 199, 231,0.7)]"
           : "border-white/10 hover:border-white/30"
       }`}
     >
@@ -465,16 +465,16 @@ function BundleOption({
         </span>
       )}
       <span className="flex w-full items-center justify-between">
-        <span className="text-sm font-bold text-white">{title}</span>
+        <span className="text-sm font-bold text-zinc-100">{title}</span>
         <span
           className={`flex h-4 w-4 items-center justify-center rounded-full border ${
-            selected ? "border-[#2e9bff] bg-[#2e9bff]" : "border-white/30"
+            selected ? "border-[#A7C7E7] bg-[#A7C7E7]" : "border-white/30"
           }`}
         >
           {selected && <Check className="h-3 w-3 text-black" strokeWidth={3} />}
         </span>
       </span>
-      <span className="font-display text-lg font-extrabold tabular-nums text-white">
+      <span className="font-display text-lg font-extrabold tabular-nums text-zinc-100">
         {priceLabel}
       </span>
       {note && (
@@ -496,7 +496,7 @@ function Accordion({ title, body }: { title: string; body: string }) {
         aria-expanded={open}
         className="flex w-full items-center justify-between py-5 text-start"
       >
-        <span className="text-sm font-medium tracking-[0.04em] text-white">
+        <span className="text-sm font-medium tracking-[0.04em] text-zinc-100">
           {title}
         </span>
         <ChevronDown

@@ -24,7 +24,7 @@ import FaqAccordion from "@/components/FaqAccordion";
 import WaitlistButton from "@/components/WaitlistButton";
 import { WAITLIST_MODE, EXTRAS_AVAILABLE } from "@/lib/config";
 
-const GOLD = "#2e9bff";
+const GOLD = "#A7C7E7";
 
 // Main product. The handle has Hebrew chars, so encode it for a safe URL;
 // the [handle] route decodes it back before the Shopify lookup.
@@ -51,11 +51,11 @@ function PrimaryCta({
 
 // Reusable gold CTA with a glowing hover.
 const goldButton =
-  "inline-flex w-full items-center justify-center rounded-full bg-[#2e9bff] px-12 py-4 text-sm font-bold uppercase tracking-[0.14em] text-black transition-all duration-300 ease-out hover:scale-105 hover:bg-[#5cb3ff] hover:shadow-[0_0_34px_-6px_rgba(46,155,255,0.65)] active:scale-95 active:shadow-[0_0_48px_-2px_rgba(46,155,255,0.95)] sm:w-auto";
+  "inline-flex w-full items-center justify-center rounded-full bg-[#A7C7E7] px-12 py-4 text-sm font-bold uppercase tracking-[0.14em] text-black transition-all duration-300 ease-out hover:scale-105 hover:bg-[#C2DCF0] hover:shadow-[0_0_34px_-6px_rgba(167, 199, 231,0.65)] active:scale-95 active:shadow-[0_0_48px_-2px_rgba(167, 199, 231,0.95)] sm:w-auto";
 
 export default function Home() {
   return (
-    <div className="flex min-h-full flex-col bg-[#0a0a0a] pt-[5.75rem] text-white">
+    <div className="flex min-h-full flex-col bg-[#111111] pt-[5.75rem] text-zinc-100">
       <main id="main-content" className="flex-1">
         <Hero />
         <HowItWorks />
@@ -97,7 +97,7 @@ const STEPS = [
 
 function HowItWorks() {
   return (
-    <section className="bg-[#0a0a0a] px-6 py-24 lg:px-10 lg:py-36">
+    <section className="bg-[#111111] px-6 py-24 lg:px-10 lg:py-36">
       <div className="mx-auto max-w-6xl">
         <FadeIn>
           <p
@@ -106,7 +106,7 @@ function HowItWorks() {
           >
             פשוט להפליא
           </p>
-          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-white lg:text-4xl">
+          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-100 lg:text-4xl">
             איך זה עובד
           </h2>
         </FadeIn>
@@ -118,12 +118,12 @@ function HowItWorks() {
                 <span className="relative flex h-16 w-16 items-center justify-center rounded-full border bg-zinc-900" style={{ borderColor: `${GOLD}55`, color: GOLD }}>
                   <Icon className="h-7 w-7" strokeWidth={1.5} />
                   <span
-                    className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-[#2e9bff] font-display text-xs font-black text-black"
+                    className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-[#A7C7E7] font-display text-xs font-black text-black"
                   >
                     {i + 1}
                   </span>
                 </span>
-                <h3 className="mt-6 font-display text-xl font-extrabold tracking-tight text-white">
+                <h3 className="mt-6 font-display text-xl font-extrabold tracking-tight text-zinc-100">
                   {title}
                 </h3>
                 <p className="mt-3 max-w-xs text-sm leading-relaxed text-zinc-400">
@@ -137,12 +137,12 @@ function HowItWorks() {
         {/* Action clip — electric motor spinning the shake (placeholder video) */}
         <FadeIn delay={120}>
           <figure className="mx-auto mt-16 w-full max-w-3xl">
-            <div className="group relative aspect-video overflow-hidden rounded-2xl border border-white/10 bg-zinc-900 shadow-[0_20px_60px_-24px_rgba(46,155,255,0.45)]">
+            <div className="group relative aspect-video overflow-hidden rounded-2xl border border-white/10 bg-zinc-900 shadow-[0_20px_60px_-24px_rgba(167, 199, 231,0.45)]">
               <AutoplayVideo
                 src="/videos/vault-magnetic-demo.mp4"
                 className="absolute inset-0 h-full w-full object-cover object-center"
               />
-              <span className="pointer-events-none absolute bottom-3 right-3 rounded-full bg-black/70 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-[#2e9bff] backdrop-blur-sm">
+              <span className="pointer-events-none absolute bottom-3 right-3 rounded-full bg-black/70 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-[#A7C7E7] backdrop-blur-sm">
                 המנוע החשמלי בפעולה
               </span>
             </div>
@@ -164,7 +164,7 @@ const GYM_VIDEOS = [
 
 function UseCases() {
   return (
-    <section className="bg-[#121212] px-6 py-24 lg:px-10 lg:py-36">
+    <section className="bg-[#18181b] px-6 py-24 lg:px-10 lg:py-36">
       <div className="mx-auto max-w-6xl">
         <FadeIn>
           <p
@@ -173,7 +173,7 @@ function UseCases() {
           >
             אורח חיים אתלטי
           </p>
-          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-white lg:text-4xl">
+          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-100 lg:text-4xl">
             בנוי למתאמנים בחדר הכושר
           </h2>
         </FadeIn>
@@ -181,7 +181,7 @@ function UseCases() {
         <div className="mx-auto mt-14 grid max-w-5xl grid-cols-1 gap-2 md:grid-cols-2">
           {GYM_VIDEOS.map((src, i) => (
             <FadeIn key={src} delay={i * 100}>
-              <div className="group relative aspect-video overflow-hidden rounded-2xl border border-white/10 transition-colors duration-300 hover:border-[#2e9bff]/50">
+              <div className="group relative aspect-video overflow-hidden rounded-2xl border border-white/10 transition-colors duration-300 hover:border-[#A7C7E7]/50">
                 <AutoplayVideo
                   src={src}
                   className="absolute inset-0 h-full w-full object-cover object-center"
@@ -198,10 +198,10 @@ function UseCases() {
 /* ── Micro-conversion CTA (between the video sections) ───────────────── */
 function MicroConversion() {
   return (
-    <section className="bg-[#0a0a0a] px-5 py-16 sm:px-6 lg:px-10">
+    <section className="bg-[#111111] px-5 py-16 sm:px-6 lg:px-10">
       <FadeIn>
-        <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 rounded-2xl border border-[#2e9bff]/40 bg-zinc-900 px-6 py-10 text-center sm:px-10">
-          <h2 className="font-display text-2xl font-black tracking-tight text-white sm:text-3xl">
+        <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 rounded-2xl border border-[#A7C7E7]/40 bg-zinc-900 px-6 py-10 text-center sm:px-10">
+          <h2 className="font-display text-2xl font-black tracking-tight text-zinc-100 sm:text-3xl">
             מוכנים לשדרג את האימון שלכם?
           </h2>
           <PrimaryCta
@@ -217,12 +217,12 @@ function MicroConversion() {
 /* ── Horizontal streaming ────────────────────────────────────────────── */
 function HorizontalStreaming() {
   return (
-    <section className="bg-[#121212] px-6 py-24 lg:px-10 lg:py-32">
+    <section className="bg-[#18181b] px-6 py-24 lg:px-10 lg:py-32">
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 md:grid-cols-2 lg:gap-16">
         {/* Text — right column in RTL */}
         <FadeIn>
           <div className="text-right">
-            <h2 className="font-display text-3xl font-black leading-tight tracking-tight text-white lg:text-4xl">
+            <h2 className="font-display text-3xl font-black leading-tight tracking-tight text-zinc-100 lg:text-4xl">
               לא משדרים את המשחק בחדר כושר?
             </h2>
             <p className="mt-6 max-w-md text-sm leading-relaxed text-zinc-400 lg:text-base">
@@ -352,12 +352,12 @@ function AnatomyCallout({ icon: Icon, label, align, labelStyle, dot, line }: Cal
         }`}
       >
         <span
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border bg-black/70 backdrop-blur-sm transition-all duration-300 group-hover:shadow-[0_0_18px_-2px_rgba(46,155,255,0.7)]"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border bg-black/70 backdrop-blur-sm transition-all duration-300 group-hover:shadow-[0_0_18px_-2px_rgba(167, 199, 231,0.7)]"
           style={{ borderColor: `${GOLD}66`, color: GOLD }}
         >
           <Icon className="h-4 w-4" strokeWidth={1.75} />
         </span>
-        <span className="text-xs font-semibold leading-snug text-white/85 transition-all duration-300 group-hover:text-[#2e9bff] group-hover:[text-shadow:0_0_14px_rgba(46,155,255,0.8)] lg:text-sm">
+        <span className="text-xs font-semibold leading-snug text-white/85 transition-all duration-300 group-hover:text-[#A7C7E7] group-hover:[text-shadow:0_0_14px_rgba(167, 199, 231,0.8)] lg:text-sm">
           {label}
         </span>
       </div>
@@ -369,7 +369,7 @@ function Anatomy() {
   return (
     <section
       id="shop"
-      className="scroll-mt-24 border-y border-white/10 bg-[#0a0a0a] px-6 py-24 lg:px-10 lg:py-36"
+      className="scroll-mt-24 border-y border-white/10 bg-[#111111] px-6 py-24 lg:px-10 lg:py-36"
     >
       <div className="mx-auto max-w-5xl">
         <FadeIn>
@@ -379,7 +379,7 @@ function Anatomy() {
           >
             הנדסה מדויקת
           </p>
-          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-white lg:text-5xl">
+          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-100 lg:text-5xl">
             המבנה המדויק של VAULT
           </h2>
         </FadeIn>
@@ -416,7 +416,7 @@ function Anatomy() {
             {ANATOMY.map(({ icon: Icon, label }) => (
               <li
                 key={label}
-                className="group flex items-center gap-3 rounded-xl border border-white/10 bg-black/40 p-4 transition-colors duration-300 hover:border-[#2e9bff]/50"
+                className="group flex items-center gap-3 rounded-xl border border-white/10 bg-black/40 p-4 transition-colors duration-300 hover:border-[#A7C7E7]/50"
               >
                 <span
                   className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border bg-black/70"
@@ -424,7 +424,7 @@ function Anatomy() {
                 >
                   <Icon className="h-4 w-4" strokeWidth={1.75} />
                 </span>
-                <span className="text-sm font-semibold text-white/85 transition-colors duration-300 group-hover:text-[#2e9bff]">
+                <span className="text-sm font-semibold text-white/85 transition-colors duration-300 group-hover:text-[#A7C7E7]">
                   {label}
                 </span>
               </li>
@@ -449,7 +449,7 @@ const RING_OPTIONS = [
 
 function Compatibility() {
   return (
-    <section className="bg-[#121212] px-6 py-24 lg:px-10 lg:py-32">
+    <section className="bg-[#18181b] px-6 py-24 lg:px-10 lg:py-32">
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 md:grid-cols-2">
         {/* Visuals — DOM-first so it sits on the RIGHT in RTL */}
         <FadeIn>
@@ -468,7 +468,7 @@ function Compatibility() {
         {/* Content — centered on mobile, sits on the LEFT in RTL desktop */}
         <FadeIn delay={120}>
           <div className="text-center md:text-right">
-            <h2 className="font-display text-3xl font-black tracking-tight text-white lg:text-4xl">
+            <h2 className="font-display text-3xl font-black tracking-tight text-zinc-100 lg:text-4xl">
               מתאים לכל סמארטפון!
             </h2>
             <p className="mx-auto mt-6 max-w-md text-sm leading-relaxed text-zinc-400 md:mx-0 lg:text-base">
@@ -489,7 +489,7 @@ function Compatibility() {
                     strokeWidth={1.75}
                   />
                   <p className="text-sm leading-relaxed text-zinc-300 lg:text-base">
-                    <span className="font-bold text-white">{o.title}:</span>{" "}
+                    <span className="font-bold text-zinc-100">{o.title}:</span>{" "}
                     {o.body}
                   </p>
                 </li>
@@ -550,7 +550,7 @@ function StarRating({ rating }: { rating: number }) {
 
 function Reviews() {
   return (
-    <section className="bg-[#0a0a0a] px-6 py-24 lg:px-10 lg:py-36">
+    <section className="bg-[#111111] px-6 py-24 lg:px-10 lg:py-36">
       <div className="mx-auto max-w-6xl">
         <FadeIn>
           <p
@@ -559,7 +559,7 @@ function Reviews() {
           >
             לקוחות מספרים
           </p>
-          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-white lg:text-4xl">
+          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-100 lg:text-4xl">
             מה אומרים על VAULT
           </h2>
         </FadeIn>
@@ -567,7 +567,7 @@ function Reviews() {
         <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {REVIEWS.map((r, i) => (
             <FadeIn key={r.name} delay={i * 80}>
-              <figure className="flex h-full flex-col rounded-2xl border border-white/10 bg-zinc-900 p-6 text-right shadow-[0_10px_30px_-12px_rgba(0,0,0,0.7)] transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:border-[#2e9bff]/40 hover:shadow-[0_16px_44px_-16px_rgba(46,155,255,0.4)]">
+              <figure className="flex h-full flex-col rounded-2xl border border-white/10 bg-zinc-900 p-6 text-right shadow-[0_10px_30px_-12px_rgba(0,0,0,0.7)] transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:border-[#A7C7E7]/40 hover:shadow-[0_16px_44px_-16px_rgba(167, 199, 231,0.4)]">
                 <div className="flex justify-end">
                   <StarRating rating={r.rating} />
                 </div>
@@ -579,7 +579,7 @@ function Reviews() {
                     {r.name.trim().charAt(0)}
                   </span>
                   <div>
-                    <p className="flex items-center gap-1.5 text-sm font-bold text-white">
+                    <p className="flex items-center gap-1.5 text-sm font-bold text-zinc-100">
                       {r.name}
                       <BadgeCheck
                         className="h-4 w-4"
@@ -605,9 +605,9 @@ function Reviews() {
 /* ── Bundle & Save banner ────────────────────────────────────────────── */
 function BundleBanner() {
   return (
-    <section className="bg-[#0a0a0a] px-6 pb-4 lg:px-10">
+    <section className="bg-[#111111] px-6 pb-4 lg:px-10">
       <FadeIn>
-        <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-8 overflow-hidden rounded-2xl border border-[#2e9bff]/30 bg-zinc-950 p-8 md:grid-cols-2 lg:p-12">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-8 overflow-hidden rounded-2xl border border-[#A7C7E7]/30 bg-zinc-950 p-8 md:grid-cols-2 lg:p-12">
           {/* Visual — DOM-first: top on mobile, right column in RTL desktop */}
           <div className="w-full bg-transparent">
             <Image
@@ -629,7 +629,7 @@ function BundleBanner() {
             >
               Bundle &amp; Save
             </p>
-            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-white lg:text-4xl">
+            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-zinc-100 lg:text-4xl">
               קנו סט אימון מלא וחסכו{" "}
               <span style={{ color: GOLD }}>15%</span>
             </h2>
@@ -640,7 +640,7 @@ function BundleBanner() {
 
             {/* Price box when available; "Coming Soon" otherwise. */}
             {EXTRAS_AVAILABLE ? (
-              <div className="mt-7 inline-flex items-center gap-4 rounded-2xl border border-[#2e9bff]/30 bg-black/40 px-6 py-4">
+              <div className="mt-7 inline-flex items-center gap-4 rounded-2xl border border-[#A7C7E7]/30 bg-black/40 px-6 py-4">
                 <div className="flex flex-col items-center">
                   <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-zinc-500">
                     מחיר מלא
@@ -649,7 +649,7 @@ function BundleBanner() {
                     520₪
                   </span>
                 </div>
-                <span className="h-10 w-px bg-[#2e9bff]/20" aria-hidden />
+                <span className="h-10 w-px bg-[#A7C7E7]/20" aria-hidden />
                 <div className="flex flex-col items-center">
                   <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-zinc-400">
                     מחיר מבצע
@@ -673,13 +673,13 @@ function BundleBanner() {
 
             {EXTRAS_AVAILABLE ? (
               <PrimaryCta
-                className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-[#2e9bff] px-10 py-4 text-sm font-black uppercase tracking-[0.12em] text-black shadow-[0_0_30px_-4px_rgba(46,155,255,0.7)] transition-all duration-300 ease-out hover:scale-105 hover:bg-[#5cb3ff] hover:shadow-[0_0_44px_-4px_rgba(46,155,255,0.9)] active:scale-95 active:shadow-[0_0_56px_-2px_rgba(46,155,255,1)] sm:w-auto"
+                className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-[#A7C7E7] px-10 py-4 text-sm font-black uppercase tracking-[0.12em] text-black shadow-[0_0_30px_-4px_rgba(167, 199, 231,0.7)] transition-all duration-300 ease-out hover:scale-105 hover:bg-[#C2DCF0] hover:shadow-[0_0_44px_-4px_rgba(167, 199, 231,0.9)] active:scale-95 active:shadow-[0_0_56px_-2px_rgba(167, 199, 231,1)] sm:w-auto"
                 label="קנו עכשיו ב-400₪"
               />
             ) : (
               <WaitlistButton
                 label="הודיעו לי כשזמין"
-                className="mt-7 inline-flex w-full items-center justify-center rounded-full border border-[#2e9bff] px-10 py-4 text-sm font-black uppercase tracking-[0.12em] text-[#2e9bff] transition-all duration-300 ease-out hover:scale-105 hover:bg-[#2e9bff] hover:text-black hover:shadow-[0_0_34px_-6px_rgba(46,155,255,0.65)] active:scale-95 sm:w-auto"
+                className="mt-7 inline-flex w-full items-center justify-center rounded-full border border-[#A7C7E7] px-10 py-4 text-sm font-black uppercase tracking-[0.12em] text-[#A7C7E7] transition-all duration-300 ease-out hover:scale-105 hover:bg-[#A7C7E7] hover:text-black hover:shadow-[0_0_34px_-6px_rgba(167, 199, 231,0.65)] active:scale-95 sm:w-auto"
               />
             )}
             {EXTRAS_AVAILABLE && (
@@ -695,7 +695,7 @@ function BundleBanner() {
                 <span className="text-zinc-300">85% מהמלאי להשקה נמכר</span>
               </div>
               <div
-                className="h-2 w-full overflow-hidden rounded-full bg-black"
+                className="h-2 w-full overflow-hidden rounded-full bg-[#111111]"
                 role="progressbar"
                 aria-valuenow={85}
                 aria-valuemin={0}
@@ -707,7 +707,7 @@ function BundleBanner() {
                   style={{
                     width: "85%",
                     backgroundColor: GOLD,
-                    boxShadow: "0 0 12px -2px rgba(46,155,255,0.8)",
+                    boxShadow: "0 0 12px -2px rgba(167, 199, 231,0.8)",
                   }}
                 />
               </div>
@@ -751,7 +751,7 @@ function CompleteGear() {
   return (
     <section
       id="accessories"
-      className="scroll-mt-24 bg-[#121212] px-6 py-24 lg:px-10 lg:py-32"
+      className="scroll-mt-24 bg-[#18181b] px-6 py-24 lg:px-10 lg:py-32"
     >
       <div className="mx-auto max-w-6xl">
         <FadeIn>
@@ -761,7 +761,7 @@ function CompleteGear() {
           >
             אביזרים משלימים
           </p>
-          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-white lg:text-4xl">
+          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-100 lg:text-4xl">
             השלימו את הציוד שלכם
           </h2>
         </FadeIn>
@@ -769,7 +769,7 @@ function CompleteGear() {
         <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-4">
           {GEAR_PRODUCTS.map((p, i) => (
             <FadeIn key={p.title} delay={i * 80}>
-              <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-zinc-900 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.7)] transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:border-[#2e9bff]/50 hover:shadow-[0_16px_44px_-16px_rgba(46,155,255,0.45)]">
+              <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-zinc-900 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.7)] transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:border-[#A7C7E7]/50 hover:shadow-[0_16px_44px_-16px_rgba(167, 199, 231,0.45)]">
                 {/* Product image */}
                 <div className="relative aspect-square w-full overflow-hidden bg-zinc-800">
                   <Image
@@ -782,7 +782,7 @@ function CompleteGear() {
                 </div>
                 {/* Details */}
                 <div className="flex flex-1 flex-col p-5 text-right">
-                  <h3 className="text-sm font-bold leading-snug text-white lg:text-base">
+                  <h3 className="text-sm font-bold leading-snug text-zinc-100 lg:text-base">
                     {p.title}
                   </h3>
                   {EXTRAS_AVAILABLE ? (
@@ -803,14 +803,14 @@ function CompleteGear() {
                   {EXTRAS_AVAILABLE ? (
                     <Link
                       href={PRODUCT_URL}
-                      className="mt-5 inline-flex items-center justify-center rounded-full border border-[#2e9bff] px-5 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-[#2e9bff] transition-all duration-300 ease-out hover:scale-105 hover:bg-[#2e9bff] hover:text-black hover:shadow-[0_0_24px_-4px_rgba(46,155,255,0.8)] active:scale-95"
+                      className="mt-5 inline-flex items-center justify-center rounded-full border border-[#A7C7E7] px-5 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-[#A7C7E7] transition-all duration-300 ease-out hover:scale-105 hover:bg-[#A7C7E7] hover:text-black hover:shadow-[0_0_24px_-4px_rgba(167, 199, 231,0.8)] active:scale-95"
                     >
                       הוספה מהירה
                     </Link>
                   ) : (
                     <WaitlistButton
                       label="הודיעו לי"
-                      className="mt-5 inline-flex items-center justify-center rounded-full border border-white/20 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-zinc-300 transition-all duration-300 ease-out hover:border-[#2e9bff] hover:text-[#2e9bff]"
+                      className="mt-5 inline-flex items-center justify-center rounded-full border border-white/20 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-zinc-300 transition-all duration-300 ease-out hover:border-[#A7C7E7] hover:text-[#A7C7E7]"
                     />
                   )}
                 </div>
@@ -832,7 +832,7 @@ const TRUST_ITEMS = [
 
 function WhatsInTheBox() {
   return (
-    <section className="border-t border-white/10 bg-[#0a0a0a] px-6 py-14 lg:px-10">
+    <section className="border-t border-white/10 bg-[#111111] px-6 py-14 lg:px-10">
       <FadeIn>
         <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-3">
           {TRUST_ITEMS.map(({ icon: Icon, label }) => (
@@ -931,11 +931,11 @@ const PAYMENT_ICONS = [
 
 function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-black text-white">
+    <footer className="border-t border-white/10 bg-[#111111] text-zinc-100">
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-20">
         <div className="grid grid-cols-2 gap-x-10 gap-y-12 lg:grid-cols-4 lg:gap-x-12">
           <div className="col-span-2 lg:col-span-1">
-            <span className="font-display text-xl font-extrabold uppercase tracking-[0.3em] text-white">
+            <span className="font-display text-xl font-extrabold uppercase tracking-[0.3em] text-zinc-100">
               VAULT
             </span>
             <p className="mt-4 max-w-xs text-xs leading-relaxed text-white/50">
@@ -945,7 +945,7 @@ function Footer() {
 
           {[FOOTER_LINKS.service, FOOTER_LINKS.policies].map((col) => (
             <nav key={col.title} className="flex flex-col">
-              <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-white">
+              <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-zinc-100">
                 {col.title}
               </h3>
               <div className="mt-4 flex flex-col gap-3 text-white/60">
@@ -957,7 +957,7 @@ function Footer() {
           ))}
 
           <div className="col-span-2 lg:col-span-1">
-            <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-white">
+            <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-zinc-100">
               הצטרפו ל-VAULT
             </h3>
             <p className="mt-4 text-xs leading-relaxed text-white/50">
@@ -968,11 +968,11 @@ function Footer() {
                 type="email"
                 aria-label="כתובת אימייל לרישום לניוזלטר"
                 placeholder="כתובת אימייל"
-                className="w-full bg-transparent text-sm text-white placeholder:text-white/40 focus:outline-none"
+                className="w-full bg-transparent text-sm text-zinc-100 placeholder:text-white/40 focus:outline-none"
               />
               <button
                 type="submit"
-                className="shrink-0 text-xs font-bold uppercase tracking-[0.08em] transition-colors duration-300 hover:text-[#5cb3ff]"
+                className="shrink-0 text-xs font-bold uppercase tracking-[0.08em] transition-colors duration-300 hover:text-[#C2DCF0]"
                 style={{ color: GOLD }}
               >
                 הירשמו
@@ -988,7 +988,7 @@ function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="transition-colors duration-300 hover:text-[#2e9bff]"
+              className="transition-colors duration-300 hover:text-[#A7C7E7]"
             >
               <Instagram className="h-[18px] w-[18px]" strokeWidth={1.5} />
             </a>
@@ -997,7 +997,7 @@ function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="TikTok"
-              className="flex items-center transition-colors duration-300 hover:text-[#2e9bff]"
+              className="flex items-center transition-colors duration-300 hover:text-[#A7C7E7]"
             >
               <TikTokIcon className="h-[18px] w-[18px]" />
             </a>
