@@ -10,6 +10,8 @@ import {
   Star,
   Truck,
   Lock,
+  Waves,
+  CupSoda,
   type LucideIcon,
 } from "lucide-react";
 import FadeIn from "@/components/FadeIn";
@@ -55,6 +57,7 @@ export default function Home() {
     <div className="flex min-h-full flex-col bg-[#0a0a0a] pt-[5.75rem] text-white">
       <main id="main-content" className="flex-1">
         <Hero />
+        <HowItWorks />
         <UseCases />
         <MicroConversion />
         <HorizontalStreaming />
@@ -72,6 +75,68 @@ export default function Home() {
 }
 
 /* ── Impact hero ─────────────────────────────────────────────────────── */
+/* ── How it works (3 steps) ──────────────────────────────────────────── */
+const STEPS = [
+  {
+    icon: Magnet,
+    title: "מצמידים",
+    body: "מדביקים טבעת מגנטית דקה על הטלפון או על הכיסוי — והוא נצמד לשייקר באחיזה איתנה.",
+  },
+  {
+    icon: Waves,
+    title: "מערבבים",
+    body: "ממלאים, סוגרים וטלטלים בביטחון מלא — אטימה הרמטית שלא נוזלת, בכל תנועה.",
+  },
+  {
+    icon: CupSoda,
+    title: "נהנים",
+    body: "תולים את הטלפון בכל משטח מתכתי, מצלמים את האימון ושותים תוך כדי — בלי ידיים.",
+  },
+];
+
+function HowItWorks() {
+  return (
+    <section className="bg-[#0a0a0a] px-6 py-24 lg:px-10 lg:py-36">
+      <div className="mx-auto max-w-6xl">
+        <FadeIn>
+          <p
+            className="text-center text-[11px] font-bold tracking-[0.3em]"
+            style={{ color: GOLD }}
+          >
+            פשוט להפליא
+          </p>
+          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-white lg:text-4xl">
+            איך זה עובד
+          </h2>
+        </FadeIn>
+
+        <div className="mt-16 grid grid-cols-1 gap-10 md:grid-cols-3 lg:gap-8">
+          {STEPS.map(({ icon: Icon, title, body }, i) => (
+            <FadeIn key={title} delay={i * 120}>
+              <div className="flex flex-col items-center text-center">
+                <span className="relative flex h-16 w-16 items-center justify-center rounded-full border bg-zinc-900" style={{ borderColor: `${GOLD}55`, color: GOLD }}>
+                  <Icon className="h-7 w-7" strokeWidth={1.5} />
+                  <span
+                    className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-[#c8a24c] font-display text-xs font-black text-black"
+                  >
+                    {i + 1}
+                  </span>
+                </span>
+                <h3 className="mt-6 font-display text-xl font-extrabold tracking-tight text-white">
+                  {title}
+                </h3>
+                <p className="mt-3 max-w-xs text-sm leading-relaxed text-zinc-400">
+                  {body}
+                </p>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ── 'The Gym Life' showcase videos (side by side) ───────────────────── */
 const GYM_VIDEOS = [
   "/videos/vault-magnetic-demo.mp4",
