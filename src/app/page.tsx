@@ -19,7 +19,7 @@ import Hero from "@/components/Hero";
 import AutoplayVideo from "@/components/AutoplayVideo";
 import FaqAccordion from "@/components/FaqAccordion";
 import WaitlistButton from "@/components/WaitlistButton";
-import { WAITLIST_MODE } from "@/lib/config";
+import { WAITLIST_MODE, EXTRAS_AVAILABLE } from "@/lib/config";
 
 const GOLD = "#c8a24c";
 
@@ -531,8 +531,8 @@ function BundleBanner() {
               מוגבל בלבד.
             </p>
 
-            {/* Price-anchoring box — hidden pre-launch */}
-            {!WAITLIST_MODE && (
+            {/* Price box when available; "Coming Soon" otherwise. */}
+            {EXTRAS_AVAILABLE ? (
               <div className="mt-7 inline-flex items-center gap-4 rounded-2xl border border-yellow-600/30 bg-black/40 px-6 py-4">
                 <div className="flex flex-col items-center">
                   <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-zinc-500">
@@ -555,20 +555,34 @@ function BundleBanner() {
                   </span>
                 </div>
               </div>
+            ) : (
+              <p
+                className="mt-7 text-sm font-bold uppercase tracking-[0.25em]"
+                style={{ color: GOLD }}
+              >
+                בקרוב · Coming Soon
+              </p>
             )}
 
-            <PrimaryCta
-              className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-[#c8a24c] px-10 py-4 text-sm font-black uppercase tracking-[0.12em] text-black shadow-[0_0_30px_-4px_rgba(200,162,76,0.7)] transition-all duration-300 ease-out hover:scale-105 hover:bg-[#e0bd6a] hover:shadow-[0_0_44px_-4px_rgba(200,162,76,0.9)] active:scale-95 active:shadow-[0_0_56px_-2px_rgba(200,162,76,1)] sm:w-auto"
-              label="קנו עכשיו ב-400₪"
-            />
-            {!WAITLIST_MODE && (
+            {EXTRAS_AVAILABLE ? (
+              <PrimaryCta
+                className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-[#c8a24c] px-10 py-4 text-sm font-black uppercase tracking-[0.12em] text-black shadow-[0_0_30px_-4px_rgba(200,162,76,0.7)] transition-all duration-300 ease-out hover:scale-105 hover:bg-[#e0bd6a] hover:shadow-[0_0_44px_-4px_rgba(200,162,76,0.9)] active:scale-95 active:shadow-[0_0_56px_-2px_rgba(200,162,76,1)] sm:w-auto"
+                label="קנו עכשיו ב-400₪"
+              />
+            ) : (
+              <WaitlistButton
+                label="הודיעו לי כשזמין"
+                className="mt-7 inline-flex w-full items-center justify-center rounded-full border border-[#c8a24c] px-10 py-4 text-sm font-black uppercase tracking-[0.12em] text-[#c8a24c] transition-all duration-300 ease-out hover:scale-105 hover:bg-[#c8a24c] hover:text-black hover:shadow-[0_0_34px_-6px_rgba(200,162,76,0.65)] active:scale-95 sm:w-auto"
+              />
+            )}
+            {EXTRAS_AVAILABLE && (
               <p className="mt-3 text-xs font-medium tracking-wide text-zinc-400">
                 חיסכון של 120₪ במבצע השקה בלבד
               </p>
             )}
 
-            {/* Launch-stock progress bar — hidden pre-launch */}
-            {!WAITLIST_MODE && (
+            {/* Launch-stock progress bar — only when on sale */}
+            {EXTRAS_AVAILABLE && (
             <div className="mt-7 w-full max-w-xs">
               <div className="mb-2 flex items-center justify-between text-[11px] font-bold tracking-wide">
                 <span className="text-zinc-300">85% מהמלאי להשקה נמכר</span>
@@ -664,30 +678,33 @@ function CompleteGear() {
                   <h3 className="text-sm font-bold leading-snug text-white lg:text-base">
                     {p.title}
                   </h3>
-                  {WAITLIST_MODE ? (
-                    <p className="mt-2 text-xs font-semibold" style={{ color: GOLD }}>
-                      זמין בקרוב
-                    </p>
-                  ) : (
+                  {EXTRAS_AVAILABLE ? (
                     <p
                       className="mt-2 text-base font-bold tabular-nums"
                       style={{ color: GOLD }}
                     >
                       {p.price}
                     </p>
-                  )}
-                  {WAITLIST_MODE ? (
-                    <WaitlistButton
-                      label="הירשמו לעדכונים"
-                      className="mt-5 inline-flex items-center justify-center rounded-full border border-[#c8a24c] px-5 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-[#c8a24c] transition-all duration-300 ease-out hover:scale-105 hover:bg-[#c8a24c] hover:text-black hover:shadow-[0_0_24px_-4px_rgba(200,162,76,0.8)] active:scale-95"
-                    />
                   ) : (
+                    <p
+                      className="mt-2 text-xs font-semibold uppercase tracking-[0.12em]"
+                      style={{ color: GOLD }}
+                    >
+                      בקרוב
+                    </p>
+                  )}
+                  {EXTRAS_AVAILABLE ? (
                     <Link
                       href={PRODUCT_URL}
                       className="mt-5 inline-flex items-center justify-center rounded-full border border-[#c8a24c] px-5 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-[#c8a24c] transition-all duration-300 ease-out hover:scale-105 hover:bg-[#c8a24c] hover:text-black hover:shadow-[0_0_24px_-4px_rgba(200,162,76,0.8)] active:scale-95"
                     >
                       הוספה מהירה
                     </Link>
+                  ) : (
+                    <WaitlistButton
+                      label="הודיעו לי"
+                      className="mt-5 inline-flex items-center justify-center rounded-full border border-white/20 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-zinc-300 transition-all duration-300 ease-out hover:border-[#c8a24c] hover:text-[#c8a24c]"
+                    />
                   )}
                 </div>
               </div>

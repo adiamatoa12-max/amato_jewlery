@@ -7,7 +7,7 @@ import { InfoProvider } from "@/lib/info/InfoContext";
 import InfoDrawer from "@/components/InfoDrawer";
 import { WaitlistProvider } from "@/lib/waitlist/WaitlistContext";
 import WaitlistModal from "@/components/WaitlistModal";
-import { WAITLIST_MODE } from "@/lib/config";
+import { WAITLIST_MODE, EXTRAS_AVAILABLE } from "@/lib/config";
 import Analytics, { AnalyticsNoscript } from "@/components/Analytics";
 import SiteHeader from "@/components/SiteHeader";
 import AnnouncementBar from "@/components/AnnouncementBar";
@@ -101,7 +101,7 @@ export default async function RootLayout({
               <AccessibilityButton />
               <CartDrawer />
               <InfoDrawer />
-              {WAITLIST_MODE && <WaitlistModal />}
+              {(WAITLIST_MODE || !EXTRAS_AVAILABLE) && <WaitlistModal />}
             </WaitlistProvider>
           </InfoProvider>
         </CartProvider>
