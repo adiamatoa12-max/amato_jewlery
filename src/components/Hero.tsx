@@ -58,10 +58,14 @@ export default function Hero() {
           >
             פיתוח מתקדם. איכות ללא פשרות. מחיר ללא תחרות.
           </p>
-          <h1 className="mb-6 font-display text-3xl font-extrabold leading-tight text-zinc-100 sm:text-4xl md:text-5xl lg:text-5xl">
-            <span style={{ color: GOLD }}>VAULT</span>: השייקר המגנטי הראשון
-            בעולם שמשחרר לך את הידיים לצלם את האימון.
+          <h1 className="mb-5 font-display text-3xl font-extrabold leading-tight text-zinc-100 sm:text-4xl md:text-5xl lg:text-5xl">
+            <span style={{ color: GOLD }}>VAULT</span>: הסטנדרט החדש לאימון ללא
+            פשרות.
           </h1>
+          <p className="mb-8 text-base font-light leading-relaxed text-zinc-300 sm:text-lg">
+            הטכנולוגיה המגנטית שמשחררת אותך מהרצפה. אל תסתפק בשייקר רגיל –
+            תתמקד בביצועים, ה-Vault כבר ידאג לכל השאר.
+          </p>
           {WAITLIST_MODE ? (
             <WaitlistButton
               className={`mx-auto max-w-xs sm:mx-0 sm:max-w-none ${goldButton}`}
