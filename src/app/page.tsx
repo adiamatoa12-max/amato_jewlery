@@ -985,7 +985,7 @@ function Footer() {
             </a>
           </div>
 
-          <span className="text-center text-xs tracking-[0.12em] text-white/40">
+          <span className="text-center text-xs tracking-[0.12em] text-white/60">
             © VAULT 2026. כל הזכויות שמורות.
           </span>
 
@@ -997,7 +997,7 @@ function Footer() {
                 </span>
               ))}
             </div>
-            <span className="flex items-center gap-1.5 text-[11px] tracking-[0.06em] text-white/45">
+            <span className="flex items-center gap-1.5 text-[11px] tracking-[0.06em] text-white/60">
               <Lock className="h-3.5 w-3.5" strokeWidth={1.75} />
               תשלום מאובטח ב-100%
             </span>

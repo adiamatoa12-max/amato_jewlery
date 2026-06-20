@@ -173,14 +173,15 @@ export default function SiteHeader({
           ))}
         </nav>
 
-        {/* Actions — trailing (left) in RTL: search · cart · menu */}
-        <div className="flex items-center gap-5">
+        {/* Actions — trailing (left) in RTL: search · cart · menu.
+            Each button is a 44×44 tap target (negative margin keeps spacing tight). */}
+        <div className="-mx-2 flex items-center">
           <button
             type="button"
             aria-label={searchOpen ? "סגירת חיפוש" : "חיפוש"}
             aria-expanded={searchOpen}
             onClick={() => setSearchOpen((o) => !o)}
-            className="transition-all duration-500 ease-in-out hover:opacity-60"
+            className="flex h-11 w-11 items-center justify-center transition-all duration-500 ease-in-out hover:opacity-60"
           >
             {searchOpen ? (
               <X className="h-5 w-5" strokeWidth={1.5} />
@@ -190,21 +191,27 @@ export default function SiteHeader({
           </button>
           <button
             type="button"
-            aria-label="עגלת קניות"
+            aria-label={
+              totalQuantity > 0
+                ? `עגלת קניות, ${totalQuantity} פריטים`
+                : "עגלת קניות"
+            }
             onClick={openCart}
-            className="relative transition-all duration-500 ease-in-out hover:opacity-60"
+            className="flex h-11 w-11 items-center justify-center transition-all duration-500 ease-in-out hover:opacity-60"
           >
-            <ShoppingBag className="h-5 w-5" strokeWidth={1.5} />
-            {totalQuantity > 0 && (
-              <span className="absolute -end-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#c8a24c] px-1 text-[10px] font-medium leading-none text-black ring-2 ring-black">
-                {totalQuantity}
-              </span>
-            )}
+            <span className="relative">
+              <ShoppingBag className="h-5 w-5" strokeWidth={1.5} />
+              {totalQuantity > 0 && (
+                <span className="absolute -end-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#c8a24c] px-1 text-[10px] font-medium leading-none text-black ring-2 ring-black">
+                  {totalQuantity}
+                </span>
+              )}
+            </span>
           </button>
           <button
             type="button"
             onClick={() => setMobileOpen((o) => !o)}
-            className="-mr-2 flex items-center p-2 transition-all duration-500 ease-in-out hover:opacity-60 md:hidden"
+            className="flex h-11 w-11 items-center justify-center transition-all duration-500 ease-in-out hover:opacity-60 md:hidden"
             aria-label={mobileOpen ? "סגירת תפריט" : "תפריט"}
             aria-expanded={mobileOpen}
           >

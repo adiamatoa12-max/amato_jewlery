@@ -247,7 +247,7 @@ export default function CartDrawer() {
                         onClick={() =>
                           updateQuantity(item.handle, item.quantity - 1)
                         }
-                        className="flex h-8 w-8 items-center justify-center transition-all duration-300 ease-in-out hover:bg-white/10"
+                        className="flex h-11 w-10 items-center justify-center transition-all duration-300 ease-in-out hover:bg-white/10"
                       >
                         <Minus className="h-3.5 w-3.5" strokeWidth={1.5} />
                       </button>
@@ -260,7 +260,7 @@ export default function CartDrawer() {
                         onClick={() =>
                           updateQuantity(item.handle, item.quantity + 1)
                         }
-                        className="flex h-8 w-8 items-center justify-center transition-all duration-300 ease-in-out hover:bg-white/10"
+                        className="flex h-11 w-10 items-center justify-center transition-all duration-300 ease-in-out hover:bg-white/10"
                       >
                         <Plus className="h-3.5 w-3.5" strokeWidth={1.5} />
                       </button>
