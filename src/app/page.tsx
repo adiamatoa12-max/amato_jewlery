@@ -134,20 +134,24 @@ function HowItWorks() {
           ))}
         </div>
 
-        {/* Action clip — electric motor spinning the shake (placeholder video) */}
+        {/* Action shot — the integrated electric motor in action */}
         <FadeIn delay={120}>
           <figure className="mx-auto mt-16 w-full max-w-3xl">
-            <div className="group relative aspect-video overflow-hidden rounded-2xl border border-white/10 bg-zinc-900 shadow-[0_20px_60px_-24px_rgba(167, 199, 231,0.45)]">
-              <AutoplayVideo
-                src="/videos/vault-magnetic-demo.mp4"
-                className="absolute inset-0 h-full w-full object-cover object-center"
+            <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-zinc-900 shadow-[0_20px_60px_-24px_rgba(167, 199, 231,0.45)]">
+              <Image
+                src="/images/vault-steps.png"
+                alt="המנוע החשמלי המובנה של VAULT מערבל שייק חלק בלחיצת כפתור"
+                width={1536}
+                height={1024}
+                sizes="(max-width: 768px) 100vw, 768px"
+                className="h-auto w-full"
               />
               <span className="pointer-events-none absolute bottom-3 right-3 rounded-full bg-black/70 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-[#A7C7E7] backdrop-blur-sm">
                 המנוע החשמלי בפעולה
               </span>
             </div>
             <figcaption className="mt-3 text-center text-xs text-zinc-500">
-              סרטון הדגמה זמני — יוחלף בקליפ של המנוע החשמלי מערבל את השייק.
+              המנוע החשמלי המובנה — ערבוב חלק לגמרי בלחיצת כפתור אחת.
             </figcaption>
           </figure>
         </FadeIn>
