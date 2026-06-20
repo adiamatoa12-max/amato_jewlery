@@ -10,8 +10,9 @@ import {
   Star,
   Truck,
   Lock,
-  Waves,
   CupSoda,
+  Zap,
+  BadgeCheck,
   type LucideIcon,
 } from "lucide-react";
 import FadeIn from "@/components/FadeIn";
@@ -83,9 +84,9 @@ const STEPS = [
     body: "מדביקים טבעת מגנטית דקה על הטלפון או על הכיסוי — והוא נצמד לשייקר באחיזה איתנה.",
   },
   {
-    icon: Waves,
-    title: "מערבבים",
-    body: "ממלאים, סוגרים וטלטלים בביטחון מלא — אטימה הרמטית שלא נוזלת, בכל תנועה.",
+    icon: Zap,
+    title: "מערבבים בלחיצה",
+    body: "מיקסר חשמלי מובנה — בלחיצת כפתור אחת לשייק חלק לגמרי, בלי גושים, בכל פעם.",
   },
   {
     icon: CupSoda,
@@ -276,6 +277,14 @@ const ANATOMY: Callout[] = [
     labelStyle: { top: "45%", left: "2%" },
     dot: { x: 48, y: 33 },
     line: { x: 33, y: 47 },
+  },
+  {
+    icon: Zap,
+    label: "כפתור הפעלה · מנוע חשמלי",
+    align: "left",
+    labelStyle: { bottom: "8%", left: "2%" },
+    dot: { x: 50, y: 86 },
+    line: { x: 33, y: 84 },
   },
 ];
 
@@ -547,9 +556,24 @@ function Reviews() {
                 <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-zinc-300">
                   “{r.text}”
                 </blockquote>
-                <figcaption className="mt-6 border-t border-white/10 pt-4">
-                  <p className="text-sm font-bold text-white">{r.name}</p>
-                  <p className="mt-0.5 text-xs text-zinc-500">{r.role}</p>
+                <figcaption className="mt-6 flex items-center gap-3 border-t border-white/10 pt-4">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-zinc-800 font-display text-sm font-bold text-zinc-300">
+                    {r.name.trim().charAt(0)}
+                  </span>
+                  <div>
+                    <p className="flex items-center gap-1.5 text-sm font-bold text-white">
+                      {r.name}
+                      <BadgeCheck
+                        className="h-4 w-4"
+                        style={{ color: GOLD }}
+                        strokeWidth={2}
+                        aria-label="לקוח מאומת"
+                      />
+                    </p>
+                    <p className="mt-0.5 text-xs text-zinc-500">
+                      לקוח מאומת · {r.role}
+                    </p>
+                  </div>
                 </figcaption>
               </figure>
             </FadeIn>
@@ -833,6 +857,7 @@ const FOOTER_LINKS: Record<
     links: [
       { label: "מדיניות משלוחים", href: "/shipping" },
       { label: "החזרות וזיכויים", href: "/returns" },
+      { label: "מדיניות פרטיות", href: "/privacy" },
       { label: "תנאי שימוש", href: "/terms" },
     ],
   },
@@ -964,12 +989,18 @@ function Footer() {
             © VAULT 2026. כל הזכויות שמורות.
           </span>
 
-          <div className="flex flex-wrap items-center justify-center gap-2 sm:justify-end">
-            {PAYMENT_ICONS.map(({ key, label, Icon }) => (
-              <span key={key} aria-label={label} title={label}>
-                <Icon />
-              </span>
-            ))}
+          <div className="flex flex-col items-center gap-2 sm:items-end">
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:justify-end">
+              {PAYMENT_ICONS.map(({ key, label, Icon }) => (
+                <span key={key} aria-label={label} title={label}>
+                  <Icon />
+                </span>
+              ))}
+            </div>
+            <span className="flex items-center gap-1.5 text-[11px] tracking-[0.06em] text-white/45">
+              <Lock className="h-3.5 w-3.5" strokeWidth={1.75} />
+              תשלום מאובטח ב-100%
+            </span>
           </div>
         </div>
       </div>

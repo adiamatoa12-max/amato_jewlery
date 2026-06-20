@@ -1,6 +1,8 @@
 "use client";
 
 const PHONE = "972585838005";
+// Pre-filled WhatsApp message so the chat opens ready to send.
+const PREFILL = encodeURIComponent("היי, הגעתי דרך האתר, אפשר לשאול שאלה?");
 
 function WhatsAppIcon({ className }: { className?: string }) {
   return (
@@ -13,7 +15,7 @@ function WhatsAppIcon({ className }: { className?: string }) {
 export default function WhatsAppButton() {
   return (
     <a
-      href={`https://wa.me/${PHONE}`}
+      href={`https://wa.me/${PHONE}?text=${PREFILL}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="פנייה אלינו בוואטסאפ"
