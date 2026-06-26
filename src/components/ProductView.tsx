@@ -14,7 +14,7 @@ import {
   Check,
   Zap,
 } from "lucide-react";
-import { useCart, formatPrice, type AddToCartInput } from "@/lib/cart/CartContext";
+import { formatPrice, type AddToCartInput } from "@/lib/cart/CartContext";
 import { ACCESSORIES } from "@/lib/accessories";
 import { WAITLIST_MODE, EXTRAS_AVAILABLE } from "@/lib/config";
 import WaitlistButton from "@/components/WaitlistButton";
@@ -23,6 +23,11 @@ import MediaPlaceholder, {
 } from "@/components/MediaPlaceholder";
 
 const GOLD = "#A7C7E7";
+
+// Concierge MVP: the buy CTA opens a pre-filled WhatsApp chat so orders are
+// confirmed manually while we validate demand before the automated checkout.
+const CONCIERGE_URL =
+  "https://wa.me/972585838005?text=היי,%20אני%20מעוניין%20להזמין%20את%20שייקר%20Vault%20-%20אפשר%20לבדוק%20זמינות?";
 
 interface GalleryMedia {
   media_type: string;
@@ -50,6 +55,10 @@ const TRUST_BADGES = [
 
 const BUNDLE_DISCOUNT = 0.15;
 
+// Founder's Edition early-adopter pricing.
+const FOUNDER_PRICE = 149;
+const FOUNDER_COMPARE_AT = 179;
+
 const MAGNETIC_FEATURES = [
   {
     icon: Magnet,
@@ -74,11 +83,10 @@ export default function ProductView({
   collectionTitle,
   collectionHandle,
 }: ProductViewProps) {
-  const { addItem } = useCart();
   const [bundle, setBundle] = useState(false);
 
-  // Pricing: single unit vs. 2-pack with the launch discount.
-  const unit = product.price;
+  // Pricing: single unit (Founder's Edition price) vs. 2-pack launch discount.
+  const unit = FOUNDER_PRICE;
   const bundleWas = unit * 2;
   const bundleNow = Math.round(unit * 2 * (1 - BUNDLE_DISCOUNT));
   const bundleSaves = bundleWas - bundleNow;
@@ -88,16 +96,6 @@ export default function ProductView({
   const [addOns, setAddOns] = useState<Record<string, boolean>>({});
   const toggleAddOn = (handle: string) =>
     setAddOns((prev) => ({ ...prev, [handle]: !prev[handle] }));
-
-  // Bundle = add the unit twice; single = once. Then add any selected add-ons.
-  const addToCart = () => {
-    addItem(product);
-    if (bundle) addItem(product);
-    // Accessory add-ons are disabled while extras are out of stock.
-    if (EXTRAS_AVAILABLE) {
-      ACCESSORIES.filter((a) => addOns[a.handle]).forEach((a) => addItem(a));
-    }
-  };
 
   // Strictly images: IMAGE media only, drop deleted-local paths, de-dupe.
   const images = Array.from(
@@ -167,7 +165,7 @@ export default function ProductView({
                 <p className="font-display text-3xl font-extrabold tabular-nums text-zinc-100">
                   {formatPrice(displayPrice, product.currency)}
                 </p>
-                {bundle && (
+                {bundle ? (
                   <>
                     <span className="pb-1 text-base tabular-nums text-zinc-500 line-through">
                       {formatPrice(bundleWas, product.currency)}
@@ -177,6 +175,18 @@ export default function ProductView({
                       style={{ color: GOLD }}
                     >
                       חיסכון {formatPrice(bundleSaves, product.currency)}
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <span className="pb-1 text-base tabular-nums text-zinc-500 line-through">
+                      {formatPrice(FOUNDER_COMPARE_AT, product.currency)}
+                    </span>
+                    <span
+                      className="pb-1 text-xs font-bold tracking-wide"
+                      style={{ color: GOLD }}
+                    >
+                      מחיר מוקדמים
                     </span>
                   </>
                 )}
@@ -287,22 +297,27 @@ export default function ProductView({
           </>
           )}
 
-          {/* CTA — Add to Cart, or "get notified" in waitlist mode */}
+          {/* CTA — Concierge MVP: routes to WhatsApp to complete the order
+              manually. Pre-launch waitlist mode still shows the signup. */}
           {WAITLIST_MODE ? (
             <WaitlistButton className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#A7C7E7] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(167, 199, 231,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#C2DCF0] hover:shadow-[0_0_46px_-4px_rgba(167, 199, 231,0.95)] active:scale-95" />
-          ) : (
+          ) : soldOut ? (
             <button
               type="button"
-              disabled={soldOut}
-              onClick={addToCart}
+              disabled
               className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#A7C7E7] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(167, 199, 231,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#C2DCF0] hover:shadow-[0_0_46px_-4px_rgba(167, 199, 231,0.95)] active:scale-95 disabled:cursor-not-allowed disabled:bg-zinc-700 disabled:text-zinc-400 disabled:shadow-none"
             >
-              {soldOut
-                ? "אזל מהמלאי"
-                : bundle
-                  ? `הוספה לסל — 2 יחידות`
-                  : "הוספה לסל"}
+              אזל מהמלאי
             </button>
+          ) : (
+            <a
+              href={CONCIERGE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#A7C7E7] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(167, 199, 231,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#C2DCF0] hover:shadow-[0_0_46px_-4px_rgba(167, 199, 231,0.95)] active:scale-95"
+            >
+              Secure Your Vault
+            </a>
           )}
 
           {/* Trust badges */}
@@ -427,15 +442,23 @@ export default function ProductView({
         </div>
         {WAITLIST_MODE ? (
           <WaitlistButton className="flex flex-1 items-center justify-center rounded-full bg-[#A7C7E7] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#C2DCF0] active:scale-95" />
-        ) : (
+        ) : soldOut ? (
           <button
             type="button"
-            disabled={soldOut}
-            onClick={addToCart}
+            disabled
             className="flex flex-1 items-center justify-center rounded-full bg-[#A7C7E7] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#C2DCF0] active:scale-95 disabled:bg-zinc-700 disabled:text-zinc-400"
           >
-            {soldOut ? "אזל מהמלאי" : "הוספה לסל"}
+            אזל מהמלאי
           </button>
+        ) : (
+          <a
+            href={CONCIERGE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-1 items-center justify-center rounded-full bg-[#A7C7E7] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#C2DCF0] active:scale-95"
+          >
+            Secure Your Vault
+          </a>
         )}
       </div>
     </>
