@@ -27,9 +27,6 @@ export default function CartDrawer() {
     currency,
   } = useCart();
 
-  const [checkingOut, setCheckingOut] = useState(false);
-  const [checkoutError, setCheckoutError] = useState<string | null>(null);
-
   // Live Shopify pricing (reflects automatic discounts). Null = use local math.
   type Pricing = {
     currency: string;
@@ -85,38 +82,25 @@ export default function CartDrawer() {
   const inCart = new Set(items.map((i) => i.handle));
   const upsells = ACCESSORIES.filter((a) => !inCart.has(a.handle));
 
-  async function handleCheckout() {
-    setCheckingOut(true);
-    setCheckoutError(null);
+  // Concierge MVP: checkout completes over WhatsApp. We append the collected
+  // cart items to a pre-filled message so the order is easy to confirm manually.
+  function handleCheckout() {
     trackInitiateCheckout({
       value: totalPrice,
       currency,
       num_items: totalQuantity,
     });
-    try {
-      const res = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          lines: items.map((i) => ({
-            variantId: i.variantId,
-            quantity: i.quantity,
-          })),
-        }),
-      });
-      const data = (await res.json()) as { url?: string; error?: string };
-      if (res.ok && data.url) {
-        window.location.href = data.url;
-        return;
-      }
-      setCheckoutError(
-        data.error ?? "לא ניתן להשלים את ההזמנה כרגע. נסו שוב מאוחר יותר.",
-      );
-    } catch {
-      setCheckoutError("שגיאת רשת. בדקו את החיבור ונסו שוב.");
-    } finally {
-      setCheckingOut(false);
-    }
+    const base =
+      "היי, אספתי כמה מוצרים בעגלה באתר ואשמח להשלים את ההזמנה!";
+    const lines = items
+      .map((i) => `• ${i.title} ×${i.quantity}`)
+      .join("\n");
+    const message = lines ? `${base}\n\n${lines}` : base;
+    window.open(
+      `https://wa.me/972585838005?text=${encodeURIComponent(message)}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
   }
 
   // Lock body scroll while the drawer is open + close on Escape.
@@ -374,16 +358,10 @@ export default function CartDrawer() {
             <button
               type="button"
               onClick={handleCheckout}
-              disabled={checkingOut}
-              className="mt-6 flex w-full items-center justify-center rounded-full bg-[#A7C7E7] px-8 py-4 text-sm font-black uppercase tracking-[0.1em] text-black shadow-[0_0_30px_-6px_rgba(167, 199, 231,0.7)] transition-all duration-300 ease-in-out hover:bg-[#C2DCF0] active:scale-95 disabled:cursor-not-allowed disabled:bg-zinc-700 disabled:text-zinc-400 disabled:shadow-none"
+              className="mt-6 flex w-full items-center justify-center rounded-full bg-[#A7C7E7] px-8 py-4 text-sm font-black uppercase tracking-[0.1em] text-black shadow-[0_0_30px_-6px_rgba(167, 199, 231,0.7)] transition-all duration-300 ease-in-out hover:bg-[#C2DCF0] active:scale-95"
             >
-              {checkingOut ? "מעבירים לקופה…" : "למעבר לקופה"}
+              למעבר לקופה
             </button>
-            {checkoutError && (
-              <p className="mt-3 text-center text-xs text-red-400">
-                {checkoutError}
-              </p>
-            )}
           </div>
         )}
       </aside>
