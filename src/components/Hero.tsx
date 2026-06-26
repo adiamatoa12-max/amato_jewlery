@@ -51,7 +51,7 @@ export default function Hero() {
     <section className="relative flex min-h-[90vh] w-full overflow-hidden bg-[#111111] lg:grid lg:grid-cols-2 lg:overflow-visible">
       {/* CONTENT — overlaid+centered on mobile; right column on a solid dark panel on desktop */}
       <div className="relative z-10 flex min-h-[90vh] w-full items-center justify-center px-6 py-12 lg:min-h-0 lg:justify-end lg:bg-zinc-950 lg:px-16 lg:shadow-[-24px_0_70px_-24px_rgba(0,0,0,0.85)]">
-        <div className="max-w-xl text-center lg:max-w-2xl lg:text-right">
+        <div className="max-w-xl rounded-2xl bg-black/50 p-6 text-center backdrop-blur-sm sm:p-8 lg:max-w-2xl lg:rounded-none lg:bg-transparent lg:p-0 lg:text-right lg:backdrop-blur-none">
           <p
             className="mb-4 text-xs font-bold tracking-widest sm:text-sm"
             style={{ color: GOLD }}
