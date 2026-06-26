@@ -84,7 +84,7 @@ export default function WaitlistModal() {
           type="button"
           onClick={closeWaitlist}
           aria-label="סגירה"
-          className="absolute left-4 top-4 text-zinc-500 transition-colors duration-300 hover:text-zinc-100"
+          className="absolute left-2 top-2 flex h-11 w-11 items-center justify-center text-zinc-500 transition-colors duration-300 hover:text-zinc-100"
         >
           <X className="h-5 w-5" strokeWidth={1.5} />
         </button>

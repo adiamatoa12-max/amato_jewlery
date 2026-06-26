@@ -39,6 +39,9 @@ body {
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
   line-height: 1.6; /* elegant, airy line-height */
   -webkit-font-smoothing: antialiased;
+  /* Guarantee no accidental horizontal swipe on mobile. `clip` (not `hidden`)
+     avoids creating a scroll container, so position:sticky keeps working. */
+  overflow-x: clip;
 }
 
 /* Keep headings tight unless a leading-* utility overrides */

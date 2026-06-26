@@ -150,14 +150,14 @@ export default function CustomerReviews({ handle }: { handle: string }) {
                   <span className="text-xs tracking-[0.08em] text-zinc-400">
                     הדירוג שלך
                   </span>
-                  <div className="flex items-center gap-1">
+                  <div className="-mx-1 flex items-center">
                     {Array.from({ length: 5 }).map((_, i) => (
                       <button
                         key={i}
                         type="button"
                         onClick={() => setRating(i + 1)}
                         aria-label={`${i + 1} כוכבים`}
-                        className="transition-transform duration-200 ease-in-out hover:scale-110"
+                        className="flex h-11 w-11 items-center justify-center transition-transform duration-200 ease-in-out hover:scale-110"
                       >
                         <Star
                           className={`h-5 w-5 ${

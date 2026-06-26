@@ -62,7 +62,7 @@ export default function InfoDrawer() {
             type="button"
             onClick={closeInfo}
             aria-label="סגירה"
-            className="transition-all duration-500 ease-in-out hover:opacity-60"
+            className="-m-2.5 flex h-11 w-11 items-center justify-center transition-all duration-500 ease-in-out hover:opacity-60"
           >
             <X className="h-5 w-5" strokeWidth={1.5} />
           </button>

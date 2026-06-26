@@ -169,7 +169,7 @@ export default function CartDrawer() {
             type="button"
             onClick={closeCart}
             aria-label="סגירה"
-            className="transition-all duration-300 ease-in-out hover:text-[#A7C7E7]"
+            className="-m-2.5 flex h-11 w-11 items-center justify-center transition-all duration-300 ease-in-out hover:text-[#A7C7E7]"
           >
             <X className="h-5 w-5" strokeWidth={1.5} />
           </button>
