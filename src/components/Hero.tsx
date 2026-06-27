@@ -59,12 +59,14 @@ export default function Hero() {
             פיתוח מתקדם. איכות ללא פשרות. מחיר ללא תחרות.
           </p>
           <h1 className="mb-5 font-display text-3xl font-extrabold leading-tight text-zinc-100 sm:text-4xl md:text-5xl lg:text-5xl">
-            <span style={{ color: GOLD }}>VAULT</span>: הסטנדרט החדש לאימון ללא
-            פשרות.
+            <span style={{ color: GOLD }}>VAULT</span>: השייקר המגנטי הראשון
+            שמשנה את חוקי המשחק בחדר הכושר.
           </h1>
           <p className="mb-8 text-base font-light leading-relaxed text-zinc-300 sm:text-lg">
-            הטכנולוגיה המגנטית שמשחררת אותך מהרצפה. אל תסתפק בשייקר רגיל –
-            תתמקד בביצועים, ה-Vault כבר ידאג לכל השאר.
+            הנדסה מדויקת למתאמנים: מערבל חשמלי עוצמתי שמעלים גושים בשניות,
+            בשילוב טכנולוגיית ה-Mag-Grip המאפשרת לך להצמיד את הנייד לכל משטח
+            מתכתי במכון. תפסיק להניח את הטלפון על הרצפה – ה-Vault ידאג לביצועים
+            ולסטייל שלך.
           </p>
           {WAITLIST_MODE ? (
             <WaitlistButton
@@ -75,7 +77,7 @@ export default function Hero() {
               href={PRODUCT_URL}
               className={`mx-auto max-w-xs sm:mx-0 sm:max-w-none ${goldButton}`}
             >
-              הזמינו עכשיו את VAULT
+              שריינו את מהדורת המייסדים
             </Link>
           )}
           {dots}
