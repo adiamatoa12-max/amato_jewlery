@@ -14,6 +14,7 @@ import AnnouncementBar from "@/components/AnnouncementBar";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import AccessibilityButton from "@/components/AccessibilityButton";
 import { getNavGroups } from "@/lib/catalog";
+import { SITE_URL } from "@/lib/site";
 
 const assistant = Assistant({
   variable: "--font-sans",
@@ -32,7 +33,6 @@ const montserrat = Montserrat({
   subsets: ["latin"],
 });
 
-const SITE_URL = "https://vaultshaker.vercel.app";
 const TITLE = "VAULT | השייקר המגנטי הראשון בעולם לאימון מושלם";
 const DESCRIPTION =
   "שדרגו את האימון שלכם עם VAULT - שייקר פרימיום עם מגנט N52 עוצמתי המצמיד את הסמארטפון שלכם לכל משטח מתכתי. מושלם לצילום אימונים ללא ידיים.";

@@ -349,7 +349,7 @@ export default function ProductView({
             ) : (
               <Image
                 src={active}
-                alt={product.title}
+                alt={`${product.title} — שייקר מגנטי לאימון בחדר הכושר עם מעמד טלפון מובנה`}
                 fill
                 priority
                 sizes="(min-width: 1024px) 50vw, 100vw"
@@ -376,7 +376,7 @@ export default function ProductView({
                 >
                   <Image
                     src={src}
-                    alt=""
+                    alt={`${product.title} — שייקר מגנטי, זווית ${i + 1}`}
                     fill
                     sizes="120px"
                     className="object-cover object-center"
