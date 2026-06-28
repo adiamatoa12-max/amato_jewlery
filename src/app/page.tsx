@@ -7,8 +7,6 @@ import {
   Droplet,
   Grip,
   CheckCircle,
-  Check,
-  X,
   RotateCcw,
   Star,
   Truck,
@@ -22,6 +20,7 @@ import FadeIn from "@/components/FadeIn";
 import FooterLink, { type FooterLinkItem } from "@/components/FooterLink";
 import MediaPlaceholder from "@/components/MediaPlaceholder";
 import Hero from "@/components/Hero";
+import ManifestoSection from "@/components/ManifestoSection";
 import AutoplayVideo from "@/components/AutoplayVideo";
 import FaqAccordion from "@/components/FaqAccordion";
 import WaitlistButton from "@/components/WaitlistButton";
@@ -61,13 +60,13 @@ export default function Home() {
     <div className="flex min-h-full flex-col bg-[#111111] pt-[5.75rem] text-zinc-100">
       <main id="main-content" className="flex-1">
         <Hero />
+        <ManifestoSection />
         <HowItWorks />
         <UseCases />
         <MicroConversion />
         <HorizontalStreaming />
         <Anatomy />
         <Compatibility />
-        <WhyVault />
         <Reviews />
         <FaqAccordion />
         <BundleBanner />
@@ -826,105 +825,6 @@ function CompleteGear() {
             </FadeIn>
           ))}
         </div>
-      </div>
-    </section>
-  );
-}
-
-/* ── Why VAULT — comparison vs. cheap plastic shakers ────────────────── */
-const COMPARE_ROWS = [
-  {
-    feature: "ביטול גושים",
-    vault: "מיקסר חשמלי — חלק בלחיצה",
-    regular: "ערבוב ידני, גושים",
-  },
-  {
-    feature: "היגיינה",
-    vault: "אטימה הרמטית, קל לניקוי",
-    regular: "דליפות וריח לא נעים",
-  },
-  {
-    feature: "אבטחת הטלפון",
-    vault: "מגנט N52 — צמוד ויציב",
-    regular: "הטלפון זרוק על הרצפה",
-  },
-  {
-    feature: "עמידות",
-    vault: "פרימיום, בנוי לשנים",
-    regular: "פלסטיק זול שנשבר",
-  },
-];
-
-function WhyVault() {
-  return (
-    <section className="bg-[#18181b] px-6 py-24 lg:px-10 lg:py-32">
-      <div className="mx-auto max-w-4xl">
-        <FadeIn>
-          <p
-            className="text-center text-[11px] font-bold tracking-[0.3em]"
-            style={{ color: GOLD }}
-          >
-            למה VAULT
-          </p>
-          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-100 lg:text-4xl">
-            סוף עידן השייקרים הפלסטיקיים הזולים
-          </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-center text-base leading-relaxed text-zinc-400">
-            מספיק לבזבז כסף על שייקרים שנשברים, מדליפים ומשאירים גושים. VAULT הוא
-            השדרוג החד-פעמי — הנדסה מדויקת שנשארת איתך לאורך זמן.
-          </p>
-        </FadeIn>
-
-        <FadeIn delay={120}>
-          <div className="mt-12 overflow-hidden rounded-2xl border border-white/10 shadow-[0_20px_60px_-30px_rgba(0,0,0,0.9)]">
-            {/* Header row */}
-            <div className="grid grid-cols-[0.9fr_1.1fr_1fr] text-center text-[11px] font-bold uppercase tracking-[0.08em] sm:text-sm">
-              <div className="bg-zinc-900 px-3 py-4 text-zinc-500">תכונה</div>
-              <div
-                className="px-3 py-4 font-black text-black"
-                style={{ backgroundColor: GOLD }}
-              >
-                VAULT
-              </div>
-              <div className="bg-zinc-900 px-3 py-4 text-zinc-500">שייקר רגיל</div>
-            </div>
-
-            {/* Comparison rows */}
-            {COMPARE_ROWS.map((row, i) => (
-              <div
-                key={row.feature}
-                className={`grid grid-cols-[0.9fr_1.1fr_1fr] items-stretch border-t border-white/10 ${
-                  i % 2 ? "bg-[#141414]" : "bg-[#111111]"
-                }`}
-              >
-                <div className="flex items-center justify-center px-3 py-5 text-center text-xs font-bold text-zinc-200 sm:text-sm">
-                  {row.feature}
-                </div>
-                <div className="flex items-center gap-2 bg-[#A7C7E7]/[0.07] px-3 py-5 text-xs leading-snug text-zinc-100 sm:text-sm">
-                  <Check
-                    className="h-4 w-4 shrink-0"
-                    style={{ color: GOLD }}
-                    strokeWidth={3}
-                  />
-                  <span>{row.vault}</span>
-                </div>
-                <div className="flex items-center gap-2 px-3 py-5 text-xs leading-snug text-zinc-500 sm:text-sm">
-                  <X
-                    className="h-4 w-4 shrink-0 text-zinc-600"
-                    strokeWidth={3}
-                  />
-                  <span>{row.regular}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </FadeIn>
-
-        <FadeIn delay={200}>
-          <div className="mt-10 flex justify-center">
-            <PrimaryCta className={goldButton} label="שדרגו ל-VAULT עכשיו" />
-          </div>
-        </FadeIn>
       </div>
     </section>
   );
