@@ -7,6 +7,9 @@ import {
   Droplet,
   Grip,
   CheckCircle,
+  Check,
+  X,
+  RotateCcw,
   Star,
   Truck,
   Lock,
@@ -51,7 +54,7 @@ function PrimaryCta({
 
 // Reusable gold CTA with a glowing hover.
 const goldButton =
-  "inline-flex w-full items-center justify-center rounded-full bg-[#A7C7E7] px-12 py-4 text-sm font-bold uppercase tracking-[0.14em] text-black transition-all duration-300 ease-out hover:scale-105 hover:bg-[#C2DCF0] hover:shadow-[0_0_34px_-6px_rgba(167, 199, 231,0.65)] active:scale-95 active:shadow-[0_0_48px_-2px_rgba(167, 199, 231,0.95)] sm:w-auto";
+  "inline-flex w-full items-center justify-center rounded-full bg-[#A7C7E7] px-12 py-4 text-sm font-black uppercase tracking-[0.16em] text-black shadow-[0_10px_36px_-10px_rgba(167,199,231,0.7)] ring-1 ring-[#A7C7E7]/40 transition-all duration-300 ease-out hover:scale-105 hover:bg-[#C2DCF0] hover:shadow-[0_0_40px_-4px_rgba(167,199,231,0.85)] active:scale-95 active:shadow-[0_0_48px_-2px_rgba(167,199,231,0.95)] sm:w-auto";
 
 export default function Home() {
   return (
@@ -64,6 +67,7 @@ export default function Home() {
         <HorizontalStreaming />
         <Anatomy />
         <Compatibility />
+        <WhyVault />
         <Reviews />
         <FaqAccordion />
         <BundleBanner />
@@ -827,18 +831,118 @@ function CompleteGear() {
   );
 }
 
+/* ── Why VAULT — comparison vs. cheap plastic shakers ────────────────── */
+const COMPARE_ROWS = [
+  {
+    feature: "ביטול גושים",
+    vault: "מיקסר חשמלי — חלק בלחיצה",
+    regular: "ערבוב ידני, גושים",
+  },
+  {
+    feature: "היגיינה",
+    vault: "אטימה הרמטית, קל לניקוי",
+    regular: "דליפות וריח לא נעים",
+  },
+  {
+    feature: "אבטחת הטלפון",
+    vault: "מגנט N52 — צמוד ויציב",
+    regular: "הטלפון זרוק על הרצפה",
+  },
+  {
+    feature: "עמידות",
+    vault: "פרימיום, בנוי לשנים",
+    regular: "פלסטיק זול שנשבר",
+  },
+];
+
+function WhyVault() {
+  return (
+    <section className="bg-[#18181b] px-6 py-24 lg:px-10 lg:py-32">
+      <div className="mx-auto max-w-4xl">
+        <FadeIn>
+          <p
+            className="text-center text-[11px] font-bold tracking-[0.3em]"
+            style={{ color: GOLD }}
+          >
+            למה VAULT
+          </p>
+          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-100 lg:text-4xl">
+            סוף עידן השייקרים הפלסטיקיים הזולים
+          </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-center text-base leading-relaxed text-zinc-400">
+            מספיק לבזבז כסף על שייקרים שנשברים, מדליפים ומשאירים גושים. VAULT הוא
+            השדרוג החד-פעמי — הנדסה מדויקת שנשארת איתך לאורך זמן.
+          </p>
+        </FadeIn>
+
+        <FadeIn delay={120}>
+          <div className="mt-12 overflow-hidden rounded-2xl border border-white/10 shadow-[0_20px_60px_-30px_rgba(0,0,0,0.9)]">
+            {/* Header row */}
+            <div className="grid grid-cols-[0.9fr_1.1fr_1fr] text-center text-[11px] font-bold uppercase tracking-[0.08em] sm:text-sm">
+              <div className="bg-zinc-900 px-3 py-4 text-zinc-500">תכונה</div>
+              <div
+                className="px-3 py-4 font-black text-black"
+                style={{ backgroundColor: GOLD }}
+              >
+                VAULT
+              </div>
+              <div className="bg-zinc-900 px-3 py-4 text-zinc-500">שייקר רגיל</div>
+            </div>
+
+            {/* Comparison rows */}
+            {COMPARE_ROWS.map((row, i) => (
+              <div
+                key={row.feature}
+                className={`grid grid-cols-[0.9fr_1.1fr_1fr] items-stretch border-t border-white/10 ${
+                  i % 2 ? "bg-[#141414]" : "bg-[#111111]"
+                }`}
+              >
+                <div className="flex items-center justify-center px-3 py-5 text-center text-xs font-bold text-zinc-200 sm:text-sm">
+                  {row.feature}
+                </div>
+                <div className="flex items-center gap-2 bg-[#A7C7E7]/[0.07] px-3 py-5 text-xs leading-snug text-zinc-100 sm:text-sm">
+                  <Check
+                    className="h-4 w-4 shrink-0"
+                    style={{ color: GOLD }}
+                    strokeWidth={3}
+                  />
+                  <span>{row.vault}</span>
+                </div>
+                <div className="flex items-center gap-2 px-3 py-5 text-xs leading-snug text-zinc-500 sm:text-sm">
+                  <X
+                    className="h-4 w-4 shrink-0 text-zinc-600"
+                    strokeWidth={3}
+                  />
+                  <span>{row.regular}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </FadeIn>
+
+        <FadeIn delay={200}>
+          <div className="mt-10 flex justify-center">
+            <PrimaryCta className={goldButton} label="שדרגו ל-VAULT עכשיו" />
+          </div>
+        </FadeIn>
+      </div>
+    </section>
+  );
+}
+
 /* ── Trust & guarantees banner ───────────────────────────────────────── */
 const TRUST_ITEMS = [
-  { icon: Truck, label: "משלוח מהיר לכל הארץ" },
-  { icon: ShieldCheck, label: "אחריות מלאה על המוצר" },
-  { icon: Lock, label: "רכישה מאובטחת ומוצפנת" },
+  { icon: ShieldCheck, label: "אחריות שנה על המנוע" },
+  { icon: RotateCcw, label: "30 יום החזר כספי מלא" },
+  { icon: Truck, label: "משלוח מהיר חינם לכל הארץ" },
+  { icon: Lock, label: "תשלום מאובטח ומוצפן" },
 ];
 
 function WhatsInTheBox() {
   return (
     <section className="border-t border-white/10 bg-[#111111] px-6 py-14 lg:px-10">
       <FadeIn>
-        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-3">
+        <div className="mx-auto grid max-w-5xl grid-cols-2 gap-8 md:grid-cols-4">
           {TRUST_ITEMS.map(({ icon: Icon, label }) => (
             <div
               key={label}
