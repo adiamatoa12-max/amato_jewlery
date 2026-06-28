@@ -7,7 +7,7 @@
  *   FB_PIXEL_ID  — Meta (Facebook) Pixel id, e.g. "123456789012345"
  */
 export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID ?? "";
-export const FB_PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID ?? "";
+export const FB_PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID ?? "1557516699348001";
 
 declare global {
   interface Window {
