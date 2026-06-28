@@ -97,7 +97,7 @@ export default function CartDrawer() {
       .join("\n");
     const message = lines ? `${base}\n\n${lines}` : base;
     window.open(
-      `https://wa.me/972585838005?text=${encodeURIComponent(message)}`,
+      `https://wa.me/972515766102?text=${encodeURIComponent(message)}`,
       "_blank",
       "noopener,noreferrer",
     );

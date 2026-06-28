@@ -1,6 +1,6 @@
 "use client";
 
-const PHONE = "972585838005";
+const PHONE = "972515766102";
 // Pre-filled WhatsApp message so the chat opens ready to send.
 const PREFILL = encodeURIComponent("היי, הגעתי דרך האתר, אפשר לשאול שאלה?");
 

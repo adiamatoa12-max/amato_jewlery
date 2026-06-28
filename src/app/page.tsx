@@ -870,6 +870,10 @@ const FOOTER_LINKS: Record<
     links: [
       { label: "אודות", href: "/about" },
       { label: "צור קשר", href: "mailto:adiamato119@gmail.com" },
+      {
+        label: "וואטסאפ",
+        href: "https://wa.me/972515766102?text=היי,%20הגעתי%20דרך%20האתר%20ואשמח%20לפרטים%20על%20שייקר%20Vault",
+      },
       { label: "שאלות נפוצות (FAQ)", panel: "faq" },
       { label: "מפרט המוצר", panel: "sizing" },
     ],

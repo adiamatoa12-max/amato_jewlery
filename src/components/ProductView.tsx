@@ -27,7 +27,7 @@ const GOLD = "#A7C7E7";
 // Concierge MVP: the buy CTA opens a pre-filled WhatsApp chat so orders are
 // confirmed manually while we validate demand before the automated checkout.
 const CONCIERGE_URL =
-  "https://wa.me/972585838005?text=היי,%20אני%20מעוניין%20להזמין%20את%20שייקר%20Vault%20-%20אפשר%20לבדוק%20זמינות?";
+  "https://wa.me/972515766102?text=היי,%20אני%20מעוניין%20להזמין%20את%20שייקר%20Vault%20-%20אפשר%20לבדוק%20זמינות?";
 
 interface GalleryMedia {
   media_type: string;
