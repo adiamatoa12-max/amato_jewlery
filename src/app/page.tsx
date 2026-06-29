@@ -121,7 +121,7 @@ function HowItWorks() {
           {STEPS.map(({ icon: Icon, title, body }, i) => (
             <FadeIn key={title} delay={i * 120}>
               <div className="flex flex-col items-center text-center">
-                <span className="relative flex h-16 w-16 items-center justify-center rounded-full border bg-zinc-900" style={{ borderColor: `${GOLD}55`, color: GOLD }}>
+                <span className="relative flex h-16 w-16 items-center justify-center" style={{ color: GOLD }}>
                   <Icon className="h-7 w-7" strokeWidth={1.5} />
                   <span
                     className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-[#A7C7E7] font-display text-xs font-black text-black"
@@ -143,7 +143,7 @@ function HowItWorks() {
         {/* Action shot — the integrated electric motor in action */}
         <FadeIn delay={120}>
           <figure className="mx-auto mt-16 w-full max-w-3xl">
-            <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-zinc-900 shadow-[0_20px_60px_-24px_rgba(167, 199, 231,0.45)]">
+            <div className="group relative overflow-hidden rounded-3xl shadow-[0_30px_80px_-35px_rgba(0,0,0,0.9)]">
               <Image
                 src="/images/vault-steps.png"
                 alt="המנוע החשמלי המובנה של VAULT מערבל שייק חלק בלחיצת כפתור"
@@ -191,7 +191,7 @@ function UseCases() {
         <div className="mx-auto mt-14 grid max-w-5xl grid-cols-1 gap-2 md:grid-cols-2">
           {GYM_VIDEOS.map((src, i) => (
             <FadeIn key={src} delay={i * 100}>
-              <div className="group relative aspect-video overflow-hidden rounded-2xl border border-white/10 transition-colors duration-300 hover:border-[#A7C7E7]/50">
+              <div className="group relative aspect-video overflow-hidden rounded-3xl shadow-[0_24px_70px_-35px_rgba(0,0,0,0.9)]">
                 <AutoplayVideo
                   src={src}
                   className="absolute inset-0 h-full w-full object-cover object-center"
@@ -210,7 +210,7 @@ function MicroConversion() {
   return (
     <section className="bg-[#111111] px-5 py-16 sm:px-6 lg:px-10">
       <FadeIn>
-        <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 rounded-2xl border border-[#A7C7E7]/40 bg-zinc-900 px-6 py-10 text-center sm:px-10">
+        <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 px-6 py-10 text-center sm:px-10">
           <h2 className="font-display text-2xl font-black tracking-tight text-zinc-100 sm:text-3xl">
             מוכנים לשדרג את האימון שלכם?
           </h2>
@@ -843,7 +843,7 @@ const TRUST_ITEMS = [
 
 function WhatsInTheBox() {
   return (
-    <section className="border-t border-white/10 bg-[#111111] px-6 py-14 lg:px-10">
+    <section className="bg-[#111111] px-6 py-14 lg:px-10">
       <FadeIn>
         <div className="mx-auto grid max-w-5xl grid-cols-2 gap-8 md:grid-cols-4">
           {TRUST_ITEMS.map(({ icon: Icon, label }) => (
@@ -870,7 +870,7 @@ function WhatsInTheBox() {
 /* ── Final CTA — closing conversion band ─────────────────────────────── */
 function FinalCta() {
   return (
-    <section className="border-t border-white/10 bg-[#18181b] px-6 py-20 lg:px-10 lg:py-28">
+    <section className="bg-[#18181b] px-6 py-20 lg:px-10 lg:py-28">
       <FadeIn>
         <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 text-center">
           <p
@@ -896,7 +896,7 @@ function FinalCta() {
 /* ── Urgency band — scarcity nudge before the footer ─────────────────── */
 function UrgencyBand() {
   return (
-    <section className="border-t border-white/10 bg-[#111111] px-6 py-5 text-center">
+    <section className="bg-[#111111] px-6 py-5 text-center">
       <p className="flex items-center justify-center gap-2 text-sm font-semibold tracking-wide text-zinc-200">
         <span className="relative flex h-2 w-2">
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#A7C7E7] opacity-75" />

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Check, X } from "lucide-react";
 import FadeIn from "@/components/FadeIn";
 
@@ -10,6 +11,7 @@ import FadeIn from "@/components/FadeIn";
  */
 const ACCENT = "#c9ced6"; // Metallic silver — subtle, on-brand highlight
 const PRODUCT_URL = `/product/${encodeURIComponent("vault-השייקר-המגנטי")}`;
+const LIFESTYLE_IMG = "/images/שייקר 11.jpeg"; // next/image encodes the path
 
 const MANIFESTO_ROWS = [
   {
@@ -44,96 +46,103 @@ export default function ManifestoSection({
   ctaLabel?: string;
 }) {
   return (
-    <section
-      id={id}
-      className="border-t border-white/10 bg-[#050505] px-6 py-24 lg:px-10 lg:py-36"
-    >
+    <section id={id} className="bg-[#050505] px-6 py-24 lg:px-10 lg:py-36">
       <div className="mx-auto max-w-4xl">
-        {/* Headline */}
-        <FadeIn>
-          <p
-            className="text-center font-display text-[11px] font-bold uppercase tracking-[0.4em]"
-            style={{ color: ACCENT }}
-          >
-            הפילוסופיה שלנו
-          </p>
-          <h2 className="mt-5 text-center font-display text-3xl font-black uppercase leading-[0.95] tracking-tight text-zinc-50 sm:text-4xl lg:text-5xl">
-            הסטנדרט של <span style={{ color: ACCENT }}>VAULT</span>
-          </h2>
-        </FadeIn>
+        {/* Intro — constrained width so the copy stays readable on desktop */}
+        <div className="mx-auto max-w-3xl">
+          <FadeIn>
+            <p
+              className="text-center font-display text-[11px] font-bold uppercase tracking-[0.4em]"
+              style={{ color: ACCENT }}
+            >
+              הפילוסופיה שלנו
+            </p>
+            <h2 className="mt-5 text-center font-display text-3xl font-black uppercase leading-[0.95] tracking-tight text-zinc-50 sm:text-4xl lg:text-5xl">
+              הסטנדרט של <span style={{ color: ACCENT }}>VAULT</span>
+            </h2>
+          </FadeIn>
 
-        {/* Mission statement */}
-        <FadeIn delay={120}>
-          <div className="mx-auto mt-12 max-w-2xl space-y-6 text-center">
-            <p className="font-display text-xl font-bold uppercase tracking-tight text-zinc-100 sm:text-2xl">
-              עידן הציוד הזול והבינוני בחדר הכושר — נגמר.
-            </p>
-            <p className="text-base font-light leading-loose text-zinc-400 sm:text-lg">
-              לא נולדנו כדי להתפשר. כל VAULT מהונדס בדיוק אובססיבי — מנוע חשמלי
-              שמוחק גושים בשנייה, מגנט N52 שמשחרר לך את הידיים, ואטימה מושלמת שלא
-              מכירה דליפות. זה לא עוד שייקר. זו הצהרה על איך נראים ביצועים, סטייל
-              ואורח חיים ללא פשרות.
-            </p>
+          <FadeIn delay={120}>
+            <div className="mt-12 space-y-6 text-center">
+              <p className="font-display text-xl font-bold uppercase tracking-tight text-zinc-100 sm:text-2xl">
+                עידן הציוד הזול והבינוני בחדר הכושר — נגמר.
+              </p>
+              <p className="text-base font-light leading-relaxed text-zinc-400 sm:text-lg">
+                לא נולדנו כדי להתפשר. כל VAULT מהונדס בדיוק אובססיבי — מנוע חשמלי
+                שמוחק גושים בשנייה, מגנט N52 שמשחרר לך את הידיים, ואטימה מושלמת
+                שלא מכירה דליפות. זה לא עוד שייקר. זו הצהרה על איך נראים ביצועים,
+                סטייל ואורח חיים ללא פשרות.
+              </p>
+            </div>
+          </FadeIn>
+        </div>
+
+        {/* Lifestyle image — premium, centered, breathing room above & below */}
+        <FadeIn delay={160}>
+          <div className="mx-auto my-16 max-w-sm lg:my-24">
+            <Image
+              src={LIFESTYLE_IMG}
+              alt="שייקר VAULT המגנטי באורח חיים אתלטי — הטלפון מוצמד בחדר הכושר"
+              width={902}
+              height={1599}
+              sizes="(max-width: 640px) 85vw, 384px"
+              className="h-auto w-full rounded-2xl shadow-[0_40px_90px_-35px_rgba(0,0,0,0.95)]"
+            />
           </div>
         </FadeIn>
 
-        {/* Accent divider */}
-        <FadeIn delay={160}>
-          <div
-            className="mx-auto mt-16 h-px w-24"
-            style={{ backgroundColor: ACCENT }}
-          />
-        </FadeIn>
-
-        {/* Comparison — vertical cards on mobile, grid on desktop */}
+        {/* Comparison — line-free; rows separated by whitespace, VAULT column
+            highlighted with a subtle dark chip rather than borders. */}
         <FadeIn delay={200}>
-          <div className="mx-auto mt-12 max-w-3xl">
+          <div className="mx-auto max-w-3xl">
             {/* Column headers (desktop only) */}
-            <div className="hidden grid-cols-[1fr_1.25fr_1.25fr] items-center border-b border-white/10 pb-4 text-center text-xs font-bold uppercase tracking-[0.2em] sm:grid">
+            <div className="hidden grid-cols-[1fr_1.25fr_1.25fr] items-center px-4 pb-5 text-center text-xs font-bold uppercase tracking-[0.2em] sm:grid">
               <span />
               <span style={{ color: ACCENT }}>VAULT</span>
               <span className="text-zinc-600">שייקר סטנדרטי</span>
             </div>
 
-            {MANIFESTO_ROWS.map((row) => (
-              <div
-                key={row.feature}
-                className="border-b border-white/10 py-7 sm:grid sm:grid-cols-[1fr_1.25fr_1.25fr] sm:items-center"
-              >
-                <h3 className="font-display text-base font-bold uppercase tracking-wide text-zinc-100 sm:text-sm">
-                  {row.feature}
-                </h3>
+            <div className="space-y-4">
+              {MANIFESTO_ROWS.map((row) => (
+                <div
+                  key={row.feature}
+                  className="sm:grid sm:grid-cols-[1fr_1.25fr_1.25fr] sm:items-center"
+                >
+                  <h3 className="px-4 font-display text-base font-bold uppercase tracking-wide text-zinc-100 sm:text-sm">
+                    {row.feature}
+                  </h3>
 
-                {/* VAULT */}
-                <div className="mt-4 flex items-start gap-2 sm:mt-0 sm:justify-center sm:text-center">
-                  <Check
-                    className="mt-0.5 h-4 w-4 shrink-0"
-                    style={{ color: ACCENT }}
-                    strokeWidth={3}
-                  />
-                  <span className="text-sm leading-snug text-zinc-200">
-                    {row.vault}
-                  </span>
-                </div>
+                  {/* VAULT — subtle dark chip, no lines */}
+                  <div className="mt-4 flex items-start gap-2 rounded-xl bg-white/[0.04] px-4 py-3 sm:mt-0 sm:justify-center sm:text-center">
+                    <Check
+                      className="mt-0.5 h-4 w-4 shrink-0"
+                      style={{ color: ACCENT }}
+                      strokeWidth={3}
+                    />
+                    <span className="text-sm leading-snug text-zinc-200">
+                      {row.vault}
+                    </span>
+                  </div>
 
-                {/* Standard */}
-                <div className="mt-2 flex items-start gap-2 sm:mt-0 sm:justify-center sm:text-center">
-                  <X
-                    className="mt-0.5 h-4 w-4 shrink-0 text-zinc-600"
-                    strokeWidth={3}
-                  />
-                  <span className="text-sm leading-snug text-zinc-500">
-                    {row.standard}
-                  </span>
+                  {/* Standard */}
+                  <div className="mt-2 flex items-start gap-2 px-4 py-3 sm:mt-0 sm:justify-center sm:text-center">
+                    <X
+                      className="mt-0.5 h-4 w-4 shrink-0 text-zinc-600"
+                      strokeWidth={3}
+                    />
+                    <span className="text-sm leading-snug text-zinc-500">
+                      {row.standard}
+                    </span>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </FadeIn>
 
-        {/* Final CTA */}
+        {/* Final CTA — generous space above, perfectly centered */}
         <FadeIn delay={260}>
-          <div className="mt-16 text-center">
+          <div className="mt-20 flex flex-col items-center text-center">
             <Link
               href={ctaHref}
               className="inline-flex w-full items-center justify-center rounded-full bg-white px-12 py-4 text-sm font-black uppercase tracking-[0.16em] text-black shadow-[0_10px_40px_-12px_rgba(255,255,255,0.3)] ring-1 ring-white/20 transition-all duration-300 ease-out hover:scale-105 hover:bg-zinc-200 hover:shadow-[0_0_44px_-6px_rgba(255,255,255,0.45)] active:scale-95 sm:w-auto"

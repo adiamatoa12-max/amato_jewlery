@@ -15,8 +15,8 @@ const goldButton =
 
 export default function Hero() {
   return (
-    <section className="bg-[#111111] px-6 py-16 lg:px-10 lg:py-24">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20">
+    <section className="bg-[#111111] px-6 py-20 lg:px-10 lg:py-28">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 lg:grid-cols-2 lg:gap-28">
         {/* TEXT — top on mobile; left column on desktop (order-2 in RTL flow). */}
         <div className="text-center lg:order-2 lg:text-right">
           <p
@@ -55,7 +55,7 @@ export default function Hero() {
             container is pre-sized (no layout shift) and the poster paints
             instantly while the clip loads. */}
         <div className="lg:order-1">
-          <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-white/10 bg-zinc-900 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.9)]">
+          <div className="relative aspect-video w-full overflow-hidden rounded-3xl shadow-[0_40px_90px_-35px_rgba(0,0,0,0.95)]">
             <video
               autoPlay
               loop
