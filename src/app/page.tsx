@@ -57,7 +57,7 @@ const goldButton =
 
 export default function Home() {
   return (
-    <div className="flex min-h-full flex-col bg-[#111111] pt-[5.75rem] text-zinc-100">
+    <div className="flex min-h-full flex-col bg-[#111111] pb-16 pt-[5.75rem] text-zinc-100 lg:pb-0">
       <main id="main-content" className="flex-1">
         <Hero />
         <ManifestoSection />
@@ -72,8 +72,11 @@ export default function Home() {
         <BundleBanner />
         <CompleteGear />
         <WhatsInTheBox />
+        <FinalCta />
+        <UrgencyBand />
       </main>
       <Footer />
+      <StickyBuyBar />
     </div>
   );
 }
@@ -567,7 +570,7 @@ function Reviews() {
             לקוחות מספרים
           </p>
           <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-100 lg:text-4xl">
-            מה אומרים על VAULT
+            למה מתאמנים עברו ל-Vault?
           </h2>
         </FadeIn>
 
@@ -861,6 +864,67 @@ function WhatsInTheBox() {
         </div>
       </FadeIn>
     </section>
+  );
+}
+
+/* ── Final CTA — closing conversion band ─────────────────────────────── */
+function FinalCta() {
+  return (
+    <section className="border-t border-white/10 bg-[#18181b] px-6 py-20 lg:px-10 lg:py-28">
+      <FadeIn>
+        <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 text-center">
+          <p
+            className="text-[11px] font-bold tracking-[0.3em]"
+            style={{ color: GOLD }}
+          >
+            מבצע השקה · מלאי ראשון מוגבל
+          </p>
+          <h2 className="font-display text-3xl font-black tracking-tight text-zinc-100 sm:text-4xl">
+            קנו 2 וקבלו 15% הנחה + משלוח חינם
+          </h2>
+          <p className="max-w-xl text-base leading-relaxed text-zinc-400">
+            שדרגו את האימון שלכם — או קחו שני שייקרים, אחד לכם ואחד למי שמתאמן
+            לצידכם. ההטבה זמינה להשקה בלבד.
+          </p>
+          <PrimaryCta className={goldButton} label="שדרג את האימון שלי עכשיו" />
+        </div>
+      </FadeIn>
+    </section>
+  );
+}
+
+/* ── Urgency band — scarcity nudge before the footer ─────────────────── */
+function UrgencyBand() {
+  return (
+    <section className="border-t border-white/10 bg-[#111111] px-6 py-5 text-center">
+      <p className="flex items-center justify-center gap-2 text-sm font-semibold tracking-wide text-zinc-200">
+        <span className="relative flex h-2 w-2">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#A7C7E7] opacity-75" />
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-[#A7C7E7]" />
+        </span>
+        נשארו יחידות אחרונות מהמלאי הנוכחי
+      </p>
+    </section>
+  );
+}
+
+/* ── Sticky mobile buy bar — always-visible CTA (mobile only) ────────── */
+function StickyBuyBar() {
+  return (
+    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#111111]/95 px-4 py-3 backdrop-blur-md lg:hidden">
+      <div className="mx-auto flex max-w-md items-center gap-3">
+        <div className="flex-1 text-right">
+          <p className="text-xs font-bold text-zinc-100">קנו 2 וקבלו 15% הנחה</p>
+          <p className="text-[10px] text-zinc-400">משלוח חינם | 30 ימי אחריות</p>
+        </div>
+        <Link
+          href={PRODUCT_URL}
+          className="flex shrink-0 items-center justify-center rounded-full bg-[#A7C7E7] px-6 py-3 text-sm font-black uppercase tracking-[0.08em] text-black shadow-[0_0_24px_-6px_rgba(167,199,231,0.7)] ring-1 ring-[#A7C7E7]/40 transition-all duration-300 active:scale-95"
+        >
+          קנו עכשיו
+        </Link>
+      </div>
+    </div>
   );
 }
 

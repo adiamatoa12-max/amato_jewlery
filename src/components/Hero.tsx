@@ -1,52 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { WAITLIST_MODE } from "@/lib/config";
 import WaitlistButton from "@/components/WaitlistButton";
 
 const GOLD = "#A7C7E7";
 // Main product — Hebrew handle, encoded for a safe URL (route decodes it).
 const PRODUCT_URL = `/product/${encodeURIComponent("vault-השייקר-המגנטי")}`;
-const SLIDES = [
-  { src: "/images/vault-shaker-hero.png", alt: "שייקר VAULT המגנטי עם מעמד טלפון" },
-  { src: "/images/vault-shaker-unboxing.png", alt: "אריזת השייקר המגנטי של VAULT" },
-];
+// Hero showcase clip (Mag-Grip in action). Hebrew filename → encode for the URL.
+const VIDEO_SRC = `/videos/${encodeURIComponent("שייקר.mp4")}`;
 
 const goldButton =
   "inline-flex w-full items-center justify-center rounded-full bg-[#A7C7E7] px-12 py-4 text-sm font-bold uppercase tracking-[0.14em] text-black transition-all duration-300 ease-out hover:scale-105 hover:bg-[#C2DCF0] hover:shadow-[0_0_34px_-6px_rgba(167, 199, 231,0.65)] active:scale-95 active:shadow-[0_0_48px_-2px_rgba(167, 199, 231,0.95)] sm:w-auto";
 
 export default function Hero() {
-  const [active, setActive] = useState(0);
-
-  // Auto-advance with a slow, elegant crossfade — every 4.5s.
-  useEffect(() => {
-    if (SLIDES.length < 2) return;
-    const id = window.setInterval(
-      () => setActive((i) => (i + 1) % SLIDES.length),
-      4500,
-    );
-    return () => window.clearInterval(id);
-  }, []);
-
-  const dots = (
-    <div className="mt-10 flex items-center justify-center gap-2.5 lg:justify-end">
-      {SLIDES.map((slide, i) => (
-        <button
-          key={slide.src}
-          type="button"
-          onClick={() => setActive(i)}
-          aria-label={`מעבר לתמונה ${i + 1}`}
-          aria-current={i === active}
-          className={`h-2 rounded-full transition-all duration-500 ease-in-out ${
-            i === active ? "w-6 bg-[#A7C7E7]" : "w-2 bg-white/40 hover:bg-white/70"
-          }`}
-        />
-      ))}
-    </div>
-  );
-
   return (
     <section className="relative flex min-h-[90vh] w-full overflow-hidden bg-[#111111] lg:grid lg:grid-cols-2 lg:overflow-visible">
       {/* CONTENT — overlaid+centered on mobile; right column on a solid dark panel on desktop */}
@@ -59,14 +26,12 @@ export default function Hero() {
             פיתוח מתקדם. איכות ללא פשרות. מחיר ללא תחרות.
           </p>
           <h1 className="mb-5 font-display text-3xl font-extrabold leading-tight text-zinc-100 sm:text-4xl md:text-5xl lg:text-5xl">
-            <span style={{ color: GOLD }}>VAULT</span>: השייקר המגנטי הראשון
-            שמשנה את חוקי המשחק בחדר הכושר.
+            האימון שלך, משודרג.{" "}
+            <span style={{ color: GOLD }}>הטלפון מוגן, השייק מושלם.</span>
           </h1>
           <p className="mb-8 text-base font-light leading-relaxed text-zinc-300 sm:text-lg">
-            הנדסה מדויקת למתאמנים: מערבל חשמלי עוצמתי שמעלים גושים בשניות,
-            בשילוב טכנולוגיית ה-Mag-Grip המאפשרת לך להצמיד את הנייד לכל משטח
-            מתכתי במכון. תפסיק להניח את הטלפון על הרצפה – ה-Vault ידאג לביצועים
-            ולסטייל שלך.
+            שכח מהטלפון על הרצפה. ה-Vault מחזיק את המכשיר שלך בגובה העיניים
+            ומכין שייק חלק ב-10 שניות.
           </p>
           {WAITLIST_MODE ? (
             <WaitlistButton
@@ -77,33 +42,32 @@ export default function Hero() {
               href={PRODUCT_URL}
               className={`mx-auto max-w-xs sm:mx-0 sm:max-w-none ${goldButton}`}
             >
-              שריינו את מהדורת המייסדים
+              שדרג את האימון שלי עכשיו
             </Link>
           )}
-          {dots}
+          <p className="mt-4 text-xs font-medium tracking-wide text-zinc-300">
+            משלוח מהיר לכל חלקי הארץ | 30 ימי אחריות
+          </p>
         </div>
       </div>
 
-      {/* VISUAL — full-bleed background on mobile; left column slider on desktop */}
+      {/* VISUAL — Mag-Grip showcase video. Full-bleed on mobile; left column on
+          desktop. The container is always sized (min-h-[90vh] / stretched grid
+          cell), so the object-cover video can't cause layout shift; the poster
+          paints instantly while the clip loads. */}
       <div className="absolute inset-0 lg:relative lg:inset-auto lg:h-auto lg:bg-[#111111]">
-        {SLIDES.map((slide, i) => (
-          <div
-            key={slide.src}
-            aria-hidden
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-              i === active ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            <Image
-              src={slide.src}
-              alt={slide.alt}
-              fill
-              priority={i === 0}
-              sizes="(min-width: 1024px) 50vw, 100vw"
-              className="object-cover object-center"
-            />
-          </div>
-        ))}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          poster="/images/vault-shaker-hero.png"
+          aria-label="שייקר VAULT המגנטי מחזיק את הטלפון בחדר הכושר — טכנולוגיית Mag-Grip בפעולה"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        >
+          <source src={VIDEO_SRC} type="video/mp4" />
+        </video>
       </div>
 
       {/* Legibility overlay — mobile only (desktop text sits on the solid panel) */}
