@@ -33,9 +33,9 @@ const montserrat = Montserrat({
   subsets: ["latin"],
 });
 
-const TITLE = "VAULT | השייקר המגנטי הראשון בעולם לאימון מושלם";
+const TITLE = "Vault | שדרגו את האימון שלכם";
 const DESCRIPTION =
-  "שדרגו את האימון שלכם עם VAULT - שייקר פרימיום עם מגנט N52 עוצמתי המצמיד את הסמארטפון שלכם לכל משטח מתכתי. מושלם לצילום אימונים ללא ידיים.";
+  "הסוף לטלפון על הרצפה במכון. ה-Vault מחזיק את המכשיר שלך בגובה העיניים עם טכנולוגיית Mag-Grip ומכין שייק חלק ב-10 שניות.";
 
 // Re-render every 60s (ISR) so live Shopify nav/products sync without redeploy.
 export const revalidate = 60;
