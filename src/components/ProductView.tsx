@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -13,14 +13,12 @@ import {
   ChevronDown,
   Check,
   Zap,
+  Play,
 } from "lucide-react";
 import { formatPrice, type AddToCartInput } from "@/lib/cart/CartContext";
 import { ACCESSORIES } from "@/lib/accessories";
 import { WAITLIST_MODE, EXTRAS_AVAILABLE } from "@/lib/config";
 import WaitlistButton from "@/components/WaitlistButton";
-import MediaPlaceholder, {
-  isMissingLocalMedia,
-} from "@/components/MediaPlaceholder";
 
 const GOLD = "#A7C7E7";
 
@@ -77,6 +75,32 @@ const MAGNETIC_FEATURES = [
   },
 ];
 
+// Curated gallery: studio value shot → UGC Mag-Grip close-up → lifestyle →
+// action video. Mixed media (image + video). Hebrew filenames are encoded.
+type GalleryItem = { type: "image" | "video"; src: string; alt: string };
+const GALLERY_MEDIA: GalleryItem[] = [
+  {
+    type: "image",
+    src: "/images/vault-shaker-unboxing.png",
+    alt: "ערכת VAULT באריזת פרימיום — צילום אולפן",
+  },
+  {
+    type: "image",
+    src: "/images/שייקר ת.jpeg",
+    alt: "טכנולוגיית Mag-Grip בקלוז-אפ — הטלפון מוצמד לשייקר בחדר הכושר",
+  },
+  {
+    type: "image",
+    src: "/images/שייקר 11.jpeg",
+    alt: "שייקר VAULT המגנטי באחיזה — אורח חיים אתלטי",
+  },
+  {
+    type: "video",
+    src: `/videos/${encodeURIComponent("שייקר 31.mp4")}`,
+    alt: "טכנולוגיית Mag-Grip בפעולה על ספסל האימון",
+  },
+];
+
 export default function ProductView({
   product,
   soldOut,
@@ -97,17 +121,24 @@ export default function ProductView({
   const toggleAddOn = (handle: string) =>
     setAddOns((prev) => ({ ...prev, [handle]: !prev[handle] }));
 
-  // Strictly images: IMAGE media only, drop deleted-local paths, de-dupe.
-  const images = Array.from(
-    new Set(
-      (product.galleryMedia ?? [])
-        .filter((m) => m.media_type === "IMAGE")
-        .map((m) => m.url)
-        .filter((url) => !isMissingLocalMedia(url)),
-    ),
-  );
   const [activeImg, setActiveImg] = useState(0);
-  const active = images[activeImg] ?? images[0];
+  const activeMedia = GALLERY_MEDIA[activeImg] ?? GALLERY_MEDIA[0];
+
+  // Sticky bar appears only once the main Buy button has scrolled out of view
+  // (above the viewport) — keeps the CTA reachable without crowding the page.
+  const buyRef = useRef<HTMLDivElement | null>(null);
+  const [showSticky, setShowSticky] = useState(false);
+  useEffect(() => {
+    const onScroll = () => {
+      const el = buyRef.current;
+      if (!el) return;
+      // Show once the main Buy button has fully scrolled above the viewport.
+      setShowSticky(el.getBoundingClientRect().bottom < 0);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <>
@@ -126,16 +157,13 @@ export default function ProductView({
             {product.title}
           </h1>
 
-          {/* Founder's Edition — exclusive prototype run */}
-          <p
-            dir="ltr"
-            className="mt-3 flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.22em]"
-          >
-            <span style={{ color: "#C8A24C" }}>Founder&apos;s Edition</span>
+          {/* Launch edition — scarcity, in the clean accent (no gold) */}
+          <p className="mt-3 flex items-center gap-2 text-[11px] font-bold tracking-[0.15em]">
+            <span style={{ color: GOLD }}>מהדורת השקה</span>
             <span className="text-zinc-600" aria-hidden>
               |
             </span>
-            <span className="text-zinc-300">Limited to 5 Units</span>
+            <span className="text-zinc-300">מלאי ראשון מוגבל</span>
           </p>
 
           {/* Electric mixer feature highlight */}
@@ -299,6 +327,7 @@ export default function ProductView({
 
           {/* CTA — Concierge MVP: routes to WhatsApp to complete the order
               manually. Pre-launch waitlist mode still shows the signup. */}
+          <div ref={buyRef}>
           {WAITLIST_MODE ? (
             <WaitlistButton className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#A7C7E7] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(167, 199, 231,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#C2DCF0] hover:shadow-[0_0_46px_-4px_rgba(167, 199, 231,0.95)] active:scale-95" />
           ) : soldOut ? (
@@ -316,9 +345,10 @@ export default function ProductView({
               rel="noopener noreferrer"
               className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#A7C7E7] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(167, 199, 231,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#C2DCF0] hover:shadow-[0_0_46px_-4px_rgba(167, 199, 231,0.95)] active:scale-95"
             >
-              Secure Your Vault
+              הוסף לעגלה - משלוח חינם
             </a>
           )}
+          </div>
 
           {/* Trust badges */}
           <ul className="mt-8 grid grid-cols-3 gap-3 border-y border-white/10 py-6">
@@ -341,15 +371,23 @@ export default function ProductView({
           </div>
         </section>
 
-        {/* GALLERY — left column in RTL */}
+        {/* GALLERY — left column in RTL. Mixed media: image + action video. */}
         <section className="flex flex-col gap-4">
-          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-white/10 bg-zinc-900">
-            {!active ? (
-              <MediaPlaceholder className="absolute inset-0 h-full w-full" />
+          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-zinc-900">
+            {activeMedia.type === "video" ? (
+              <video
+                src={activeMedia.src}
+                autoPlay
+                loop
+                muted
+                playsInline
+                aria-label={activeMedia.alt}
+                className="absolute inset-0 h-full w-full object-cover object-center"
+              />
             ) : (
               <Image
-                src={active}
-                alt={`${product.title} — שייקר מגנטי לאימון בחדר הכושר עם מעמד טלפון מובנה`}
+                src={activeMedia.src}
+                alt={activeMedia.alt}
                 fill
                 priority
                 sizes="(min-width: 1024px) 50vw, 100vw"
@@ -358,70 +396,90 @@ export default function ProductView({
             )}
           </div>
 
-          {/* Thumbnails (multiple angles) */}
-          {images.length > 1 && (
-            <div className="grid grid-cols-4 gap-3 sm:grid-cols-5">
-              {images.map((src, i) => (
-                <button
-                  key={src}
-                  type="button"
-                  onClick={() => setActiveImg(i)}
-                  aria-label={`תמונה ${i + 1}`}
-                  aria-current={i === activeImg}
-                  className={`relative aspect-square overflow-hidden rounded-lg border bg-zinc-900 transition-all duration-300 ${
-                    i === activeImg
-                      ? "border-[#A7C7E7]"
-                      : "border-white/10 opacity-60 hover:opacity-100"
-                  }`}
-                >
+          {/* Thumbnails — clean, rounded-2xl, no borders (ring marks active) */}
+          <div className="grid grid-cols-4 gap-3">
+            {GALLERY_MEDIA.map((m, i) => (
+              <button
+                key={m.src}
+                type="button"
+                onClick={() => setActiveImg(i)}
+                aria-label={m.alt}
+                aria-current={i === activeImg}
+                className={`relative aspect-square overflow-hidden rounded-2xl transition-all duration-300 ${
+                  i === activeImg
+                    ? "ring-2 ring-[#A7C7E7]"
+                    : "opacity-60 hover:opacity-100"
+                }`}
+              >
+                {m.type === "video" ? (
+                  <>
+                    <video
+                      src={m.src}
+                      muted
+                      playsInline
+                      preload="metadata"
+                      className="absolute inset-0 h-full w-full object-cover object-center"
+                    />
+                    <span className="absolute inset-0 flex items-center justify-center bg-black/25">
+                      <Play
+                        className="h-5 w-5 text-white"
+                        strokeWidth={2}
+                        fill="currentColor"
+                      />
+                    </span>
+                  </>
+                ) : (
                   <Image
-                    src={src}
-                    alt={`${product.title} — שייקר מגנטי, זווית ${i + 1}`}
+                    src={m.src}
+                    alt={m.alt}
                     fill
                     sizes="120px"
                     className="object-cover object-center"
                   />
-                </button>
-              ))}
-            </div>
-          )}
+                )}
+              </button>
+            ))}
+          </div>
         </section>
       </div>
 
-      {/* Magnetic performance technology */}
-      <section className="mt-20 border-t border-white/10 pt-16 lg:mt-28">
+      {/* Magnetic performance technology — flat, airy, no boxes */}
+      <section className="mt-20 pt-16 lg:mt-28">
         <p
-          className="text-center text-[11px] font-bold uppercase tracking-[0.3em]"
+          className="text-center text-[11px] font-bold tracking-[0.3em]"
           style={{ color: GOLD }}
         >
-          Magnetic Performance
+          טכנולוגיה מגנטית
         </p>
         <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-100 lg:text-4xl">
           הטכנולוגיה שמאחורי VAULT
         </h2>
-        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="mt-14 grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-10">
           {MAGNETIC_FEATURES.map(({ icon: Icon, title, body }) => (
-            <div
-              key={title}
-              className="flex flex-col items-center rounded-2xl border border-white/10 bg-zinc-900 p-8 text-center shadow-[0_10px_30px_-12px_rgba(0,0,0,0.7)] transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[#A7C7E7]/50 hover:shadow-[0_16px_44px_-16px_rgba(167, 199, 231,0.35)]"
-            >
+            <div key={title} className="flex flex-col items-center text-center">
               <span
-                className="flex h-14 w-14 items-center justify-center rounded-full border bg-black/40"
-                style={{ borderColor: `${GOLD}55`, color: GOLD }}
+                className="flex h-16 w-16 items-center justify-center"
+                style={{ color: GOLD }}
               >
-                <Icon className="h-6 w-6" strokeWidth={1.75} />
+                <Icon className="h-9 w-9" strokeWidth={1.5} />
               </span>
               <h3 className="mt-6 font-display text-lg font-extrabold tracking-tight text-zinc-100">
                 {title}
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-zinc-400">{body}</p>
+              <p className="mt-3 max-w-xs text-sm leading-relaxed text-zinc-400">
+                {body}
+              </p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Mobile sticky add-to-cart bar */}
-      <div className="fixed inset-x-0 bottom-0 z-30 flex items-center gap-4 border-t border-white/10 bg-black/95 px-5 py-3 backdrop-blur-md lg:hidden">
+      {/* Sticky buy bar — slides in once the main CTA scrolls out of view (mobile) */}
+      <div
+        className={`fixed inset-x-0 bottom-0 z-40 flex items-center gap-4 border-t border-white/10 bg-[#111111] px-5 py-3 shadow-[0_-8px_30px_-8px_rgba(0,0,0,0.85)] transition-transform duration-300 ease-out lg:hidden ${
+          showSticky ? "translate-y-0" : "translate-y-full"
+        }`}
+      >
         <div className="flex min-w-0 flex-col leading-tight">
           <span className="truncate text-[11px] text-zinc-400">
             {WAITLIST_MODE
@@ -457,7 +515,7 @@ export default function ProductView({
             rel="noopener noreferrer"
             className="flex flex-1 items-center justify-center rounded-full bg-[#A7C7E7] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#C2DCF0] active:scale-95"
           >
-            Secure Your Vault
+            קנה עכשיו
           </a>
         )}
       </div>
