@@ -12,6 +12,7 @@ import FadeIn from "@/components/FadeIn";
 const ACCENT = "#c9ced6"; // Metallic silver — subtle, on-brand highlight
 const PRODUCT_URL = `/product/${encodeURIComponent("vault-השייקר-המגנטי")}`;
 const LIFESTYLE_IMG = "/images/שייקר 11.jpeg"; // next/image encodes the path
+const MAGGRIP_VIDEO = `/videos/${encodeURIComponent("שייקר 31.mp4")}`;
 
 const MANIFESTO_ROWS = [
   {
@@ -77,17 +78,57 @@ export default function ManifestoSection({
           </FadeIn>
         </div>
 
-        {/* Lifestyle image — premium, centered, breathing room above & below */}
+        {/* Lifestyle zig-zag — image row + video row, alternating sides.
+            Mobile: media on top, text below. No boxes/borders — floats on the
+            dark canvas. */}
         <FadeIn delay={160}>
-          <div className="mx-auto my-16 max-w-sm lg:my-24">
-            <Image
-              src={LIFESTYLE_IMG}
-              alt="שייקר VAULT המגנטי באורח חיים אתלטי — הטלפון מוצמד בחדר הכושר"
-              width={902}
-              height={1599}
-              sizes="(max-width: 640px) 85vw, 384px"
-              className="h-auto w-full rounded-2xl shadow-[0_40px_90px_-35px_rgba(0,0,0,0.95)]"
-            />
+          <div className="my-16 space-y-16 lg:my-24 lg:space-y-24">
+            {/* Row 1 — image right / text left (mobile: image on top) */}
+            <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
+              <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-2xl shadow-lg lg:max-w-none">
+                <Image
+                  src={LIFESTYLE_IMG}
+                  alt="שייקר VAULT המגנטי — עיצוב ארגונומי שיושב טבעי ביד"
+                  fill
+                  sizes="(max-width: 1024px) 85vw, 450px"
+                  className="object-cover"
+                />
+              </div>
+              <div className="text-center lg:text-right">
+                <h3 className="font-display text-2xl font-black tracking-tight text-zinc-50 sm:text-3xl">
+                  עיצוב שנועד לך.
+                </h3>
+                <p className="mt-5 text-base font-light leading-relaxed text-zinc-400 sm:text-lg">
+                  ארגונומיה מושלמת שיושבת טבעי ביד. ה-Vault הוא לא רק כלי, הוא
+                  חלק בלתי נפרד מהציוד שלך מהרגע שיצאת מהבית.
+                </p>
+              </div>
+            </div>
+
+            {/* Row 2 — video left / text right (alternating; mobile: video on top) */}
+            <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
+              <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-2xl shadow-lg lg:order-2 lg:max-w-none">
+                <video
+                  src={MAGGRIP_VIDEO}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  aria-label="שייקר VAULT המגנטי בפעולה — הטלפון מוצמד בגובה העיניים בחדר הכושר"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+              </div>
+              <div className="text-center lg:order-1 lg:text-right">
+                <h3 className="font-display text-2xl font-black tracking-tight text-zinc-50 sm:text-3xl">
+                  תמיד איתך, בכל אימון.
+                </h3>
+                <p className="mt-5 text-base font-light leading-relaxed text-zinc-400 sm:text-lg">
+                  ה-Vault נצמד לכל משקולת או ספסל – הטלפון שלך תמיד בגובה העיניים.
+                  טכנולוגיה מגנטית שמשחררת אותך להתמקד בביצועים שלך, בלי טלפונים
+                  על הרצפה.
+                </p>
+              </div>
+            </div>
           </div>
         </FadeIn>
 
