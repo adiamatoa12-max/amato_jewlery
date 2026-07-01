@@ -24,13 +24,27 @@ import {
   BUNDLE_DISCOUNT,
 } from "@/lib/pricing";
 import WaitlistButton from "@/components/WaitlistButton";
+import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 
 const GOLD = "#2e9bff";
 
-// Concierge MVP: the buy CTA opens a pre-filled WhatsApp chat so orders are
-// confirmed manually while we validate demand before the automated checkout.
-const CONCIERGE_URL =
-  "https://wa.me/972515766102?text=היי,%20אני%20מעוניין%20להזמין%20את%20שייקר%20Vault%20-%20אפשר%20לבדוק%20זמינות?";
+// Conversational Commerce: the buy CTA opens WhatsApp with a message that's
+// pre-filled based on the selected bundle option, so orders can be confirmed
+// and closed directly in chat.
+const WHATSAPP_PHONE = "972515766102";
+
+function buildWhatsAppOrderUrl(
+  bundle: boolean,
+  unitPrice: number,
+  bundlePrice: number,
+): string {
+  // Plain "149 ₪" text — formatPrice() embeds invisible RTL marks that don't
+  // belong in a pre-filled chat message.
+  const message = bundle
+    ? `היי! הגעתי מהאתר ואשמח להזמין את מארז הזוג (2 שייקרים) ב-${bundlePrice} ₪.`
+    : `היי! הגעתי מהאתר ואשמח להזמין VaultShaker אחד ב-${unitPrice} ₪.`;
+  return `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
+}
 
 interface GalleryMedia {
   media_type: string;
@@ -114,6 +128,7 @@ export default function ProductView({
   const bundleNow = Math.round(unit * 2 * (1 - BUNDLE_DISCOUNT));
   const bundleSaves = bundleWas - bundleNow;
   const displayPrice = bundle ? bundleNow : unit;
+  const whatsappUrl = buildWhatsAppOrderUrl(bundle, unit, bundleNow);
 
   // Accessory add-ons selected via the in-buy-box checklist.
   const [addOns, setAddOns] = useState<Record<string, boolean>>({});
@@ -326,15 +341,21 @@ export default function ProductView({
             </button>
           ) : (
             <a
-              href={CONCIERGE_URL}
+              href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#2e9bff] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(46, 155, 255,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#5cb3ff] hover:shadow-[0_0_46px_-4px_rgba(46, 155, 255,0.95)] active:scale-95"
+              className="mt-5 inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-[#2e9bff] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(46, 155, 255,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#5cb3ff] hover:shadow-[0_0_46px_-4px_rgba(46, 155, 255,0.95)] active:scale-95"
             >
-              הוסף לעגלה
+              <WhatsAppIcon className="h-5 w-5" />
+              הזמן עכשיו בוואטסאפ
             </a>
           )}
           </div>
+          {!WAITLIST_MODE && !soldOut && (
+            <p className="mt-3 text-center text-xs font-medium tracking-wide text-zinc-400">
+              מענה מהיר | משלוח לכל הארץ | 30 ימי אחריות
+            </p>
+          )}
 
           {/* Trust badges */}
           <ul className="mt-8 grid grid-cols-3 gap-3 border-y border-white/10 py-6">
@@ -491,12 +512,13 @@ export default function ProductView({
           </button>
         ) : (
           <a
-            href={CONCIERGE_URL}
+            href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-1 items-center justify-center rounded-full bg-[#2e9bff] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#5cb3ff] active:scale-95"
+            className="flex flex-1 items-center justify-center gap-2 rounded-full bg-[#2e9bff] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#5cb3ff] active:scale-95"
           >
-            הוסף לעגלה
+            <WhatsAppIcon className="h-4 w-4" />
+            הזמן בוואטסאפ
           </a>
         )}
       </div>
