@@ -143,8 +143,8 @@ export default function ProductView({
   return (
     <>
       <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:gap-16">
-        {/* DETAILS — DOM-first → right column in RTL */}
-        <section className="flex flex-col self-start lg:sticky lg:top-32">
+        {/* DETAILS — order-2 on mobile (below gallery), right column on desktop (RTL) */}
+        <section className="order-2 flex flex-col self-start lg:order-1 lg:sticky lg:top-32">
           <Link
             href={`/#${collectionHandle}`}
             className="text-[11px] font-bold uppercase tracking-[0.25em] transition-colors duration-300"
@@ -235,28 +235,28 @@ export default function ProductView({
             </>
           )}
 
-          <p className="mt-6 max-w-md text-sm leading-relaxed text-zinc-400">
-            {product.description}
-          </p>
-
           {/* Purchase controls — hidden in pre-launch waitlist mode */}
           {!WAITLIST_MODE && (
           <>
-          {/* Bundle selector */}
-          <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {/* Bundle & Save — vertical option cards */}
+          <p className="mb-3 mt-8 text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-500">
+            Bundle & Save
+          </p>
+          <div className="grid grid-cols-1 gap-3">
             <BundleOption
               selected={!bundle}
               onSelect={() => setBundle(false)}
-              title="יחידה בודדת"
+              title="קנה 1"
               priceLabel={formatPrice(unit, product.currency)}
             />
             <BundleOption
               selected={bundle}
               onSelect={() => setBundle(true)}
-              title="2 יחידות"
+              title="קנה 2 (15% הנחה)"
               priceLabel={formatPrice(bundleNow, product.currency)}
-              badge="15% הנחה"
+              badge="המשתלם ביותר"
               note={`חוסכים ${formatPrice(bundleSaves, product.currency)}`}
+              highlight
             />
           </div>
 
@@ -327,7 +327,7 @@ export default function ProductView({
 
           {/* CTA — Concierge MVP: routes to WhatsApp to complete the order
               manually. Pre-launch waitlist mode still shows the signup. */}
-          <div ref={buyRef}>
+          <div ref={buyRef} id="buy">
           {WAITLIST_MODE ? (
             <WaitlistButton className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#2e9bff] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(46, 155, 255,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#5cb3ff] hover:shadow-[0_0_46px_-4px_rgba(46, 155, 255,0.95)] active:scale-95" />
           ) : soldOut ? (
@@ -345,7 +345,7 @@ export default function ProductView({
               rel="noopener noreferrer"
               className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#2e9bff] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(46, 155, 255,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#5cb3ff] hover:shadow-[0_0_46px_-4px_rgba(46, 155, 255,0.95)] active:scale-95"
             >
-              הוסף לעגלה - משלוח חינם
+              הוסף לעגלה
             </a>
           )}
           </div>
@@ -361,18 +361,19 @@ export default function ProductView({
             ))}
           </ul>
 
-          {/* Accordions */}
+          {/* Accordions — collapsed detail, keeps the buy box lean */}
           <div className="mt-2">
-            <Accordion title="מפרט המוצר" body={product.material} />
+            <Accordion title="תיאור המוצר" body={product.description} />
+            <Accordion title="מפרט טכני" body={product.material} />
             <Accordion
-              title="משלוחים, החלפות והחזרות"
+              title="משלוח ואחריות"
               body="משלוח חינם בשליחות עד הבית, אספקה תוך 7–14 ימי עסקים. ניתן להחליף או להחזיר תוך 30 יום מיום הקבלה, כל עוד המוצר במצב חדש ובאריזתו המקורית."
             />
           </div>
         </section>
 
-        {/* GALLERY — left column in RTL. Mixed media: image + action video. */}
-        <section className="flex flex-col gap-4">
+        {/* GALLERY — order-1 on mobile (top, under header), left column on desktop (RTL). Mixed media: image + action video. */}
+        <section className="order-1 flex flex-col gap-4 lg:order-2">
           <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-zinc-900">
             {activeMedia.type === "video" ? (
               <video
@@ -515,7 +516,7 @@ export default function ProductView({
             rel="noopener noreferrer"
             className="flex flex-1 items-center justify-center rounded-full bg-[#2e9bff] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#5cb3ff] active:scale-95"
           >
-            קנה עכשיו
+            הוסף לעגלה
           </a>
         )}
       </div>
@@ -530,6 +531,7 @@ function BundleOption({
   priceLabel,
   badge,
   note,
+  highlight,
 }: {
   selected: boolean;
   onSelect: () => void;
@@ -537,44 +539,45 @@ function BundleOption({
   priceLabel: string;
   badge?: string;
   note?: string;
+  /** Always shows a subtle electric-blue border, even unselected — marks the best-value card. */
+  highlight?: boolean;
 }) {
   return (
     <button
       type="button"
       onClick={onSelect}
       aria-pressed={selected}
-      className={`relative flex flex-col items-start gap-1 rounded-2xl border bg-zinc-900 p-4 text-right transition-all duration-300 ${
+      className={`relative flex w-full items-center justify-between gap-3 rounded-2xl border bg-zinc-900 p-5 text-right transition-all duration-300 ${
         selected
           ? "border-[#2e9bff] shadow-[0_0_24px_-8px_rgba(46, 155, 255,0.7)]"
-          : "border-white/10 hover:border-white/30"
+          : highlight
+            ? "border-[#2e9bff]/40 hover:border-[#2e9bff]/70"
+            : "border-white/10 hover:border-white/30"
       }`}
     >
       {badge && (
-        <span
-          className="absolute -top-2 left-3 rounded-full px-2 py-0.5 text-[10px] font-black tracking-wide text-black"
-          style={{ backgroundColor: GOLD }}
-        >
+        <span className="absolute -top-2.5 left-4 rounded-full bg-[#2e9bff] px-2.5 py-0.5 text-[10px] font-black tracking-wide text-black">
           {badge}
         </span>
       )}
-      <span className="flex w-full items-center justify-between">
-        <span className="text-sm font-bold text-zinc-100">{title}</span>
-        <span
-          className={`flex h-4 w-4 items-center justify-center rounded-full border ${
-            selected ? "border-[#2e9bff] bg-[#2e9bff]" : "border-white/30"
-          }`}
-        >
-          {selected && <Check className="h-3 w-3 text-black" strokeWidth={3} />}
-        </span>
+      <span
+        className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${
+          selected ? "border-[#2e9bff] bg-[#2e9bff]" : "border-white/30"
+        }`}
+      >
+        {selected && <Check className="h-3.5 w-3.5 text-black" strokeWidth={3} />}
       </span>
-      <span className="font-display text-lg font-extrabold tabular-nums text-zinc-100">
+      <span className="flex flex-1 flex-col items-start gap-0.5">
+        <span className="text-sm font-bold text-zinc-100">{title}</span>
+        {note && (
+          <span className="text-[11px] font-bold" style={{ color: GOLD }}>
+            {note}
+          </span>
+        )}
+      </span>
+      <span className="font-display text-xl font-extrabold tabular-nums text-zinc-100">
         {priceLabel}
       </span>
-      {note && (
-        <span className="text-[11px] font-bold" style={{ color: GOLD }}>
-          {note}
-        </span>
-      )}
     </button>
   );
 }

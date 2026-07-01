@@ -92,6 +92,8 @@ export default async function ProductPage({
           }}
         />
       </main>
+      {/* Below-the-fold reviews — kept below the buy box/accordions. Brand
+          story (Manifesto) lives on the homepage only, to avoid duplication. */}
       <CustomerReviews handle={product.handle} />
     </div>
   );
