@@ -35,6 +35,24 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/55 to-[#111111]/25" />
       <div className="absolute inset-0 bg-gradient-to-l from-black/55 via-transparent to-black/35" />
 
+      {/* Soft gradient-mesh glow — organic depth behind the glass card, not a flat overlay */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-24 bottom-0 h-[36rem] w-[36rem] rounded-full opacity-40 blur-[110px]"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(46,155,255,0.35) 0%, rgba(46,155,255,0) 70%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-32 top-0 h-[30rem] w-[30rem] rounded-full opacity-25 blur-[100px]"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 70%)",
+        }}
+      />
+
       {/* Glassmorphism content card */}
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-24 lg:px-10">
         <FadeIn>

@@ -141,7 +141,7 @@ export default function SiteHeader({
         <Link
           href="/"
           aria-label="VAULT — דף הבית"
-          className="inline-flex items-center rounded-lg border border-zinc-800 bg-[#111111] p-2 transition-all duration-500 ease-in-out hover:border-[#2e9bff]/50 hover:opacity-90"
+          className="inline-flex items-center rounded-xl border border-zinc-800 bg-[#111111] p-2 transition-all duration-500 ease-in-out hover:border-[#2e9bff]/50 hover:opacity-90"
         >
           <Image
             src="/images/vault-logo.png"

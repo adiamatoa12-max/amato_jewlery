@@ -80,7 +80,7 @@ export default function AccessibilityButton() {
               type="button"
               onClick={() => toggle("contrast")}
               aria-pressed={settings.contrast}
-              className={`flex items-center justify-between rounded-lg border px-3 py-2.5 text-sm transition-all duration-300 ${
+              className={`flex items-center justify-between rounded-xl border px-3 py-2.5 text-sm transition-all duration-300 ${
                 settings.contrast
                   ? "border-neutral-900 bg-neutral-900 text-zinc-100"
                   : "border-stone-200 text-neutral-800 hover:border-neutral-400"
@@ -96,7 +96,7 @@ export default function AccessibilityButton() {
               type="button"
               onClick={() => toggle("largeText")}
               aria-pressed={settings.largeText}
-              className={`flex items-center justify-between rounded-lg border px-3 py-2.5 text-sm transition-all duration-300 ${
+              className={`flex items-center justify-between rounded-xl border px-3 py-2.5 text-sm transition-all duration-300 ${
                 settings.largeText
                   ? "border-neutral-900 bg-neutral-900 text-zinc-100"
                   : "border-stone-200 text-neutral-800 hover:border-neutral-400"

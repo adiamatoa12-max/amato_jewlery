@@ -208,7 +208,7 @@ function UseCases() {
 /* ── Micro-conversion CTA (between the video sections) ───────────────── */
 function MicroConversion() {
   return (
-    <section className="bg-[#111111] px-5 py-16 sm:px-6 lg:px-10">
+    <section className="bg-[#111111] px-5 py-20 sm:px-6 lg:px-10">
       <FadeIn>
         <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 px-6 py-10 text-center sm:px-10">
           <h2 className="font-display text-2xl font-black tracking-tight text-zinc-100 sm:text-3xl">

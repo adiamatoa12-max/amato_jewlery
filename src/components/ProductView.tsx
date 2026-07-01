@@ -294,7 +294,7 @@ export default function ProductView({
                         )}
                       </span>
                       {/* Thumbnail */}
-                      <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-zinc-800">
+                      <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-xl bg-zinc-800">
                         <Image
                           src={a.image}
                           alt={a.title}

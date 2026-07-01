@@ -178,7 +178,7 @@ export default function CartDrawer() {
           <ul className="divide-y divide-white/10 px-6">
             {items.map((item) => (
               <li key={item.handle} className="flex gap-4 py-6">
-                <div className="relative h-24 w-20 shrink-0 overflow-hidden rounded-lg bg-zinc-800">
+                <div className="relative h-24 w-20 shrink-0 overflow-hidden rounded-xl bg-zinc-800">
                   {isMissingLocalMedia(item.image) ? (
                     <MediaPlaceholder className="absolute inset-0 h-full w-full" />
                   ) : (
@@ -278,7 +278,7 @@ export default function CartDrawer() {
                     key={a.handle}
                     className="flex w-32 shrink-0 flex-col rounded-xl border border-white/10 bg-zinc-900 p-2"
                   >
-                    <span className="relative h-20 w-full overflow-hidden rounded-lg bg-zinc-800">
+                    <span className="relative h-20 w-full overflow-hidden rounded-xl bg-zinc-800">
                       <Image
                         src={a.image}
                         alt={a.title}
