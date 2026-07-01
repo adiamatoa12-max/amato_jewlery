@@ -86,13 +86,13 @@ const GALLERY_MEDIA: GalleryItem[] = [
   },
   {
     type: "image",
-    src: "/images/שייקר ת.jpeg",
-    alt: "טכנולוגיית Mag-Grip בקלוז-אפ — הטלפון מוצמד לשייקר בחדר הכושר",
+    src: "/images/שייקר 100.jpeg",
+    alt: "שני שייקרים של VAULT — מבצע קנו 2 יחידות",
   },
   {
     type: "image",
-    src: "/images/שייקר 11.jpeg",
-    alt: "שייקר VAULT המגנטי באחיזה — אורח חיים אתלטי",
+    src: "/images/שייקר ת.jpeg",
+    alt: "טכנולוגיית Mag-Grip בקלוז-אפ — הטלפון מוצמד על ציוד הכושר",
   },
   {
     type: "video",
