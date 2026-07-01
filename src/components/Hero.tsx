@@ -15,7 +15,7 @@ const ctaButton =
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-[92vh] w-full items-center overflow-hidden bg-[#111111]">
+    <section className="relative flex min-h-[92vh] w-full items-center justify-center overflow-hidden bg-[#111111]">
       {/* Edge-to-edge lifestyle video background */}
       <video
         autoPlay
@@ -30,53 +30,42 @@ export default function Hero() {
         <source src={VIDEO_SRC} type="video/mp4" />
       </video>
 
-      {/* Charcoal gradients — depth + text legibility (never pure black) */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/55 to-[#111111]/25" />
-      <div className="absolute inset-0 bg-gradient-to-l from-black/55 via-transparent to-black/35" />
+      {/* Global dark overlay — uniform legibility wash + a vertical gradient
+          for extra depth toward the bottom. No local box behind the text. */}
+      <div className="absolute inset-0 bg-black/40" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
-      {/* Soft gradient-mesh glow — organic depth behind the glass card, not a flat overlay */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -left-24 bottom-0 h-[36rem] w-[36rem] rounded-full opacity-40 blur-[110px]"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(46,155,255,0.35) 0%, rgba(46,155,255,0) 70%)",
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -right-32 top-0 h-[30rem] w-[30rem] rounded-full opacity-25 blur-[100px]"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 70%)",
-        }}
-      />
-
-      {/* Glassmorphism content card */}
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-24 lg:px-10">
+      {/* Content — floats directly over the video, centered on every breakpoint */}
+      <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center px-6 py-24 text-center lg:px-10">
         <FadeIn>
-          <div className="mx-auto max-w-xl rounded-3xl border border-white/15 bg-white/[0.06] p-8 text-center shadow-[0_24px_70px_-24px_rgba(0,0,0,0.75)] backdrop-blur-xl sm:p-10 lg:mx-0 lg:text-right">
-            <p className="mb-4 text-xs font-bold tracking-[0.2em] text-zinc-300 sm:text-sm">
+          <div className="flex flex-col items-center">
+            <p className="mb-4 text-xs font-bold tracking-[0.2em] text-zinc-200 sm:text-sm">
               הנדסת ביצועים. אפס פשרות.
             </p>
-            <h1 className="mb-5 font-display text-4xl font-black leading-[1.05] tracking-tight text-zinc-50 sm:text-5xl lg:text-6xl">
-              האימון שודרג. הטלפון מאובטח. השייק מושלם.
+            <h1 className="font-display text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
+              האימון שלך, משודרג.
             </h1>
-            <p className="mb-8 text-base font-light leading-relaxed text-zinc-200 sm:text-lg">
+            <p className="mt-3 max-w-2xl text-lg font-light leading-relaxed text-zinc-100 sm:text-xl">
+              הטלפון מאובטח. השייק מושלם.
+            </p>
+            <p className="mx-auto mt-5 max-w-md text-base font-light leading-relaxed text-zinc-300">
               בלי טלפון על הרצפה. בלי גושים בשייק. רק ביצועים.
             </p>
-            {WAITLIST_MODE ? (
-              <WaitlistButton
-                className={`mx-auto max-w-xs sm:mx-0 sm:max-w-none ${ctaButton}`}
-              />
-            ) : (
-              <Link
-                href={PRODUCT_URL}
-                className={`mx-auto max-w-xs sm:mx-0 sm:max-w-none ${ctaButton}`}
-              >
-                שדרג את האימון שלי עכשיו
-              </Link>
-            )}
+
+            <div className="mt-10 sm:mt-10">
+              {WAITLIST_MODE ? (
+                <WaitlistButton
+                  className={`mx-auto max-w-xs sm:mx-0 sm:max-w-none ${ctaButton}`}
+                />
+              ) : (
+                <Link
+                  href={PRODUCT_URL}
+                  className={`mx-auto max-w-xs sm:mx-0 sm:max-w-none ${ctaButton}`}
+                >
+                  שדרג את האימון שלי עכשיו
+                </Link>
+              )}
+            </div>
             <p className="mt-4 text-xs font-medium tracking-wide text-zinc-300">
               משלוח מהיר לכל חלקי הארץ | 30 ימי אחריות
             </p>

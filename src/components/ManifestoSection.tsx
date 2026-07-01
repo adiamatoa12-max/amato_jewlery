@@ -64,10 +64,10 @@ export default function ManifestoSection({
           <FadeIn delay={120}>
             <div className="mt-12 space-y-6 text-center">
               <p className="font-display text-xl font-bold uppercase tracking-tight text-zinc-100 sm:text-2xl">
-                עידן הציוד הזול והבינוני בחדר הכושר — נגמר.
+                עידן הציוד הזול והבינוני בחדר הכושר נגמר.
               </p>
               <p className="text-base font-light leading-relaxed text-zinc-400 sm:text-lg">
-                לא נולדנו כדי להתפשר. כל VAULT מהונדס בדיוק אובססיבי — מנוע חשמלי
+                לא נולדנו כדי להתפשר. כל VAULT מהונדס בדיוק אובססיבי. מנוע חשמלי
                 שמוחק גושים בשנייה, מגנט N52 שמשחרר לך את הידיים, ואטימה מושלמת
                 שלא מכירה דליפות. זה לא עוד שייקר. זו הצהרה על איך נראים ביצועים,
                 סטייל ואורח חיים ללא פשרות.
