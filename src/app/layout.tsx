@@ -33,9 +33,9 @@ const montserrat = Montserrat({
   subsets: ["latin"],
 });
 
-const TITLE = "Vault | שדרגו את האימון שלכם";
+const TITLE = "VAULT Shaker | שייקר מגנטי לחדר כושר";
 const DESCRIPTION =
-  "הסוף לטלפון על הרצפה במכון. ה-Vault מחזיק את המכשיר שלך בגובה העיניים עם טכנולוגיית Mag-Grip ומכין שייק חלק ב-10 שניות.";
+  "VAULT — שייקר מגנטי לחדר כושר. הסוף לטלפון על הרצפה במכון: מחזיק את המכשיר שלך בגובה העיניים עם טכנולוגיית Mag-Grip, ומכין שייק חלק ב-10 שניות.";
 
 // Re-render every 60s (ISR) so live Shopify nav/products sync without redeploy.
 export const revalidate = 60;

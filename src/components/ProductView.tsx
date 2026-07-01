@@ -18,6 +18,11 @@ import {
 import { formatPrice, type AddToCartInput } from "@/lib/cart/CartContext";
 import { ACCESSORIES } from "@/lib/accessories";
 import { WAITLIST_MODE, EXTRAS_AVAILABLE } from "@/lib/config";
+import {
+  FOUNDER_PRICE,
+  FOUNDER_COMPARE_AT,
+  BUNDLE_DISCOUNT,
+} from "@/lib/pricing";
 import WaitlistButton from "@/components/WaitlistButton";
 
 const GOLD = "#2e9bff";
@@ -50,12 +55,6 @@ const TRUST_BADGES = [
   { icon: RotateCcw, label: "החזר כספי 30 יום", sub: "התחייבות מלאה" },
   { icon: Truck, label: "משלוח מהיר", sub: "חינם לכל הארץ" },
 ];
-
-const BUNDLE_DISCOUNT = 0.15;
-
-// Founder's Edition early-adopter pricing.
-const FOUNDER_PRICE = 149;
-const FOUNDER_COMPARE_AT = 179;
 
 const MAGNETIC_FEATURES = [
   {
