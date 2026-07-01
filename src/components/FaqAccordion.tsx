@@ -44,11 +44,14 @@ export default function FaqAccordion() {
           </h2>
         </FadeIn>
 
-        <FadeIn delay={120} className="mt-12 divide-y divide-white/10 border-y border-white/10">
+        <FadeIn delay={120} className="mt-12 space-y-3">
           {FAQS.map((item, i) => {
             const isOpen = open === i;
             return (
-              <div key={item.q}>
+              <div
+                key={item.q}
+                className="rounded-2xl border border-white/10 bg-white/5 px-5 backdrop-blur-md transition-all duration-300 ease-out hover:border-white/20"
+              >
                 <button
                   type="button"
                   onClick={() => setOpen(isOpen ? null : i)}

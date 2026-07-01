@@ -73,18 +73,18 @@ const TRUST_BADGES = [
 const MAGNETIC_FEATURES = [
   {
     icon: Magnet,
-    title: "מגנט N52 עוצמתי",
-    body: "החזקה מגנטית חזקה שמעגנת את הטלפון יציב לכל משטח מתכתי — בלי לזוז.",
+    title: "מגנט N52. כוח אמיתי.",
+    body: "אחיזה מגנטית עוצמתית. תמיד בזווית הנכונה.",
   },
   {
     icon: Smartphone,
-    title: "מעמד טלפון מובנה",
-    body: "צלמו ושדרו את האימון ללא ידיים, בזווית מושלמת, בכל רגע.",
+    title: "ידיים חופשיות, תמיד.",
+    body: "צלם. שדר. תתאמן. בלי להחזיק כלום.",
   },
   {
     icon: Droplet,
-    title: "אטימה מושלמת",
-    body: "אטימה הרמטית שמונעת נזילות לחלוטין — גם בתנועה ובעומס.",
+    title: "אפס דליפות.",
+    body: "אטימה מושלמת. גם בעומס מקסימלי.",
   },
 ];
 
@@ -369,7 +369,7 @@ export default function ProductView({
           </ul>
 
           {/* Accordions — collapsed detail, keeps the buy box lean */}
-          <div className="mt-2">
+          <div className="mt-2 space-y-3">
             <Accordion title="תיאור המוצר" body={product.description} />
             <Accordion title="מפרט טכני" body={product.material} />
             <Accordion
@@ -459,9 +459,12 @@ export default function ProductView({
         <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-100 lg:text-4xl">
           הטכנולוגיה שמאחורי VAULT
         </h2>
-        <div className="mt-14 grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-10">
+        <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
           {MAGNETIC_FEATURES.map(({ icon: Icon, title, body }) => (
-            <div key={title} className="flex flex-col items-center text-center">
+            <div
+              key={title}
+              className="flex flex-col items-center rounded-2xl border border-white/10 bg-white/5 p-8 text-center shadow-lg backdrop-blur-md transition-all duration-300 ease-out hover:-translate-y-1 hover:border-white/20 hover:shadow-2xl"
+            >
               <span className="flex h-16 w-16 items-center justify-center text-zinc-100">
                 <Icon className="h-9 w-9" strokeWidth={1.5} />
               </span>
@@ -585,7 +588,7 @@ function BundleOption({
 function Accordion({ title, body }: { title: string; body: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="border-b border-white/10">
+    <div className="rounded-2xl border border-white/10 bg-white/5 px-5 backdrop-blur-md transition-all duration-300 ease-out hover:border-white/20">
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
@@ -596,7 +599,7 @@ function Accordion({ title, body }: { title: string; body: string }) {
           {title}
         </span>
         <ChevronDown
-          className={`h-4 w-4 transition-transform duration-300 ease-in-out ${
+          className={`h-4 w-4 shrink-0 transition-transform duration-300 ease-in-out ${
             open ? "rotate-180" : ""
           }`}
           style={{ color: GOLD }}

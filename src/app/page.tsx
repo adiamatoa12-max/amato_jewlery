@@ -87,17 +87,17 @@ const STEPS = [
   {
     icon: Magnet,
     title: "מצמידים",
-    body: "מדביקים טבעת מגנטית דקה על הטלפון או על הכיסוי — והוא נצמד לשייקר באחיזה איתנה.",
+    body: "טבעת מגנטית דקה. חיבור מיידי. אחיזה איתנה.",
   },
   {
     icon: Zap,
     title: "מערבבים בלחיצה",
-    body: "מיקסר חשמלי מובנה — בלחיצת כפתור אחת לשייק חלק לגמרי, בלי גושים, בכל פעם.",
+    body: "לחיצה אחת. שייק חלק. אפס גושים.",
   },
   {
     icon: CupSoda,
     title: "נהנים",
-    body: "תולים את הטלפון בכל משטח מתכתי, מצלמים את האימון ושותים תוך כדי — בלי ידיים.",
+    body: "כל משטח מתכתי. ידיים חופשיות. האימון שלך, מתועד.",
   },
 ];
 
@@ -114,10 +114,10 @@ function HowItWorks() {
           </h2>
         </FadeIn>
 
-        <div className="mt-16 grid grid-cols-1 gap-10 md:grid-cols-3 lg:gap-8">
+        <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3">
           {STEPS.map(({ icon: Icon, title, body }, i) => (
             <FadeIn key={title} delay={i * 120}>
-              <div className="flex flex-col items-center text-center">
+              <div className="flex h-full flex-col items-center rounded-2xl border border-white/10 bg-white/5 p-8 text-center shadow-lg backdrop-blur-md transition-all duration-300 ease-out hover:-translate-y-1 hover:border-white/20 hover:shadow-2xl">
                 <span className="relative flex h-16 w-16 items-center justify-center text-zinc-100">
                   <Icon className="h-7 w-7" strokeWidth={1.5} />
                   <span

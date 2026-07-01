@@ -57,14 +57,13 @@ export default function Hero() {
         <FadeIn>
           <div className="mx-auto max-w-xl rounded-3xl border border-white/15 bg-white/[0.06] p-8 text-center shadow-[0_24px_70px_-24px_rgba(0,0,0,0.75)] backdrop-blur-xl sm:p-10 lg:mx-0 lg:text-right">
             <p className="mb-4 text-xs font-bold tracking-[0.2em] text-zinc-300 sm:text-sm">
-              פיתוח מתקדם · איכות ללא פשרות
+              הנדסת ביצועים. אפס פשרות.
             </p>
             <h1 className="mb-5 font-display text-4xl font-black leading-[1.05] tracking-tight text-zinc-50 sm:text-5xl lg:text-6xl">
-              האימון שלך, משודרג. הטלפון מוגן, השייק מושלם.
+              האימון שודרג. הטלפון מאובטח. השייק מושלם.
             </h1>
             <p className="mb-8 text-base font-light leading-relaxed text-zinc-200 sm:text-lg">
-              שכח מהטלפון על הרצפה. ה-Vault מחזיק את המכשיר שלך בגובה העיניים
-              ומכין שייק חלק ב-10 שניות.
+              בלי טלפון על הרצפה. בלי גושים בשייק. רק ביצועים.
             </p>
             {WAITLIST_MODE ? (
               <WaitlistButton

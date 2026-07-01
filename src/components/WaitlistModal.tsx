@@ -97,7 +97,7 @@ export default function WaitlistModal() {
             >
               <Check className="h-7 w-7" strokeWidth={2} />
             </span>
-            <h2 className="mt-5 font-display text-2xl font-black text-zinc-100">
+            <h2 className="mt-5 font-display text-2xl font-black tracking-tight text-zinc-100">
               אתם ברשימה!
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-zinc-400">
