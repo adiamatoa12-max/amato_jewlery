@@ -47,7 +47,7 @@ function Stars({ rating, className = "" }: { rating: number; className?: string 
         <Star
           key={i}
           className={`h-3.5 w-3.5 ${
-            i < rating ? "fill-[#A7C7E7] text-[#A7C7E7]" : "fill-transparent text-zinc-700"
+            i < rating ? "fill-[#2e9bff] text-[#2e9bff]" : "fill-transparent text-zinc-700"
           }`}
           strokeWidth={1.5}
         />
@@ -121,7 +121,7 @@ export default function CustomerReviews({ handle }: { handle: string }) {
               setOpen((o) => !o);
               setSubmitted(false);
             }}
-            className="mt-8 inline-flex items-center rounded-full border border-[#A7C7E7]/50 px-8 py-3 text-xs font-bold tracking-[0.12em] text-[#A7C7E7] transition-all duration-300 ease-in-out hover:bg-[#A7C7E7] hover:text-black"
+            className="mt-8 inline-flex items-center rounded-full border border-[#2e9bff]/50 px-8 py-3 text-xs font-bold tracking-[0.12em] text-[#2e9bff] transition-all duration-300 ease-in-out hover:bg-[#2e9bff] hover:text-black"
           >
             כתבו ביקורת
           </button>
@@ -162,7 +162,7 @@ export default function CustomerReviews({ handle }: { handle: string }) {
                         <Star
                           className={`h-5 w-5 ${
                             i < rating
-                              ? "fill-[#A7C7E7] text-[#A7C7E7]"
+                              ? "fill-[#2e9bff] text-[#2e9bff]"
                               : "fill-transparent text-zinc-700"
                           }`}
                           strokeWidth={1.5}
@@ -176,18 +176,18 @@ export default function CustomerReviews({ handle }: { handle: string }) {
                   required
                   aria-label="השם שלך"
                   placeholder="השם שלך"
-                  className="mt-5 w-full border-b border-white/20 bg-transparent py-2 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-[#A7C7E7] focus:outline-none"
+                  className="mt-5 w-full border-b border-white/20 bg-transparent py-2 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-[#2e9bff] focus:outline-none"
                 />
                 <textarea
                   required
                   rows={4}
                   aria-label="ספרו לנו על החוויה שלכם"
                   placeholder="ספרו לנו על החוויה שלכם..."
-                  className="mt-5 w-full resize-none border-b border-white/20 bg-transparent py-2 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-[#A7C7E7] focus:outline-none"
+                  className="mt-5 w-full resize-none border-b border-white/20 bg-transparent py-2 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-[#2e9bff] focus:outline-none"
                 />
                 <button
                   type="submit"
-                  className="mt-6 inline-flex items-center rounded-full bg-[#A7C7E7] px-8 py-3 text-xs font-bold tracking-[0.12em] text-black transition-all duration-300 ease-in-out hover:bg-[#C2DCF0]"
+                  className="mt-6 inline-flex items-center rounded-full bg-[#2e9bff] px-8 py-3 text-xs font-bold tracking-[0.12em] text-black transition-all duration-300 ease-in-out hover:bg-[#5cb3ff]"
                 >
                   שליחת הביקורת
                 </button>
@@ -201,7 +201,7 @@ export default function CustomerReviews({ handle }: { handle: string }) {
           {reviews.map((review) => (
             <li
               key={review.name}
-              className="flex h-full flex-col rounded-2xl border border-white/10 bg-zinc-900 p-6 transition-colors duration-300 hover:border-[#A7C7E7]/40"
+              className="flex h-full flex-col rounded-2xl border border-white/10 bg-zinc-900 p-6 transition-colors duration-300 hover:border-[#2e9bff]/40"
             >
               <Stars rating={review.rating} />
               <p className="mt-4 flex-1 text-sm leading-relaxed text-zinc-300">

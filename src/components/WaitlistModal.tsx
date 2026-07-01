@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { X, Check } from "lucide-react";
 import { useWaitlist } from "@/lib/waitlist/WaitlistContext";
 
-const GOLD = "#A7C7E7";
+const GOLD = "#2e9bff";
 
 export default function WaitlistModal() {
   const { isOpen, closeWaitlist } = useWaitlist();
@@ -74,7 +74,7 @@ export default function WaitlistModal() {
         role="dialog"
         aria-modal="true"
         aria-label="הרשמה לרשימת המתנה"
-        className={`fixed left-1/2 top-1/2 z-[90] w-[calc(100%-2.5rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-[#A7C7E7]/30 bg-zinc-950 p-7 text-center shadow-2xl transition-all duration-300 sm:p-9 ${
+        className={`fixed left-1/2 top-1/2 z-[90] w-[calc(100%-2.5rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-[#2e9bff]/30 bg-zinc-950 p-7 text-center shadow-2xl transition-all duration-300 sm:p-9 ${
           isOpen
             ? "opacity-100 scale-100"
             : "pointer-events-none scale-95 opacity-0"
@@ -137,7 +137,7 @@ export default function WaitlistModal() {
                 onChange={(e) => setName(e.target.value)}
                 aria-label="השם שלך"
                 placeholder="השם שלך"
-                className="w-full rounded-full border border-white/15 bg-[#111111] px-5 py-3 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-[#A7C7E7] focus:outline-none"
+                className="w-full rounded-full border border-white/15 bg-[#111111] px-5 py-3 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-[#2e9bff] focus:outline-none"
               />
               <input
                 type="email"
@@ -147,7 +147,7 @@ export default function WaitlistModal() {
                 aria-label="כתובת אימייל"
                 placeholder="כתובת אימייל"
                 dir="ltr"
-                className="w-full rounded-full border border-white/15 bg-[#111111] px-5 py-3 text-right text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-[#A7C7E7] focus:outline-none"
+                className="w-full rounded-full border border-white/15 bg-[#111111] px-5 py-3 text-right text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-[#2e9bff] focus:outline-none"
               />
               <input
                 type="tel"
@@ -159,12 +159,12 @@ export default function WaitlistModal() {
                 aria-label="מספר טלפון (לא חובה)"
                 placeholder="מספר טלפון (לא חובה)"
                 dir="ltr"
-                className="w-full rounded-full border border-white/15 bg-[#111111] px-5 py-3 text-right text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-[#A7C7E7] focus:outline-none"
+                className="w-full rounded-full border border-white/15 bg-[#111111] px-5 py-3 text-right text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-[#2e9bff] focus:outline-none"
               />
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className="mt-1 inline-flex w-full items-center justify-center rounded-full bg-[#A7C7E7] px-8 py-3.5 text-sm font-black uppercase tracking-[0.12em] text-black transition-all duration-300 ease-out hover:scale-105 hover:bg-[#C2DCF0] active:scale-95 disabled:cursor-not-allowed disabled:opacity-60"
+                className="mt-1 inline-flex w-full items-center justify-center rounded-full bg-[#2e9bff] px-8 py-3.5 text-sm font-black uppercase tracking-[0.12em] text-black transition-all duration-300 ease-out hover:scale-105 hover:bg-[#5cb3ff] active:scale-95 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {status === "sending" ? "שולח…" : "הירשמו לעדכונים"}
               </button>

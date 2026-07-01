@@ -125,7 +125,7 @@ export default function AccessibilityButton() {
         onClick={() => setOpen((o) => !o)}
         aria-label="הגדרות נגישות"
         aria-expanded={open}
-        className="flex h-12 w-12 items-center justify-center rounded-full bg-neutral-900 text-zinc-100 shadow-[0_10px_30px_-8px_rgba(0,0,0,0.45)] ring-1 ring-white/10 transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:ring-[#A7C7E7]/70 hover:shadow-[0_16px_38px_-10px_rgba(0,0,0,0.55)]"
+        className="flex h-12 w-12 items-center justify-center rounded-full bg-neutral-900 text-zinc-100 shadow-[0_10px_30px_-8px_rgba(0,0,0,0.45)] ring-1 ring-white/10 transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:ring-[#2e9bff]/70 hover:shadow-[0_16px_38px_-10px_rgba(0,0,0,0.55)]"
       >
         <Accessibility className="h-6 w-6" strokeWidth={1.75} />
       </button>

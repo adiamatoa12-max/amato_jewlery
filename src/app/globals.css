@@ -54,7 +54,7 @@ h4 {
 
 /* Visible, on-brand focus ring for keyboard / screen-reader navigation */
 :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
-  outline: 2px solid #81A1C1; /* gold accent */
+  outline: 2px solid #1f6fd0; /* gold accent */
   outline-offset: 3px;
   border-radius: 3px;
 }

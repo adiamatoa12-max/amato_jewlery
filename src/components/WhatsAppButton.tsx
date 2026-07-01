@@ -26,7 +26,7 @@ export default function WhatsAppButton() {
         יש לך שאלה?
       </span>
 
-      <span className="flex h-14 w-14 items-center justify-center rounded-full bg-neutral-900 text-[#A7C7E7] shadow-[0_10px_30px_-8px_rgba(0,0,0,0.45)] ring-1 ring-[#A7C7E7]/25 transition-all duration-300 ease-in-out group-hover:-translate-y-0.5 group-hover:ring-[#A7C7E7]/70 group-hover:shadow-[0_16px_38px_-10px_rgba(0,0,0,0.55)]">
+      <span className="flex h-14 w-14 items-center justify-center rounded-full bg-neutral-900 text-[#2e9bff] shadow-[0_10px_30px_-8px_rgba(0,0,0,0.45)] ring-1 ring-[#2e9bff]/25 transition-all duration-300 ease-in-out group-hover:-translate-y-0.5 group-hover:ring-[#2e9bff]/70 group-hover:shadow-[0_16px_38px_-10px_rgba(0,0,0,0.55)]">
         <WhatsAppIcon className="h-6 w-6" />
       </span>
     </a>

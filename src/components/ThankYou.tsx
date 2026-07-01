@@ -8,7 +8,7 @@ import MediaPlaceholder, {
   isMissingLocalMedia,
 } from "@/components/MediaPlaceholder";
 
-const ACCENT = "#A7C7E7";
+const ACCENT = "#2e9bff";
 const UPSELL_DISCOUNT = 0.3; // 30% off a second shaker
 
 export default function ThankYou({
@@ -49,7 +49,7 @@ export default function ThankYou({
 
       {/* One-click upsell */}
       {product && (
-        <section className="mt-12 w-full rounded-2xl border border-[#A7C7E7]/40 bg-zinc-900 p-6 text-right shadow-[0_20px_60px_-24px_rgba(167, 199, 231,0.4)] sm:p-8">
+        <section className="mt-12 w-full rounded-2xl border border-[#2e9bff]/40 bg-zinc-900 p-6 text-right shadow-[0_20px_60px_-24px_rgba(46, 155, 255,0.4)] sm:p-8">
           <p
             className="flex items-center justify-end gap-2 text-[11px] font-bold uppercase tracking-[0.2em]"
             style={{ color: ACCENT }}
@@ -97,7 +97,7 @@ export default function ThankYou({
               addItem(product);
               openCart();
             }}
-            className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-[#A7C7E7] px-8 py-3.5 text-sm font-black uppercase tracking-[0.12em] text-black transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#C2DCF0] active:scale-95"
+            className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-[#2e9bff] px-8 py-3.5 text-sm font-black uppercase tracking-[0.12em] text-black transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#5cb3ff] active:scale-95"
           >
             הוסיפו להזמנה ב-30% הנחה
           </button>

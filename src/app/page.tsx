@@ -26,7 +26,7 @@ import FaqAccordion from "@/components/FaqAccordion";
 import WaitlistButton from "@/components/WaitlistButton";
 import { WAITLIST_MODE, EXTRAS_AVAILABLE } from "@/lib/config";
 
-const GOLD = "#A7C7E7";
+const GOLD = "#2e9bff";
 
 // Main product. The handle has Hebrew chars, so encode it for a safe URL;
 // the [handle] route decodes it back before the Shopify lookup.
@@ -53,7 +53,7 @@ function PrimaryCta({
 
 // Reusable gold CTA with a glowing hover.
 const goldButton =
-  "inline-flex w-full items-center justify-center rounded-full bg-[#A7C7E7] px-12 py-4 text-sm font-black uppercase tracking-[0.16em] text-black shadow-[0_10px_36px_-10px_rgba(167,199,231,0.7)] ring-1 ring-[#A7C7E7]/40 transition-all duration-300 ease-out hover:scale-105 hover:bg-[#C2DCF0] hover:shadow-[0_0_40px_-4px_rgba(167,199,231,0.85)] active:scale-95 active:shadow-[0_0_48px_-2px_rgba(167,199,231,0.95)] sm:w-auto";
+  "inline-flex w-full items-center justify-center rounded-full bg-[#2e9bff] px-12 py-4 text-sm font-black uppercase tracking-[0.16em] text-black shadow-[0_10px_36px_-10px_rgba(46, 155, 255,0.7)] ring-1 ring-[#2e9bff]/40 transition-all duration-300 ease-out hover:scale-105 hover:bg-[#5cb3ff] hover:shadow-[0_0_40px_-4px_rgba(46, 155, 255,0.85)] active:scale-95 active:shadow-[0_0_48px_-2px_rgba(46, 155, 255,0.95)] sm:w-auto";
 
 export default function Home() {
   return (
@@ -124,7 +124,7 @@ function HowItWorks() {
                 <span className="relative flex h-16 w-16 items-center justify-center" style={{ color: GOLD }}>
                   <Icon className="h-7 w-7" strokeWidth={1.5} />
                   <span
-                    className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-[#A7C7E7] font-display text-xs font-black text-black"
+                    className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-[#2e9bff] font-display text-xs font-black text-black"
                   >
                     {i + 1}
                   </span>
@@ -152,7 +152,7 @@ function HowItWorks() {
                 sizes="(max-width: 768px) 100vw, 768px"
                 className="h-auto w-full"
               />
-              <span className="pointer-events-none absolute bottom-3 right-3 rounded-full bg-black/70 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-[#A7C7E7] backdrop-blur-sm">
+              <span className="pointer-events-none absolute bottom-3 right-3 rounded-full bg-black/70 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-[#2e9bff] backdrop-blur-sm">
                 המנוע החשמלי בפעולה
               </span>
             </div>
@@ -362,12 +362,12 @@ function AnatomyCallout({ icon: Icon, label, align, labelStyle, dot, line }: Cal
         }`}
       >
         <span
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border bg-black/70 backdrop-blur-sm transition-all duration-300 group-hover:shadow-[0_0_18px_-2px_rgba(167, 199, 231,0.7)]"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border bg-black/70 backdrop-blur-sm transition-all duration-300 group-hover:shadow-[0_0_18px_-2px_rgba(46, 155, 255,0.7)]"
           style={{ borderColor: `${GOLD}66`, color: GOLD }}
         >
           <Icon className="h-4 w-4" strokeWidth={1.75} />
         </span>
-        <span className="text-xs font-semibold leading-snug text-white/85 transition-all duration-300 group-hover:text-[#A7C7E7] group-hover:[text-shadow:0_0_14px_rgba(167, 199, 231,0.8)] lg:text-sm">
+        <span className="text-xs font-semibold leading-snug text-white/85 transition-all duration-300 group-hover:text-[#2e9bff] group-hover:[text-shadow:0_0_14px_rgba(46, 155, 255,0.8)] lg:text-sm">
           {label}
         </span>
       </div>
@@ -426,7 +426,7 @@ function Anatomy() {
             {ANATOMY.map(({ icon: Icon, label }) => (
               <li
                 key={label}
-                className="group flex items-center gap-3 rounded-xl border border-white/10 bg-black/40 p-4 transition-colors duration-300 hover:border-[#A7C7E7]/50"
+                className="group flex items-center gap-3 rounded-xl border border-white/10 bg-black/40 p-4 transition-colors duration-300 hover:border-[#2e9bff]/50"
               >
                 <span
                   className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border bg-black/70"
@@ -434,7 +434,7 @@ function Anatomy() {
                 >
                   <Icon className="h-4 w-4" strokeWidth={1.75} />
                 </span>
-                <span className="text-sm font-semibold text-white/85 transition-colors duration-300 group-hover:text-[#A7C7E7]">
+                <span className="text-sm font-semibold text-white/85 transition-colors duration-300 group-hover:text-[#2e9bff]">
                   {label}
                 </span>
               </li>
@@ -577,7 +577,7 @@ function Reviews() {
         <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {REVIEWS.map((r, i) => (
             <FadeIn key={r.name} delay={i * 80}>
-              <figure className="flex h-full flex-col rounded-2xl border border-white/10 bg-zinc-900 p-6 text-right shadow-[0_10px_30px_-12px_rgba(0,0,0,0.7)] transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:border-[#A7C7E7]/40 hover:shadow-[0_16px_44px_-16px_rgba(167, 199, 231,0.4)]">
+              <figure className="flex h-full flex-col rounded-2xl border border-white/10 bg-zinc-900 p-6 text-right shadow-[0_10px_30px_-12px_rgba(0,0,0,0.7)] transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:border-[#2e9bff]/40 hover:shadow-[0_16px_44px_-16px_rgba(46, 155, 255,0.4)]">
                 <div className="flex justify-end">
                   <StarRating rating={r.rating} />
                 </div>
@@ -617,7 +617,7 @@ function BundleBanner() {
   return (
     <section className="bg-[#111111] px-6 pb-4 lg:px-10">
       <FadeIn>
-        <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-8 overflow-hidden rounded-2xl border border-[#A7C7E7]/30 bg-zinc-950 p-8 md:grid-cols-2 lg:p-12">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-8 overflow-hidden rounded-2xl border border-[#2e9bff]/30 bg-zinc-950 p-8 md:grid-cols-2 lg:p-12">
           {/* Visual — DOM-first: top on mobile, right column in RTL desktop */}
           <div className="w-full bg-transparent">
             <Image
@@ -650,7 +650,7 @@ function BundleBanner() {
 
             {/* Price box when available; "Coming Soon" otherwise. */}
             {EXTRAS_AVAILABLE ? (
-              <div className="mt-7 inline-flex items-center gap-4 rounded-2xl border border-[#A7C7E7]/30 bg-black/40 px-6 py-4">
+              <div className="mt-7 inline-flex items-center gap-4 rounded-2xl border border-[#2e9bff]/30 bg-black/40 px-6 py-4">
                 <div className="flex flex-col items-center">
                   <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-zinc-500">
                     מחיר מלא
@@ -659,7 +659,7 @@ function BundleBanner() {
                     520₪
                   </span>
                 </div>
-                <span className="h-10 w-px bg-[#A7C7E7]/20" aria-hidden />
+                <span className="h-10 w-px bg-[#2e9bff]/20" aria-hidden />
                 <div className="flex flex-col items-center">
                   <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-zinc-400">
                     מחיר מבצע
@@ -683,13 +683,13 @@ function BundleBanner() {
 
             {EXTRAS_AVAILABLE ? (
               <PrimaryCta
-                className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-[#A7C7E7] px-10 py-4 text-sm font-black uppercase tracking-[0.12em] text-black shadow-[0_0_30px_-4px_rgba(167, 199, 231,0.7)] transition-all duration-300 ease-out hover:scale-105 hover:bg-[#C2DCF0] hover:shadow-[0_0_44px_-4px_rgba(167, 199, 231,0.9)] active:scale-95 active:shadow-[0_0_56px_-2px_rgba(167, 199, 231,1)] sm:w-auto"
+                className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-[#2e9bff] px-10 py-4 text-sm font-black uppercase tracking-[0.12em] text-black shadow-[0_0_30px_-4px_rgba(46, 155, 255,0.7)] transition-all duration-300 ease-out hover:scale-105 hover:bg-[#5cb3ff] hover:shadow-[0_0_44px_-4px_rgba(46, 155, 255,0.9)] active:scale-95 active:shadow-[0_0_56px_-2px_rgba(46, 155, 255,1)] sm:w-auto"
                 label="קנו עכשיו ב-400₪"
               />
             ) : (
               <WaitlistButton
                 label="הודיעו לי כשזמין"
-                className="mt-7 inline-flex w-full items-center justify-center rounded-full border border-[#A7C7E7] px-10 py-4 text-sm font-black uppercase tracking-[0.12em] text-[#A7C7E7] transition-all duration-300 ease-out hover:scale-105 hover:bg-[#A7C7E7] hover:text-black hover:shadow-[0_0_34px_-6px_rgba(167, 199, 231,0.65)] active:scale-95 sm:w-auto"
+                className="mt-7 inline-flex w-full items-center justify-center rounded-full border border-[#2e9bff] px-10 py-4 text-sm font-black uppercase tracking-[0.12em] text-[#2e9bff] transition-all duration-300 ease-out hover:scale-105 hover:bg-[#2e9bff] hover:text-black hover:shadow-[0_0_34px_-6px_rgba(46, 155, 255,0.65)] active:scale-95 sm:w-auto"
               />
             )}
             {EXTRAS_AVAILABLE && (
@@ -717,7 +717,7 @@ function BundleBanner() {
                   style={{
                     width: "85%",
                     backgroundColor: GOLD,
-                    boxShadow: "0 0 12px -2px rgba(167, 199, 231,0.8)",
+                    boxShadow: "0 0 12px -2px rgba(46, 155, 255,0.8)",
                   }}
                 />
               </div>
@@ -779,7 +779,7 @@ function CompleteGear() {
         <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-4">
           {GEAR_PRODUCTS.map((p, i) => (
             <FadeIn key={p.title} delay={i * 80}>
-              <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-zinc-900 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.7)] transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:border-[#A7C7E7]/50 hover:shadow-[0_16px_44px_-16px_rgba(167, 199, 231,0.45)]">
+              <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-zinc-900 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.7)] transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:border-[#2e9bff]/50 hover:shadow-[0_16px_44px_-16px_rgba(46, 155, 255,0.45)]">
                 {/* Product image */}
                 <div className="relative aspect-square w-full overflow-hidden bg-zinc-800">
                   <Image
@@ -813,14 +813,14 @@ function CompleteGear() {
                   {EXTRAS_AVAILABLE ? (
                     <Link
                       href={PRODUCT_URL}
-                      className="mt-5 inline-flex items-center justify-center rounded-full border border-[#A7C7E7] px-5 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-[#A7C7E7] transition-all duration-300 ease-out hover:scale-105 hover:bg-[#A7C7E7] hover:text-black hover:shadow-[0_0_24px_-4px_rgba(167, 199, 231,0.8)] active:scale-95"
+                      className="mt-5 inline-flex items-center justify-center rounded-full border border-[#2e9bff] px-5 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-[#2e9bff] transition-all duration-300 ease-out hover:scale-105 hover:bg-[#2e9bff] hover:text-black hover:shadow-[0_0_24px_-4px_rgba(46, 155, 255,0.8)] active:scale-95"
                     >
                       הוספה מהירה
                     </Link>
                   ) : (
                     <WaitlistButton
                       label="הודיעו לי"
-                      className="mt-5 inline-flex items-center justify-center rounded-full border border-white/20 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-zinc-300 transition-all duration-300 ease-out hover:border-[#A7C7E7] hover:text-[#A7C7E7]"
+                      className="mt-5 inline-flex items-center justify-center rounded-full border border-white/20 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-zinc-300 transition-all duration-300 ease-out hover:border-[#2e9bff] hover:text-[#2e9bff]"
                     />
                   )}
                 </div>
@@ -899,8 +899,8 @@ function UrgencyBand() {
     <section className="bg-[#111111] px-6 py-5 text-center">
       <p className="flex items-center justify-center gap-2 text-sm font-semibold tracking-wide text-zinc-200">
         <span className="relative flex h-2 w-2">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#A7C7E7] opacity-75" />
-          <span className="relative inline-flex h-2 w-2 rounded-full bg-[#A7C7E7]" />
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#2e9bff] opacity-75" />
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-[#2e9bff]" />
         </span>
         נשארו יחידות אחרונות מהמלאי הנוכחי
       </p>
@@ -914,7 +914,7 @@ function StickyBuyBar() {
     <div className="fixed inset-x-0 bottom-0 z-50 w-full border-t border-white/10 bg-[#111111] px-4 py-3 shadow-[0_-8px_30px_-8px_rgba(0,0,0,0.85)] lg:hidden">
       <Link
         href={PRODUCT_URL}
-        className="flex w-full items-center justify-center rounded-full bg-[#A7C7E7] px-6 py-3.5 text-sm font-black uppercase tracking-[0.08em] text-black shadow-[0_0_26px_-6px_rgba(167,199,231,0.75)] ring-1 ring-[#A7C7E7]/40 transition-all duration-300 active:scale-95"
+        className="flex w-full items-center justify-center rounded-full bg-[#2e9bff] px-6 py-3.5 text-sm font-black uppercase tracking-[0.08em] text-black shadow-[0_0_26px_-6px_rgba(46, 155, 255,0.75)] ring-1 ring-[#2e9bff]/40 transition-all duration-300 active:scale-95"
       >
         הזמן עכשיו - מלאי מוגבל
       </Link>
@@ -1042,7 +1042,7 @@ function Footer() {
               />
               <button
                 type="submit"
-                className="shrink-0 text-xs font-bold uppercase tracking-[0.08em] transition-colors duration-300 hover:text-[#C2DCF0]"
+                className="shrink-0 text-xs font-bold uppercase tracking-[0.08em] transition-colors duration-300 hover:text-[#5cb3ff]"
                 style={{ color: GOLD }}
               >
                 הירשמו
@@ -1058,7 +1058,7 @@ function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="transition-colors duration-300 hover:text-[#A7C7E7]"
+              className="transition-colors duration-300 hover:text-[#2e9bff]"
             >
               <Instagram className="h-[18px] w-[18px]" strokeWidth={1.5} />
             </a>
@@ -1067,7 +1067,7 @@ function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="TikTok"
-              className="flex items-center transition-colors duration-300 hover:text-[#A7C7E7]"
+              className="flex items-center transition-colors duration-300 hover:text-[#2e9bff]"
             >
               <TikTokIcon className="h-[18px] w-[18px]" />
             </a>

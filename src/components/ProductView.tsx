@@ -20,7 +20,7 @@ import { ACCESSORIES } from "@/lib/accessories";
 import { WAITLIST_MODE, EXTRAS_AVAILABLE } from "@/lib/config";
 import WaitlistButton from "@/components/WaitlistButton";
 
-const GOLD = "#A7C7E7";
+const GOLD = "#2e9bff";
 
 // Concierge MVP: the buy CTA opens a pre-filled WhatsApp chat so orders are
 // confirmed manually while we validate demand before the automated checkout.
@@ -167,7 +167,7 @@ export default function ProductView({
           </p>
 
           {/* Electric mixer feature highlight */}
-          <div className="mt-5 flex items-start gap-2.5 rounded-xl border border-[#A7C7E7]/30 bg-[#A7C7E7]/[0.06] px-4 py-3">
+          <div className="mt-5 flex items-start gap-2.5 rounded-xl border border-[#2e9bff]/30 bg-[#2e9bff]/[0.06] px-4 py-3">
             <Zap
               className="mt-0.5 h-5 w-5 shrink-0"
               style={{ color: GOLD }}
@@ -277,7 +277,7 @@ export default function ProductView({
                       aria-pressed={checked}
                       className={`flex w-full items-center gap-3 rounded-xl border bg-zinc-900/60 p-2.5 text-right transition-all duration-200 ${
                         checked
-                          ? "border-[#A7C7E7]/70"
+                          ? "border-[#2e9bff]/70"
                           : "border-white/10 hover:border-white/25"
                       }`}
                     >
@@ -285,7 +285,7 @@ export default function ProductView({
                       <span
                         className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md border transition-all duration-200 ${
                           checked
-                            ? "border-[#A7C7E7] bg-[#A7C7E7]"
+                            ? "border-[#2e9bff] bg-[#2e9bff]"
                             : "border-white/30"
                         }`}
                       >
@@ -329,12 +329,12 @@ export default function ProductView({
               manually. Pre-launch waitlist mode still shows the signup. */}
           <div ref={buyRef}>
           {WAITLIST_MODE ? (
-            <WaitlistButton className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#A7C7E7] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(167, 199, 231,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#C2DCF0] hover:shadow-[0_0_46px_-4px_rgba(167, 199, 231,0.95)] active:scale-95" />
+            <WaitlistButton className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#2e9bff] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(46, 155, 255,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#5cb3ff] hover:shadow-[0_0_46px_-4px_rgba(46, 155, 255,0.95)] active:scale-95" />
           ) : soldOut ? (
             <button
               type="button"
               disabled
-              className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#A7C7E7] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(167, 199, 231,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#C2DCF0] hover:shadow-[0_0_46px_-4px_rgba(167, 199, 231,0.95)] active:scale-95 disabled:cursor-not-allowed disabled:bg-zinc-700 disabled:text-zinc-400 disabled:shadow-none"
+              className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#2e9bff] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(46, 155, 255,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#5cb3ff] hover:shadow-[0_0_46px_-4px_rgba(46, 155, 255,0.95)] active:scale-95 disabled:cursor-not-allowed disabled:bg-zinc-700 disabled:text-zinc-400 disabled:shadow-none"
             >
               אזל מהמלאי
             </button>
@@ -343,7 +343,7 @@ export default function ProductView({
               href={CONCIERGE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#A7C7E7] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(167, 199, 231,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#C2DCF0] hover:shadow-[0_0_46px_-4px_rgba(167, 199, 231,0.95)] active:scale-95"
+              className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#2e9bff] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(46, 155, 255,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#5cb3ff] hover:shadow-[0_0_46px_-4px_rgba(46, 155, 255,0.95)] active:scale-95"
             >
               הוסף לעגלה - משלוח חינם
             </a>
@@ -407,7 +407,7 @@ export default function ProductView({
                 aria-current={i === activeImg}
                 className={`relative aspect-square overflow-hidden rounded-2xl transition-all duration-300 ${
                   i === activeImg
-                    ? "ring-2 ring-[#A7C7E7]"
+                    ? "ring-2 ring-[#2e9bff]"
                     : "opacity-60 hover:opacity-100"
                 }`}
               >
@@ -499,12 +499,12 @@ export default function ProductView({
           )}
         </div>
         {WAITLIST_MODE ? (
-          <WaitlistButton className="flex flex-1 items-center justify-center rounded-full bg-[#A7C7E7] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#C2DCF0] active:scale-95" />
+          <WaitlistButton className="flex flex-1 items-center justify-center rounded-full bg-[#2e9bff] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#5cb3ff] active:scale-95" />
         ) : soldOut ? (
           <button
             type="button"
             disabled
-            className="flex flex-1 items-center justify-center rounded-full bg-[#A7C7E7] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#C2DCF0] active:scale-95 disabled:bg-zinc-700 disabled:text-zinc-400"
+            className="flex flex-1 items-center justify-center rounded-full bg-[#2e9bff] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#5cb3ff] active:scale-95 disabled:bg-zinc-700 disabled:text-zinc-400"
           >
             אזל מהמלאי
           </button>
@@ -513,7 +513,7 @@ export default function ProductView({
             href={CONCIERGE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-1 items-center justify-center rounded-full bg-[#A7C7E7] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#C2DCF0] active:scale-95"
+            className="flex flex-1 items-center justify-center rounded-full bg-[#2e9bff] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#5cb3ff] active:scale-95"
           >
             קנה עכשיו
           </a>
@@ -545,7 +545,7 @@ function BundleOption({
       aria-pressed={selected}
       className={`relative flex flex-col items-start gap-1 rounded-2xl border bg-zinc-900 p-4 text-right transition-all duration-300 ${
         selected
-          ? "border-[#A7C7E7] shadow-[0_0_24px_-8px_rgba(167, 199, 231,0.7)]"
+          ? "border-[#2e9bff] shadow-[0_0_24px_-8px_rgba(46, 155, 255,0.7)]"
           : "border-white/10 hover:border-white/30"
       }`}
     >
@@ -561,7 +561,7 @@ function BundleOption({
         <span className="text-sm font-bold text-zinc-100">{title}</span>
         <span
           className={`flex h-4 w-4 items-center justify-center rounded-full border ${
-            selected ? "border-[#A7C7E7] bg-[#A7C7E7]" : "border-white/30"
+            selected ? "border-[#2e9bff] bg-[#2e9bff]" : "border-white/30"
           }`}
         >
           {selected && <Check className="h-3 w-3 text-black" strokeWidth={3} />}

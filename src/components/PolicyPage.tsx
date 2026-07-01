@@ -20,7 +20,7 @@ export default function PolicyPage({
     <div className="flex min-h-full flex-col">
       <main id="main-content" className="mx-auto w-full max-w-3xl flex-1 px-6 py-24 lg:py-32">
         <FadeIn>
-          <p className="text-center text-xs tracking-[0.3em] text-[#81A1C1]">
+          <p className="text-center text-xs tracking-[0.3em] text-[#1f6fd0]">
             {eyebrow}
           </p>
           <h1 className="mt-4 text-center font-serif text-4xl font-light tracking-[0.04em] text-zinc-100 lg:text-5xl">
