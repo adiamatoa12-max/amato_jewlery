@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { addSignup, type Signup } from "@/lib/waitlist-store";
+import { checkRateLimit } from "@/lib/rate-limit";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 // Optional phone — lenient: 7–15 digits once separators are stripped.
@@ -16,6 +17,15 @@ const PHONE_RE = /^\+?[0-9]{7,15}$/;
  *     or a local JSON file in development.
  */
 export async function POST(request: Request) {
+  // Basic abuse protection: 5 signup attempts per IP per minute.
+  const { allowed } = await checkRateLimit(request, "waitlist", 5, 60);
+  if (!allowed) {
+    return NextResponse.json(
+      { error: "יותר מדי בקשות. נסו שוב בעוד דקה." },
+      { status: 429 },
+    );
+  }
+
   let body: { name?: string; email?: string; phone?: string };
   try {
     body = await request.json();

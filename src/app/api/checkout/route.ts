@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { isShopifyLive } from "@/lib/catalog";
 import { createCart } from "@/lib/shopify/operations";
+import { checkRateLimit } from "@/lib/rate-limit";
 
 interface CheckoutLine {
   variantId?: string;
@@ -13,6 +14,15 @@ interface CheckoutLine {
  * handle card data here.
  */
 export async function POST(request: Request) {
+  // Basic abuse protection: 10 cart-creation attempts per IP per minute.
+  const { allowed } = await checkRateLimit(request, "checkout", 10, 60);
+  if (!allowed) {
+    return NextResponse.json(
+      { error: "יותר מדי בקשות. נסו שוב בעוד דקה." },
+      { status: 429 },
+    );
+  }
+
   if (!isShopifyLive()) {
     return NextResponse.json(
       { error: "התשלום אינו זמין כרגע." },

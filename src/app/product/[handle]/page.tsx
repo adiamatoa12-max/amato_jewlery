@@ -28,15 +28,17 @@ export async function generateMetadata({
     product.description?.replace(/\s+/g, " ").trim().slice(0, 160) ||
     "שייקר מגנטי לחדר כושר VAULT — ביצועים גבוהים, מעמד טלפון מובנה ואטימה מושלמת.";
   const images = product.image ? [product.image] : undefined;
+  const canonicalPath = `/product/${encodeURIComponent(product.handle)}`;
 
   return {
     title,
     description,
-    alternates: { canonical: `/product/${encodeURIComponent(product.handle)}` },
+    alternates: { canonical: canonicalPath },
     openGraph: {
       type: "website",
       locale: "he_IL",
       siteName: "VAULT",
+      url: `${SITE_URL}${canonicalPath}`,
       title,
       description,
       images,
