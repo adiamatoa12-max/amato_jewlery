@@ -74,7 +74,7 @@ export default function WaitlistModal() {
         role="dialog"
         aria-modal="true"
         aria-label="הרשמה לרשימת המתנה"
-        className={`fixed left-1/2 top-1/2 z-[90] w-[calc(100%-2.5rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-[#2e9bff]/30 bg-zinc-950 p-7 text-center shadow-2xl transition-all duration-300 sm:p-9 ${
+        className={`fixed left-1/2 top-1/2 z-[90] w-[calc(100%-2.5rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-white/10 bg-zinc-950 p-7 text-center shadow-2xl transition-all duration-300 sm:p-9 ${
           isOpen
             ? "opacity-100 scale-100"
             : "pointer-events-none scale-95 opacity-0"
@@ -115,10 +115,7 @@ export default function WaitlistModal() {
           </div>
         ) : (
           <>
-            <p
-              className="text-[11px] font-bold uppercase tracking-[0.3em]"
-              style={{ color: GOLD }}
-            >
+            <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-zinc-400">
               Coming Soon
             </p>
             <h2 className="mt-3 font-display text-2xl font-black tracking-tight text-zinc-100 sm:text-3xl">

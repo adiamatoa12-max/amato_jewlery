@@ -156,20 +156,19 @@ export default function ProductView({
             {product.title}
           </h1>
 
-          {/* Launch edition — scarcity, in the clean accent (no gold) */}
-          <p className="mt-3 flex items-center gap-2 text-[11px] font-bold tracking-[0.15em]">
-            <span style={{ color: GOLD }}>מהדורת השקה</span>
+          {/* Launch edition — scarcity, neutral typography */}
+          <p className="mt-3 flex items-center gap-2 text-[11px] font-bold tracking-[0.15em] text-zinc-300">
+            <span>מהדורת השקה</span>
             <span className="text-zinc-600" aria-hidden>
               |
             </span>
-            <span className="text-zinc-300">מלאי ראשון מוגבל</span>
+            <span>מלאי ראשון מוגבל</span>
           </p>
 
           {/* Electric mixer feature highlight */}
-          <div className="mt-5 flex items-start gap-2.5 rounded-xl border border-[#2e9bff]/30 bg-[#2e9bff]/[0.06] px-4 py-3">
+          <div className="mt-5 flex items-start gap-2.5 rounded-xl bg-white/[0.04] px-4 py-3">
             <Zap
-              className="mt-0.5 h-5 w-5 shrink-0"
-              style={{ color: GOLD }}
+              className="mt-0.5 h-5 w-5 shrink-0 text-zinc-100"
               strokeWidth={2}
             />
             <p className="text-sm leading-relaxed text-zinc-200">
@@ -180,10 +179,7 @@ export default function ProductView({
 
           {WAITLIST_MODE ? (
             /* Pre-launch: no price — invite the visitor to the waitlist. */
-            <p
-              className="mt-4 text-sm font-semibold tracking-[0.02em]"
-              style={{ color: GOLD }}
-            >
+            <p className="mt-4 text-sm font-semibold tracking-[0.02em] text-zinc-300">
               זמין בקרוב — הירשמו לעדכונים וקבלו עדיפות בהשקה
             </p>
           ) : (
@@ -197,10 +193,7 @@ export default function ProductView({
                     <span className="pb-1 text-base tabular-nums text-zinc-500 line-through">
                       {formatPrice(bundleWas, product.currency)}
                     </span>
-                    <span
-                      className="pb-1 text-xs font-bold tracking-wide"
-                      style={{ color: GOLD }}
-                    >
+                    <span className="pb-1 text-xs font-bold tracking-wide text-zinc-400">
                       חיסכון {formatPrice(bundleSaves, product.currency)}
                     </span>
                   </>
@@ -209,10 +202,7 @@ export default function ProductView({
                     <span className="pb-1 text-base tabular-nums text-zinc-500 line-through">
                       {formatPrice(FOUNDER_COMPARE_AT, product.currency)}
                     </span>
-                    <span
-                      className="pb-1 text-xs font-bold tracking-wide"
-                      style={{ color: GOLD }}
-                    >
+                    <span className="pb-1 text-xs font-bold tracking-wide text-zinc-400">
                       מחיר מוקדמים
                     </span>
                   </>
@@ -307,10 +297,7 @@ export default function ProductView({
                         <span className="text-xs font-medium leading-tight text-zinc-100">
                           {a.title}
                         </span>
-                        <span
-                          className="shrink-0 text-xs font-bold tabular-nums"
-                          style={{ color: GOLD }}
-                        >
+                        <span className="shrink-0 text-xs font-bold tabular-nums text-zinc-100">
                           {formatPrice(a.price, a.currency)}
                         </span>
                       </span>
@@ -353,7 +340,7 @@ export default function ProductView({
           <ul className="mt-8 grid grid-cols-3 gap-3 border-y border-white/10 py-6">
             {TRUST_BADGES.map(({ icon: Icon, label, sub }) => (
               <li key={label} className="flex flex-col items-center gap-2 text-center">
-                <Icon className="h-6 w-6" style={{ color: GOLD }} strokeWidth={1.5} />
+                <Icon className="h-6 w-6 text-zinc-100" strokeWidth={1.5} />
                 <span className="text-xs font-bold text-zinc-100">{label}</span>
                 <span className="text-[11px] leading-tight text-zinc-500">{sub}</span>
               </li>
@@ -445,10 +432,7 @@ export default function ProductView({
 
       {/* Magnetic performance technology — flat, airy, no boxes */}
       <section className="mt-20 pt-16 lg:mt-28">
-        <p
-          className="text-center text-[11px] font-bold tracking-[0.3em]"
-          style={{ color: GOLD }}
-        >
+        <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-400">
           טכנולוגיה מגנטית
         </p>
         <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-100 lg:text-4xl">
@@ -457,10 +441,7 @@ export default function ProductView({
         <div className="mt-14 grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-10">
           {MAGNETIC_FEATURES.map(({ icon: Icon, title, body }) => (
             <div key={title} className="flex flex-col items-center text-center">
-              <span
-                className="flex h-16 w-16 items-center justify-center"
-                style={{ color: GOLD }}
-              >
+              <span className="flex h-16 w-16 items-center justify-center text-zinc-100">
                 <Icon className="h-9 w-9" strokeWidth={1.5} />
               </span>
               <h3 className="mt-6 font-display text-lg font-extrabold tracking-tight text-zinc-100">
@@ -489,7 +470,7 @@ export default function ProductView({
                 : product.title}
           </span>
           {WAITLIST_MODE ? (
-            <span className="text-xs font-semibold" style={{ color: GOLD }}>
+            <span className="text-xs font-semibold text-zinc-300">
               זמין בקרוב
             </span>
           ) : (
@@ -569,9 +550,7 @@ function BundleOption({
       <span className="flex flex-1 flex-col items-start gap-0.5">
         <span className="text-sm font-bold text-zinc-100">{title}</span>
         {note && (
-          <span className="text-[11px] font-bold" style={{ color: GOLD }}>
-            {note}
-          </span>
+          <span className="text-[11px] font-bold text-zinc-400">{note}</span>
         )}
       </span>
       <span className="font-display text-xl font-extrabold tabular-nums text-zinc-100">

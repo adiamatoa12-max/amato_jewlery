@@ -36,10 +36,7 @@ export default function FaqAccordion() {
     <section className="bg-[#18181b] px-5 py-24 sm:px-6 lg:px-10 lg:py-36">
       <div className="mx-auto max-w-3xl">
         <FadeIn>
-          <p
-            className="text-center text-[11px] font-bold tracking-[0.3em]"
-            style={{ color: GOLD }}
-          >
+          <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-400">
             FAQ
           </p>
           <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-100 lg:text-4xl">
@@ -58,12 +55,7 @@ export default function FaqAccordion() {
                   aria-expanded={isOpen}
                   className="flex w-full items-center justify-between gap-4 py-5 text-right transition-colors duration-200"
                 >
-                  <span
-                    className={`font-display text-base font-bold tracking-tight transition-colors duration-200 lg:text-lg ${
-                      isOpen ? "" : "text-zinc-100"
-                    }`}
-                    style={isOpen ? { color: GOLD } : undefined}
-                  >
+                  <span className="font-display text-base font-bold tracking-tight text-zinc-100 lg:text-lg">
                     {item.q}
                   </span>
                   <ChevronDown

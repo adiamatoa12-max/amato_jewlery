@@ -12,8 +12,6 @@ import MediaPlaceholder, {
   isMissingLocalMedia,
 } from "@/components/MediaPlaceholder";
 
-const GOLD = "#2e9bff";
-
 export default function CartDrawer() {
   const {
     items,
@@ -206,10 +204,7 @@ export default function CartDrawer() {
                             <span className="text-xs tabular-nums text-zinc-500 line-through">
                               {formatPrice(lc!.list, displayCurrency)}
                             </span>
-                            <span
-                              className="text-sm font-bold tabular-nums"
-                              style={{ color: GOLD }}
-                            >
+                            <span className="text-sm font-bold tabular-nums text-zinc-100">
                               {formatPrice(lc!.final, displayCurrency)}
                             </span>
                           </span>
@@ -266,10 +261,7 @@ export default function CartDrawer() {
           {/* Complete your setup — compact horizontal-scroll accessory upsell */}
           {upsells.length > 0 && (
             <div className="border-t border-white/10 px-6 py-5">
-              <p
-                className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em]"
-                style={{ color: GOLD }}
-              >
+              <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-400">
                 השלימו את הסט שלכם
               </p>
               <ul className="-mx-1 flex gap-3 overflow-x-auto px-1 pb-1">
@@ -292,10 +284,7 @@ export default function CartDrawer() {
                     </span>
                     {WAITLIST_MODE ? (
                       <>
-                        <span
-                          className="mt-1 text-[11px] font-bold"
-                          style={{ color: GOLD }}
-                        >
+                        <span className="mt-1 text-[11px] font-bold text-zinc-300">
                           זמין בקרוב
                         </span>
                         <WaitlistButton
@@ -305,10 +294,7 @@ export default function CartDrawer() {
                       </>
                     ) : (
                       <>
-                        <span
-                          className="mt-1 text-xs font-bold tabular-nums"
-                          style={{ color: GOLD }}
-                        >
+                        <span className="mt-1 text-xs font-bold tabular-nums text-zinc-100">
                           {formatPrice(a.price, a.currency)}
                         </span>
                         <button
@@ -347,7 +333,7 @@ export default function CartDrawer() {
               </span>
             </div>
             {hasDiscount && (
-              <p className="mt-1 text-xs font-bold" style={{ color: GOLD }}>
+              <p className="mt-1 text-xs font-bold text-zinc-400">
                 הנחת מבצע הוחלה — חסכת{" "}
                 {formatPrice(totalPrice - displayedSubtotal, displayCurrency)}
               </p>

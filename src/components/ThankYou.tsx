@@ -50,10 +50,7 @@ export default function ThankYou({
       {/* One-click upsell */}
       {product && (
         <section className="mt-12 w-full rounded-2xl border border-[#2e9bff]/40 bg-zinc-900 p-6 text-right shadow-[0_20px_60px_-24px_rgba(46, 155, 255,0.4)] sm:p-8">
-          <p
-            className="flex items-center justify-end gap-2 text-[11px] font-bold uppercase tracking-[0.2em]"
-            style={{ color: ACCENT }}
-          >
+          <p className="flex items-center justify-end gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-400">
             הצעה חד-פעמית
             <Sparkles className="h-4 w-4" strokeWidth={2} />
           </p>
@@ -82,10 +79,7 @@ export default function ThankYou({
                 <span className="text-sm tabular-nums text-zinc-500 line-through">
                   {formatPrice(product.price, product.currency)}
                 </span>
-                <span
-                  className="font-display text-xl font-black tabular-nums"
-                  style={{ color: ACCENT }}
-                >
+                <span className="font-display text-xl font-black tabular-nums text-zinc-100">
                   {formatPrice(discounted, product.currency)}
                 </span>
               </div>

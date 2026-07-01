@@ -5,7 +5,6 @@ import { WAITLIST_MODE } from "@/lib/config";
 import WaitlistButton from "@/components/WaitlistButton";
 import FadeIn from "@/components/FadeIn";
 
-const ACCENT = "#2e9bff"; // Electric Blue — vibrant athletic accent
 // Main product — Hebrew handle, encoded for a safe URL (route decodes it).
 const PRODUCT_URL = `/product/${encodeURIComponent("vault-השייקר-המגנטי")}`;
 // Hero background clip (Mag-Grip in action). Hebrew filename → encode for URL.
@@ -57,15 +56,11 @@ export default function Hero() {
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-24 lg:px-10">
         <FadeIn>
           <div className="mx-auto max-w-xl rounded-3xl border border-white/15 bg-white/[0.06] p-8 text-center shadow-[0_24px_70px_-24px_rgba(0,0,0,0.75)] backdrop-blur-xl sm:p-10 lg:mx-0 lg:text-right">
-            <p
-              className="mb-4 text-xs font-bold tracking-[0.2em] sm:text-sm"
-              style={{ color: ACCENT }}
-            >
+            <p className="mb-4 text-xs font-bold tracking-[0.2em] text-zinc-300 sm:text-sm">
               פיתוח מתקדם · איכות ללא פשרות
             </p>
             <h1 className="mb-5 font-display text-4xl font-black leading-[1.05] tracking-tight text-zinc-50 sm:text-5xl lg:text-6xl">
-              האימון שלך, משודרג.{" "}
-              <span style={{ color: ACCENT }}>הטלפון מוגן, השייק מושלם.</span>
+              האימון שלך, משודרג. הטלפון מוגן, השייק מושלם.
             </h1>
             <p className="mb-8 text-base font-light leading-relaxed text-zinc-200 sm:text-lg">
               שכח מהטלפון על הרצפה. ה-Vault מחזיק את המכשיר שלך בגובה העיניים

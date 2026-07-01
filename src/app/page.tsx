@@ -106,10 +106,7 @@ function HowItWorks() {
     <section className="bg-[#111111] px-6 py-24 lg:px-10 lg:py-36">
       <div className="mx-auto max-w-6xl">
         <FadeIn>
-          <p
-            className="text-center text-[11px] font-bold tracking-[0.3em]"
-            style={{ color: GOLD }}
-          >
+          <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-400">
             פשוט להפליא
           </p>
           <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-100 lg:text-4xl">
@@ -121,7 +118,7 @@ function HowItWorks() {
           {STEPS.map(({ icon: Icon, title, body }, i) => (
             <FadeIn key={title} delay={i * 120}>
               <div className="flex flex-col items-center text-center">
-                <span className="relative flex h-16 w-16 items-center justify-center" style={{ color: GOLD }}>
+                <span className="relative flex h-16 w-16 items-center justify-center text-zinc-100">
                   <Icon className="h-7 w-7" strokeWidth={1.5} />
                   <span
                     className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-[#2e9bff] font-display text-xs font-black text-black"
@@ -152,7 +149,7 @@ function HowItWorks() {
                 sizes="(max-width: 768px) 100vw, 768px"
                 className="h-auto w-full"
               />
-              <span className="pointer-events-none absolute bottom-3 right-3 rounded-full bg-black/70 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-[#2e9bff] backdrop-blur-sm">
+              <span className="pointer-events-none absolute bottom-3 right-3 rounded-full bg-black/70 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-zinc-100 backdrop-blur-sm">
                 המנוע החשמלי בפעולה
               </span>
             </div>
@@ -177,10 +174,7 @@ function UseCases() {
     <section className="bg-[#18181b] px-6 py-24 lg:px-10 lg:py-36">
       <div className="mx-auto max-w-6xl">
         <FadeIn>
-          <p
-            className="text-center text-[11px] font-bold tracking-[0.3em]"
-            style={{ color: GOLD }}
-          >
+          <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-400">
             אורח חיים אתלטי
           </p>
           <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-100 lg:text-4xl">
@@ -383,10 +377,7 @@ function Anatomy() {
     >
       <div className="mx-auto max-w-5xl">
         <FadeIn>
-          <p
-            className="text-center text-[11px] font-bold tracking-[0.3em]"
-            style={{ color: GOLD }}
-          >
+          <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-400">
             הנדסה מדויקת
           </p>
           <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-100 lg:text-5xl">
@@ -563,10 +554,7 @@ function Reviews() {
     <section className="bg-[#111111] px-6 py-24 lg:px-10 lg:py-36">
       <div className="mx-auto max-w-6xl">
         <FadeIn>
-          <p
-            className="text-center text-[11px] font-bold tracking-[0.3em]"
-            style={{ color: GOLD }}
-          >
+          <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-400">
             לקוחות מספרים
           </p>
           <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-100 lg:text-4xl">
@@ -633,15 +621,11 @@ function BundleBanner() {
 
           {/* Content — left column in RTL desktop */}
           <div className="flex flex-col items-center text-center md:items-end md:text-right">
-            <p
-              className="text-xs font-bold uppercase tracking-[0.25em]"
-              style={{ color: GOLD }}
-            >
+            <p className="text-xs font-bold uppercase tracking-[0.25em] text-zinc-400">
               Bundle &amp; Save
             </p>
             <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-zinc-100 lg:text-4xl">
-              קנו סט אימון מלא וחסכו{" "}
-              <span style={{ color: GOLD }}>15%</span>
+              קנו סט אימון מלא וחסכו 15%
             </h2>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-zinc-300 lg:text-base">
               השייקר המגנטי + כל האביזרים המשלימים, במחיר משתלם במיוחד — לזמן
@@ -650,7 +634,7 @@ function BundleBanner() {
 
             {/* Price box when available; "Coming Soon" otherwise. */}
             {EXTRAS_AVAILABLE ? (
-              <div className="mt-7 inline-flex items-center gap-4 rounded-2xl border border-[#2e9bff]/30 bg-black/40 px-6 py-4">
+              <div className="mt-7 inline-flex items-center gap-4 rounded-2xl border border-white/10 bg-black/40 px-6 py-4">
                 <div className="flex flex-col items-center">
                   <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-zinc-500">
                     מחיר מלא
@@ -659,24 +643,18 @@ function BundleBanner() {
                     520₪
                   </span>
                 </div>
-                <span className="h-10 w-px bg-[#2e9bff]/20" aria-hidden />
+                <span className="h-10 w-px bg-white/10" aria-hidden />
                 <div className="flex flex-col items-center">
                   <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-zinc-400">
                     מחיר מבצע
                   </span>
-                  <span
-                    className="font-display text-3xl font-black leading-none lg:text-4xl"
-                    style={{ color: GOLD }}
-                  >
+                  <span className="font-display text-3xl font-black leading-none text-zinc-100 lg:text-4xl">
                     רק 400₪
                   </span>
                 </div>
               </div>
             ) : (
-              <p
-                className="mt-7 text-sm font-bold uppercase tracking-[0.25em]"
-                style={{ color: GOLD }}
-              >
+              <p className="mt-7 text-sm font-bold uppercase tracking-[0.25em] text-zinc-400">
                 בקרוב · Coming Soon
               </p>
             )}
@@ -765,10 +743,7 @@ function CompleteGear() {
     >
       <div className="mx-auto max-w-6xl">
         <FadeIn>
-          <p
-            className="text-center text-[11px] font-bold tracking-[0.3em]"
-            style={{ color: GOLD }}
-          >
+          <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-400">
             אביזרים משלימים
           </p>
           <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-100 lg:text-4xl">
@@ -796,17 +771,11 @@ function CompleteGear() {
                     {p.title}
                   </h3>
                   {EXTRAS_AVAILABLE ? (
-                    <p
-                      className="mt-2 text-base font-bold tabular-nums"
-                      style={{ color: GOLD }}
-                    >
+                    <p className="mt-2 text-base font-bold tabular-nums text-zinc-100">
                       {p.price}
                     </p>
                   ) : (
-                    <p
-                      className="mt-2 text-xs font-semibold uppercase tracking-[0.12em]"
-                      style={{ color: GOLD }}
-                    >
+                    <p className="mt-2 text-xs font-semibold uppercase tracking-[0.12em] text-zinc-400">
                       בקרוב
                     </p>
                   )}
@@ -851,11 +820,7 @@ function WhatsInTheBox() {
               key={label}
               className="flex flex-col items-center gap-3 text-center"
             >
-              <Icon
-                className="h-7 w-7"
-                style={{ color: GOLD }}
-                strokeWidth={1.5}
-              />
+              <Icon className="h-7 w-7 text-zinc-100" strokeWidth={1.5} />
               <span className="text-sm font-medium tracking-wide text-white/90 lg:text-base">
                 {label}
               </span>
@@ -873,10 +838,7 @@ function FinalCta() {
     <section className="bg-[#18181b] px-6 py-20 lg:px-10 lg:py-28">
       <FadeIn>
         <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 text-center">
-          <p
-            className="text-[11px] font-bold tracking-[0.3em]"
-            style={{ color: GOLD }}
-          >
+          <p className="text-[11px] font-bold tracking-[0.3em] text-zinc-400">
             מבצע השקה · מלאי ראשון מוגבל
           </p>
           <h2 className="font-display text-3xl font-black tracking-tight text-zinc-100 sm:text-4xl">

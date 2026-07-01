@@ -3,8 +3,6 @@ import Image from "next/image";
 import { ShieldCheck, Magnet, Dumbbell } from "lucide-react";
 import FadeIn from "@/components/FadeIn";
 
-const GOLD = "#2e9bff";
-
 export const metadata: Metadata = {
   title: "הסיפור שלנו — VAULT",
   description:
@@ -45,10 +43,7 @@ export default function AboutPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/35 to-black/70" />
           <div className="relative z-10 flex h-full flex-col items-center justify-center px-5 text-center">
-            <p
-              className="text-xs font-bold uppercase tracking-[0.3em]"
-              style={{ color: GOLD }}
-            >
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-zinc-300">
               אודות VAULT
             </p>
             <h1 className="mt-4 font-display text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl">
@@ -87,10 +82,7 @@ export default function AboutPage() {
               {PILLARS.map(({ icon: Icon, title, body }, i) => (
                 <FadeIn key={title} delay={i * 120}>
                   <div className="flex flex-col items-center text-center">
-                    <span
-                      className="flex h-14 w-14 items-center justify-center rounded-full border bg-black/40"
-                      style={{ borderColor: `${GOLD}55`, color: GOLD }}
-                    >
+                    <span className="flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-black/40 text-zinc-100">
                       <Icon className="h-6 w-6" strokeWidth={1.75} />
                     </span>
                     <h3 className="mt-6 font-display text-xl font-extrabold tracking-tight text-zinc-100">
@@ -125,10 +117,7 @@ export default function AboutPage() {
             {/* Text */}
             <FadeIn delay={150}>
               <div className="flex flex-col text-center lg:order-first lg:text-right">
-                <p
-                  className="text-xs font-bold uppercase tracking-[0.3em]"
-                  style={{ color: GOLD }}
-                >
+                <p className="text-xs font-bold uppercase tracking-[0.3em] text-zinc-300">
                   הנדסה מדויקת
                 </p>
                 <h2 className="mt-5 font-display text-3xl font-black leading-tight tracking-tight text-zinc-100 lg:text-4xl">
@@ -147,10 +136,7 @@ export default function AboutPage() {
         {/* Section 3 — Our Vision */}
         <section className="mx-auto max-w-3xl px-5 py-24 text-center sm:px-6 lg:py-32">
           <FadeIn>
-            <p
-              className="text-xs font-bold uppercase tracking-[0.3em]"
-              style={{ color: GOLD }}
-            >
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-zinc-300">
               החזון שלנו
             </p>
           </FadeIn>

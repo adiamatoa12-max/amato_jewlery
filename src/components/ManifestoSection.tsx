@@ -7,9 +7,10 @@ import FadeIn from "@/components/FadeIn";
  * VAULT Manifesto — a self-contained, premium statement section.
  * Drop <ManifestoSection /> anywhere (Home or About). Customise the CTA via props.
  *
- * Aesthetic: deep-black canvas (#050505), crisp white type, subtle metallic-silver accent.
+ * Aesthetic: deep-black canvas (#050505), crisp white/grey type. Electric Blue
+ * is reserved strictly for functional UI (checkmarks, the CTA) — never text.
  */
-const ACCENT = "#c9ced6"; // Metallic silver — subtle, on-brand highlight
+const ACCENT = "#2e9bff"; // Electric Blue — functional UI only (checkmarks, CTA)
 const PRODUCT_URL = `/product/${encodeURIComponent("vault-השייקר-המגנטי")}`;
 const LIFESTYLE_IMG = "/images/שייקר 11.jpeg"; // next/image encodes the path
 const MAGGRIP_VIDEO = `/videos/${encodeURIComponent("שייקר 31.mp4")}`;
@@ -52,14 +53,11 @@ export default function ManifestoSection({
         {/* Intro — constrained width so the copy stays readable on desktop */}
         <div className="mx-auto max-w-3xl">
           <FadeIn>
-            <p
-              className="text-center font-display text-[11px] font-bold uppercase tracking-[0.4em]"
-              style={{ color: ACCENT }}
-            >
+            <p className="text-center font-display text-[11px] font-bold uppercase tracking-[0.4em] text-zinc-400">
               הפילוסופיה שלנו
             </p>
             <h2 className="mt-5 text-center font-display text-3xl font-black uppercase leading-[0.95] tracking-tight text-zinc-50 sm:text-4xl lg:text-5xl">
-              הסטנדרט של <span style={{ color: ACCENT }}>VAULT</span>
+              הסטנדרט של VAULT
             </h2>
           </FadeIn>
 
@@ -139,7 +137,7 @@ export default function ManifestoSection({
             {/* Column headers (desktop only) */}
             <div className="hidden grid-cols-[1fr_1.25fr_1.25fr] items-center px-4 pb-5 text-center text-xs font-bold uppercase tracking-[0.2em] sm:grid">
               <span />
-              <span style={{ color: ACCENT }}>VAULT</span>
+              <span className="text-zinc-100">VAULT</span>
               <span className="text-zinc-600">שייקר סטנדרטי</span>
             </div>
 
