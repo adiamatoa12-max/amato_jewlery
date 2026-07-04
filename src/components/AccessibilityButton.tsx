@@ -55,7 +55,7 @@ export default function AccessibilityButton() {
   const reset = () => setSettings(DEFAULTS);
 
   return (
-    <div className="fixed bottom-6 left-5 z-[55] flex flex-col items-start gap-3 sm:left-6">
+    <div className="fixed bottom-24 left-5 z-[55] flex flex-col items-start gap-3 sm:left-6 lg:bottom-6">
       {/* Settings panel */}
       {open && (
         <div

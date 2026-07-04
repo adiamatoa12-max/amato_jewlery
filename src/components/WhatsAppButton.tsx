@@ -13,7 +13,7 @@ export default function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="פנייה אלינו בוואטסאפ"
-      className="group fixed bottom-24 right-5 z-40 flex items-center sm:bottom-6 sm:right-6"
+      className="group fixed bottom-24 right-5 z-40 flex items-center sm:right-6 lg:bottom-6"
     >
       {/* Tooltip — appears to the left of the button (RTL-friendly) */}
       <span className="pointer-events-none absolute right-full mr-3 whitespace-nowrap rounded-full bg-neutral-900 px-4 py-2 text-[11px] font-light tracking-[0.08em] text-zinc-100 opacity-0 shadow-lg transition-all duration-300 ease-in-out translate-x-2 group-hover:translate-x-0 group-hover:opacity-100">
