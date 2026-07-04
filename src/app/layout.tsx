@@ -45,6 +45,13 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: "/" },
+  icons: {
+    // Square "Ü" mark cropped from the VAULT wordmark — the wordmark itself
+    // is too wide to render legibly in a browser tab. (Apple touch icon is
+    // handled separately by the existing app/apple-icon.svg convention.)
+    icon: "/images/favicon-mark.png",
+    shortcut: "/images/favicon-mark.png",
+  },
   openGraph: {
     type: "website",
     locale: "he_IL",
