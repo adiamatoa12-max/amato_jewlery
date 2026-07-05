@@ -24,7 +24,7 @@ export default function AnnouncementBar() {
   }, []);
 
   return (
-    <div className="fixed inset-x-0 top-0 z-[60] h-7 overflow-hidden border-b border-white/10 bg-[#111111]">
+    <div className="fixed inset-x-0 top-0 z-[60] h-7 overflow-hidden bg-[#2952e3]">
       {/* Crossfading promo messages, stacked and absolutely positioned. */}
       <div className="relative mx-auto h-full max-w-3xl px-4">
         {MESSAGES.map((msg, i) => (
@@ -33,12 +33,12 @@ export default function AnnouncementBar() {
             href={PRODUCT_URL}
             aria-hidden={i !== active}
             tabIndex={i === active ? 0 : -1}
-            className={`absolute inset-0 flex items-center justify-center gap-2 whitespace-nowrap text-center font-sans text-[10px] font-semibold tracking-[0.08em] text-zinc-300 antialiased transition-opacity duration-700 ease-in-out hover:text-zinc-100 sm:text-[12px] sm:tracking-[0.12em] ${
+            className={`absolute inset-0 flex items-center justify-center gap-2 whitespace-nowrap text-center font-sans text-[10px] font-semibold tracking-[0.08em] text-white antialiased transition-opacity duration-700 ease-in-out hover:text-white/80 sm:text-[12px] sm:tracking-[0.12em] ${
               i === active ? "opacity-100" : "pointer-events-none opacity-0"
             }`}
           >
             <Zap
-              className="h-3 w-3 shrink-0 text-zinc-300 sm:h-3.5 sm:w-3.5"
+              className="h-3 w-3 shrink-0 text-white sm:h-3.5 sm:w-3.5"
               strokeWidth={1.75}
             />
             <span className="truncate">{msg}</span>

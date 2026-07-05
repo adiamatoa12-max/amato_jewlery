@@ -1,15 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { ChevronDown } from "lucide-react";
 import FadeIn from "@/components/FadeIn";
 
-const GOLD = "#2e9bff";
+const GOLD = "#2952e3";
 
-const FAQS = [
+const FAQS: { q: string; a: ReactNode }[] = [
   {
     q: "איך עובד החיבור המגנטי לטלפון?",
-    a: "בתוך השייקר מוטמע מגנט N52 עוצמתי. כל מארז כולל שתי טבעות מתכת דקות עם דבק חזק — מדביקים אחת על הטלפון או על הכיסוי, והטלפון נצמד לשייקר באופן מיידי ויציב. מתאים גם לאייפון וגם לאנדרואיד.",
+    a: (
+      <>
+        בתוך השייקר מוטמע <strong className="font-bold text-[#111111]">מגנט N52</strong>{" "}
+        עוצמתי. כל מארז כולל שתי טבעות מתכת דקות עם דבק חזק — מדביקים אחת על
+        הטלפון או על הכיסוי, והטלפון נצמד לשייקר באופן מיידי ויציב. מתאים גם
+        לאייפון וגם לאנדרואיד.
+      </>
+    ),
   },
   {
     q: "האם השייקר אטום ולא נוזל?",
@@ -33,13 +40,13 @@ export default function FaqAccordion() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="bg-[#18181b] px-5 py-24 sm:px-6 lg:px-10 lg:py-36">
+    <section className="bg-surface-alt px-5 py-24 sm:px-6 lg:px-10 lg:py-36">
       <div className="mx-auto max-w-3xl">
         <FadeIn>
-          <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-400">
+          <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-500">
             FAQ
           </p>
-          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-100 lg:text-4xl">
+          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-900 lg:text-4xl">
             שאלות נפוצות
           </h2>
         </FadeIn>
@@ -50,7 +57,7 @@ export default function FaqAccordion() {
             return (
               <div
                 key={item.q}
-                className="rounded-2xl border border-white/10 bg-white/5 px-5 backdrop-blur-md transition-all duration-300 ease-out hover:border-white/20"
+                className="rounded-2xl border border-zinc-200 bg-white px-5 shadow-[0_4px_16px_-4px_rgba(0,0,0,0.08)] transition-all duration-300 ease-out hover:border-zinc-300 hover:shadow-[0_8px_24px_-6px_rgba(0,0,0,0.12)]"
               >
                 <button
                   type="button"
@@ -58,7 +65,7 @@ export default function FaqAccordion() {
                   aria-expanded={isOpen}
                   className="flex w-full items-center justify-between gap-4 py-5 text-right transition-colors duration-200"
                 >
-                  <span className="font-display text-base font-bold tracking-tight text-zinc-100 lg:text-lg">
+                  <span className="font-display text-base font-bold tracking-tight text-zinc-900 lg:text-lg">
                     {item.q}
                   </span>
                   <ChevronDown
@@ -78,7 +85,7 @@ export default function FaqAccordion() {
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <p className="pb-6 text-right text-sm leading-relaxed text-zinc-400 lg:text-base">
+                    <p className="pb-6 text-right text-base leading-[1.7] text-[#2D3748] lg:text-lg">
                       {item.a}
                     </p>
                   </div>

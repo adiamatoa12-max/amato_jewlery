@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Assistant, Frank_Ruhl_Libre, Montserrat } from "next/font/google";
+import { Assistant, Frank_Ruhl_Libre, Rubik } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/lib/cart/CartContext";
 import CartDrawer from "@/components/CartDrawer";
@@ -27,10 +27,10 @@ const frankRuhl = Frank_Ruhl_Libre({
   subsets: ["hebrew", "latin"],
 });
 
-const montserrat = Montserrat({
+const rubik = Rubik({
   variable: "--font-display",
   weight: ["500", "600", "700", "800", "900"],
-  subsets: ["latin"],
+  subsets: ["hebrew", "latin"],
 });
 
 const TITLE = "VAULT Shaker | שייקר מגנטי לחדר כושר";
@@ -87,9 +87,9 @@ export default async function RootLayout({
     <html
       lang="he"
       dir="rtl"
-      className={`${assistant.variable} ${frankRuhl.variable} ${montserrat.variable} h-full antialiased`}
+      className={`${assistant.variable} ${frankRuhl.variable} ${rubik.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-[#111111] text-zinc-100">
+      <body className="min-h-full bg-[#F7F7F5] text-zinc-900">
         <AnalyticsNoscript />
         {/* Skip link — first focusable element for keyboard/SR users */}
         <a

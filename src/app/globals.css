@@ -34,8 +34,8 @@ html.a11y-contrast iframe {
 }
 
 body {
-  background: #111111; /* charcoal — premium dark theme across all pages */
-  color: #f4f4f5; /* soft off-white (zinc-100) — avoids halation */
+  background: #f7f7f5; /* soft concrete off-white — clean, premium light theme */
+  color: #18181b; /* dark charcoal (zinc-900) — high readability on light bg */
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
   line-height: 1.6; /* elegant, airy line-height */
   -webkit-font-smoothing: antialiased;
@@ -52,6 +52,17 @@ h4 {
   line-height: 1.18;
 }
 
+/* Paragraph body copy: airy line-height + a solid, highly readable charcoal —
+   a floor for any <p> that doesn't set its own text utility. Wrapped in
+   @layer base so Tailwind utility classes (e.g. text-[#111111], leading-*)
+   still win the cascade — an unlayered rule here would override them instead. */
+@layer base {
+  p {
+    line-height: 1.7;
+    color: #2d3748;
+  }
+}
+
 /* Visible, on-brand focus ring for keyboard / screen-reader navigation */
 :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
   outline: 2px solid #1f6fd0; /* gold accent */
@@ -66,4 +77,20 @@ h4 {
 
 .font-display {
   font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Premium light-concrete texture — a fine grayscale grain (SVG feTurbulence,
+   rendered at ~3.5% opacity) layered over the flat surface color. Subtle by
+   design: reads as an industrial concrete/paper texture, not a visible
+   pattern. Two tiers so the alternating section rhythm still holds. */
+.bg-surface {
+  background-color: #ffffff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+.bg-surface-alt {
+  background-color: #f5f5f4;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  background-repeat: repeat;
 }

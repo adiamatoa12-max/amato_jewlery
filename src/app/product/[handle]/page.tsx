@@ -109,7 +109,7 @@ export default async function ProductPage({
   };
 
   return (
-    <div className="flex min-h-full flex-col bg-[#111111] pb-20 text-zinc-100 lg:pb-0">
+    <div className="flex min-h-full flex-col bg-surface pb-20 text-zinc-900 lg:pb-0">
       <script
         type="application/ld+json"
         // Trusted, server-derived data only (Shopify catalog + our own

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { X, Check } from "lucide-react";
 import { useWaitlist } from "@/lib/waitlist/WaitlistContext";
 
-const GOLD = "#2e9bff";
+const GOLD = "#2952e3";
 
 export default function WaitlistModal() {
   const { isOpen, closeWaitlist } = useWaitlist();
@@ -74,7 +74,7 @@ export default function WaitlistModal() {
         role="dialog"
         aria-modal="true"
         aria-label="הרשמה לרשימת המתנה"
-        className={`fixed left-1/2 top-1/2 z-[90] w-[calc(100%-2.5rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-white/10 bg-zinc-950 p-7 text-center shadow-2xl transition-all duration-300 sm:p-9 ${
+        className={`fixed left-1/2 top-1/2 z-[90] w-[calc(100%-2.5rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-zinc-200 bg-surface p-7 text-center shadow-2xl transition-all duration-300 sm:p-9 ${
           isOpen
             ? "opacity-100 scale-100"
             : "pointer-events-none scale-95 opacity-0"
@@ -84,7 +84,7 @@ export default function WaitlistModal() {
           type="button"
           onClick={closeWaitlist}
           aria-label="סגירה"
-          className="absolute left-2 top-2 flex h-11 w-11 items-center justify-center text-zinc-500 transition-colors duration-300 hover:text-zinc-100"
+          className="absolute left-2 top-2 flex h-11 w-11 items-center justify-center text-zinc-500 transition-colors duration-300 hover:text-zinc-900"
         >
           <X className="h-5 w-5" strokeWidth={1.5} />
         </button>
@@ -97,10 +97,10 @@ export default function WaitlistModal() {
             >
               <Check className="h-7 w-7" strokeWidth={2} />
             </span>
-            <h2 className="mt-5 font-display text-2xl font-black tracking-tight text-zinc-100">
+            <h2 className="mt-5 font-display text-2xl font-black tracking-tight text-zinc-900">
               אתם ברשימה!
             </h2>
-            <p className="mt-3 text-sm leading-relaxed text-zinc-400">
+            <p className="mt-3 text-sm leading-relaxed text-zinc-600">
               נעדכן אתכם ראשונים ברגע שה-VAULT יוצא למכירה — כולל הטבת השקה
               בלעדית.
             </p>
@@ -115,13 +115,13 @@ export default function WaitlistModal() {
           </div>
         ) : (
           <>
-            <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-zinc-400">
+            <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-zinc-500">
               Coming Soon
             </p>
-            <h2 className="mt-3 font-display text-2xl font-black tracking-tight text-zinc-100 sm:text-3xl">
+            <h2 className="mt-3 font-display text-2xl font-black tracking-tight text-zinc-900 sm:text-3xl">
               הצטרפו לרשימת ההמתנה
             </h2>
-            <p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-zinc-400">
+            <p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-zinc-600">
               ה-VAULT כמעט כאן. השאירו פרטים ותהיו הראשונים לדעת על ההשקה — עם
               הטבה בלעדית לנרשמים מוקדם.
             </p>
@@ -134,7 +134,7 @@ export default function WaitlistModal() {
                 onChange={(e) => setName(e.target.value)}
                 aria-label="השם שלך"
                 placeholder="השם שלך"
-                className="w-full rounded-full border border-white/15 bg-[#111111] px-5 py-3 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-[#2e9bff] focus:outline-none"
+                className="w-full rounded-full border border-zinc-300 bg-surface px-5 py-3 text-sm text-zinc-900 placeholder:text-zinc-500 focus:border-[#2952e3] focus:outline-none"
               />
               <input
                 type="email"
@@ -144,7 +144,7 @@ export default function WaitlistModal() {
                 aria-label="כתובת אימייל"
                 placeholder="כתובת אימייל"
                 dir="ltr"
-                className="w-full rounded-full border border-white/15 bg-[#111111] px-5 py-3 text-right text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-[#2e9bff] focus:outline-none"
+                className="w-full rounded-full border border-zinc-300 bg-surface px-5 py-3 text-right text-sm text-zinc-900 placeholder:text-zinc-500 focus:border-[#2952e3] focus:outline-none"
               />
               <input
                 type="tel"
@@ -156,12 +156,12 @@ export default function WaitlistModal() {
                 aria-label="מספר טלפון (לא חובה)"
                 placeholder="מספר טלפון (לא חובה)"
                 dir="ltr"
-                className="w-full rounded-full border border-white/15 bg-[#111111] px-5 py-3 text-right text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-[#2e9bff] focus:outline-none"
+                className="w-full rounded-full border border-zinc-300 bg-surface px-5 py-3 text-right text-sm text-zinc-900 placeholder:text-zinc-500 focus:border-[#2952e3] focus:outline-none"
               />
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className="mt-1 inline-flex w-full items-center justify-center rounded-full bg-[#2e9bff] px-8 py-3.5 text-sm font-black uppercase tracking-[0.12em] text-black transition-all duration-300 ease-out hover:scale-105 hover:bg-[#5cb3ff] active:scale-95 disabled:cursor-not-allowed disabled:opacity-60"
+                className="mt-1 inline-flex w-full items-center justify-center rounded-full bg-[#2952e3] px-8 py-3.5 text-sm font-black uppercase tracking-[0.12em] text-white transition-all duration-300 ease-out hover:scale-105 hover:bg-[#4169e5] active:scale-95 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {status === "sending" ? "שולח…" : "הירשמו לעדכונים"}
               </button>

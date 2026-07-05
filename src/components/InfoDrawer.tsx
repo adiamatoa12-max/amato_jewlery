@@ -72,7 +72,7 @@ export default function InfoDrawer() {
         <div className="flex-1 overflow-y-auto px-6 py-6">
           {content && (
             <>
-              <p className="text-sm leading-relaxed text-neutral-600">
+              <p className="text-base leading-[1.7] text-[#2D3748]">
                 {content.intro}
               </p>
               <dl className="mt-8 divide-y divide-stone-200/70">
@@ -81,7 +81,7 @@ export default function InfoDrawer() {
                     <dt className="text-sm font-medium tracking-[0.02em] text-neutral-900">
                       {section.heading}
                     </dt>
-                    <dd className="mt-2 text-sm leading-relaxed text-neutral-600">
+                    <dd className="mt-2 text-base leading-[1.7] text-[#2D3748]">
                       {section.body}
                     </dd>
                   </div>

@@ -11,11 +11,11 @@ const PRODUCT_URL = `/product/${encodeURIComponent("vault-השייקר-המגנ�
 const VIDEO_SRC = `/videos/${encodeURIComponent("שייקר.mp4")}`;
 
 const ctaButton =
-  "inline-flex w-full items-center justify-center rounded-full bg-[#2e9bff] px-12 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_10px_40px_-10px_rgba(46,155,255,0.75)] ring-1 ring-[#2e9bff]/40 transition-all duration-300 ease-out hover:scale-105 hover:bg-[#5cb3ff] hover:shadow-[0_0_44px_-4px_rgba(46,155,255,0.9)] active:scale-95 sm:w-auto";
+  "inline-flex w-full items-center justify-center rounded-full bg-[#2952e3] px-12 py-4 text-sm font-black uppercase tracking-[0.14em] text-white shadow-[0_10px_40px_-10px_rgba(41,82,227,0.75)] ring-1 ring-[#2952e3]/40 transition-all duration-300 ease-out hover:scale-105 hover:bg-[#4169e5] hover:shadow-[0_0_44px_-4px_rgba(41,82,227,0.9)] active:scale-95 sm:w-auto";
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-[92vh] w-full items-center justify-center overflow-hidden bg-[#111111]">
+    <section className="relative flex min-h-[92vh] w-full items-center justify-center overflow-hidden bg-surface">
       {/* Edge-to-edge lifestyle video background */}
       <video
         autoPlay

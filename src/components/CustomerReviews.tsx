@@ -15,7 +15,7 @@ function Stars({ rating, className = "" }: { rating: number; className?: string 
         <Star
           key={i}
           className={`h-3.5 w-3.5 ${
-            i < rating ? "fill-[#2e9bff] text-[#2e9bff]" : "fill-transparent text-zinc-700"
+            i < rating ? "fill-[#2952e3] text-[#2952e3]" : "fill-transparent text-zinc-700"
           }`}
           strokeWidth={1.5}
         />
@@ -36,22 +36,22 @@ export default function CustomerReviews({ handle }: { handle: string }) {
     : 0;
 
   return (
-    <section className="border-t border-white/10 bg-zinc-950">
-      <div className="mx-auto max-w-6xl px-6 py-20 lg:px-10 lg:py-28">
+    <section className="border-t border-zinc-200 bg-surface-alt">
+      <div className="mx-auto max-w-6xl px-6 py-32 lg:px-10 lg:py-40">
         {/* Header */}
         <div className="flex flex-col items-center text-center">
-          <h2 className="font-display text-2xl font-bold tracking-tight text-zinc-100 lg:text-3xl">
+          <h2 className="font-display text-2xl font-bold tracking-tight text-zinc-900 lg:text-3xl">
             ביקורות לקוחות
           </h2>
           {hasReviews ? (
             <div className="mt-5 flex items-center gap-3">
               <Stars rating={Math.round(average)} />
-              <span className="text-sm tabular-nums text-zinc-400">
+              <span className="text-sm tabular-nums text-zinc-500">
                 {average.toFixed(1)} · {DISPLAY_REVIEW_COUNT} ביקורות
               </span>
             </div>
           ) : (
-            <p className="mt-5 text-sm text-zinc-400">
+            <p className="mt-5 text-sm text-zinc-500">
               עדיין אין ביקורות — היו הראשונים לשתף את החוויה שלכם.
             </p>
           )}
@@ -61,7 +61,7 @@ export default function CustomerReviews({ handle }: { handle: string }) {
               setOpen((o) => !o);
               setSubmitted(false);
             }}
-            className="mt-8 inline-flex items-center rounded-full border border-[#2e9bff]/50 px-8 py-3 text-xs font-bold tracking-[0.12em] text-[#2e9bff] transition-all duration-300 ease-in-out hover:bg-[#2e9bff] hover:text-black"
+            className="mt-8 inline-flex items-center rounded-full border border-[#2952e3]/50 px-8 py-3 text-xs font-bold tracking-[0.12em] text-[#2952e3] transition-all duration-300 ease-in-out hover:bg-[#2952e3] hover:text-white"
           >
             כתבו ביקורת
           </button>
@@ -75,7 +75,7 @@ export default function CustomerReviews({ handle }: { handle: string }) {
         >
           <div className="overflow-hidden">
             {submitted ? (
-              <p className="rounded-sm bg-zinc-900 px-6 py-8 text-center text-sm text-zinc-300">
+              <p className="rounded-sm border border-zinc-200 bg-white px-6 py-8 text-center text-sm text-zinc-600">
                 תודה על המשוב! הביקורת שלך תפורסם לאחר אישור.
               </p>
             ) : (
@@ -84,10 +84,10 @@ export default function CustomerReviews({ handle }: { handle: string }) {
                   e.preventDefault();
                   setSubmitted(true);
                 }}
-                className="mx-auto max-w-xl rounded-sm border border-white/10 bg-zinc-900 p-6 lg:p-8"
+                className="mx-auto max-w-xl rounded-sm border border-zinc-200 bg-white p-6 lg:p-8"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-xs tracking-[0.08em] text-zinc-400">
+                  <span className="text-xs tracking-[0.08em] text-zinc-500">
                     הדירוג שלך
                   </span>
                   <div className="-mx-1 flex items-center">
@@ -102,7 +102,7 @@ export default function CustomerReviews({ handle }: { handle: string }) {
                         <Star
                           className={`h-5 w-5 ${
                             i < rating
-                              ? "fill-[#2e9bff] text-[#2e9bff]"
+                              ? "fill-[#2952e3] text-[#2952e3]"
                               : "fill-transparent text-zinc-700"
                           }`}
                           strokeWidth={1.5}
@@ -116,18 +116,18 @@ export default function CustomerReviews({ handle }: { handle: string }) {
                   required
                   aria-label="השם שלך"
                   placeholder="השם שלך"
-                  className="mt-5 w-full border-b border-white/20 bg-transparent py-2 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-[#2e9bff] focus:outline-none"
+                  className="mt-5 w-full border-b border-zinc-300 bg-transparent py-2 text-sm text-zinc-900 placeholder:text-zinc-500 focus:border-[#2952e3] focus:outline-none"
                 />
                 <textarea
                   required
                   rows={4}
                   aria-label="ספרו לנו על החוויה שלכם"
                   placeholder="ספרו לנו על החוויה שלכם..."
-                  className="mt-5 w-full resize-none border-b border-white/20 bg-transparent py-2 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-[#2e9bff] focus:outline-none"
+                  className="mt-5 w-full resize-none border-b border-zinc-300 bg-transparent py-2 text-sm text-zinc-900 placeholder:text-zinc-500 focus:border-[#2952e3] focus:outline-none"
                 />
                 <button
                   type="submit"
-                  className="mt-6 inline-flex items-center rounded-full bg-[#2e9bff] px-8 py-3 text-xs font-bold tracking-[0.12em] text-black transition-all duration-300 ease-in-out hover:bg-[#5cb3ff]"
+                  className="mt-6 inline-flex items-center rounded-full bg-[#2952e3] px-8 py-3 text-xs font-bold tracking-[0.12em] text-white transition-all duration-300 ease-in-out hover:bg-[#4169e5]"
                 >
                   שליחת הביקורת
                 </button>
@@ -141,14 +141,14 @@ export default function CustomerReviews({ handle }: { handle: string }) {
           {reviews.map((review) => (
             <li
               key={review.name}
-              className="flex h-full flex-col rounded-2xl border border-white/10 bg-zinc-900 p-6 transition-colors duration-300 hover:border-[#2e9bff]/40"
+              className="flex h-full flex-col rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition-colors duration-300 hover:border-[#2952e3]/40"
             >
               <Stars rating={review.rating} />
-              <p className="mt-4 flex-1 text-sm leading-relaxed text-zinc-300">
+              <p className="mt-4 flex-1 text-base leading-[1.7] text-[#2D3748]">
                 “{review.body}”
               </p>
-              <div className="mt-6 flex items-center justify-between gap-3 border-t border-white/10 pt-4">
-                <span className="text-sm font-bold text-zinc-100">{review.name}</span>
+              <div className="mt-6 flex items-center justify-between gap-3 border-t border-zinc-200 pt-4">
+                <span className="text-sm font-bold text-zinc-900">{review.name}</span>
                 {review.verified && (
                   <span className="inline-flex items-center gap-1 text-[11px] tracking-[0.04em] text-emerald-400">
                     <BadgeCheck className="h-3.5 w-3.5" strokeWidth={1.75} />

@@ -26,7 +26,7 @@ import FaqAccordion from "@/components/FaqAccordion";
 import WaitlistButton from "@/components/WaitlistButton";
 import { WAITLIST_MODE, EXTRAS_AVAILABLE } from "@/lib/config";
 
-const GOLD = "#2e9bff";
+const GOLD = "#2952e3";
 
 // Main product. The handle has Hebrew chars, so encode it for a safe URL;
 // the [handle] route decodes it back before the Shopify lookup.
@@ -53,11 +53,11 @@ function PrimaryCta({
 
 // Reusable gold CTA with a glowing hover.
 const goldButton =
-  "inline-flex w-full items-center justify-center rounded-full bg-[#2e9bff] px-12 py-4 text-sm font-black uppercase tracking-[0.16em] text-black shadow-[0_10px_36px_-10px_rgba(46, 155, 255,0.7)] ring-1 ring-[#2e9bff]/40 transition-all duration-300 ease-out hover:scale-105 hover:bg-[#5cb3ff] hover:shadow-[0_0_40px_-4px_rgba(46, 155, 255,0.85)] active:scale-95 active:shadow-[0_0_48px_-2px_rgba(46, 155, 255,0.95)] sm:w-auto";
+  "inline-flex w-full items-center justify-center rounded-full bg-[#2952e3] px-12 py-4 text-sm font-black uppercase tracking-[0.16em] text-white shadow-[0_10px_36px_-10px_rgba(41,82,227,0.5)] ring-1 ring-[#2952e3]/40 transition-all duration-300 ease-out hover:scale-105 hover:bg-[#4169e5] hover:shadow-[0_0_40px_-4px_rgba(41,82,227,0.65)] active:scale-95 active:shadow-[0_0_48px_-2px_rgba(41,82,227,0.75)] sm:w-auto";
 
 export default function Home() {
   return (
-    <div className="flex min-h-full flex-col bg-[#111111] pb-24 pt-[5.75rem] text-zinc-100 lg:pb-0">
+    <div className="flex min-h-full flex-col bg-surface pb-24 pt-[5.75rem] text-zinc-900 lg:pb-0">
       <main id="main-content" className="flex-1">
         <Hero />
         <ManifestoSection />
@@ -103,13 +103,13 @@ const STEPS = [
 
 function HowItWorks() {
   return (
-    <section className="bg-[#111111] px-6 py-24 lg:px-10 lg:py-36">
+    <section className="bg-surface px-6 py-36 lg:px-10 lg:py-52">
       <div className="mx-auto max-w-6xl">
         <FadeIn>
-          <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-400">
+          <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-500">
             פשוט להפליא
           </p>
-          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-100 lg:text-4xl">
+          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-900 lg:text-4xl">
             איך זה עובד
           </h2>
         </FadeIn>
@@ -117,19 +117,19 @@ function HowItWorks() {
         <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3">
           {STEPS.map(({ icon: Icon, title, body }, i) => (
             <FadeIn key={title} delay={i * 120}>
-              <div className="flex h-full flex-col items-center rounded-2xl border border-white/10 bg-white/5 p-8 text-center shadow-lg backdrop-blur-md transition-all duration-300 ease-out hover:-translate-y-1 hover:border-white/20 hover:shadow-2xl">
-                <span className="relative flex h-16 w-16 items-center justify-center text-zinc-100">
+              <div className="flex h-full flex-col items-center rounded-2xl border border-zinc-200 bg-zinc-100 p-8 text-center shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:border-zinc-300 hover:shadow-md">
+                <span className="relative flex h-16 w-16 items-center justify-center text-[#2952e3]">
                   <Icon className="h-7 w-7" strokeWidth={1.5} />
                   <span
-                    className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-[#2e9bff] font-display text-xs font-black text-black"
+                    className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-[#2952e3] font-display text-xs font-black text-white"
                   >
                     {i + 1}
                   </span>
                 </span>
-                <h3 className="mt-6 font-display text-xl font-extrabold tracking-tight text-zinc-100">
+                <h3 className="mt-6 font-display text-xl font-extrabold tracking-tight text-zinc-900">
                   {title}
                 </h3>
-                <p className="mt-3 max-w-xs text-sm leading-relaxed text-zinc-400">
+                <p className="mt-3 max-w-xs text-base leading-[1.7] text-[#2D3748]">
                   {body}
                 </p>
               </div>
@@ -171,13 +171,13 @@ const GYM_VIDEOS = [
 
 function UseCases() {
   return (
-    <section className="bg-[#18181b] px-6 py-24 lg:px-10 lg:py-36">
+    <section className="bg-surface-alt px-6 py-36 lg:px-10 lg:py-52">
       <div className="mx-auto max-w-6xl">
         <FadeIn>
-          <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-400">
+          <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-500">
             אורח חיים אתלטי
           </p>
-          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-100 lg:text-4xl">
+          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-900 lg:text-4xl">
             בנוי למתאמנים בחדר הכושר
           </h2>
         </FadeIn>
@@ -202,10 +202,10 @@ function UseCases() {
 /* ── Micro-conversion CTA (between the video sections) ───────────────── */
 function MicroConversion() {
   return (
-    <section className="bg-[#111111] px-5 py-20 sm:px-6 lg:px-10">
+    <section className="bg-surface px-5 py-32 sm:px-6 lg:px-10">
       <FadeIn>
         <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 px-6 py-10 text-center sm:px-10">
-          <h2 className="font-display text-2xl font-black tracking-tight text-zinc-100 sm:text-3xl">
+          <h2 className="font-display text-2xl font-black tracking-tight text-zinc-900 sm:text-3xl">
             מוכנים לשדרג את האימון שלכם?
           </h2>
           <PrimaryCta
@@ -221,15 +221,15 @@ function MicroConversion() {
 /* ── Horizontal streaming ────────────────────────────────────────────── */
 function HorizontalStreaming() {
   return (
-    <section className="bg-[#18181b] px-6 py-24 lg:px-10 lg:py-32">
+    <section className="bg-surface-alt px-6 py-36 lg:px-10 lg:py-48">
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 md:grid-cols-2 lg:gap-16">
         {/* Text — right column in RTL */}
         <FadeIn>
           <div className="text-right">
-            <h2 className="font-display text-3xl font-black leading-tight tracking-tight text-zinc-100 lg:text-4xl">
+            <h2 className="font-display text-3xl font-black leading-tight tracking-tight text-zinc-900 lg:text-4xl">
               לא משדרים את המשחק בחדר כושר?
             </h2>
-            <p className="mt-6 max-w-md text-sm leading-relaxed text-zinc-400 lg:text-base">
+            <p className="mt-6 max-w-md text-base leading-[1.7] text-[#2D3748] lg:text-lg">
               חברו את הטלפון לרוחב (Landscape) ותיהנו מזווית צפייה מושלמת.
               הפתרון האולטימטיבי לסטרימינג של משחקי ספורט, סדרות, או מעקב אחרי
               סרטוני אימון ישירות ממתקן המשקולות, בלי להחזיק את המכשיר ביד.
@@ -239,7 +239,7 @@ function HorizontalStreaming() {
 
         {/* Image — left column on desktop, on TOP on mobile */}
         <FadeIn delay={120} className="order-first md:order-none">
-          <div className="relative aspect-video overflow-hidden rounded-2xl border border-zinc-800">
+          <div className="relative aspect-video overflow-hidden rounded-2xl border border-zinc-200 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
             <Image
               src="/images/horizontal-stream.png"
               alt="טלפון מחובר לרוחב לשייקר VAULT בחדר כושר"
@@ -356,12 +356,12 @@ function AnatomyCallout({ icon: Icon, label, align, labelStyle, dot, line }: Cal
         }`}
       >
         <span
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border bg-black/70 backdrop-blur-sm transition-all duration-300 group-hover:shadow-[0_0_18px_-2px_rgba(46, 155, 255,0.7)]"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border bg-black/70 backdrop-blur-sm transition-all duration-300 group-hover:shadow-[0_0_18px_-2px_rgba(41,82,227,0.7)]"
           style={{ borderColor: `${GOLD}66`, color: GOLD }}
         >
           <Icon className="h-4 w-4" strokeWidth={1.75} />
         </span>
-        <span className="text-xs font-semibold leading-snug text-white/85 transition-all duration-300 group-hover:text-[#2e9bff] group-hover:[text-shadow:0_0_14px_rgba(46, 155, 255,0.8)] lg:text-sm">
+        <span className="text-xs font-semibold leading-snug text-white/85 transition-all duration-300 group-hover:text-[#2952e3] group-hover:[text-shadow:0_0_14px_rgba(41,82,227,0.8)] lg:text-sm">
           {label}
         </span>
       </div>
@@ -373,14 +373,14 @@ function Anatomy() {
   return (
     <section
       id="shop"
-      className="scroll-mt-24 border-y border-white/10 bg-[#111111] px-6 py-24 lg:px-10 lg:py-36"
+      className="scroll-mt-24 border-y border-zinc-200 bg-surface px-6 py-36 lg:px-10 lg:py-52"
     >
       <div className="mx-auto max-w-5xl">
         <FadeIn>
-          <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-400">
+          <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-500">
             הנדסה מדויקת
           </p>
-          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-100 lg:text-5xl">
+          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-900 lg:text-5xl">
             המבנה המדויק של VAULT
           </h2>
         </FadeIn>
@@ -393,7 +393,7 @@ function Anatomy() {
               alt="שייקר VAULT המגנטי"
               fill
               sizes="(min-width: 1024px) 768px, 100vw"
-              className="rounded-2xl border border-white/10 object-cover"
+              className="rounded-2xl border border-zinc-200 object-cover"
               priority={false}
             />
             {ANATOMY.map((c) => (
@@ -404,7 +404,7 @@ function Anatomy() {
 
         {/* Mobile / tablet: image + stacked feature list. */}
         <div className="mt-12 lg:hidden">
-          <div className="relative mx-auto aspect-[3/2] w-full max-w-md overflow-hidden rounded-2xl border border-white/10">
+          <div className="relative mx-auto aspect-[3/2] w-full max-w-md overflow-hidden rounded-2xl border border-zinc-200 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
             <Image
               src="/images/vault-product-image.png"
               alt="שייקר VAULT המגנטי"
@@ -417,15 +417,15 @@ function Anatomy() {
             {ANATOMY.map(({ icon: Icon, label }) => (
               <li
                 key={label}
-                className="group flex items-center gap-3 rounded-xl border border-white/10 bg-black/40 p-4 transition-colors duration-300 hover:border-[#2e9bff]/50"
+                className="group flex items-center gap-3 rounded-xl border border-zinc-200 bg-zinc-100 p-4 shadow-[0_4px_16px_-4px_rgba(0,0,0,0.08)] transition-colors duration-300 hover:border-[#2952e3]/50"
               >
                 <span
-                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border bg-black/70"
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border bg-white"
                   style={{ borderColor: `${GOLD}66`, color: GOLD }}
                 >
                   <Icon className="h-4 w-4" strokeWidth={1.75} />
                 </span>
-                <span className="text-sm font-semibold text-white/85 transition-colors duration-300 group-hover:text-[#2e9bff]">
+                <span className="text-sm font-semibold text-zinc-800 transition-colors duration-300 group-hover:text-[#2952e3]">
                   {label}
                 </span>
               </li>
@@ -450,7 +450,7 @@ const RING_OPTIONS = [
 
 function Compatibility() {
   return (
-    <section className="bg-[#18181b] px-6 py-24 lg:px-10 lg:py-32">
+    <section className="bg-surface-alt px-6 py-36 lg:px-10 lg:py-48">
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 md:grid-cols-2">
         {/* Visuals — DOM-first so it sits on the RIGHT in RTL */}
         <FadeIn>
@@ -469,10 +469,10 @@ function Compatibility() {
         {/* Content — centered on mobile, sits on the LEFT in RTL desktop */}
         <FadeIn delay={120}>
           <div className="text-center md:text-right">
-            <h2 className="font-display text-3xl font-black tracking-tight text-zinc-100 lg:text-4xl">
+            <h2 className="font-display text-3xl font-black tracking-tight text-zinc-900 lg:text-4xl">
               מתאים לכל סמארטפון!
             </h2>
-            <p className="mx-auto mt-6 max-w-md text-sm leading-relaxed text-zinc-400 md:mx-0 lg:text-base">
+            <p className="mx-auto mt-6 max-w-md text-base leading-[1.7] text-[#2D3748] md:mx-0 lg:text-lg">
               כל שייקר VAULT מגיע עם שתי טבעות מתכת דקות במיוחד. הדביקו אחת על
               הטלפון או על הכיסוי, וקבלו חיבור מגנטי עוצמתי לכל מכשיר — אייפון
               או אנדרואיד.
@@ -489,8 +489,8 @@ function Compatibility() {
                     style={{ color: GOLD }}
                     strokeWidth={1.75}
                   />
-                  <p className="text-sm leading-relaxed text-zinc-300 lg:text-base">
-                    <span className="font-bold text-zinc-100">{o.title}:</span>{" "}
+                  <p className="text-sm leading-relaxed text-zinc-600 lg:text-base">
+                    <span className="font-bold text-zinc-900">{o.title}:</span>{" "}
                     {o.body}
                   </p>
                 </li>
@@ -551,13 +551,13 @@ function StarRating({ rating }: { rating: number }) {
 
 function Reviews() {
   return (
-    <section className="bg-[#111111] px-6 py-24 lg:px-10 lg:py-36">
+    <section className="bg-surface px-6 py-36 lg:px-10 lg:py-52">
       <div className="mx-auto max-w-6xl">
         <FadeIn>
-          <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-400">
+          <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-500">
             לקוחות מספרים
           </p>
-          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-100 lg:text-4xl">
+          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-900 lg:text-4xl">
             למה מתאמנים עברו ל-Vault?
           </h2>
         </FadeIn>
@@ -565,19 +565,19 @@ function Reviews() {
         <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {REVIEWS.map((r, i) => (
             <FadeIn key={r.name} delay={i * 80}>
-              <figure className="flex h-full flex-col rounded-2xl border border-white/10 bg-zinc-900 p-6 text-right shadow-[0_10px_30px_-12px_rgba(0,0,0,0.7)] transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:border-[#2e9bff]/40 hover:shadow-[0_16px_44px_-16px_rgba(46, 155, 255,0.4)]">
+              <figure className="flex h-full flex-col rounded-2xl border border-zinc-200 bg-zinc-100 p-6 text-right shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:border-[#2952e3]/40 hover:shadow-md">
                 <div className="flex justify-end">
                   <StarRating rating={r.rating} />
                 </div>
-                <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-zinc-300">
+                <blockquote className="mt-4 flex-1 text-base leading-[1.7] text-[#2D3748]">
                   “{r.text}”
                 </blockquote>
-                <figcaption className="mt-6 flex items-center gap-3 border-t border-white/10 pt-4">
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-zinc-800 font-display text-sm font-bold text-zinc-300">
+                <figcaption className="mt-6 flex items-center gap-3 border-t border-zinc-200 pt-4">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-zinc-200 font-display text-sm font-bold text-zinc-700">
                     {r.name.trim().charAt(0)}
                   </span>
                   <div>
-                    <p className="flex items-center gap-1.5 text-sm font-bold text-zinc-100">
+                    <p className="flex items-center gap-1.5 text-sm font-bold text-zinc-900">
                       {r.name}
                       <BadgeCheck
                         className="h-4 w-4"
@@ -603,9 +603,9 @@ function Reviews() {
 /* ── Bundle & Save banner ────────────────────────────────────────────── */
 function BundleBanner() {
   return (
-    <section className="bg-[#111111] px-6 pb-4 lg:px-10">
+    <section className="bg-surface px-6 pb-4 lg:px-10">
       <FadeIn>
-        <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-8 overflow-hidden rounded-2xl border border-[#2e9bff]/30 bg-zinc-950 p-8 md:grid-cols-2 lg:p-12">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-8 overflow-hidden rounded-2xl border border-[#2952e3]/30 bg-zinc-100 p-8 shadow-[0_8px_28px_-6px_rgba(41,82,227,0.12)] md:grid-cols-2 lg:p-12">
           {/* Visual — DOM-first: top on mobile, right column in RTL desktop */}
           <div className="w-full bg-transparent">
             <Image
@@ -621,57 +621,57 @@ function BundleBanner() {
 
           {/* Content — left column in RTL desktop */}
           <div className="flex flex-col items-center text-center md:items-end md:text-right">
-            <p className="text-xs font-bold uppercase tracking-[0.25em] text-zinc-400">
+            <p className="text-xs font-bold uppercase tracking-[0.25em] text-zinc-500">
               Bundle &amp; Save
             </p>
-            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-zinc-100 lg:text-4xl">
+            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-zinc-900 lg:text-4xl">
               קנו סט אימון מלא וחסכו 15%
             </h2>
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-zinc-300 lg:text-base">
+            <p className="mt-4 max-w-md text-base leading-[1.7] text-[#2D3748] lg:text-lg">
               השייקר המגנטי + כל האביזרים המשלימים, במחיר משתלם במיוחד — לזמן
               מוגבל בלבד.
             </p>
 
             {/* Price box when available; "Coming Soon" otherwise. */}
             {EXTRAS_AVAILABLE ? (
-              <div className="mt-7 inline-flex items-center gap-4 rounded-2xl border border-white/10 bg-black/40 px-6 py-4">
+              <div className="mt-7 inline-flex items-center gap-4 rounded-2xl border border-zinc-200 bg-white px-6 py-4 shadow-[0_4px_16px_-4px_rgba(0,0,0,0.08)]">
                 <div className="flex flex-col items-center">
                   <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-zinc-500">
                     מחיר מלא
                   </span>
-                  <span className="text-lg font-bold text-zinc-500 line-through decoration-zinc-600">
+                  <span className="text-lg font-bold text-zinc-500 line-through decoration-zinc-300">
                     520₪
                   </span>
                 </div>
-                <span className="h-10 w-px bg-white/10" aria-hidden />
+                <span className="h-10 w-px bg-zinc-200" aria-hidden />
                 <div className="flex flex-col items-center">
-                  <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-zinc-400">
+                  <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-zinc-500">
                     מחיר מבצע
                   </span>
-                  <span className="font-display text-3xl font-black leading-none text-zinc-100 lg:text-4xl">
+                  <span className="font-display text-3xl font-black leading-none text-zinc-900 lg:text-4xl">
                     רק 400₪
                   </span>
                 </div>
               </div>
             ) : (
-              <p className="mt-7 text-sm font-bold uppercase tracking-[0.25em] text-zinc-400">
+              <p className="mt-7 text-sm font-bold uppercase tracking-[0.25em] text-zinc-500">
                 בקרוב · Coming Soon
               </p>
             )}
 
             {EXTRAS_AVAILABLE ? (
               <PrimaryCta
-                className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-[#2e9bff] px-10 py-4 text-sm font-black uppercase tracking-[0.12em] text-black shadow-[0_0_30px_-4px_rgba(46, 155, 255,0.7)] transition-all duration-300 ease-out hover:scale-105 hover:bg-[#5cb3ff] hover:shadow-[0_0_44px_-4px_rgba(46, 155, 255,0.9)] active:scale-95 active:shadow-[0_0_56px_-2px_rgba(46, 155, 255,1)] sm:w-auto"
+                className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-[#2952e3] px-10 py-4 text-sm font-black uppercase tracking-[0.12em] text-white shadow-[0_0_30px_-4px_rgba(41,82,227,0.5)] transition-all duration-300 ease-out hover:scale-105 hover:bg-[#4169e5] hover:shadow-[0_0_44px_-4px_rgba(41,82,227,0.65)] active:scale-95 active:shadow-[0_0_56px_-2px_rgba(41,82,227,0.75)] sm:w-auto"
                 label="קנו עכשיו ב-400₪"
               />
             ) : (
               <WaitlistButton
                 label="הודיעו לי כשזמין"
-                className="mt-7 inline-flex w-full items-center justify-center rounded-full border border-[#2e9bff] px-10 py-4 text-sm font-black uppercase tracking-[0.12em] text-[#2e9bff] transition-all duration-300 ease-out hover:scale-105 hover:bg-[#2e9bff] hover:text-black hover:shadow-[0_0_34px_-6px_rgba(46, 155, 255,0.65)] active:scale-95 sm:w-auto"
+                className="mt-7 inline-flex w-full items-center justify-center rounded-full border border-[#2952e3] px-10 py-4 text-sm font-black uppercase tracking-[0.12em] text-[#2952e3] transition-all duration-300 ease-out hover:scale-105 hover:bg-[#2952e3] hover:text-white hover:shadow-[0_0_34px_-6px_rgba(41,82,227,0.45)] active:scale-95 sm:w-auto"
               />
             )}
             {EXTRAS_AVAILABLE && (
-              <p className="mt-3 text-xs font-medium tracking-wide text-zinc-400">
+              <p className="mt-3 text-xs font-medium tracking-wide text-zinc-500">
                 חיסכון של 120₪ במבצע השקה בלבד
               </p>
             )}
@@ -680,10 +680,10 @@ function BundleBanner() {
             {EXTRAS_AVAILABLE && (
             <div className="mt-7 w-full max-w-xs">
               <div className="mb-2 flex items-center justify-between text-[11px] font-bold tracking-wide">
-                <span className="text-zinc-300">85% מהמלאי להשקה נמכר</span>
+                <span className="text-zinc-600">85% מהמלאי להשקה נמכר</span>
               </div>
               <div
-                className="h-2 w-full overflow-hidden rounded-full bg-[#111111]"
+                className="h-2 w-full overflow-hidden rounded-full bg-zinc-200"
                 role="progressbar"
                 aria-valuenow={85}
                 aria-valuemin={0}
@@ -695,7 +695,7 @@ function BundleBanner() {
                   style={{
                     width: "85%",
                     backgroundColor: GOLD,
-                    boxShadow: "0 0 12px -2px rgba(46, 155, 255,0.8)",
+                    boxShadow: "0 0 12px -2px rgba(41,82,227,0.8)",
                   }}
                 />
               </div>
@@ -739,14 +739,14 @@ function CompleteGear() {
   return (
     <section
       id="accessories"
-      className="scroll-mt-24 bg-[#18181b] px-6 py-24 lg:px-10 lg:py-32"
+      className="scroll-mt-24 bg-surface-alt px-6 py-36 lg:px-10 lg:py-48"
     >
       <div className="mx-auto max-w-6xl">
         <FadeIn>
-          <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-400">
+          <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-500">
             אביזרים משלימים
           </p>
-          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-100 lg:text-4xl">
+          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-900 lg:text-4xl">
             השלימו את הציוד שלכם
           </h2>
         </FadeIn>
@@ -754,9 +754,9 @@ function CompleteGear() {
         <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-4">
           {GEAR_PRODUCTS.map((p, i) => (
             <FadeIn key={p.title} delay={i * 80}>
-              <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-zinc-900 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.7)] transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:border-[#2e9bff]/50 hover:shadow-[0_16px_44px_-16px_rgba(46, 155, 255,0.45)]">
+              <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:border-[#2952e3]/50 hover:shadow-md">
                 {/* Product image */}
-                <div className="relative aspect-square w-full overflow-hidden bg-zinc-800">
+                <div className="relative aspect-square w-full overflow-hidden bg-zinc-100">
                   <Image
                     src={p.image}
                     alt={p.title}
@@ -767,29 +767,29 @@ function CompleteGear() {
                 </div>
                 {/* Details */}
                 <div className="flex flex-1 flex-col p-5 text-right">
-                  <h3 className="text-sm font-bold leading-snug text-zinc-100 lg:text-base">
+                  <h3 className="text-sm font-bold leading-snug text-zinc-900 lg:text-base">
                     {p.title}
                   </h3>
                   {EXTRAS_AVAILABLE ? (
-                    <p className="mt-2 text-base font-bold tabular-nums text-zinc-100">
+                    <p className="mt-2 text-base font-bold tabular-nums text-zinc-900">
                       {p.price}
                     </p>
                   ) : (
-                    <p className="mt-2 text-xs font-semibold uppercase tracking-[0.12em] text-zinc-400">
+                    <p className="mt-2 text-xs font-semibold uppercase tracking-[0.12em] text-zinc-500">
                       בקרוב
                     </p>
                   )}
                   {EXTRAS_AVAILABLE ? (
                     <Link
                       href={PRODUCT_URL}
-                      className="mt-5 inline-flex items-center justify-center rounded-full border border-[#2e9bff] px-5 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-[#2e9bff] transition-all duration-300 ease-out hover:scale-105 hover:bg-[#2e9bff] hover:text-black hover:shadow-[0_0_24px_-4px_rgba(46, 155, 255,0.8)] active:scale-95"
+                      className="mt-5 inline-flex items-center justify-center rounded-full border border-[#2952e3] px-5 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-[#2952e3] transition-all duration-300 ease-out hover:scale-105 hover:bg-[#2952e3] hover:text-white hover:shadow-[0_0_24px_-4px_rgba(41,82,227,0.5)] active:scale-95"
                     >
                       הוספה מהירה
                     </Link>
                   ) : (
                     <WaitlistButton
                       label="הודיעו לי"
-                      className="mt-5 inline-flex items-center justify-center rounded-full border border-white/20 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-zinc-300 transition-all duration-300 ease-out hover:border-[#2e9bff] hover:text-[#2e9bff]"
+                      className="mt-5 inline-flex items-center justify-center rounded-full border border-zinc-300 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-zinc-600 transition-all duration-300 ease-out hover:border-[#2952e3] hover:text-[#2952e3]"
                     />
                   )}
                 </div>
@@ -812,7 +812,7 @@ const TRUST_ITEMS = [
 
 function WhatsInTheBox() {
   return (
-    <section className="bg-[#111111] px-6 py-14 lg:px-10">
+    <section className="bg-surface px-6 py-20 lg:px-10">
       <FadeIn>
         <div className="mx-auto grid max-w-5xl grid-cols-2 gap-8 md:grid-cols-4">
           {TRUST_ITEMS.map(({ icon: Icon, label }) => (
@@ -820,8 +820,8 @@ function WhatsInTheBox() {
               key={label}
               className="flex flex-col items-center gap-3 text-center"
             >
-              <Icon className="h-7 w-7 text-zinc-100" strokeWidth={1.5} />
-              <span className="text-sm font-medium tracking-wide text-white/90 lg:text-base">
+              <Icon className="h-7 w-7 text-[#2952e3]" strokeWidth={1.5} />
+              <span className="text-sm font-medium tracking-wide text-zinc-800 lg:text-base">
                 {label}
               </span>
             </div>
@@ -835,16 +835,16 @@ function WhatsInTheBox() {
 /* ── Final CTA — closing conversion band ─────────────────────────────── */
 function FinalCta() {
   return (
-    <section className="bg-[#18181b] px-6 py-20 lg:px-10 lg:py-28">
+    <section className="bg-surface-alt px-6 py-32 lg:px-10 lg:py-40">
       <FadeIn>
         <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 text-center">
-          <p className="text-[11px] font-bold tracking-[0.3em] text-zinc-400">
+          <p className="text-[11px] font-bold tracking-[0.3em] text-zinc-500">
             מבצע השקה · מלאי ראשון מוגבל
           </p>
-          <h2 className="font-display text-3xl font-black tracking-tight text-zinc-100 sm:text-4xl">
+          <h2 className="font-display text-3xl font-black tracking-tight text-zinc-900 sm:text-4xl">
             קנו 2 וקבלו 15% הנחה + משלוח חינם
           </h2>
-          <p className="max-w-xl text-base leading-relaxed text-zinc-400">
+          <p className="max-w-xl text-lg leading-[1.7] text-[#2D3748]">
             שדרגו את האימון שלכם — או קחו שני שייקרים, אחד לכם ואחד למי שמתאמן
             לצידכם. ההטבה זמינה להשקה בלבד.
           </p>
@@ -858,11 +858,11 @@ function FinalCta() {
 /* ── Urgency band — scarcity nudge before the footer ─────────────────── */
 function UrgencyBand() {
   return (
-    <section className="bg-[#111111] px-6 py-5 text-center">
-      <p className="flex items-center justify-center gap-2 text-sm font-semibold tracking-wide text-zinc-200">
+    <section className="bg-surface px-6 py-7 text-center">
+      <p className="flex items-center justify-center gap-2 text-sm font-semibold tracking-wide text-zinc-700">
         <span className="relative flex h-2 w-2">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#2e9bff] opacity-75" />
-          <span className="relative inline-flex h-2 w-2 rounded-full bg-[#2e9bff]" />
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#2952e3] opacity-75" />
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-[#2952e3]" />
         </span>
         נשארו יחידות אחרונות מהמלאי הנוכחי
       </p>
@@ -873,10 +873,10 @@ function UrgencyBand() {
 /* ── Sticky mobile buy bar — always-visible CTA (mobile only) ────────── */
 function StickyBuyBar() {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 w-full border-t border-white/10 bg-[#111111] px-4 py-3 shadow-[0_-8px_30px_-8px_rgba(0,0,0,0.85)] lg:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-50 w-full border-t border-zinc-200 bg-surface px-4 py-3 shadow-[0_-8px_30px_-8px_rgba(0,0,0,0.15)] lg:hidden">
       <Link
         href={PRODUCT_URL}
-        className="flex w-full items-center justify-center rounded-full bg-[#2e9bff] px-6 py-3.5 text-sm font-black uppercase tracking-[0.08em] text-black shadow-[0_0_26px_-6px_rgba(46, 155, 255,0.75)] ring-1 ring-[#2e9bff]/40 transition-all duration-300 active:scale-95"
+        className="flex w-full items-center justify-center rounded-full bg-[#2952e3] px-6 py-3.5 text-sm font-black uppercase tracking-[0.08em] text-white shadow-[0_0_26px_-6px_rgba(41,82,227,0.5)] ring-1 ring-[#2952e3]/40 transition-all duration-300 active:scale-95"
       >
         הזמן עכשיו - מלאי מוגבל
       </Link>
@@ -924,7 +924,7 @@ function TikTokIcon({ className }: { className?: string }) {
 /* Branded payment / security marks rendered as small icon badges. */
 function VisaIcon() {
   return (
-    <span className="inline-flex h-6 w-10 items-center justify-center rounded bg-white">
+    <span className="inline-flex h-6 w-10 items-center justify-center rounded border border-zinc-200 bg-white">
       <span className="font-display text-[11px] font-black italic tracking-tight text-[#1a1f71]">
         VISA
       </span>
@@ -934,7 +934,7 @@ function VisaIcon() {
 
 function MastercardIcon() {
   return (
-    <span className="inline-flex h-6 w-10 items-center justify-center rounded bg-white">
+    <span className="inline-flex h-6 w-10 items-center justify-center rounded border border-zinc-200 bg-white">
       <svg viewBox="0 0 32 20" className="h-4" aria-hidden>
         <circle cx="13" cy="10" r="6" fill="#EB001B" />
         <circle cx="19" cy="10" r="6" fill="#F79E1B" />
@@ -946,7 +946,7 @@ function MastercardIcon() {
 
 function ApplePayIcon() {
   return (
-    <span className="inline-flex h-6 w-10 items-center justify-center gap-0.5 rounded bg-white text-black">
+    <span className="inline-flex h-6 w-10 items-center justify-center gap-0.5 rounded border border-zinc-200 bg-white text-black">
       <svg viewBox="0 0 24 24" className="h-3" fill="currentColor" aria-hidden>
         <path d="M16.3 12.9c0-1.9 1.6-2.8 1.6-2.9-.9-1.3-2.2-1.5-2.7-1.5-1.1-.1-2.2.7-2.8.7-.6 0-1.5-.6-2.4-.6-1.2 0-2.4.7-3 1.8-1.3 2.2-.3 5.5.9 7.3.6.9 1.3 1.9 2.2 1.8.9 0 1.2-.6 2.3-.6 1 0 1.3.6 2.3.5 1 0 1.6-.9 2.2-1.8.4-.6.6-1.2.8-1.8-1.7-.6-1.7-2.1-1.7-2.4zM14.6 7.3c.5-.6.8-1.4.7-2.3-.7 0-1.6.5-2.1 1.1-.5.5-.9 1.4-.7 2.2.8.1 1.6-.4 2.1-1z" />
       </svg>
@@ -963,24 +963,24 @@ const PAYMENT_ICONS = [
 
 function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-[#111111] text-zinc-100">
-      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-20">
+    <footer className="border-t border-zinc-200 bg-surface text-zinc-900">
+      <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
         <div className="grid grid-cols-2 gap-x-10 gap-y-12 lg:grid-cols-4 lg:gap-x-12">
           <div className="col-span-2 lg:col-span-1">
-            <span className="font-display text-xl font-extrabold uppercase tracking-[0.3em] text-zinc-100">
+            <span className="font-display text-xl font-extrabold uppercase tracking-[0.3em] text-zinc-900">
               VAULT
             </span>
-            <p className="mt-4 max-w-xs text-xs leading-relaxed text-white/50">
+            <p className="mt-4 max-w-xs text-xs leading-relaxed text-zinc-500">
               שייקר מגנטי high-performance לאורח חיים אקטיבי.
             </p>
           </div>
 
           {[FOOTER_LINKS.service, FOOTER_LINKS.policies].map((col) => (
             <nav key={col.title} className="flex flex-col">
-              <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-zinc-100">
+              <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-zinc-900">
                 {col.title}
               </h3>
-              <div className="mt-4 flex flex-col gap-3 text-white/60">
+              <div className="mt-4 flex flex-col gap-3 text-zinc-600">
                 {col.links.map((link) => (
                   <FooterLink key={link.label} item={link} />
                 ))}
@@ -989,22 +989,22 @@ function Footer() {
           ))}
 
           <div className="col-span-2 lg:col-span-1">
-            <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-zinc-100">
+            <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-zinc-900">
               הצטרפו ל-VAULT
             </h3>
-            <p className="mt-4 text-xs leading-relaxed text-white/50">
+            <p className="mt-4 text-xs leading-relaxed text-zinc-500">
               גישה מוקדמת להשקות, מבצעים ותכני אימון.
             </p>
-            <form className="mt-5 flex items-center border-b border-white/25 pb-2">
+            <form className="mt-5 flex items-center border-b border-zinc-300 pb-2">
               <input
                 type="email"
                 aria-label="כתובת אימייל לרישום לניוזלטר"
                 placeholder="כתובת אימייל"
-                className="w-full bg-transparent text-sm text-zinc-100 placeholder:text-white/40 focus:outline-none"
+                className="w-full bg-transparent text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none"
               />
               <button
                 type="submit"
-                className="shrink-0 text-xs font-bold uppercase tracking-[0.08em] transition-colors duration-300 hover:text-[#5cb3ff]"
+                className="shrink-0 text-xs font-bold uppercase tracking-[0.08em] transition-colors duration-300 hover:text-[#4169e5]"
                 style={{ color: GOLD }}
               >
                 הירשמו
@@ -1013,14 +1013,14 @@ function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 items-center gap-6 border-t border-white/10 pt-8 sm:grid-cols-3">
-          <div className="flex items-center justify-center gap-4 text-white/60 sm:justify-start">
+        <div className="mt-14 grid grid-cols-1 items-center gap-6 border-t border-zinc-200 pt-8 sm:grid-cols-3">
+          <div className="flex items-center justify-center gap-4 text-zinc-600 sm:justify-start">
             <a
               href="https://www.instagram.com/vaultshaker/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="transition-colors duration-300 hover:text-[#2e9bff]"
+              className="transition-colors duration-300 hover:text-[#2952e3]"
             >
               <Instagram className="h-[18px] w-[18px]" strokeWidth={1.5} />
             </a>
@@ -1029,13 +1029,13 @@ function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="TikTok"
-              className="flex items-center transition-colors duration-300 hover:text-[#2e9bff]"
+              className="flex items-center transition-colors duration-300 hover:text-[#2952e3]"
             >
               <TikTokIcon className="h-[18px] w-[18px]" />
             </a>
           </div>
 
-          <span className="text-center text-xs tracking-[0.12em] text-white/60">
+          <span className="text-center text-xs tracking-[0.12em] text-zinc-600">
             © VAULT 2026. כל הזכויות שמורות.
           </span>
 
@@ -1047,7 +1047,7 @@ function Footer() {
                 </span>
               ))}
             </div>
-            <span className="flex items-center gap-1.5 text-[11px] tracking-[0.06em] text-white/60">
+            <span className="flex items-center gap-1.5 text-[11px] tracking-[0.06em] text-zinc-600">
               <Lock className="h-3.5 w-3.5" strokeWidth={1.75} />
               תשלום מאובטח ב-100%
             </span>

@@ -26,7 +26,7 @@ import {
 import WaitlistButton from "@/components/WaitlistButton";
 import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 
-const GOLD = "#2e9bff";
+const GOLD = "#2952e3";
 
 // Conversational Commerce: the buy CTA opens WhatsApp with a message that's
 // pre-filled based on the selected bundle option, so orders can be confirmed
@@ -167,12 +167,12 @@ export default function ProductView({
             {collectionTitle}
           </Link>
 
-          <h1 className="mt-4 font-display text-4xl font-black leading-tight tracking-tight text-zinc-100 lg:text-5xl">
+          <h1 className="mt-4 font-display text-4xl font-black leading-tight tracking-tight text-zinc-900 lg:text-5xl">
             {product.title}
           </h1>
 
           {/* Launch edition — scarcity, neutral typography */}
-          <p className="mt-3 flex items-center gap-2 text-[11px] font-bold tracking-[0.15em] text-zinc-300">
+          <p className="mt-3 flex items-center gap-2 text-[11px] font-bold tracking-[0.15em] text-zinc-600">
             <span>מהדורת השקה</span>
             <span className="text-zinc-600" aria-hidden>
               |
@@ -181,26 +181,26 @@ export default function ProductView({
           </p>
 
           {/* Electric mixer feature highlight */}
-          <div className="mt-5 flex items-start gap-2.5 rounded-xl bg-white/[0.04] px-4 py-3">
+          <div className="mt-5 flex items-start gap-2.5 rounded-xl bg-zinc-100 px-4 py-3 shadow-[0_4px_16px_-4px_rgba(0,0,0,0.08)]">
             <Zap
-              className="mt-0.5 h-5 w-5 shrink-0 text-zinc-100"
+              className="mt-0.5 h-5 w-5 shrink-0 text-zinc-900"
               strokeWidth={2}
             />
-            <p className="text-sm leading-relaxed text-zinc-200">
-              <span className="font-bold text-zinc-100">מיקסר חשמלי מובנה</span> —
+            <p className="text-base leading-[1.7] text-[#2D3748]">
+              <strong className="font-bold text-[#111111]">מיקסר חשמלי מובנה</strong> —
               ערבוב בלחיצת כפתור לשייק חלק ומושלם בכל פעם, בלי גושים.
             </p>
           </div>
 
           {WAITLIST_MODE ? (
             /* Pre-launch: no price — invite the visitor to the waitlist. */
-            <p className="mt-4 text-sm font-semibold tracking-[0.02em] text-zinc-300">
+            <p className="mt-4 text-sm font-semibold tracking-[0.02em] text-zinc-600">
               זמין בקרוב — הירשמו לעדכונים וקבלו עדיפות בהשקה
             </p>
           ) : (
             <>
               <div className="mt-5 flex items-end gap-3">
-                <p className="font-display text-3xl font-extrabold tabular-nums text-zinc-100">
+                <p className="font-display text-3xl font-extrabold tabular-nums text-zinc-900">
                   {formatPrice(displayPrice, product.currency)}
                 </p>
                 {bundle ? (
@@ -208,7 +208,7 @@ export default function ProductView({
                     <span className="pb-1 text-base tabular-nums text-zinc-500 line-through">
                       {formatPrice(bundleWas, product.currency)}
                     </span>
-                    <span className="pb-1 text-xs font-bold tracking-wide text-zinc-400">
+                    <span className="pb-1 text-xs font-bold tracking-wide text-zinc-500">
                       חיסכון {formatPrice(bundleSaves, product.currency)}
                     </span>
                   </>
@@ -217,7 +217,7 @@ export default function ProductView({
                     <span className="pb-1 text-base tabular-nums text-zinc-500 line-through">
                       {formatPrice(FOUNDER_COMPARE_AT, product.currency)}
                     </span>
-                    <span className="pb-1 text-xs font-bold tracking-wide text-zinc-400">
+                    <span className="pb-1 text-xs font-bold tracking-wide text-zinc-500">
                       מחיר מוקדמים
                     </span>
                   </>
@@ -226,12 +226,12 @@ export default function ProductView({
 
               <p
                 className={`mt-5 flex items-center gap-2 text-xs font-medium tracking-[0.08em] ${
-                  soldOut ? "text-zinc-500" : "text-emerald-400"
+                  soldOut ? "text-zinc-500" : "text-emerald-600"
                 }`}
               >
                 <span
                   className={`h-1.5 w-1.5 rounded-full ${
-                    soldOut ? "bg-zinc-500" : "bg-emerald-400"
+                    soldOut ? "bg-zinc-500" : "bg-emerald-500"
                   }`}
                 />
                 {soldOut ? "אזל מהמלאי" : "במלאי — מוכן למשלוח"}
@@ -279,26 +279,26 @@ export default function ProductView({
                       type="button"
                       onClick={() => toggleAddOn(a.handle)}
                       aria-pressed={checked}
-                      className={`flex w-full items-center gap-3 rounded-xl border bg-zinc-900/60 p-2.5 text-right transition-all duration-200 ${
+                      className={`flex w-full items-center gap-3 rounded-xl border bg-zinc-100 p-2.5 text-right shadow-[0_2px_10px_-3px_rgba(0,0,0,0.08)] transition-all duration-200 ${
                         checked
-                          ? "border-[#2e9bff]/70"
-                          : "border-white/10 hover:border-white/25"
+                          ? "border-[#2952e3]/70"
+                          : "border-zinc-200 hover:border-zinc-300"
                       }`}
                     >
                       {/* Custom gold checkbox */}
                       <span
                         className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md border transition-all duration-200 ${
                           checked
-                            ? "border-[#2e9bff] bg-[#2e9bff]"
-                            : "border-white/30"
+                            ? "border-[#2952e3] bg-[#2952e3]"
+                            : "border-zinc-300"
                         }`}
                       >
                         {checked && (
-                          <Check className="h-3.5 w-3.5 text-black" strokeWidth={3} />
+                          <Check className="h-3.5 w-3.5 text-white" strokeWidth={3} />
                         )}
                       </span>
                       {/* Thumbnail */}
-                      <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-xl bg-zinc-800">
+                      <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-xl bg-zinc-200">
                         <Image
                           src={a.image}
                           alt={a.title}
@@ -309,10 +309,10 @@ export default function ProductView({
                       </span>
                       {/* Title + price */}
                       <span className="flex flex-1 items-center justify-between gap-2">
-                        <span className="text-xs font-medium leading-tight text-zinc-100">
+                        <span className="text-xs font-medium leading-tight text-zinc-900">
                           {a.title}
                         </span>
-                        <span className="shrink-0 text-xs font-bold tabular-nums text-zinc-100">
+                        <span className="shrink-0 text-xs font-bold tabular-nums text-zinc-900">
                           {formatPrice(a.price, a.currency)}
                         </span>
                       </span>
@@ -330,12 +330,12 @@ export default function ProductView({
               manually. Pre-launch waitlist mode still shows the signup. */}
           <div ref={buyRef} id="buy">
           {WAITLIST_MODE ? (
-            <WaitlistButton className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#2e9bff] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(46, 155, 255,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#5cb3ff] hover:shadow-[0_0_46px_-4px_rgba(46, 155, 255,0.95)] active:scale-95" />
+            <WaitlistButton className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#2952e3] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-white shadow-[0_0_30px_-6px_rgba(41,82,227,0.5)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#4169e5] hover:shadow-[0_0_46px_-4px_rgba(41,82,227,0.65)] active:scale-95" />
           ) : soldOut ? (
             <button
               type="button"
               disabled
-              className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#2e9bff] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(46, 155, 255,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#5cb3ff] hover:shadow-[0_0_46px_-4px_rgba(46, 155, 255,0.95)] active:scale-95 disabled:cursor-not-allowed disabled:bg-zinc-700 disabled:text-zinc-400 disabled:shadow-none"
+              className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#2952e3] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-white shadow-[0_0_30px_-6px_rgba(41,82,227,0.5)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#4169e5] hover:shadow-[0_0_46px_-4px_rgba(41,82,227,0.65)] active:scale-95 disabled:cursor-not-allowed disabled:bg-zinc-200 disabled:text-zinc-400 disabled:shadow-none"
             >
               אזל מהמלאי
             </button>
@@ -344,7 +344,7 @@ export default function ProductView({
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-5 inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-[#2e9bff] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(46, 155, 255,0.7)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#5cb3ff] hover:shadow-[0_0_46px_-4px_rgba(46, 155, 255,0.95)] active:scale-95"
+              className="mt-5 inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-[#2952e3] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-white shadow-[0_0_30px_-6px_rgba(41,82,227,0.5)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#4169e5] hover:shadow-[0_0_46px_-4px_rgba(41,82,227,0.65)] active:scale-95"
             >
               <WhatsAppIcon className="h-5 w-5" />
               הזמן עכשיו בוואטסאפ
@@ -352,17 +352,17 @@ export default function ProductView({
           )}
           </div>
           {!WAITLIST_MODE && !soldOut && (
-            <p className="mt-3 text-center text-xs font-medium tracking-wide text-zinc-400">
+            <p className="mt-3 text-center text-xs font-medium tracking-wide text-zinc-500">
               מענה מהיר | משלוח לכל הארץ | 30 ימי אחריות
             </p>
           )}
 
           {/* Trust badges */}
-          <ul className="mt-8 grid grid-cols-3 gap-3 border-y border-white/10 py-6">
+          <ul className="mt-8 grid grid-cols-3 gap-3 border-y border-zinc-200 py-6">
             {TRUST_BADGES.map(({ icon: Icon, label, sub }) => (
               <li key={label} className="flex flex-col items-center gap-2 text-center">
-                <Icon className="h-6 w-6 text-zinc-100" strokeWidth={1.5} />
-                <span className="text-xs font-bold text-zinc-100">{label}</span>
+                <Icon className="h-6 w-6 text-[#2952e3]" strokeWidth={1.5} />
+                <span className="text-xs font-bold text-zinc-900">{label}</span>
                 <span className="text-[11px] leading-tight text-zinc-500">{sub}</span>
               </li>
             ))}
@@ -381,7 +381,7 @@ export default function ProductView({
 
         {/* GALLERY — order-1 on mobile (top, under header), left column on desktop (RTL). Mixed media: image + action video. */}
         <section className="order-1 flex flex-col gap-4 lg:order-2">
-          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-zinc-900">
+          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-zinc-100">
             {activeMedia.type === "video" ? (
               <video
                 src={activeMedia.src}
@@ -415,7 +415,7 @@ export default function ProductView({
                 aria-current={i === activeImg}
                 className={`relative aspect-square overflow-hidden rounded-2xl transition-all duration-300 ${
                   i === activeImg
-                    ? "ring-2 ring-[#2e9bff]"
+                    ? "ring-2 ring-[#2952e3]"
                     : "opacity-60 hover:opacity-100"
                 }`}
               >
@@ -453,25 +453,25 @@ export default function ProductView({
 
       {/* Magnetic performance technology — flat, airy, no boxes */}
       <section className="mt-20 pt-16 lg:mt-28">
-        <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-400">
+        <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-500">
           טכנולוגיה מגנטית
         </p>
-        <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-100 lg:text-4xl">
+        <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-900 lg:text-4xl">
           הטכנולוגיה שמאחורי VAULT
         </h2>
         <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
           {MAGNETIC_FEATURES.map(({ icon: Icon, title, body }) => (
             <div
               key={title}
-              className="flex flex-col items-center rounded-2xl border border-white/10 bg-white/5 p-8 text-center shadow-lg backdrop-blur-md transition-all duration-300 ease-out hover:-translate-y-1 hover:border-white/20 hover:shadow-2xl"
+              className="flex flex-col items-center rounded-2xl border border-zinc-200 bg-zinc-100 p-8 text-center shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:border-zinc-300 hover:shadow-md"
             >
-              <span className="flex h-16 w-16 items-center justify-center text-zinc-100">
+              <span className="flex h-16 w-16 items-center justify-center text-[#2952e3]">
                 <Icon className="h-9 w-9" strokeWidth={1.5} />
               </span>
-              <h3 className="mt-6 font-display text-lg font-extrabold tracking-tight text-zinc-100">
+              <h3 className="mt-6 font-display text-lg font-extrabold tracking-tight text-zinc-900">
                 {title}
               </h3>
-              <p className="mt-3 max-w-xs text-sm leading-relaxed text-zinc-400">
+              <p className="mt-3 max-w-xs text-base leading-[1.7] text-[#2D3748]">
                 {body}
               </p>
             </div>
@@ -481,12 +481,12 @@ export default function ProductView({
 
       {/* Sticky buy bar — slides in once the main CTA scrolls out of view (mobile) */}
       <div
-        className={`fixed inset-x-0 bottom-0 z-40 flex items-center gap-4 border-t border-white/10 bg-[#111111] px-5 py-3 shadow-[0_-8px_30px_-8px_rgba(0,0,0,0.85)] transition-transform duration-300 ease-out lg:hidden ${
+        className={`fixed inset-x-0 bottom-0 z-40 flex items-center gap-4 border-t border-zinc-200 bg-surface px-5 py-3 shadow-[0_-8px_30px_-8px_rgba(0,0,0,0.15)] transition-transform duration-300 ease-out lg:hidden ${
           showSticky ? "translate-y-0" : "translate-y-full"
         }`}
       >
         <div className="flex min-w-0 flex-col leading-tight">
-          <span className="truncate text-[11px] text-zinc-400">
+          <span className="truncate text-[11px] text-zinc-500">
             {WAITLIST_MODE
               ? product.title
               : bundle
@@ -494,22 +494,22 @@ export default function ProductView({
                 : product.title}
           </span>
           {WAITLIST_MODE ? (
-            <span className="text-xs font-semibold text-zinc-300">
+            <span className="text-xs font-semibold text-zinc-600">
               זמין בקרוב
             </span>
           ) : (
-            <span className="text-base font-bold tabular-nums text-zinc-100">
+            <span className="text-base font-bold tabular-nums text-zinc-900">
               {formatPrice(displayPrice, product.currency)}
             </span>
           )}
         </div>
         {WAITLIST_MODE ? (
-          <WaitlistButton className="flex flex-1 items-center justify-center rounded-full bg-[#2e9bff] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#5cb3ff] active:scale-95" />
+          <WaitlistButton className="flex flex-1 items-center justify-center rounded-full bg-[#2952e3] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-white transition-all duration-300 hover:bg-[#4169e5] active:scale-95" />
         ) : soldOut ? (
           <button
             type="button"
             disabled
-            className="flex flex-1 items-center justify-center rounded-full bg-[#2e9bff] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#5cb3ff] active:scale-95 disabled:bg-zinc-700 disabled:text-zinc-400"
+            className="flex flex-1 items-center justify-center rounded-full bg-[#2952e3] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-white transition-all duration-300 hover:bg-[#4169e5] active:scale-95 disabled:bg-zinc-200 disabled:text-zinc-400"
           >
             אזל מהמלאי
           </button>
@@ -518,7 +518,7 @@ export default function ProductView({
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-1 items-center justify-center gap-2 rounded-full bg-[#2e9bff] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#5cb3ff] active:scale-95"
+            className="flex flex-1 items-center justify-center gap-2 rounded-full bg-[#2952e3] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-white transition-all duration-300 hover:bg-[#4169e5] active:scale-95"
           >
             <WhatsAppIcon className="h-4 w-4" />
             הזמן בוואטסאפ
@@ -552,33 +552,33 @@ function BundleOption({
       type="button"
       onClick={onSelect}
       aria-pressed={selected}
-      className={`relative flex w-full items-center justify-between gap-3 rounded-2xl border bg-zinc-900 p-5 text-right transition-all duration-300 ${
+      className={`relative flex w-full items-center justify-between gap-3 rounded-2xl border bg-white p-5 text-right shadow-[0_4px_16px_-4px_rgba(0,0,0,0.08)] transition-all duration-300 ${
         selected
-          ? "border-[#2e9bff] shadow-[0_0_24px_-8px_rgba(46, 155, 255,0.7)]"
+          ? "border-[#2952e3] shadow-[0_0_24px_-8px_rgba(41,82,227,0.35)]"
           : highlight
-            ? "border-[#2e9bff]/40 hover:border-[#2e9bff]/70"
-            : "border-white/10 hover:border-white/30"
+            ? "border-[#2952e3]/40 hover:border-[#2952e3]/70"
+            : "border-zinc-200 hover:border-zinc-300"
       }`}
     >
       {badge && (
-        <span className="absolute -top-2.5 left-4 rounded-full bg-[#2e9bff] px-2.5 py-0.5 text-[10px] font-black tracking-wide text-black">
+        <span className="absolute -top-2.5 left-4 rounded-full bg-[#2952e3] px-2.5 py-0.5 text-[10px] font-black tracking-wide text-white">
           {badge}
         </span>
       )}
       <span
         className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${
-          selected ? "border-[#2e9bff] bg-[#2e9bff]" : "border-white/30"
+          selected ? "border-[#2952e3] bg-[#2952e3]" : "border-zinc-300"
         }`}
       >
-        {selected && <Check className="h-3.5 w-3.5 text-black" strokeWidth={3} />}
+        {selected && <Check className="h-3.5 w-3.5 text-white" strokeWidth={3} />}
       </span>
       <span className="flex flex-1 flex-col items-start gap-0.5">
-        <span className="text-sm font-bold text-zinc-100">{title}</span>
+        <span className="text-sm font-bold text-zinc-900">{title}</span>
         {note && (
-          <span className="text-[11px] font-bold text-zinc-400">{note}</span>
+          <span className="text-[11px] font-bold text-zinc-500">{note}</span>
         )}
       </span>
-      <span className="font-display text-xl font-extrabold tabular-nums text-zinc-100">
+      <span className="font-display text-xl font-extrabold tabular-nums text-zinc-900">
         {priceLabel}
       </span>
     </button>
@@ -588,14 +588,14 @@ function BundleOption({
 function Accordion({ title, body }: { title: string; body: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/5 px-5 backdrop-blur-md transition-all duration-300 ease-out hover:border-white/20">
+    <div className="rounded-2xl border border-zinc-200 bg-zinc-100 px-5 shadow-[0_4px_16px_-4px_rgba(0,0,0,0.08)] transition-all duration-300 ease-out hover:border-zinc-300 hover:shadow-[0_8px_24px_-6px_rgba(0,0,0,0.12)]">
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
         className="flex w-full items-center justify-between py-5 text-start"
       >
-        <span className="text-sm font-medium tracking-[0.04em] text-zinc-100">
+        <span className="text-sm font-medium tracking-[0.04em] text-zinc-900">
           {title}
         </span>
         <ChevronDown
@@ -612,7 +612,7 @@ function Accordion({ title, body }: { title: string; body: string }) {
         }`}
       >
         <div className="overflow-hidden">
-          <p className="pb-6 text-sm leading-relaxed text-zinc-400">{body}</p>
+          <p className="pb-6 text-base leading-[1.7] text-[#2D3748]">{body}</p>
         </div>
       </div>
     </div>

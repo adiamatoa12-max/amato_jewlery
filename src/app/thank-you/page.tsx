@@ -14,7 +14,7 @@ export default async function ThankYouPage() {
   const product = await getProduct("vault-השייקר-המגנטי").catch(() => null);
 
   return (
-    <div className="flex min-h-full flex-col bg-[#111111] text-zinc-100">
+    <div className="flex min-h-full flex-col bg-surface text-zinc-900">
       <ThankYou
         product={
           product

@@ -126,10 +126,10 @@ export default function SiteHeader({
   // never overlapping the hero imagery. Deepens its shadow slightly on scroll.
   return (
     <header
-      className={`absolute inset-x-0 top-7 z-50 text-zinc-100 backdrop-blur-md transition-all duration-500 ease-in-out ${
+      className={`absolute inset-x-0 top-7 z-50 text-zinc-900 backdrop-blur-md transition-all duration-500 ease-in-out ${
         scrolled
-          ? "bg-black/90 shadow-lg shadow-black/30"
-          : "bg-black/60"
+          ? "bg-white/95 shadow-lg shadow-black/5"
+          : "bg-white/80"
       }`}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-10">
@@ -141,17 +141,16 @@ export default function SiteHeader({
         <Link
           href="/"
           aria-label="VAULT — דף הבית"
-          className="inline-flex items-center rounded-xl border border-zinc-800 bg-[#111111] p-2 transition-all duration-500 ease-in-out hover:border-[#2e9bff]/50 hover:opacity-90"
+          className="inline-flex items-center p-2 transition-all duration-500 ease-in-out hover:opacity-70"
         >
           <Image
-            src="/images/vault-logo.png"
+            src="/images/favicon.png"
             alt="VAULT Logo"
             width={1774}
             height={887}
             priority
             sizes="88px"
             className="h-10 w-auto object-contain lg:h-11"
-            style={{ filter: "invert(1) hue-rotate(180deg)" }}
           />
         </Link>
 
@@ -166,7 +165,7 @@ export default function SiteHeader({
             <Link
               key={l.label}
               href={l.href}
-              className="text-[13px] font-medium tracking-[0.06em] text-white/80 transition-colors duration-300 hover:text-[#2e9bff]"
+              className="text-[13px] font-medium tracking-[0.06em] text-zinc-700 transition-colors duration-300 hover:text-[#2952e3]"
             >
               {l.label}
             </Link>
@@ -202,7 +201,7 @@ export default function SiteHeader({
             <span className="relative">
               <ShoppingBag className="h-5 w-5" strokeWidth={1.5} />
               {totalQuantity > 0 && (
-                <span className="absolute -end-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#2e9bff] px-1 text-[10px] font-medium leading-none text-black ring-2 ring-black">
+                <span className="absolute -end-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#2952e3] px-1 text-[10px] font-medium leading-none text-white ring-2 ring-white">
                   {totalQuantity}
                 </span>
               )}
@@ -226,7 +225,7 @@ export default function SiteHeader({
 
       {/* Slide-down search panel */}
       <div
-        className={`overflow-hidden border-white/10 bg-black/95 backdrop-blur-md transition-all duration-400 ease-in-out ${
+        className={`overflow-hidden border-zinc-200 bg-white/95 backdrop-blur-md transition-all duration-400 ease-in-out ${
           searchOpen
             ? "max-h-[75vh] border-t opacity-100"
             : "pointer-events-none max-h-0 border-t-0 opacity-0"
@@ -235,9 +234,9 @@ export default function SiteHeader({
         <div className="mx-auto max-w-3xl px-6 py-6 lg:py-8">
           <form
             onSubmit={(e) => e.preventDefault()}
-            className="flex items-center gap-3 border-b border-white/25 pb-3"
+            className="flex items-center gap-3 border-b border-zinc-300 pb-3"
           >
-            <Search className="h-5 w-5 shrink-0 text-white/60" strokeWidth={1.5} />
+            <Search className="h-5 w-5 shrink-0 text-zinc-500" strokeWidth={1.5} />
             <input
               ref={searchInputRef}
               type="search"
@@ -245,25 +244,25 @@ export default function SiteHeader({
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="חיפוש מוצרים…"
-              className="w-full bg-transparent text-lg font-light tracking-[0.04em] text-zinc-100 placeholder:text-white/40 focus:outline-none"
+              className="w-full bg-transparent text-lg font-light tracking-[0.04em] text-zinc-900 placeholder:text-zinc-400 focus:outline-none"
             />
           </form>
 
           {query.trim() && (
             <div className="mt-6">
               {results.length === 0 ? (
-                <p className="text-sm tracking-[0.04em] text-white/50">
+                <p className="text-sm tracking-[0.04em] text-zinc-500">
                   לא נמצאו תוצאות עבור &quot;{query.trim()}&quot;.
                 </p>
               ) : (
-                <ul className="divide-y divide-white/10">
+                <ul className="divide-y divide-zinc-200">
                   {results.map((p) => (
                     <li key={p.handle}>
                       <Link
                         href={`/product/${p.handle}`}
                         className="flex items-center gap-4 py-3 transition-colors duration-300 hover:opacity-70"
                       >
-                        <span className="relative h-14 w-12 shrink-0 overflow-hidden rounded-sm bg-white/5">
+                        <span className="relative h-14 w-12 shrink-0 overflow-hidden rounded-sm bg-zinc-100">
                           {isMissingLocalMedia(p.image) ? (
                             <MediaPlaceholder className="absolute inset-0 h-full w-full" />
                           ) : (
@@ -276,10 +275,10 @@ export default function SiteHeader({
                             />
                           )}
                         </span>
-                        <span className="flex-1 text-sm font-light tracking-[0.04em] text-zinc-100">
+                        <span className="flex-1 text-sm font-light tracking-[0.04em] text-zinc-900">
                           {p.title}
                         </span>
-                        <span className="text-sm tabular-nums text-white/60">
+                        <span className="text-sm tabular-nums text-zinc-500">
                           {formatPrice(p.price, p.currency)}
                         </span>
                       </Link>
@@ -309,17 +308,17 @@ export default function SiteHeader({
 
         {/* Panel */}
         <nav
-          className={`fixed inset-x-0 top-[5.75rem] z-40 max-h-[calc(100vh-5.75rem)] overflow-y-auto border-t border-white/10 bg-black/95 backdrop-blur-md transition-all duration-300 ease-in-out ${
+          className={`fixed inset-x-0 top-[5.75rem] z-40 max-h-[calc(100vh-5.75rem)] overflow-y-auto border-t border-zinc-200 bg-white/95 backdrop-blur-md transition-all duration-300 ease-in-out ${
             mobileOpen
               ? "translate-y-0 opacity-100"
               : "-translate-y-3 opacity-0"
           }`}
         >
-          <div className="px-6 py-4 text-zinc-100">
+          <div className="px-6 py-4 text-zinc-900">
             {groups.map((group) => {
               const isOpen = expanded === group.label;
               return (
-                <div key={group.label} className="border-b border-white/10">
+                <div key={group.label} className="border-b border-zinc-200">
                   <button
                     type="button"
                     onClick={() =>
@@ -351,7 +350,7 @@ export default function SiteHeader({
                           <Link
                             key={link.label}
                             href={link.href}
-                            className="py-3 pr-4 text-sm text-white/70 transition-colors duration-300 hover:text-zinc-100"
+                            className="py-3 pr-4 text-sm text-zinc-600 transition-colors duration-300 hover:text-zinc-900"
                           >
                             {link.label}
                           </Link>
@@ -364,7 +363,7 @@ export default function SiteHeader({
             })}
             <Link
               href="/about"
-              className="block py-5 text-sm tracking-[0.08em] text-zinc-100"
+              className="block py-5 text-sm tracking-[0.08em] text-zinc-900"
             >
               אודות
             </Link>
