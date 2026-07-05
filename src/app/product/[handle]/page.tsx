@@ -27,8 +27,12 @@ export async function generateMetadata({
   const description =
     product.description?.replace(/\s+/g, " ").trim().slice(0, 160) ||
     "שייקר מגנטי לחדר כושר VAULT — ביצועים גבוהים, מעמד טלפון מובנה ואטימה מושלמת.";
-  const images = product.image ? [product.image] : undefined;
   const canonicalPath = `/product/${encodeURIComponent(product.handle)}`;
+  // Structured OG image object (width/height/alt) — WhatsApp/Facebook render
+  // a correctly-sized preview immediately instead of guessing dimensions.
+  const ogImages = product.image
+    ? [{ url: product.image, width: 1200, height: 1500, alt: product.title }]
+    : undefined;
 
   return {
     title,
@@ -41,9 +45,14 @@ export async function generateMetadata({
       url: `${SITE_URL}${canonicalPath}`,
       title,
       description,
-      images,
+      images: ogImages,
     },
-    twitter: { card: "summary_large_image", title, description, images },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: product.image ? [product.image] : undefined,
+    },
   };
 }
 

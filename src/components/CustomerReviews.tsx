@@ -15,7 +15,7 @@ function Stars({ rating, className = "" }: { rating: number; className?: string 
         <Star
           key={i}
           className={`h-3.5 w-3.5 ${
-            i < rating ? "fill-[#2952e3] text-[#2952e3]" : "fill-transparent text-zinc-700"
+            i < rating ? "fill-[#F59E0B] text-[#F59E0B]" : "fill-transparent text-zinc-700"
           }`}
           strokeWidth={1.5}
         />
@@ -37,7 +37,7 @@ export default function CustomerReviews({ handle }: { handle: string }) {
 
   return (
     <section className="border-t border-zinc-200 bg-surface-alt">
-      <div className="mx-auto max-w-6xl px-6 py-32 lg:px-10 lg:py-40">
+      <div className="mx-auto max-w-6xl px-6 py-36 lg:px-10 lg:py-44">
         {/* Header */}
         <div className="flex flex-col items-center text-center">
           <h2 className="font-display text-2xl font-bold tracking-tight text-zinc-900 lg:text-3xl">
@@ -102,7 +102,7 @@ export default function CustomerReviews({ handle }: { handle: string }) {
                         <Star
                           className={`h-5 w-5 ${
                             i < rating
-                              ? "fill-[#2952e3] text-[#2952e3]"
+                              ? "fill-[#F59E0B] text-[#F59E0B]"
                               : "fill-transparent text-zinc-700"
                           }`}
                           strokeWidth={1.5}
@@ -141,7 +141,7 @@ export default function CustomerReviews({ handle }: { handle: string }) {
           {reviews.map((review) => (
             <li
               key={review.name}
-              className="flex h-full flex-col rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition-colors duration-300 hover:border-[#2952e3]/40"
+              className="flex h-full flex-col rounded-2xl bg-white p-6 shadow-[0_8px_24px_rgba(0,0,0,0.03)] transition-shadow duration-300 hover:shadow-[0_12px_32px_rgba(0,0,0,0.06)]"
             >
               <Stars rating={review.rating} />
               <p className="mt-4 flex-1 text-base leading-[1.7] text-[#2D3748]">

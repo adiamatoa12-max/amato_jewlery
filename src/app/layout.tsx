@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Assistant, Frank_Ruhl_Libre, Rubik } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/lib/cart/CartContext";
@@ -74,6 +74,16 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     images: ["/images/vault-shaker-hero.png"],
   },
+};
+
+// Separate from `metadata` per Next.js 14+ — sets the standard responsive
+// viewport and tints mobile browser chrome (Android address bar / iOS status
+// bar) with the brand accent. Pinch-zoom is intentionally left at the
+// browser default (no maximumScale/userScalable override) for accessibility.
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#2952e3",
 };
 
 export default async function RootLayout({

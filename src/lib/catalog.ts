@@ -256,14 +256,30 @@ export async function getCollectionByHandle(
       getCollectionProducts(handle, 50),
     ]);
     const meta = collections.find((c) => c.handle === handle);
-    if (!meta) return null;
-    return {
-      handle: meta.handle,
-      title: meta.title,
-      enTitle: meta.title,
-      tagline: meta.description ?? "",
-      products: products.map(adapt),
-    };
+    if (meta) {
+      return {
+        handle: meta.handle,
+        title: meta.title,
+        enTitle: meta.title,
+        tagline: meta.description ?? "",
+        products: products.map(adapt),
+      };
+    }
+    // "all-products" is a synthetic handle getCollections() generates (and
+    // links to from the nav + sitemap) when some products aren't covered by
+    // any real Shopify collection — it has no matching Shopify collection of
+    // its own, so resolve it here the same way or this URL 404s.
+    if (handle === "all-products") {
+      const allProducts = await getProducts({ first: 100 });
+      return {
+        handle: "all-products",
+        title: "כל המוצרים",
+        enTitle: "כל המוצרים",
+        tagline: "",
+        products: allProducts.map(adapt),
+      };
+    }
+    return null;
   } catch (error) {
     warnFallback("getCollectionByHandle", error);
     return COLLECTIONS.find((c) => c.handle === handle) ?? null;

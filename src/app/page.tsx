@@ -109,7 +109,7 @@ function HowItWorks() {
           <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-500">
             פשוט להפליא
           </p>
-          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-900 lg:text-4xl">
+          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-[#000000] lg:text-4xl">
             איך זה עובד
           </h2>
         </FadeIn>
@@ -117,8 +117,8 @@ function HowItWorks() {
         <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3">
           {STEPS.map(({ icon: Icon, title, body }, i) => (
             <FadeIn key={title} delay={i * 120}>
-              <div className="flex h-full flex-col items-center rounded-2xl border border-zinc-200 bg-zinc-100 p-8 text-center shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:border-zinc-300 hover:shadow-md">
-                <span className="relative flex h-16 w-16 items-center justify-center text-[#2952e3]">
+              <div className="flex h-full flex-col items-center rounded-2xl bg-white p-10 text-center shadow-[0_10px_30px_rgba(0,0,0,0.04)] transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,0,0,0.08)]">
+                <span className="relative flex h-16 w-16 items-center justify-center rounded-full bg-[#2952e3]/10 text-[#2952e3]">
                   <Icon className="h-7 w-7" strokeWidth={1.5} />
                   <span
                     className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-[#2952e3] font-display text-xs font-black text-white"
@@ -126,7 +126,7 @@ function HowItWorks() {
                     {i + 1}
                   </span>
                 </span>
-                <h3 className="mt-6 font-display text-xl font-extrabold tracking-tight text-zinc-900">
+                <h3 className="mt-6 font-display text-xl font-extrabold tracking-tight text-[#000000]">
                   {title}
                 </h3>
                 <p className="mt-3 max-w-xs text-base leading-[1.7] text-[#2D3748]">
@@ -551,13 +551,13 @@ function StarRating({ rating }: { rating: number }) {
 
 function Reviews() {
   return (
-    <section className="bg-surface px-6 py-36 lg:px-10 lg:py-52">
+    <section className="bg-surface-sport px-6 py-36 lg:px-10 lg:py-52">
       <div className="mx-auto max-w-6xl">
         <FadeIn>
           <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-500">
             לקוחות מספרים
           </p>
-          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-900 lg:text-4xl">
+          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-[#000000] lg:text-4xl">
             למה מתאמנים עברו ל-Vault?
           </h2>
         </FadeIn>
@@ -565,7 +565,7 @@ function Reviews() {
         <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {REVIEWS.map((r, i) => (
             <FadeIn key={r.name} delay={i * 80}>
-              <figure className="flex h-full flex-col rounded-2xl border border-zinc-200 bg-zinc-100 p-6 text-right shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:border-[#2952e3]/40 hover:shadow-md">
+              <figure className="flex h-full flex-col rounded-2xl bg-white p-8 text-right shadow-[0_10px_30px_rgba(0,0,0,0.04)] transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:shadow-[0_16px_40px_rgba(0,0,0,0.08)]">
                 <div className="flex justify-end">
                   <StarRating rating={r.rating} />
                 </div>

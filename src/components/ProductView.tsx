@@ -452,7 +452,7 @@ export default function ProductView({
       </div>
 
       {/* Magnetic performance technology — flat, airy, no boxes */}
-      <section className="mt-20 pt-16 lg:mt-28">
+      <section className="mt-24 pt-20 lg:mt-32">
         <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-500">
           טכנולוגיה מגנטית
         </p>
@@ -463,7 +463,7 @@ export default function ProductView({
           {MAGNETIC_FEATURES.map(({ icon: Icon, title, body }) => (
             <div
               key={title}
-              className="flex flex-col items-center rounded-2xl border border-zinc-200 bg-zinc-100 p-8 text-center shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:border-zinc-300 hover:shadow-md"
+              className="flex flex-col items-center rounded-2xl bg-white p-8 text-center shadow-[0_8px_24px_rgba(0,0,0,0.03)] transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.06)]"
             >
               <span className="flex h-16 w-16 items-center justify-center text-[#2952e3]">
                 <Icon className="h-9 w-9" strokeWidth={1.5} />
@@ -588,7 +588,7 @@ function BundleOption({
 function Accordion({ title, body }: { title: string; body: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="rounded-2xl border border-zinc-200 bg-zinc-100 px-5 shadow-[0_4px_16px_-4px_rgba(0,0,0,0.08)] transition-all duration-300 ease-out hover:border-zinc-300 hover:shadow-[0_8px_24px_-6px_rgba(0,0,0,0.12)]">
+    <div className="border-b border-[#E2E8F0] bg-transparent transition-colors duration-300 ease-out">
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}

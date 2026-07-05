@@ -1,10 +1,54 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ProductCard from "@/components/ProductCard";
 import FadeIn from "@/components/FadeIn";
 import { getCollectionByHandle } from "@/lib/catalog";
+import { SITE_URL } from "@/lib/site";
 
 // ISR: refresh live collection data every 60s.
 export const revalidate = 60;
+
+// Per-collection SEO: distinct title/description/OG per collection instead of
+// silently inheriting the root layout's homepage metadata.
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ handle: string }>;
+}): Promise<Metadata> {
+  const { handle } = await params;
+  const collection = await getCollectionByHandle(decodeURIComponent(handle));
+  if (!collection) return { title: "קולקציה לא נמצאה — VAULT" };
+
+  const title = `${collection.title} — VAULT`;
+  const description =
+    collection.tagline?.replace(/\s+/g, " ").trim().slice(0, 160) ||
+    `${collection.title} מבית VAULT — ציוד אימון בביצועים גבוהים.`;
+  const image = collection.products[0]?.image;
+  const canonicalPath = `/collections/${encodeURIComponent(collection.handle)}`;
+
+  return {
+    title,
+    description,
+    alternates: { canonical: canonicalPath },
+    openGraph: {
+      type: "website",
+      locale: "he_IL",
+      siteName: "VAULT",
+      url: `${SITE_URL}${canonicalPath}`,
+      title,
+      description,
+      images: image
+        ? [{ url: image, width: 1200, height: 1500, alt: collection.title }]
+        : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: image ? [image] : undefined,
+    },
+  };
+}
 
 export default async function CollectionPage({
   params,
