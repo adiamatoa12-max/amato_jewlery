@@ -1,42 +1,18 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Check, X } from "lucide-react";
 import FadeIn from "@/components/FadeIn";
 
 /**
  * VAULT Manifesto — a self-contained, premium statement section.
  * Drop <ManifestoSection /> anywhere (Home or About). Customise the CTA via props.
  *
- * Aesthetic: deep-black canvas (#FFFFFF), crisp white/grey type. Electric Blue
- * is reserved strictly for functional UI (checkmarks, the CTA) — never text.
+ * The spec-by-spec comparison lives in the homepage's 3-way matrix table
+ * (see HowItWorks in app/page.tsx) — this section stays story-led to avoid
+ * running two comparison blocks back-to-back.
  */
-const ACCENT = "#2952e3"; // Electric Blue — functional UI only (checkmarks, CTA)
 const PRODUCT_URL = `/product/${encodeURIComponent("vault-השייקר-המגנטי")}`;
 const LIFESTYLE_IMG = "/images/שייקר 11.jpeg"; // next/image encodes the path
 const MAGGRIP_VIDEO = `/videos/${encodeURIComponent("שייקר 31.mp4")}`;
-
-const MANIFESTO_ROWS = [
-  {
-    feature: "היגיינה",
-    vault: "אטימה הרמטית — בלי דליפות, בלי ריח",
-    standard: "מדליף, מצטבר בו עובש וריח",
-  },
-  {
-    feature: "ערבוב",
-    vault: "מנוע חשמלי — שייק חלק בלחיצה",
-    standard: "ערבוב ידני שמשאיר גושים",
-  },
-  {
-    feature: "טכנולוגיית Mag-Grip",
-    vault: "מגנט N52 — הטלפון נעול לכל משטח מתכתי",
-    standard: "אין. הטלפון נזרק על הרצפה",
-  },
-  {
-    feature: "עמידות",
-    vault: "חומרים בדרגה הנדסית, בנוי לשנים",
-    standard: "פלסטיק זול שנסדק ומתבלה",
-  },
-];
 
 export default function ManifestoSection({
   id,
@@ -137,57 +113,8 @@ export default function ManifestoSection({
           </div>
         </FadeIn>
 
-        {/* Comparison — line-free; rows separated by whitespace, VAULT column
-            highlighted with a subtle dark chip rather than borders. */}
-        <FadeIn delay={200}>
-          <div className="mx-auto max-w-3xl">
-            {/* Column headers (desktop only) */}
-            <div className="hidden grid-cols-[1fr_1.25fr_1.25fr] items-center px-4 pb-5 text-center text-xs font-bold uppercase tracking-[0.2em] sm:grid">
-              <span />
-              <span className="text-zinc-900">VAULT</span>
-              <span className="text-zinc-600">שייקר סטנדרטי</span>
-            </div>
-
-            <div className="space-y-4">
-              {MANIFESTO_ROWS.map((row) => (
-                <div
-                  key={row.feature}
-                  className="sm:grid sm:grid-cols-[1fr_1.25fr_1.25fr] sm:items-center"
-                >
-                  <h3 className="px-4 font-display text-base font-bold uppercase tracking-wide text-zinc-900 sm:text-sm">
-                    {row.feature}
-                  </h3>
-
-                  {/* VAULT — subtle dark chip, no lines */}
-                  <div className="mt-4 flex items-start gap-2 rounded-xl border border-zinc-200 bg-zinc-100 px-4 py-3 shadow-[0_4px_16px_-4px_rgba(0,0,0,0.08)] sm:mt-0 sm:justify-center sm:text-center">
-                    <Check
-                      className="mt-0.5 h-4 w-4 shrink-0"
-                      style={{ color: ACCENT }}
-                      strokeWidth={3}
-                    />
-                    <span className="text-sm leading-snug text-zinc-800">
-                      {row.vault}
-                    </span>
-                  </div>
-
-                  {/* Standard */}
-                  <div className="mt-2 flex items-start gap-2 px-4 py-3 sm:mt-0 sm:justify-center sm:text-center">
-                    <X
-                      className="mt-0.5 h-4 w-4 shrink-0 text-zinc-600"
-                      strokeWidth={3}
-                    />
-                    <span className="text-sm leading-snug text-zinc-500">
-                      {row.standard}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </FadeIn>
-
         {/* Final CTA — generous space above, perfectly centered */}
-        <FadeIn delay={260}>
+        <FadeIn delay={200}>
           <div className="mt-20 flex flex-col items-center text-center">
             <Link
               href={ctaHref}
