@@ -14,6 +14,7 @@ import {
   CupSoda,
   Zap,
   BadgeCheck,
+  X,
   type LucideIcon,
 } from "lucide-react";
 import FadeIn from "@/components/FadeIn";
@@ -101,6 +102,85 @@ const STEPS = [
   },
 ];
 
+/* ── VaultShaker vs. the rest — 3-way comparison (pure HTML, no graphic) ── */
+type CompareValue = boolean | string;
+const COMPARISON_ROWS: {
+  feature: string;
+  vault: CompareValue;
+  electric: CompareValue;
+  classic: CompareValue;
+}[] = [
+  {
+    feature: "נפח ארגונומי",
+    vault: "400 מ״ל",
+    electric: "600 מ״ל+",
+    classic: "700 מ״ל",
+  },
+  {
+    feature: "קל על המגנט ונכנס למחזיק כוסות",
+    vault: true,
+    electric: false,
+    classic: false,
+  },
+  {
+    feature: "מנוע חשמלי לערבוב מיידי",
+    vault: true,
+    electric: true,
+    classic: false,
+  },
+  {
+    feature: "שייק מרוכז, בלי אוויר וקצף",
+    vault: true,
+    electric: false,
+    classic: false,
+  },
+  {
+    feature: "מגנט N52 לטלפון",
+    vault: true,
+    electric: false,
+    classic: false,
+  },
+  {
+    feature: "אטימה מלאה נגד נזילות",
+    vault: true,
+    electric: "חלקית",
+    classic: false,
+  },
+];
+
+/** One comparison-table cell — a yes/no icon, or a text value (e.g. volume). */
+function CompareCell({
+  value,
+  highlight = false,
+}: {
+  value: CompareValue;
+  highlight?: boolean;
+}) {
+  if (value === true)
+    return (
+      <CheckCircle
+        className="mx-auto h-5 w-5 text-[#2952e3]"
+        strokeWidth={2}
+        aria-label="כן"
+      />
+    );
+  if (value === false)
+    return (
+      <X className="mx-auto h-5 w-5 text-zinc-300" strokeWidth={2} aria-label="לא" />
+    );
+  return (
+    <span
+      className={
+        highlight
+          ? "font-display text-base font-black text-[#111111]"
+          : "text-sm text-zinc-500"
+      }
+    >
+      {value}
+    </span>
+  );
+}
+
 function HowItWorks() {
   return (
     <section className="bg-surface px-6 py-36 lg:px-10 lg:py-52">
@@ -137,26 +217,76 @@ function HowItWorks() {
           ))}
         </div>
 
-        {/* Action shot — the integrated electric motor in action */}
+        {/* 400ml positioning + 3-way comparison table (replaces the old
+            static steps graphic — lighter, scannable, no image weight). */}
         <FadeIn delay={120}>
-          <figure className="mx-auto mt-16 w-full max-w-3xl">
-            <div className="group relative overflow-hidden rounded-3xl shadow-[0_30px_80px_-35px_rgba(0,0,0,0.9)]">
-              <Image
-                src="/images/vault-steps.png"
-                alt="המנוע החשמלי המובנה של VAULT מערבל שייק חלק בלחיצת כפתור"
-                width={1536}
-                height={1024}
-                sizes="(max-width: 768px) 100vw, 768px"
-                className="h-auto w-full"
-              />
-              <span className="pointer-events-none absolute bottom-3 right-3 rounded-full bg-black/70 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-zinc-100 backdrop-blur-sm">
-                המנוע החשמלי בפעולה
-              </span>
+          <div dir="rtl" className="mx-auto mt-24 max-w-3xl">
+            <h3 className="text-center font-display text-2xl font-black tracking-tight text-[#000000] sm:text-3xl">
+              נפח 400 מ״ל. בדיוק כמו שצריך.
+            </h3>
+            <p className="mx-auto mt-4 max-w-xl text-center text-base leading-[1.7] text-[#2D3748]">
+              מספיק גדול לשייק מלא, מספיק קומפקטי כדי להישאר{" "}
+              <strong className="font-bold text-[#111111]">קל על המגנט</strong> —
+              נכנס למחזיק הכוסות ברכב ולתיק האימונים. התוצאה: שייק מרוכז, בלי
+              אוויר מיותר ובלי קצף.
+            </p>
+
+            <div className="mt-10 overflow-x-auto rounded-2xl bg-white shadow-[0_10px_30px_rgba(0,0,0,0.04)]">
+              <table className="w-full min-w-[540px] border-collapse text-right">
+                <thead>
+                  <tr>
+                    <th scope="col" className="p-4" />
+                    <th
+                      scope="col"
+                      className="rounded-t-xl bg-[#2952e3]/[0.06] p-4 text-center font-display text-sm font-black tracking-tight text-[#2952e3]"
+                    >
+                      VaultShaker
+                    </th>
+                    <th
+                      scope="col"
+                      className="p-4 text-center text-xs font-bold text-zinc-500"
+                    >
+                      חשמלי סטנדרטי
+                    </th>
+                    <th
+                      scope="col"
+                      className="p-4 text-center text-xs font-bold text-zinc-500"
+                    >
+                      שייקר קלאסי
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {COMPARISON_ROWS.map((row, i) => {
+                    const isLast = i === COMPARISON_ROWS.length - 1;
+                    return (
+                      <tr key={row.feature} className="border-t border-zinc-100">
+                        <th
+                          scope="row"
+                          className="p-4 text-sm font-semibold text-zinc-800"
+                        >
+                          {row.feature}
+                        </th>
+                        <td
+                          className={`bg-[#2952e3]/[0.06] p-4 text-center ${
+                            isLast ? "rounded-b-xl" : ""
+                          }`}
+                        >
+                          <CompareCell value={row.vault} highlight />
+                        </td>
+                        <td className="p-4 text-center">
+                          <CompareCell value={row.electric} />
+                        </td>
+                        <td className="p-4 text-center">
+                          <CompareCell value={row.classic} />
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
             </div>
-            <figcaption className="mt-3 text-center text-xs text-zinc-500">
-              המנוע החשמלי המובנה — ערבוב חלק לגמרי בלחיצת כפתור אחת.
-            </figcaption>
-          </figure>
+          </div>
         </FadeIn>
       </div>
     </section>
@@ -230,9 +360,10 @@ function HorizontalStreaming() {
               לא משדרים את המשחק בחדר כושר?
             </h2>
             <p className="mt-6 max-w-md text-base leading-[1.7] text-[#2D3748] lg:text-lg">
-              חברו את הטלפון לרוחב (Landscape) ותיהנו מזווית צפייה מושלמת.
-              הפתרון האולטימטיבי לסטרימינג של משחקי ספורט, סדרות, או מעקב אחרי
-              סרטוני אימון ישירות ממתקן המשקולות, בלי להחזיק את המכשיר ביד.
+              מסובבים את הטלפון לרוחב ומקבלים זווית צפייה מושלמת — ישירות
+              ממתקן המשקולות.{" "}
+              <br className="hidden lg:block" />
+              צופים במשחק, בסדרה או בסרטון אימון, בלי להחזיק שום דבר ביד.
             </p>
           </div>
         </FadeIn>
@@ -473,9 +604,10 @@ function Compatibility() {
               מתאים לכל סמארטפון!
             </h2>
             <p className="mx-auto mt-6 max-w-md text-base leading-[1.7] text-[#2D3748] md:mx-0 lg:text-lg">
-              כל שייקר VAULT מגיע עם שתי טבעות מתכת דקות במיוחד. הדביקו אחת על
-              הטלפון או על הכיסוי, וקבלו חיבור מגנטי עוצמתי לכל מכשיר — אייפון
-              או אנדרואיד.
+              כל VAULT מגיע עם שתי טבעות מתכת דקות. מדביקים אחת על הטלפון או
+              הכיסוי — וזהו.{" "}
+              <br className="hidden lg:block" />
+              חיבור מגנטי חזק לכל מכשיר, אייפון או אנדרואיד.
             </p>
 
             <ul className="mt-8 space-y-4">
@@ -628,8 +760,9 @@ function BundleBanner() {
               קנו סט אימון מלא וחסכו 15%
             </h2>
             <p className="mt-4 max-w-md text-base leading-[1.7] text-[#2D3748] lg:text-lg">
-              השייקר המגנטי + כל האביזרים המשלימים, במחיר משתלם במיוחד — לזמן
-              מוגבל בלבד.
+              השייקר המגנטי + כל האביזרים המשלימים, במחיר שלא יחזור.{" "}
+              <br className="hidden lg:block" />
+              מלאי מוגבל לזמן קצר.
             </p>
 
             {/* Price box when available; "Coming Soon" otherwise. */}
@@ -845,8 +978,8 @@ function FinalCta() {
             קנו 2 וקבלו 15% הנחה + משלוח חינם
           </h2>
           <p className="max-w-xl text-lg leading-[1.7] text-[#2D3748]">
-            שדרגו את האימון שלכם — או קחו שני שייקרים, אחד לכם ואחד למי שמתאמן
-            לצידכם. ההטבה זמינה להשקה בלבד.
+            שדרגו את האימון שלכם, או תנו במתנה לפרטנר לאימונים. ההטבה זמינה
+            להשקה בלבד — מוגבלת במלאי.
           </p>
           <PrimaryCta className={goldButton} label="שדרג את האימון שלי עכשיו" />
         </div>
@@ -971,7 +1104,7 @@ function Footer() {
               VAULT
             </span>
             <p className="mt-4 max-w-xs text-xs leading-relaxed text-zinc-500">
-              שייקר מגנטי high-performance לאורח חיים אקטיבי.
+              שייקר מגנטי בביצועים גבוהים לאורח חיים אקטיבי.
             </p>
           </div>
 

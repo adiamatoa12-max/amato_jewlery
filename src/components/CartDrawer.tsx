@@ -7,6 +7,7 @@ import { useCart, formatPrice } from "@/lib/cart/CartContext";
 import { ACCESSORIES } from "@/lib/accessories";
 import { WAITLIST_MODE } from "@/lib/config";
 import WaitlistButton from "@/components/WaitlistButton";
+import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 import { trackInitiateCheckout } from "@/lib/analytics";
 import MediaPlaceholder, {
   isMissingLocalMedia,
@@ -161,7 +162,7 @@ export default function CartDrawer() {
         {items.length === 0 ? (
           <div className="flex flex-1 flex-col items-center justify-center gap-4 px-6 text-center">
             <ShoppingBag className="h-10 w-10 text-zinc-400" strokeWidth={1} />
-            <p className="text-sm text-zinc-500">העגלה שלך ריקה כרגע.</p>
+            <p className="text-sm text-zinc-500">העגלה שלך עדיין ריקה.</p>
             <button
               type="button"
               onClick={closeCart}
@@ -339,14 +340,15 @@ export default function CartDrawer() {
               </p>
             )}
             <p className="mt-1 text-xs text-zinc-500">
-              משלוח ומיסים מחושבים בקופה.
+              משלוח חינם · סוגרים את ההזמנה ישירות מול נציג בוואטסאפ.
             </p>
             <button
               type="button"
               onClick={handleCheckout}
-              className="mt-6 flex w-full items-center justify-center rounded-full bg-[#2952e3] px-8 py-4 text-sm font-black uppercase tracking-[0.1em] text-white shadow-[0_0_30px_-6px_rgba(41,82,227,0.7)] transition-all duration-300 ease-in-out hover:bg-[#4169e5] active:scale-95"
+              className="mt-6 flex w-full items-center justify-center gap-2 rounded-full bg-[#2952e3] px-8 py-4 text-sm font-black tracking-[0.04em] text-white shadow-[0_0_30px_-6px_rgba(41,82,227,0.7)] transition-all duration-300 ease-in-out hover:bg-[#4169e5] active:scale-95"
             >
-              למעבר לקופה
+              <WhatsAppIcon className="h-4 w-4 shrink-0" />
+              לסגירת ההזמנה בוואטסאפ
             </button>
           </div>
         )}

@@ -41,7 +41,7 @@ const MANIFESTO_ROWS = [
 export default function ManifestoSection({
   id,
   ctaHref = PRODUCT_URL,
-  ctaLabel = "הצטרפו למהפכה",
+  ctaLabel = "שדרגו את האימון עכשיו",
 }: {
   id?: string;
   ctaHref?: string;
@@ -54,7 +54,7 @@ export default function ManifestoSection({
         <div className="mx-auto max-w-3xl">
           <FadeIn>
             <p className="text-center font-display text-[11px] font-bold uppercase tracking-[0.4em] text-zinc-500">
-              הפילוסופיה שלנו
+              למה VAULT שונה
             </p>
             <h2 className="mt-5 text-center font-display text-3xl font-black uppercase leading-[0.95] tracking-tight text-zinc-900 sm:text-4xl lg:text-5xl">
               הסטנדרט של VAULT
@@ -64,15 +64,16 @@ export default function ManifestoSection({
           <FadeIn delay={120}>
             <div className="mt-12 space-y-6 text-center">
               <p className="font-display text-xl font-bold uppercase tracking-tight text-[#111111] sm:text-2xl">
-                עידן הציוד הזול והבינוני בחדר הכושר נגמר.
+                עידן הציוד הזול בחדר הכושר נגמר.
               </p>
               <p className="text-lg font-light leading-[1.7] text-[#2D3748] sm:text-xl">
-                לא נולדנו כדי להתפשר. כל VAULT מהונדס בדיוק אובססיבי.{" "}
+                כל VAULT מהונדס לביצועים, לא לפשרות.{" "}
                 <strong className="font-bold text-[#111111]">מנוע חשמלי</strong>{" "}
-                שמוחק גושים בשנייה, <strong className="font-bold text-[#111111]">מגנט N52</strong>{" "}
-                שמשחרר לך את הידיים, ואטימה מושלמת
-                שלא מכירה דליפות. זה לא עוד שייקר. זו הצהרה על איך נראים ביצועים,
-                סטייל ואורח חיים ללא פשרות.
+                מוחק גושים בשנייה.{" "}
+                <strong className="font-bold text-[#111111]">מגנט N52</strong>{" "}
+                משחרר לך את הידיים. אטימה מושלמת שלא מכירה דליפות.{" "}
+                <br className="hidden sm:block" />
+                זה לא עוד שייקר — זה השדרוג שהאימונים שלך חיכו לו.
               </p>
             </div>
           </FadeIn>
@@ -91,16 +92,20 @@ export default function ManifestoSection({
                   alt="שייקר VAULT המגנטי — עיצוב ארגונומי שיושב טבעי ביד"
                   fill
                   sizes="(max-width: 1024px) 85vw, 450px"
-                  className="object-cover"
+                  // Mirror-selfie shot — flip horizontally so the "VAULT"
+                  // logo printed on the shaker reads correctly (the raw photo
+                  // shows it reversed, as captured in a mirror).
+                  className="-scale-x-100 object-cover"
                 />
               </div>
-              <div className="text-center lg:text-right">
+              <div dir="rtl" className="text-right">
                 <h3 className="font-display text-2xl font-black tracking-tight text-zinc-900 sm:text-3xl">
-                  עיצוב שנועד לך.
+                  עיצוב שיושב נכון.
                 </h3>
                 <p className="mt-5 text-lg font-light leading-[1.7] text-[#2D3748] sm:text-xl">
-                  ארגונומיה מושלמת שיושבת טבעי ביד. ה-Vault הוא לא רק כלי, הוא
-                  חלק בלתי נפרד מהציוד שלך מהרגע שיצאת מהבית.
+                  ארגונומיה מדויקת שנשארת נוחה גם באמצע האימון.{" "}
+                  <br className="hidden sm:block" />
+                  אוחזים חזק, מרגישים קל — בלי להתפשר על הסטייל.
                 </p>
               </div>
             </div>
@@ -118,14 +123,14 @@ export default function ManifestoSection({
                   className="absolute inset-0 h-full w-full object-cover"
                 />
               </div>
-              <div className="text-center lg:order-1 lg:text-right">
+              <div dir="rtl" className="text-right lg:order-1">
                 <h3 className="font-display text-2xl font-black tracking-tight text-zinc-900 sm:text-3xl">
                   תמיד איתך, בכל אימון.
                 </h3>
                 <p className="mt-5 text-lg font-light leading-[1.7] text-[#2D3748] sm:text-xl">
-                  ה-Vault נצמד לכל משקולת או ספסל – הטלפון שלך תמיד בגובה העיניים.
-                  טכנולוגיה מגנטית שמשחררת אותך להתמקד בביצועים שלך, בלי טלפונים
-                  על הרצפה.
+                  נצמד לכל משקולת או ספסל מתכתי. הטלפון תמיד בגובה העיניים.{" "}
+                  <br className="hidden sm:block" />
+                  ידיים חופשיות, אפס הסחות דעת, אפס טלפונים על הרצפה.
                 </p>
               </div>
             </div>
@@ -191,7 +196,7 @@ export default function ManifestoSection({
               {ctaLabel}
             </Link>
             <p className="mt-6 text-[11px] uppercase tracking-[0.3em] text-zinc-600">
-              העידן החדש של ציוד האימון
+              משלוח מהיר לכל הארץ · 30 יום החזר כספי
             </p>
           </div>
         </FadeIn>

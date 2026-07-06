@@ -4,9 +4,9 @@ import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  Gem,
+  Handshake,
   Truck,
-  RotateCcw,
+  Lock,
   Magnet,
   Droplet,
   Smartphone,
@@ -65,9 +65,21 @@ interface ProductViewProps {
 }
 
 const TRUST_BADGES = [
-  { icon: Gem, label: "חומרים באיכות פרימיום", sub: "טריטן עמיד ללא BPA" },
-  { icon: RotateCcw, label: "החזר כספי 30 יום", sub: "התחייבות מלאה" },
-  { icon: Truck, label: "משלוח מהיר", sub: "חינם לכל הארץ" },
+  {
+    icon: Handshake,
+    label: "30 ימי אחריות מלאה",
+    sub: "לא אהבתם? כספכם יוחזר.",
+  },
+  {
+    icon: Truck,
+    label: "משלוח מבוטח עם שליח עד הבית",
+    sub: "7–14 ימי עסקים · חינם במסגרת מבצע ההשקה!",
+  },
+  {
+    icon: Lock,
+    label: "רכישה בטוחה, ללא אשראי באתר",
+    sub: "הכל נסגר ישירות מול נציג בוואטסאפ.",
+  },
 ];
 
 const MAGNETIC_FEATURES = [
@@ -326,6 +338,19 @@ export default function ProductView({
           </>
           )}
 
+          {/* Scarcity nudge — sits directly above the buy button. */}
+          {!WAITLIST_MODE && !soldOut && (
+            <div className="mt-6 flex items-center justify-center gap-2 rounded-xl bg-red-50 px-4 py-2.5 text-center">
+              <span className="relative flex h-2 w-2 shrink-0">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500 opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500" />
+              </span>
+              <span className="text-xs font-bold text-red-700">
+                מלאי מוגבל: נותרו רק 14 יחידות למהדורת ההשקה!
+              </span>
+            </div>
+          )}
+
           {/* CTA — Concierge MVP: routes to WhatsApp to complete the order
               manually. Pre-launch waitlist mode still shows the signup. */}
           <div ref={buyRef} id="buy">
@@ -353,17 +378,21 @@ export default function ProductView({
           </div>
           {!WAITLIST_MODE && !soldOut && (
             <p className="mt-3 text-center text-xs font-medium tracking-wide text-zinc-500">
-              מענה מהיר | משלוח לכל הארץ | 30 ימי אחריות
+              מענה אנושי מהיר · סגירת הזמנה בלי התחייבות
             </p>
           )}
 
-          {/* Trust badges */}
-          <ul className="mt-8 grid grid-cols-3 gap-3 border-y border-zinc-200 py-6">
+          {/* Trust badges — stacked so the full reassurance copy stays legible */}
+          <ul dir="rtl" className="mt-8 flex flex-col gap-4 border-y border-zinc-200 py-6 text-right">
             {TRUST_BADGES.map(({ icon: Icon, label, sub }) => (
-              <li key={label} className="flex flex-col items-center gap-2 text-center">
-                <Icon className="h-6 w-6 text-[#2952e3]" strokeWidth={1.5} />
-                <span className="text-xs font-bold text-zinc-900">{label}</span>
-                <span className="text-[11px] leading-tight text-zinc-500">{sub}</span>
+              <li key={label} className="flex items-start gap-3">
+                <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#2952e3]/10 text-[#2952e3]">
+                  <Icon className="h-[18px] w-[18px]" strokeWidth={1.75} />
+                </span>
+                <div>
+                  <p className="text-sm font-bold text-zinc-900">{label}</p>
+                  <p className="mt-0.5 text-xs leading-snug text-zinc-500">{sub}</p>
+                </div>
               </li>
             ))}
           </ul>
@@ -374,7 +403,7 @@ export default function ProductView({
             <Accordion title="מפרט טכני" body={product.material} />
             <Accordion
               title="משלוח ואחריות"
-              body="משלוח חינם בשליחות עד הבית, אספקה תוך 7–14 ימי עסקים. ניתן להחליף או להחזיר תוך 30 יום מיום הקבלה, כל עוד המוצר במצב חדש ובאריזתו המקורית."
+              body="משלוח חינם עד הבית תוך 7–14 ימי עסקים. לא מרוצים? מחזירים תוך 30 יום, ללא שאלות מיותרות."
             />
           </div>
         </section>
@@ -486,21 +515,24 @@ export default function ProductView({
         }`}
       >
         <div className="flex min-w-0 flex-col leading-tight">
-          <span className="truncate text-[11px] text-zinc-500">
-            {WAITLIST_MODE
-              ? product.title
-              : bundle
-                ? "2 יחידות · 15% הנחה"
-                : product.title}
-          </span>
           {WAITLIST_MODE ? (
-            <span className="text-xs font-semibold text-zinc-600">
-              זמין בקרוב
-            </span>
+            <>
+              <span className="truncate text-[11px] text-zinc-500">
+                {product.title}
+              </span>
+              <span className="text-xs font-semibold text-zinc-600">
+                זמין בקרוב
+              </span>
+            </>
           ) : (
-            <span className="text-base font-bold tabular-nums text-zinc-900">
-              {formatPrice(displayPrice, product.currency)}
-            </span>
+            <>
+              <span className="text-base font-bold tabular-nums text-zinc-900">
+                {formatPrice(displayPrice, product.currency)}
+              </span>
+              <span className="truncate text-[11px] font-medium text-emerald-600">
+                {bundle ? "2 יחידות · 15% הנחה" : "משלוח חינם"}
+              </span>
+            </>
           )}
         </div>
         {WAITLIST_MODE ? (
@@ -518,10 +550,10 @@ export default function ProductView({
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-1 items-center justify-center gap-2 rounded-full bg-[#2952e3] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-white transition-all duration-300 hover:bg-[#4169e5] active:scale-95"
+            className="flex flex-1 items-center justify-center gap-2 rounded-full bg-[#2952e3] px-5 py-3.5 text-sm font-black tracking-[0.02em] text-white transition-all duration-300 hover:bg-[#4169e5] active:scale-95"
           >
-            <WhatsAppIcon className="h-4 w-4" />
-            הזמן בוואטסאפ
+            <WhatsAppIcon className="h-4 w-4 shrink-0" />
+            להזמנה מאובטחת בוואטסאפ
           </a>
         )}
       </div>

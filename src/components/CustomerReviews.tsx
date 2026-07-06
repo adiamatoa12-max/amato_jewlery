@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { Star, BadgeCheck } from "lucide-react";
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { Star, BadgeCheck, X } from "lucide-react";
 import {
   REVIEWS_BY_HANDLE,
   DEFAULT_REVIEWS,
@@ -28,6 +29,20 @@ export default function CustomerReviews({ handle }: { handle: string }) {
   const [open, setOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [rating, setRating] = useState(5);
+  // Full-resolution lightbox for a clicked review photo — null when closed.
+  const [lightbox, setLightbox] = useState<{ src: string; name: string } | null>(null);
+
+  // Close on Escape + lock body scroll while the lightbox is open.
+  useEffect(() => {
+    if (!lightbox) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setLightbox(null);
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [lightbox]);
 
   const reviews = REVIEWS_BY_HANDLE[handle] ?? DEFAULT_REVIEWS;
   const hasReviews = reviews.length > 0;
@@ -137,7 +152,7 @@ export default function CustomerReviews({ handle }: { handle: string }) {
         </div>
 
         {/* Review grid */}
-        <ul className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
+        <ul className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {reviews.map((review) => (
             <li
               key={review.name}
@@ -147,6 +162,24 @@ export default function CustomerReviews({ handle }: { handle: string }) {
               <p className="mt-4 flex-1 text-base leading-[1.7] text-[#2D3748]">
                 “{review.body}”
               </p>
+
+              {review.image && (
+                <button
+                  type="button"
+                  onClick={() => setLightbox({ src: review.image!, name: review.name })}
+                  aria-label={`תמונה מהלקוח/ה ${review.name} — לצפייה מוגדלת`}
+                  className="group relative mt-5 aspect-[3/4] w-full overflow-hidden rounded-lg transition-opacity duration-300 hover:opacity-90"
+                >
+                  <Image
+                    src={review.image}
+                    alt={`תמונה אמיתית מלקוח/ה — ${review.name}`}
+                    fill
+                    sizes="(min-width: 1024px) 22vw, (min-width: 640px) 45vw, 90vw"
+                    className="object-cover"
+                  />
+                </button>
+              )}
+
               <div className="mt-6 flex items-center justify-between gap-3 border-t border-zinc-200 pt-4">
                 <span className="text-sm font-bold text-zinc-900">{review.name}</span>
                 {review.verified && (
@@ -160,6 +193,39 @@ export default function CustomerReviews({ handle }: { handle: string }) {
           ))}
         </ul>
       </div>
+
+      {/* Lightbox — full-resolution view of a clicked review photo */}
+      {lightbox && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={`תמונה מוגדלת מלקוח/ה ${lightbox.name}`}
+          className="fixed inset-0 z-[90] flex items-center justify-center bg-black/80 p-6"
+          onClick={() => setLightbox(null)}
+        >
+          <button
+            type="button"
+            onClick={() => setLightbox(null)}
+            aria-label="סגירה"
+            className="absolute right-5 top-5 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition-colors duration-200 hover:bg-white/20"
+          >
+            <X className="h-6 w-6" strokeWidth={1.75} />
+          </button>
+          <div
+            className="relative aspect-[3/4] w-full max-w-md"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Image
+              src={lightbox.src}
+              alt={`תמונה אמיתית מלקוח/ה — ${lightbox.name}`}
+              fill
+              sizes="(min-width: 768px) 448px, 90vw"
+              className="rounded-lg object-contain"
+              priority
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 }

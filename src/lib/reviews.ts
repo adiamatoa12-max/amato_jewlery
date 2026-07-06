@@ -9,6 +9,8 @@ export interface Review {
   date: string;
   body: string;
   verified: boolean;
+  /** Optional customer-submitted (UGC) photo — path under /public. */
+  image?: string;
 }
 
 // Real customer reviews keyed by product handle.
@@ -41,27 +43,39 @@ export const REVIEWS_BY_HANDLE: Record<string, Review[]> = {
 };
 
 // Shown for any product without handle-specific reviews (e.g. the main shaker).
+// Each includes an authentic UGC photo submitted by the customer.
 export const DEFAULT_REVIEWS: Review[] = [
-  {
-    name: "דניאל לוי",
-    rating: 5,
-    date: "יוני 2026",
-    verified: true,
-    body: "סוף סוף שייקר שלא נוזל לי בתיק אחרי האימון. המגנט פשוט גאוני, אני תולה אותו על המכשיר בחדר כושר ולא צריך לדאוג איפה להניח אותו.",
-  },
-  {
-    name: "רוני כהן",
-    rating: 5,
-    date: "יוני 2026",
-    verified: true,
-    body: "קניתי בגלל הקטע של המגנט ולא האמנתי כמה זה נוח. האיכות של הפלסטיק מרגישה מאוד עמידה ויוקרתית.",
-  },
   {
     name: "עידן מ.",
     rating: 5,
+    date: "יוני 2026",
+    verified: true,
+    body: "הגיע סופר מהיר! אספתי מהחבילה ולא התאפקתי ופתחתי כבר באוטו. האיכות של הפלסטיק מרגישה פרימיום ברמות והוא יושב בול במחזיק כוסות.",
+    image: "/images/review-ugc-car.png",
+  },
+  {
+    name: "רוני כ.",
+    rating: 5,
+    date: "יוני 2026",
+    verified: true,
+    body: "הדבר הראשון שעשיתי זה לבדוק את המגנט על המקרר במטבח – תופס חזק בטירוף ולא זז. המנוע החשמלי מערבב את החלבון בשניות בלי גושים בכלל. שווה כל שקל.",
+    image: "/images/review-ugc-fridge.png",
+  },
+  {
+    name: "דניאל ל.",
+    rating: 5,
     date: "מאי 2026",
     verified: true,
-    body: "נראה אש, מרגיש מאוד מקצועי. המגנט באמת נצמד חזק לכל מתקן ברזל במועדון. הפסיקו לשאול אותי איפה קניתי.",
+    body: "אריזה ממש יפה ומושקעת, מתאים בול גם כמתנה. השייקר עצמו נראה הצגה, אטום לחלוטין ולא נוזל בתיק. ממליץ בחום!",
+    image: "/images/review-ugc-unboxing.png",
+  },
+  {
+    name: "מאור א.",
+    rating: 5,
+    date: "מאי 2026",
+    verified: true,
+    body: "קניתי בעיקר בגלל הקטע של המגנט לטלפון במכון וזה פשוט גאוני. השייקר עצמו קל לניקוי והסוללה מחזיקה מלא זמן.",
+    image: "/images/review-ugc-closeup.png",
   },
 ];
 

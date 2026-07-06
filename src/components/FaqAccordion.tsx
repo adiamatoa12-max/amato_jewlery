@@ -6,7 +6,9 @@ import FadeIn from "@/components/FadeIn";
 
 const GOLD = "#2952e3";
 
-const FAQS: { q: string; a: ReactNode }[] = [
+export type FaqItem = { q: string; a: ReactNode };
+
+const DEFAULT_FAQS: FaqItem[] = [
   {
     q: "איך עובד החיבור המגנטי לטלפון?",
     a: (
@@ -20,27 +22,40 @@ const FAQS: { q: string; a: ReactNode }[] = [
   },
   {
     q: "האם השייקר אטום ולא נוזל?",
-    a: "כן. השייקר תוכנן עם אטימה הרמטית מלאה שמונעת נזילות גם בתנועה, בעומס ובתיק. אפשר לטלטל בביטחון מלא — בלי הפתעות.",
+    a: "כן — אפשר לזרוק אותו לתיק בלי לחשוב פעמיים. אטימה הרמטית מלאה מונעת נזילות גם בתנועה ובעומס, כך שהבגדים והמחברת נשארים יבשים.",
   },
   {
     q: "ממה עשוי השייקר והאם הוא בטוח לשתייה?",
-    a: "השייקר עשוי מפולימרים בדרגת מזון ללא BPA, שנבחרו לעמידות לאורך זמן ולשימוש יומיומי אינטנסיבי. הפייה היגיינית ובטוחה לשתייה ישירה.",
+    a: (
+      <>
+        בטוח לגמרי. השייקר עשוי{" "}
+        <strong className="font-bold text-[#111111]">פולימרים בדרגת מזון ללא BPA</strong>{" "}
+        שעומדים בשימוש יומיומי אינטנסיבי, והפייה ההיגיינית מיועדת לשתייה
+        ישירה.
+      </>
+    ),
   },
   {
     q: "איך מנקים את השייקר?",
-    a: "כל החלקים ניתנים לפירוק לניקוי קל. מומלץ לשטוף ביד עם מעט סבון ולהשתמש במברשת הניקוי הייעודית כדי להגיע לכל פינה ולשמור על השייקר רענן.",
+    a: "בקלות ובלי מאמץ. כל החלקים מתפרקים, כך ששוטפים ביד עם מעט סבון ומברשת הניקוי הייעודית — ומגיעים לכל פינה.",
   },
   {
     q: "מהם זמני המשלוח ומדיניות ההחזרות?",
-    a: "משלוח חינם לכל הארץ, עם אספקה משוערת של 7–14 ימי עסקים. ניתן להחליף או להחזיר תוך 30 יום מיום הקבלה, כל עוד המוצר במצב חדש ובאריזתו המקורית.",
+    a: "משלוח חינם לכל הארץ תוך 7–14 ימי עסקים. לא מתאים? מחזירים או מחליפים תוך 30 יום מיום הקבלה, כל עוד המוצר חדש ובאריזתו המקורית.",
   },
 ];
 
-export default function FaqAccordion() {
+export default function FaqAccordion({
+  items = DEFAULT_FAQS,
+  className = "bg-surface-alt",
+}: {
+  items?: FaqItem[];
+  className?: string;
+} = {}) {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="bg-surface-alt px-5 py-24 sm:px-6 lg:px-10 lg:py-36">
+    <section className={`px-5 py-24 sm:px-6 lg:px-10 lg:py-36 ${className}`}>
       <div className="mx-auto max-w-3xl">
         <FadeIn>
           <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-500">
@@ -52,7 +67,7 @@ export default function FaqAccordion() {
         </FadeIn>
 
         <FadeIn delay={120} className="mt-12 space-y-3">
-          {FAQS.map((item, i) => {
+          {items.map((item, i) => {
             const isOpen = open === i;
             return (
               <div

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ProductView from "@/components/ProductView";
 import CustomerReviews from "@/components/CustomerReviews";
+import FaqAccordion, { type FaqItem } from "@/components/FaqAccordion";
 import { getAllHandles, getProduct } from "@/lib/catalog";
 import { getReviewSummary } from "@/lib/reviews";
 import { SITE_URL } from "@/lib/site";
@@ -155,6 +156,26 @@ export default async function ProductPage({
       {/* Below-the-fold reviews — kept below the buy box/accordions. Brand
           story (Manifesto) lives on the homepage only, to avoid duplication. */}
       <CustomerReviews handle={product.handle} />
+
+      {/* Objection-busting FAQ — the three questions buyers ask most before
+          checkout. `bg-surface` alternates against the gray reviews section. */}
+      <FaqAccordion items={PRODUCT_FAQS} className="bg-surface" />
     </div>
   );
 }
+
+// Product-page FAQ — focused on the top pre-purchase objections.
+const PRODUCT_FAQS: FaqItem[] = [
+  {
+    q: "כמה זמן מחזיקה הסוללה?",
+    a: "טעינת USB אחת מספיקה ל-30+ אימונים. ממשיכה איתכם שבועות בלי לחשוב על טעינה.",
+  },
+  {
+    q: "המגנט בטוח לטלפון ולכרטיסי אשראי?",
+    a: "100% בטוח לכל המכשירים. ההצמדה חיצונית בלבד — לא פוגעת במסך, בסוללה או בכרטיסים.",
+  },
+  {
+    q: "איך מנקים את השייקר?",
+    a: "מים וטיפת סבון, מפעילים את המנוע החשמלי ל-5 שניות ושוטפים. נקי לגמרי, בלי מאמץ.",
+  },
+];
