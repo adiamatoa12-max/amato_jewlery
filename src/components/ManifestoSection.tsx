@@ -14,6 +14,23 @@ const PRODUCT_URL = `/product/${encodeURIComponent("vault-השייקר-המגנ�
 const LIFESTYLE_IMG = "/images/שייקר 11.jpeg"; // next/image encodes the path
 const MAGGRIP_VIDEO = `/videos/${encodeURIComponent("שייקר 31.mp4")}`;
 
+// Three core pillars. In the RTL grid the first item renders on the right,
+// so the visual order is: motor (right) · magnet (center) · seal (left).
+const PILLARS = [
+  {
+    title: "⚡ מנוע חשמלי עוצמתי",
+    body: "מוחק גושים בשנייה אחת. שייק חלק ומושלם בכל פעם, בלי מאמץ.",
+  },
+  {
+    title: "🧲 מגנט MAG-GRIP",
+    body: "מגנט N52 משחרר לך את הידיים. הטלפון נעול ויציב בגובה העיניים לאורך כל האימון.",
+  },
+  {
+    title: "💧 אטימה הרמטית",
+    body: "100% חסינות לנזילות ודליפות. זורקים לתיק ומתאמנים בראש שקט.",
+  },
+];
+
 export default function ManifestoSection({
   id,
   ctaHref = PRODUCT_URL,
@@ -26,32 +43,49 @@ export default function ManifestoSection({
   return (
     <section id={id} className="bg-surface px-6 py-36 lg:px-10 lg:py-52">
       <div className="mx-auto max-w-4xl">
-        {/* Intro — constrained width so the copy stays readable on desktop */}
-        <div className="mx-auto max-w-3xl">
+        {/* Brand manifesto — header, 3-pillar grid, closing punchline */}
+        <div>
+          {/* Section header */}
           <FadeIn>
             <p className="text-center font-display text-[11px] font-bold uppercase tracking-[0.4em] text-zinc-500">
               למה VAULT שונה
             </p>
-            <h2 className="mt-5 text-center font-display text-3xl font-black uppercase leading-[0.95] tracking-tight text-zinc-900 sm:text-4xl lg:text-5xl">
+            <h2 className="mt-5 text-center font-display text-4xl font-black uppercase leading-[0.95] tracking-tight text-[#111111] sm:text-5xl lg:text-6xl">
               הסטנדרט של VAULT
             </h2>
+            <p className="mx-auto mt-6 max-w-2xl text-center font-display text-xl font-bold tracking-tight text-[#2D3748] sm:text-2xl">
+              עידן הציוד הזול בחדר הכושר נגמר.
+            </p>
           </FadeIn>
 
+          {/* 3-column pillar grid — stacks on mobile, RTL order right→left */}
           <FadeIn delay={120}>
-            <div className="mt-12 space-y-6 text-center">
-              <p className="font-display text-xl font-bold uppercase tracking-tight text-[#111111] sm:text-2xl">
-                עידן הציוד הזול בחדר הכושר נגמר.
-              </p>
-              <p className="text-lg font-light leading-[1.7] text-[#2D3748] sm:text-xl">
-                כל VAULT מהונדס לביצועים, לא לפשרות.{" "}
-                <strong className="font-bold text-[#111111]">מנוע חשמלי</strong>{" "}
-                מוחק גושים בשנייה.{" "}
-                <strong className="font-bold text-[#111111]">מגנט N52</strong>{" "}
-                משחרר לך את הידיים. אטימה מושלמת שלא מכירה דליפות.{" "}
-                <br className="hidden sm:block" />
-                זה לא עוד שייקר — זה השדרוג שהאימונים שלך חיכו לו.
-              </p>
+            <div
+              dir="rtl"
+              className="mt-16 grid grid-cols-1 gap-12 sm:grid-cols-3 sm:gap-8 lg:mt-20 lg:gap-12"
+            >
+              {PILLARS.map((pillar) => (
+                <div
+                  key={pillar.title}
+                  className="flex flex-col items-center text-center"
+                >
+                  <h3 className="font-display text-lg font-extrabold tracking-tight text-[#111111] lg:text-xl">
+                    {pillar.title}
+                  </h3>
+                  <span className="mt-4 h-px w-12 bg-zinc-300" aria-hidden />
+                  <p className="mt-4 max-w-xs text-base font-medium leading-[1.8] text-[#2D3748]">
+                    {pillar.body}
+                  </p>
+                </div>
+              ))}
             </div>
+          </FadeIn>
+
+          {/* Closing punchline — generous breathing room above */}
+          <FadeIn delay={200}>
+            <p className="mx-auto mt-16 max-w-2xl text-center text-xl font-semibold leading-[1.6] text-[#111111] sm:text-2xl lg:mt-20">
+              זה לא עוד שייקר — זה השדרוג שהאימונים שלך חיכו לו.
+            </p>
           </FadeIn>
         </div>
 
