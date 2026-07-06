@@ -18,15 +18,15 @@ const MAGGRIP_VIDEO = `/videos/${encodeURIComponent("שייקר 31.mp4")}`;
 // so the visual order is: motor (right) · magnet (center) · seal (left).
 const PILLARS = [
   {
-    title: "⚡ מנוע חשמלי עוצמתי",
+    title: "מנוע חשמלי עוצמתי",
     body: "מוחק גושים בשנייה אחת. שייק חלק ומושלם בכל פעם, בלי מאמץ.",
   },
   {
-    title: "🧲 מגנט MAG-GRIP",
+    title: "מגנט MAG-GRIP",
     body: "מגנט N52 משחרר לך את הידיים. הטלפון נעול ויציב בגובה העיניים לאורך כל האימון.",
   },
   {
-    title: "💧 אטימה הרמטית",
+    title: "אטימה הרמטית",
     body: "100% חסינות לנזילות ודליפות. זורקים לתיק ומתאמנים בראש שקט.",
   },
 ];
@@ -72,7 +72,6 @@ export default function ManifestoSection({
                   <h3 className="font-display text-lg font-extrabold tracking-tight text-[#111111] lg:text-xl">
                     {pillar.title}
                   </h3>
-                  <span className="mt-4 h-px w-12 bg-zinc-300" aria-hidden />
                   <p className="mt-4 max-w-xs text-base font-medium leading-[1.8] text-[#2D3748]">
                     {pillar.body}
                   </p>
