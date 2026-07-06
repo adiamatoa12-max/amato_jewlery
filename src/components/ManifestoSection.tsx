@@ -75,11 +75,12 @@ export default function ManifestoSection({
                 />
               </div>
               <div dir="rtl" className="text-right">
-                <h3 className="font-display text-2xl font-black tracking-tight text-zinc-900 sm:text-3xl">
+                <h3 className="font-display text-3xl font-black tracking-tight text-[#111111] sm:text-4xl">
                   עיצוב שיושב נכון.
                 </h3>
-                <p className="mt-5 text-lg font-light leading-[1.7] text-[#2D3748] sm:text-xl">
-                  ארגונומיה מדויקת שנשארת נוחה גם באמצע האימון.{" "}
+                <p className="mt-5 text-lg font-medium leading-[1.85] text-[#2D3748] sm:text-xl">
+                  <strong className="font-bold text-[#111111]">ארגונומיה מדויקת</strong>{" "}
+                  שנשארת נוחה גם באמצע האימון.{" "}
                   <br className="hidden sm:block" />
                   אוחזים חזק, מרגישים קל — בלי להתפשר על הסטייל.
                 </p>
@@ -100,11 +101,12 @@ export default function ManifestoSection({
                 />
               </div>
               <div dir="rtl" className="text-right lg:order-1">
-                <h3 className="font-display text-2xl font-black tracking-tight text-zinc-900 sm:text-3xl">
+                <h3 className="font-display text-3xl font-black tracking-tight text-[#111111] sm:text-4xl">
                   תמיד איתך, בכל אימון.
                 </h3>
-                <p className="mt-5 text-lg font-light leading-[1.7] text-[#2D3748] sm:text-xl">
-                  נצמד לכל משקולת או ספסל מתכתי. הטלפון תמיד בגובה העיניים.{" "}
+                <p className="mt-5 text-lg font-medium leading-[1.85] text-[#2D3748] sm:text-xl">
+                  <strong className="font-bold text-[#111111]">נצמד לכל משקולת או ספסל מתכתי</strong>.
+                  הטלפון תמיד בגובה העיניים.{" "}
                   <br className="hidden sm:block" />
                   ידיים חופשיות, אפס הסחות דעת, אפס טלפונים על הרצפה.
                 </p>
