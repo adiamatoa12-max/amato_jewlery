@@ -481,7 +481,7 @@ export default function ProductView({
       </div>
 
       {/* Magnetic performance technology — flat, airy, no boxes */}
-      <section className="mt-24 pt-20 lg:mt-32">
+      <section className="mt-12 pt-8 lg:mt-16">
         <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-500">
           טכנולוגיה מגנטית
         </p>

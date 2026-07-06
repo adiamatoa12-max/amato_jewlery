@@ -55,7 +55,7 @@ export default function FaqAccordion({
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className={`px-5 py-24 sm:px-6 lg:px-10 lg:py-36 ${className}`}>
+    <section className={`px-5 py-12 sm:px-6 lg:px-10 lg:py-16 ${className}`}>
       <div className="mx-auto max-w-3xl">
         <FadeIn>
           <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-500">

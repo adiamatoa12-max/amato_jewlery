@@ -53,7 +53,7 @@ export default function AboutPage() {
         </section>
 
         {/* Section 1 — Our Story */}
-        <section className="mx-auto max-w-3xl px-5 py-32 text-center sm:px-6 lg:py-40">
+        <section className="mx-auto max-w-3xl px-5 py-12 text-center sm:px-6 lg:py-16">
           <FadeIn>
             <h2 className="font-display text-3xl font-black tracking-tight text-[#111111] lg:text-4xl">
               שוברים את הסטנדרט הישן של ציוד הכושר.
@@ -83,13 +83,13 @@ export default function AboutPage() {
 
         {/* Section 2 — Why VAULT */}
         <section className="border-y border-zinc-200 bg-surface-alt">
-          <div className="mx-auto max-w-6xl px-5 py-32 sm:px-6 lg:px-10 lg:py-40">
+          <div className="mx-auto max-w-6xl px-5 py-12 sm:px-6 lg:px-10 lg:py-16">
             <FadeIn>
               <h2 className="text-center font-display text-3xl font-black tracking-tight text-zinc-900 lg:text-4xl">
                 למה VAULT?
               </h2>
             </FadeIn>
-            <div className="mt-16 grid grid-cols-1 gap-12 sm:grid-cols-3 lg:gap-10">
+            <div className="mt-10 grid grid-cols-1 gap-12 sm:grid-cols-3 lg:gap-10">
               {PILLARS.map(({ icon: Icon, title, body }, i) => (
                 <FadeIn key={title} delay={i * 120}>
                   <div className="flex flex-col items-center text-center">
@@ -110,7 +110,7 @@ export default function AboutPage() {
         </section>
 
         {/* Engineered detail */}
-        <section className="mx-auto max-w-7xl px-5 py-32 sm:px-6 lg:px-10 lg:py-40">
+        <section className="mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-10 lg:py-16">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20">
             {/* Image */}
             <FadeIn>
@@ -148,7 +148,7 @@ export default function AboutPage() {
         </section>
 
         {/* Section 3 — Our Vision */}
-        <section className="mx-auto max-w-3xl px-5 py-36 text-center sm:px-6 lg:py-48">
+        <section className="mx-auto max-w-3xl px-5 py-12 text-center sm:px-6 lg:py-16">
           <FadeIn>
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-zinc-600">
               החזון שלנו

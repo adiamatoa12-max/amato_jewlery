@@ -41,7 +41,7 @@ export default function ManifestoSection({
   ctaLabel?: string;
 }) {
   return (
-    <section id={id} className="bg-surface px-6 py-36 lg:px-10 lg:py-52">
+    <section id={id} className="bg-surface px-6 py-12 lg:px-10 lg:py-16">
       <div className="mx-auto max-w-4xl">
         {/* Brand manifesto — header, 3-pillar grid, closing punchline */}
         <div>
@@ -62,7 +62,7 @@ export default function ManifestoSection({
           <FadeIn delay={120}>
             <div
               dir="rtl"
-              className="mt-16 grid grid-cols-1 gap-12 sm:grid-cols-3 sm:gap-8 lg:mt-20 lg:gap-12"
+              className="mt-10 grid grid-cols-1 gap-12 sm:grid-cols-3 sm:gap-8 lg:mt-14 lg:gap-12"
             >
               {PILLARS.map((pillar) => (
                 <div
@@ -83,7 +83,7 @@ export default function ManifestoSection({
 
           {/* Closing punchline — generous breathing room above */}
           <FadeIn delay={200}>
-            <p className="mx-auto mt-16 max-w-2xl text-center text-xl font-semibold leading-[1.6] text-[#111111] sm:text-2xl lg:mt-20">
+            <p className="mx-auto mt-10 max-w-2xl text-center text-xl font-semibold leading-[1.6] text-[#111111] sm:text-2xl lg:mt-14">
               זה לא עוד שייקר — זה השדרוג שהאימונים שלך חיכו לו.
             </p>
           </FadeIn>
@@ -93,7 +93,7 @@ export default function ManifestoSection({
             Mobile: media on top, text below. No boxes/borders — floats on the
             dark canvas. */}
         <FadeIn delay={160}>
-          <div className="my-16 space-y-16 lg:my-24 lg:space-y-24">
+          <div className="my-10 space-y-10 lg:my-14 lg:space-y-14">
             {/* Row 1 — image right / text left (mobile: image on top) */}
             <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
               <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-2xl shadow-lg lg:max-w-none">
@@ -151,7 +151,7 @@ export default function ManifestoSection({
 
         {/* Final CTA — generous space above, perfectly centered */}
         <FadeIn delay={200}>
-          <div className="mt-20 flex flex-col items-center text-center">
+          <div className="mt-10 flex flex-col items-center text-center">
             <Link
               href={ctaHref}
               className="inline-flex w-full items-center justify-center rounded-full bg-[#2952e3] px-12 py-4 text-sm font-black uppercase tracking-[0.16em] text-white shadow-[0_10px_36px_-10px_rgba(41,82,227,0.5)] ring-1 ring-[#2952e3]/40 transition-all duration-300 ease-out hover:scale-105 hover:bg-[#4169e5] hover:shadow-[0_0_40px_-4px_rgba(41,82,227,0.65)] active:scale-95 sm:w-auto"

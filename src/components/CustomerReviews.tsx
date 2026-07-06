@@ -52,7 +52,7 @@ export default function CustomerReviews({ handle }: { handle: string }) {
 
   return (
     <section className="border-t border-zinc-200 bg-surface-alt">
-      <div className="mx-auto max-w-6xl px-6 py-36 lg:px-10 lg:py-44">
+      <div className="mx-auto max-w-6xl px-6 py-12 lg:px-10 lg:py-16">
         {/* Header */}
         <div className="flex flex-col items-center text-center">
           <h2 className="font-display text-2xl font-bold tracking-tight text-zinc-900 lg:text-3xl">

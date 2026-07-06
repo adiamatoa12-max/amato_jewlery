@@ -183,7 +183,7 @@ function CompareCell({
 
 function HowItWorks() {
   return (
-    <section className="bg-surface px-6 py-36 lg:px-10 lg:py-52">
+    <section className="bg-surface px-6 py-12 lg:px-10 lg:py-16">
       <div className="mx-auto max-w-6xl">
         <FadeIn>
           <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-500">
@@ -194,7 +194,7 @@ function HowItWorks() {
           </h2>
         </FadeIn>
 
-        <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
           {STEPS.map(({ icon: Icon, title, body }, i) => (
             <FadeIn key={title} delay={i * 120}>
               <div className="flex h-full flex-col items-center rounded-2xl bg-white p-10 text-center shadow-[0_10px_30px_rgba(0,0,0,0.04)] transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,0,0,0.08)]">
@@ -220,7 +220,7 @@ function HowItWorks() {
         {/* 400ml positioning + 3-way comparison table (replaces the old
             static steps graphic — lighter, scannable, no image weight). */}
         <FadeIn delay={120}>
-          <div dir="rtl" className="mx-auto mt-24 max-w-3xl">
+          <div dir="rtl" className="mx-auto mt-12 max-w-3xl">
             <h3 className="text-center font-display text-2xl font-black tracking-tight text-[#000000] sm:text-3xl">
               נפח 400 מ״ל. בדיוק כמו שצריך.
             </h3>
@@ -301,7 +301,7 @@ const GYM_VIDEOS = [
 
 function UseCases() {
   return (
-    <section className="bg-surface-alt px-6 py-36 lg:px-10 lg:py-52">
+    <section className="bg-surface-alt px-6 py-12 lg:px-10 lg:py-16">
       <div className="mx-auto max-w-6xl">
         <FadeIn>
           <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-500">
@@ -332,7 +332,7 @@ function UseCases() {
 /* ── Micro-conversion CTA (between the video sections) ───────────────── */
 function MicroConversion() {
   return (
-    <section className="bg-surface px-5 py-32 sm:px-6 lg:px-10">
+    <section className="bg-surface px-5 py-12 sm:px-6 lg:px-10 lg:py-16">
       <FadeIn>
         <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 px-6 py-10 text-center sm:px-10">
           <h2 className="font-display text-2xl font-black tracking-tight text-zinc-900 sm:text-3xl">
@@ -351,7 +351,7 @@ function MicroConversion() {
 /* ── Horizontal streaming ────────────────────────────────────────────── */
 function HorizontalStreaming() {
   return (
-    <section className="bg-surface-alt px-6 py-36 lg:px-10 lg:py-48">
+    <section className="bg-surface-alt px-6 py-12 lg:px-10 lg:py-16">
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 md:grid-cols-2 lg:gap-16">
         {/* Text — right column in RTL */}
         <FadeIn>
@@ -504,7 +504,7 @@ function Anatomy() {
   return (
     <section
       id="shop"
-      className="scroll-mt-24 border-y border-zinc-200 bg-surface px-6 py-36 lg:px-10 lg:py-52"
+      className="scroll-mt-24 border-y border-zinc-200 bg-surface px-6 py-12 lg:px-10 lg:py-16"
     >
       <div className="mx-auto max-w-5xl">
         <FadeIn>
@@ -581,7 +581,7 @@ const RING_OPTIONS = [
 
 function Compatibility() {
   return (
-    <section className="bg-surface-alt px-6 py-36 lg:px-10 lg:py-48">
+    <section className="bg-surface-alt px-6 py-12 lg:px-10 lg:py-16">
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 md:grid-cols-2">
         {/* Visuals — DOM-first so it sits on the RIGHT in RTL */}
         <FadeIn>
@@ -683,7 +683,7 @@ function StarRating({ rating }: { rating: number }) {
 
 function Reviews() {
   return (
-    <section className="bg-surface-sport px-6 py-36 lg:px-10 lg:py-52">
+    <section className="bg-surface-sport px-6 py-12 lg:px-10 lg:py-16">
       <div className="mx-auto max-w-6xl">
         <FadeIn>
           <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-500">
@@ -872,7 +872,7 @@ function CompleteGear() {
   return (
     <section
       id="accessories"
-      className="scroll-mt-24 bg-surface-alt px-6 py-36 lg:px-10 lg:py-48"
+      className="scroll-mt-24 bg-surface-alt px-6 py-12 lg:px-10 lg:py-16"
     >
       <div className="mx-auto max-w-6xl">
         <FadeIn>
@@ -945,7 +945,7 @@ const TRUST_ITEMS = [
 
 function WhatsInTheBox() {
   return (
-    <section className="bg-surface px-6 py-20 lg:px-10">
+    <section className="bg-surface px-6 py-12 lg:px-10 lg:py-16">
       <FadeIn>
         <div className="mx-auto grid max-w-5xl grid-cols-2 gap-8 md:grid-cols-4">
           {TRUST_ITEMS.map(({ icon: Icon, label }) => (
@@ -968,7 +968,7 @@ function WhatsInTheBox() {
 /* ── Final CTA — closing conversion band ─────────────────────────────── */
 function FinalCta() {
   return (
-    <section className="bg-surface-alt px-6 py-32 lg:px-10 lg:py-40">
+    <section className="bg-surface-alt px-6 py-12 lg:px-10 lg:py-16">
       <FadeIn>
         <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 text-center">
           <p className="text-[11px] font-bold tracking-[0.3em] text-zinc-500">
@@ -1097,7 +1097,7 @@ const PAYMENT_ICONS = [
 function Footer() {
   return (
     <footer className="border-t border-zinc-200 bg-surface text-zinc-900">
-      <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
+      <div className="mx-auto max-w-7xl px-6 py-12 lg:px-10 lg:py-16">
         <div className="grid grid-cols-2 gap-x-10 gap-y-12 lg:grid-cols-4 lg:gap-x-12">
           <div className="col-span-2 lg:col-span-1">
             <span className="font-display text-xl font-extrabold uppercase tracking-[0.3em] text-zinc-900">
