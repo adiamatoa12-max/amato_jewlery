@@ -55,28 +55,34 @@ export default function AboutPage() {
         {/* Section 1 — Our Story */}
         <section className="mx-auto max-w-3xl px-5 py-32 text-center sm:px-6 lg:py-40">
           <FadeIn>
-            <h2 className="font-display text-3xl font-black tracking-tight text-zinc-900 lg:text-4xl">
-              נולדנו בחדר הכושר
+            <h2 className="font-display text-3xl font-black tracking-tight text-[#111111] lg:text-4xl">
+              שוברים את הסטנדרט הישן של ציוד הכושר.
             </h2>
           </FadeIn>
           <FadeIn delay={120}>
-            <p className="mx-auto mt-8 max-w-2xl text-lg leading-[1.7] text-[#2D3748]">
-              נמאס לנו משייקרים זולים שנוזלים בתיק, ומטלפון שאין לו איפה לשבת
-              באמצע האימון. אז בנינו את הפתרון בעצמנו.
-            </p>
-          </FadeIn>
-          <FadeIn delay={200}>
-            <p className="mx-auto mt-5 max-w-2xl text-lg leading-[1.7] text-[#2D3748]">
-              שייקר אחד עם{" "}
-              <strong className="font-bold text-[#111111]">מעמד טלפון מגנטי מובנה</strong>{" "}
-              שמחזיק את המכשיר יציב לצילום, לסטרימינג ולמעקב אחרי סטים. ידיים
-              פנויות, טלפון נקי, אימון בלי הפרעות.
-            </p>
+            <div dir="rtl" className="mx-auto mt-8 max-w-2xl space-y-5">
+              <p className="text-lg font-medium leading-[1.8] text-[#2D3748]">
+                מותג VAULT נולד מתוך תסכול אחד פשוט: נמאס לנו משייקרים מסורבלים,
+                נוזלים, וזולים שמסתובבים בחדרי הכושר. רצינו לייצר את השייקר
+                המושלם לספורטאים — כזה שמשלב{" "}
+                <strong className="font-bold text-[#111111]">
+                  טכנולוגיית ערבול חשמלית עוצמתית
+                </strong>{" "}
+                יחד עם פתרון חכם (
+                <strong className="font-bold text-[#111111]">MAG-GRIP</strong>)
+                שמחזיק את הטלפון שלך בבטחה ובגובה העיניים לאורך כל האימון.
+              </p>
+              <p className="text-lg font-medium leading-[1.8] text-[#2D3748]">
+                אנחנו מאמינים בעיצוב ארגונומי מדויק, חומרים ברמת הפרימיום הגבוהה
+                ביותר, ואפס פשרות על איכות. ה-VaultShaker הוא לא עוד בקבוק — הוא
+                השדרוג הראוי לאימונים שלך.
+              </p>
+            </div>
           </FadeIn>
         </section>
 
         {/* Section 2 — Why VAULT */}
-        <section className="border-y border-white/10 bg-surface-alt">
+        <section className="border-y border-zinc-200 bg-surface-alt">
           <div className="mx-auto max-w-6xl px-5 py-32 sm:px-6 lg:px-10 lg:py-40">
             <FadeIn>
               <h2 className="text-center font-display text-3xl font-black tracking-tight text-zinc-900 lg:text-4xl">
@@ -108,7 +114,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20">
             {/* Image */}
             <FadeIn>
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 bg-zinc-900">
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-100">
                 <Image
                   src="/images/vault-product-image.png"
                   alt="שייקר VAULT המגנטי"
