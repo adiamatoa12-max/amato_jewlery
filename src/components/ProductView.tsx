@@ -7,9 +7,6 @@ import {
   Handshake,
   Truck,
   Lock,
-  Magnet,
-  Droplet,
-  Smartphone,
   ChevronDown,
   Check,
   Zap,
@@ -79,24 +76,6 @@ const TRUST_BADGES = [
     icon: Lock,
     label: "רכישה בטוחה, ללא אשראי באתר",
     sub: "הכל נסגר ישירות מול נציג בוואטסאפ.",
-  },
-];
-
-const MAGNETIC_FEATURES = [
-  {
-    icon: Magnet,
-    title: "מגנט N52. כוח אמיתי.",
-    body: "אחיזה מגנטית עוצמתית. תמיד בזווית הנכונה.",
-  },
-  {
-    icon: Smartphone,
-    title: "ידיים חופשיות, תמיד.",
-    body: "צלם. שדר. תתאמן. בלי להחזיק כלום.",
-  },
-  {
-    icon: Droplet,
-    title: "אפס דליפות.",
-    body: "אטימה מושלמת. גם בעומס מקסימלי.",
   },
 ];
 
@@ -192,10 +171,10 @@ export default function ProductView({
             <span>מלאי ראשון מוגבל</span>
           </p>
 
-          {/* Electric mixer feature highlight */}
-          <div className="mt-5 flex items-start gap-2.5 rounded-xl bg-zinc-100 px-4 py-3 shadow-[0_4px_16px_-4px_rgba(0,0,0,0.08)]">
+          {/* Electric mixer feature highlight — clean inline, no box */}
+          <div className="mt-5 flex items-start gap-2.5">
             <Zap
-              className="mt-0.5 h-5 w-5 shrink-0 text-zinc-900"
+              className="mt-0.5 h-5 w-5 shrink-0 text-[#2952e3]"
               strokeWidth={2}
             />
             <p className="text-base leading-[1.7] text-[#2D3748]">
@@ -479,34 +458,6 @@ export default function ProductView({
           </div>
         </section>
       </div>
-
-      {/* Magnetic performance technology — flat, airy, no boxes */}
-      <section className="mt-12 pt-8 lg:mt-16">
-        <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-500">
-          טכנולוגיה מגנטית
-        </p>
-        <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-900 lg:text-4xl">
-          הטכנולוגיה שמאחורי VAULT
-        </h2>
-        <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
-          {MAGNETIC_FEATURES.map(({ icon: Icon, title, body }) => (
-            <div
-              key={title}
-              className="flex flex-col items-center rounded-2xl bg-white p-8 text-center shadow-[0_8px_24px_rgba(0,0,0,0.03)] transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.06)]"
-            >
-              <span className="flex h-16 w-16 items-center justify-center text-[#2952e3]">
-                <Icon className="h-9 w-9" strokeWidth={1.5} />
-              </span>
-              <h3 className="mt-6 font-display text-lg font-extrabold tracking-tight text-zinc-900">
-                {title}
-              </h3>
-              <p className="mt-3 max-w-xs text-base leading-[1.7] text-[#2D3748]">
-                {body}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* Sticky buy bar — slides in once the main CTA scrolls out of view (mobile) */}
       <div

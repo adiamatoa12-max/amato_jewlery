@@ -66,13 +66,13 @@ export default function FaqAccordion({
           </h2>
         </FadeIn>
 
-        <FadeIn delay={120} className="mt-12 space-y-3">
+        <FadeIn delay={120} className="mt-10 space-y-2.5">
           {items.map((item, i) => {
             const isOpen = open === i;
             return (
               <div
                 key={item.q}
-                className="rounded-2xl border border-zinc-200 bg-white px-5 shadow-[0_4px_16px_-4px_rgba(0,0,0,0.08)] transition-all duration-300 ease-out hover:border-zinc-300 hover:shadow-[0_8px_24px_-6px_rgba(0,0,0,0.12)]"
+                className="rounded-2xl border border-zinc-200 bg-transparent px-5 transition-colors duration-300 ease-out hover:border-zinc-300"
               >
                 <button
                   type="button"
