@@ -21,27 +21,15 @@ import {
   BUNDLE_DISCOUNT,
 } from "@/lib/pricing";
 import WaitlistButton from "@/components/WaitlistButton";
-import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 
 const GOLD = "#2952e3";
 
-// Conversational Commerce: the buy CTA opens WhatsApp with a message that's
-// pre-filled based on the selected bundle option, so orders can be confirmed
-// and closed directly in chat.
-const WHATSAPP_PHONE = "972515766102";
-
-function buildWhatsAppOrderUrl(
-  bundle: boolean,
-  unitPrice: number,
-  bundlePrice: number,
-): string {
-  // Plain "149 ₪" text — formatPrice() embeds invisible RTL marks that don't
-  // belong in a pre-filled chat message.
-  const message = bundle
-    ? `היי! הגעתי מהאתר ואשמח להזמין את מארז הזוג (2 שייקרים) ב-${bundlePrice} ₪.`
-    : `היי! הגעתי מהאתר ואשמח להזמין VaultShaker אחד ב-${unitPrice} ₪.`;
-  return `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
-}
+// Direct Shopify checkout links (secure, hosted payment processing). Drop the
+// real permalink / cart URLs in here — e.g. a Shopify cart permalink like
+// `https://<store>.myshopify.com/cart/<variantId>:<qty>` or a checkout link.
+// The buy CTA routes to the matching link based on the Bundle & Save choice.
+const shopifyCheckoutUrl1 = "https://REPLACE-WITH-SHOPIFY-CHECKOUT-URL-1-UNIT"; // 'קנה 1' — single unit
+const shopifyCheckoutUrl2 = "https://REPLACE-WITH-SHOPIFY-CHECKOUT-URL-2-PACK"; // 'קנה 2' — 2-pack bundle
 
 interface GalleryMedia {
   media_type: string;
@@ -74,8 +62,8 @@ const TRUST_BADGES = [
   },
   {
     icon: Lock,
-    label: "רכישה בטוחה, ללא אשראי באתר",
-    sub: "הכל נסגר ישירות מול נציג בוואטסאפ.",
+    label: "סליקה מאובטחת ומוצפנת SSL",
+    sub: "קנייה בטוחה — פרטי התשלום שלכם מוגנים ומוצפנים.",
   },
 ];
 
@@ -119,7 +107,8 @@ export default function ProductView({
   const bundleNow = Math.round(unit * 2 * (1 - BUNDLE_DISCOUNT));
   const bundleSaves = bundleWas - bundleNow;
   const displayPrice = bundle ? bundleNow : unit;
-  const whatsappUrl = buildWhatsAppOrderUrl(bundle, unit, bundleNow);
+  // Route to the matching Shopify checkout based on the Bundle & Save choice.
+  const checkoutUrl = bundle ? shopifyCheckoutUrl2 : shopifyCheckoutUrl1;
 
   // Accessory add-ons selected via the in-buy-box checklist.
   const [addOns, setAddOns] = useState<Record<string, boolean>>({});
@@ -330,8 +319,8 @@ export default function ProductView({
             </div>
           )}
 
-          {/* CTA — Concierge MVP: routes to WhatsApp to complete the order
-              manually. Pre-launch waitlist mode still shows the signup. */}
+          {/* CTA — routes to the direct Shopify checkout for the selected
+              bundle. Pre-launch waitlist mode still shows the signup. */}
           <div ref={buyRef} id="buy">
           {WAITLIST_MODE ? (
             <WaitlistButton className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#2952e3] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-white shadow-[0_0_30px_-6px_rgba(41,82,227,0.5)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#4169e5] hover:shadow-[0_0_46px_-4px_rgba(41,82,227,0.65)] active:scale-95" />
@@ -345,19 +334,16 @@ export default function ProductView({
             </button>
           ) : (
             <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-5 inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-[#2952e3] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-white shadow-[0_0_30px_-6px_rgba(41,82,227,0.5)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#4169e5] hover:shadow-[0_0_46px_-4px_rgba(41,82,227,0.65)] active:scale-95"
+              href={checkoutUrl}
+              className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#2952e3] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-white shadow-[0_0_30px_-6px_rgba(41,82,227,0.5)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#4169e5] hover:shadow-[0_0_46px_-4px_rgba(41,82,227,0.65)] active:scale-95"
             >
-              <WhatsAppIcon className="h-5 w-5" />
-              הזמן עכשיו בוואטסאפ
+              המשך לתשלום מאובטח
             </a>
           )}
           </div>
           {!WAITLIST_MODE && !soldOut && (
             <p className="mt-3 text-center text-xs font-medium tracking-wide text-zinc-500">
-              מענה אנושי מהיר · סגירת הזמנה בלי התחייבות
+              סליקה מאובטחת · משלוח חינם לכל הארץ · 30 יום החזר כספי
             </p>
           )}
 
@@ -477,8 +463,8 @@ export default function ProductView({
             </>
           ) : (
             <>
-              <span className="text-base font-bold tabular-nums text-zinc-900">
-                {formatPrice(displayPrice, product.currency)}
+              <span className="truncate text-xs font-bold text-zinc-900">
+                {product.title}
               </span>
               <span className="truncate text-[11px] font-medium text-emerald-600">
                 {bundle ? "2 יחידות · 15% הנחה" : "משלוח חינם"}
@@ -498,13 +484,10 @@ export default function ProductView({
           </button>
         ) : (
           <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex flex-1 items-center justify-center gap-2 rounded-full bg-[#2952e3] px-5 py-3.5 text-sm font-black tracking-[0.02em] text-white transition-all duration-300 hover:bg-[#4169e5] active:scale-95"
+            href={checkoutUrl}
+            className="flex flex-1 items-center justify-center rounded-full bg-[#2952e3] px-5 py-3.5 text-sm font-black tracking-[0.02em] text-white transition-all duration-300 hover:bg-[#4169e5] active:scale-95"
           >
-            <WhatsAppIcon className="h-4 w-4 shrink-0" />
-            להזמנה מאובטחת בוואטסאפ
+            רכישה מהירה — {formatPrice(displayPrice, product.currency)}
           </a>
         )}
       </div>
