@@ -28,8 +28,10 @@ const GOLD = "#2952e3";
 // real permalink / cart URLs in here — e.g. a Shopify cart permalink like
 // `https://<store>.myshopify.com/cart/<variantId>:<qty>` or a checkout link.
 // The buy CTA routes to the matching link based on the Bundle & Save choice.
-const shopifyCheckoutUrl1 = "https://g32kvk-ux.myshopify.com/cart/9411799187669:1"; // 'קנה 1' — single unit
-const shopifyCheckoutUrl2 = "https://g32kvk-ux.myshopify.com/cart/9411799187669:2"; // 'קנה 2' — 2-pack bundle
+// `?return_to=/checkout` makes the cart permalink add the item and jump
+// straight to the payment page, skipping the intermediate cart view.
+const shopifyCheckoutUrl1 = "https://g32kvk-ux.myshopify.com/cart/9411799187669:1?return_to=/checkout"; // 'קנה 1' — single unit
+const shopifyCheckoutUrl2 = "https://g32kvk-ux.myshopify.com/cart/9411799187669:2?return_to=/checkout"; // 'קנה 2' — 2-pack bundle
 
 interface GalleryMedia {
   media_type: string;

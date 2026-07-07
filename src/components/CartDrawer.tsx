@@ -7,11 +7,14 @@ import { useCart, formatPrice } from "@/lib/cart/CartContext";
 import { ACCESSORIES } from "@/lib/accessories";
 import { WAITLIST_MODE } from "@/lib/config";
 import WaitlistButton from "@/components/WaitlistButton";
-import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 import { trackInitiateCheckout } from "@/lib/analytics";
 import MediaPlaceholder, {
   isMissingLocalMedia,
 } from "@/components/MediaPlaceholder";
+
+// Shopify storefront domain for cart-permalink checkout (matches the
+// product-page CTAs). Update here if the store domain changes.
+const SHOPIFY_STORE = "g32kvk-ux.myshopify.com";
 
 export default function CartDrawer() {
   const {
@@ -81,25 +84,33 @@ export default function CartDrawer() {
   const inCart = new Set(items.map((i) => i.handle));
   const upsells = ACCESSORIES.filter((a) => !inCart.has(a.handle));
 
-  // Concierge MVP: checkout completes over WhatsApp. We append the collected
-  // cart items to a pre-filled message so the order is easy to confirm manually.
+  // If the cart holds nothing with a Shopify variant id, checkout can't proceed.
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
+
+  // Checkout: build a Shopify cart permalink from the line items and redirect
+  // straight to Shopify's hosted checkout (`return_to=/checkout` skips the cart
+  // page). Same mechanism as the product-page CTAs, so the whole site aligns.
   function handleCheckout() {
     trackInitiateCheckout({
       value: totalPrice,
       currency,
       num_items: totalQuantity,
     });
-    const base =
-      "היי, אספתי כמה מוצרים בעגלה באתר ואשמח להשלים את ההזמנה!";
+    // Cart permalinks need the numeric variant id, so strip the Shopify GID
+    // prefix (gid://shopify/ProductVariant/123 → 123). Items without a variant
+    // id (not yet in the store) can't be purchased and are skipped.
     const lines = items
-      .map((i) => `• ${i.title} ×${i.quantity}`)
-      .join("\n");
-    const message = lines ? `${base}\n\n${lines}` : base;
-    window.open(
-      `https://wa.me/972515766102?text=${encodeURIComponent(message)}`,
-      "_blank",
-      "noopener,noreferrer",
-    );
+      .map((i) => {
+        const numericId = i.variantId?.split("/").pop();
+        return numericId ? `${numericId}:${i.quantity}` : null;
+      })
+      .filter((l): l is string => l !== null);
+    if (lines.length === 0) {
+      setCheckoutError("אין פריטים זמינים לרכישה בסל כרגע.");
+      return;
+    }
+    setCheckoutError(null);
+    window.location.href = `https://${SHOPIFY_STORE}/cart/${lines.join(",")}?return_to=/checkout`;
   }
 
   // Lock body scroll while the drawer is open + close on Escape.
@@ -340,16 +351,20 @@ export default function CartDrawer() {
               </p>
             )}
             <p className="mt-1 text-xs text-zinc-500">
-              משלוח חינם · סוגרים את ההזמנה ישירות מול נציג בוואטסאפ.
+              משלוח חינם · תשלום מאובטח בעמוד הרכישה של Shopify.
             </p>
             <button
               type="button"
               onClick={handleCheckout}
-              className="mt-6 flex w-full items-center justify-center gap-2 rounded-full bg-[#2952e3] px-8 py-4 text-sm font-black tracking-[0.04em] text-white shadow-[0_0_30px_-6px_rgba(41,82,227,0.7)] transition-all duration-300 ease-in-out hover:bg-[#4169e5] active:scale-95"
+              className="mt-6 flex w-full items-center justify-center rounded-full bg-[#2952e3] px-8 py-4 text-sm font-black tracking-[0.04em] text-white shadow-[0_0_30px_-6px_rgba(41,82,227,0.7)] transition-all duration-300 ease-in-out hover:bg-[#4169e5] active:scale-95"
             >
-              <WhatsAppIcon className="h-4 w-4 shrink-0" />
-              לסגירת ההזמנה בוואטסאפ
+              המשך לתשלום מאובטח
             </button>
+            {checkoutError && (
+              <p className="mt-2 text-center text-xs font-medium text-red-600">
+                {checkoutError}
+              </p>
+            )}
           </div>
         )}
       </aside>
