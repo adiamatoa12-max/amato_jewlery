@@ -26,7 +26,7 @@ import {
 } from "./shopify/operations";
 import type { Product as ShopifyProduct } from "./shopify/types";
 
-const DEFAULT_MATERIAL = "טריטן עמיד ללא BPA · מכסה אטום נגד נזילות · מגנט חזק ומעמד טלפון מובנה";
+const DEFAULT_MATERIAL = "פלדת אל-חלד (Stainless Steel) בדרגת פרימיום · מכסה אטום נגד נזילות · מגנט חזק ומעמד טלפון מובנה";
 
 /**
  * Log a Shopify failure and signal that we're serving the bundled catalog

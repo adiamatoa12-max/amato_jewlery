@@ -24,15 +24,6 @@ import WaitlistButton from "@/components/WaitlistButton";
 
 const GOLD = "#2952e3";
 
-// Direct Shopify checkout links (secure, hosted payment processing). Drop the
-// real permalink / cart URLs in here — e.g. a Shopify cart permalink like
-// `https://<store>.myshopify.com/cart/<variantId>:<qty>` or a checkout link.
-// The buy CTA routes to the matching link based on the Bundle & Save choice.
-// `?return_to=/checkout` makes the cart permalink add the item and jump
-// straight to the payment page, skipping the intermediate cart view.
-const shopifyCheckoutUrl1 = "https://g32kvk-ux.myshopify.com/cart/9411799187669:1?return_to=/checkout"; // 'קנה 1' — single unit
-const shopifyCheckoutUrl2 = "https://g32kvk-ux.myshopify.com/cart/9411799187669:2?return_to=/checkout"; // 'קנה 2' — 2-pack bundle
-
 interface GalleryMedia {
   media_type: string;
   url: string;
@@ -109,8 +100,36 @@ export default function ProductView({
   const bundleNow = Math.round(unit * 2 * (1 - BUNDLE_DISCOUNT));
   const bundleSaves = bundleWas - bundleNow;
   const displayPrice = bundle ? bundleNow : unit;
-  // Route to the matching Shopify checkout based on the Bundle & Save choice.
-  const checkoutUrl = bundle ? shopifyCheckoutUrl2 : shopifyCheckoutUrl1;
+
+  // Checkout: create a fresh Shopify cart with the live-catalog variant id and
+  // the selected quantity (1 or 2), then redirect to Shopify's hosted checkout
+  // (the payment page). Using the real variant id avoids the "link no longer
+  // exists" error a product-id permalink caused.
+  const [checkingOut, setCheckingOut] = useState(false);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
+  async function handleCheckout() {
+    if (checkingOut) return;
+    setCheckoutError(null);
+    setCheckingOut(true);
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          lines: [{ variantId: product.variantId, quantity: bundle ? 2 : 1 }],
+        }),
+      });
+      const data = (await res.json()) as { url?: string; error?: string };
+      if (res.ok && data.url) {
+        window.location.href = data.url; // straight to the hosted payment page
+        return;
+      }
+      setCheckoutError(data.error ?? "אירעה שגיאה במעבר לתשלום. נסו שוב.");
+    } catch {
+      setCheckoutError("אירעה שגיאה במעבר לתשלום. נסו שוב.");
+    }
+    setCheckingOut(false);
+  }
 
   // Accessory add-ons selected via the in-buy-box checklist.
   const [addOns, setAddOns] = useState<Record<string, boolean>>({});
@@ -335,17 +354,24 @@ export default function ProductView({
               אזל מהמלאי
             </button>
           ) : (
-            <a
-              href={checkoutUrl}
-              className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#2952e3] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-white shadow-[0_0_30px_-6px_rgba(41,82,227,0.5)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#4169e5] hover:shadow-[0_0_46px_-4px_rgba(41,82,227,0.65)] active:scale-95"
+            <button
+              type="button"
+              onClick={handleCheckout}
+              disabled={checkingOut}
+              className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#2952e3] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-white shadow-[0_0_30px_-6px_rgba(41,82,227,0.5)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#4169e5] hover:shadow-[0_0_46px_-4px_rgba(41,82,227,0.65)] active:scale-95 disabled:cursor-not-allowed disabled:opacity-70"
             >
-              המשך לתשלום מאובטח
-            </a>
+              {checkingOut ? "מעבר לתשלום…" : "המשך לתשלום מאובטח"}
+            </button>
           )}
           </div>
           {!WAITLIST_MODE && !soldOut && (
             <p className="mt-3 text-center text-xs font-medium tracking-wide text-zinc-500">
               סליקה מאובטחת · משלוח חינם לכל הארץ · 30 יום החזר כספי
+            </p>
+          )}
+          {checkoutError && (
+            <p className="mt-2 text-center text-xs font-medium text-red-600">
+              {checkoutError}
             </p>
           )}
 
@@ -485,12 +511,16 @@ export default function ProductView({
             אזל מהמלאי
           </button>
         ) : (
-          <a
-            href={checkoutUrl}
-            className="flex flex-1 items-center justify-center rounded-full bg-[#2952e3] px-5 py-3.5 text-sm font-black tracking-[0.02em] text-white transition-all duration-300 hover:bg-[#4169e5] active:scale-95"
+          <button
+            type="button"
+            onClick={handleCheckout}
+            disabled={checkingOut}
+            className="flex flex-1 items-center justify-center rounded-full bg-[#2952e3] px-5 py-3.5 text-sm font-black tracking-[0.02em] text-white transition-all duration-300 hover:bg-[#4169e5] active:scale-95 disabled:opacity-70"
           >
-            רכישה מהירה — {formatPrice(displayPrice, product.currency)}
-          </a>
+            {checkingOut
+              ? "מעבר לתשלום…"
+              : `רכישה מהירה — ${formatPrice(displayPrice, product.currency)}`}
+          </button>
         )}
       </div>
     </>

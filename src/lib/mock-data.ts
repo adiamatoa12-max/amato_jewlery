@@ -35,7 +35,7 @@ export interface MockCollection {
 }
 
 const MATERIAL =
-  "טריטן עמיד ללא BPA · אטימה מלאה נגד נזילות · מגנט N52 ומעמד טלפון מובנה";
+  "פלדת אל-חלד (Stainless Steel) בדרגת פרימיום · אטימה מלאה נגד נזילות · מגנט N52 ומעמד טלפון מובנה";
 
 export interface MockProductWithCollection extends MockProduct {
   collectionTitle: string;
@@ -74,7 +74,7 @@ export const COLLECTIONS: MockCollection[] = [
         handle: "vault-magnetic-shaker",
         title: "שייקר VAULT מגנטי",
         description:
-          "שייקר הפרימיום המגנטי עם מעמד טלפון מובנה. מגנט N52 עוצמתי שמעגן את הטלפון לצילום ולסטרימינג, אטימה מלאה נגד נזילות וטריטן עמיד ללא BPA. כל מארז כולל שתי טבעות מגנטיות מתאמות.",
+          "שייקר הפרימיום המגנטי עם מעמד טלפון מובנה. מגנט N52 עוצמתי שמעגן את הטלפון לצילום ולסטרימינג, אטימה מלאה נגד נזילות וגוף פלדת אל-חלד (Stainless Steel) בדרגת פרימיום. כל מארז כולל שתי טבעות מגנטיות מתאמות.",
         price: 199,
         currency: "ILS",
         material: MATERIAL,

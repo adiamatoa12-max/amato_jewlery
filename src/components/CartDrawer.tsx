@@ -12,10 +12,6 @@ import MediaPlaceholder, {
   isMissingLocalMedia,
 } from "@/components/MediaPlaceholder";
 
-// Shopify storefront domain for cart-permalink checkout (matches the
-// product-page CTAs). Update here if the store domain changes.
-const SHOPIFY_STORE = "g32kvk-ux.myshopify.com";
-
 export default function CartDrawer() {
   const {
     items,
@@ -84,33 +80,42 @@ export default function CartDrawer() {
   const inCart = new Set(items.map((i) => i.handle));
   const upsells = ACCESSORIES.filter((a) => !inCart.has(a.handle));
 
-  // If the cart holds nothing with a Shopify variant id, checkout can't proceed.
+  const [checkingOut, setCheckingOut] = useState(false);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
 
-  // Checkout: build a Shopify cart permalink from the line items and redirect
-  // straight to Shopify's hosted checkout (`return_to=/checkout` skips the cart
-  // page). Same mechanism as the product-page CTAs, so the whole site aligns.
-  function handleCheckout() {
+  // Checkout: create a Shopify cart from the line items via /api/checkout and
+  // redirect to Shopify's hosted checkout (the payment page). Same mechanism as
+  // the product-page CTA, so the whole site checks out through one path.
+  async function handleCheckout() {
+    if (checkingOut) return;
     trackInitiateCheckout({
       value: totalPrice,
       currency,
       num_items: totalQuantity,
     });
-    // Cart permalinks need the numeric variant id, so strip the Shopify GID
-    // prefix (gid://shopify/ProductVariant/123 → 123). Items without a variant
-    // id (not yet in the store) can't be purchased and are skipped.
-    const lines = items
-      .map((i) => {
-        const numericId = i.variantId?.split("/").pop();
-        return numericId ? `${numericId}:${i.quantity}` : null;
-      })
-      .filter((l): l is string => l !== null);
-    if (lines.length === 0) {
-      setCheckoutError("אין פריטים זמינים לרכישה בסל כרגע.");
-      return;
-    }
     setCheckoutError(null);
-    window.location.href = `https://${SHOPIFY_STORE}/cart/${lines.join(",")}?return_to=/checkout`;
+    setCheckingOut(true);
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          lines: items.map((i) => ({
+            variantId: i.variantId,
+            quantity: i.quantity,
+          })),
+        }),
+      });
+      const data = (await res.json()) as { url?: string; error?: string };
+      if (res.ok && data.url) {
+        window.location.href = data.url; // straight to the hosted payment page
+        return;
+      }
+      setCheckoutError(data.error ?? "אירעה שגיאה במעבר לתשלום. נסו שוב.");
+    } catch {
+      setCheckoutError("אירעה שגיאה במעבר לתשלום. נסו שוב.");
+    }
+    setCheckingOut(false);
   }
 
   // Lock body scroll while the drawer is open + close on Escape.
@@ -356,9 +361,10 @@ export default function CartDrawer() {
             <button
               type="button"
               onClick={handleCheckout}
-              className="mt-6 flex w-full items-center justify-center rounded-full bg-[#2952e3] px-8 py-4 text-sm font-black tracking-[0.04em] text-white shadow-[0_0_30px_-6px_rgba(41,82,227,0.7)] transition-all duration-300 ease-in-out hover:bg-[#4169e5] active:scale-95"
+              disabled={checkingOut}
+              className="mt-6 flex w-full items-center justify-center rounded-full bg-[#2952e3] px-8 py-4 text-sm font-black tracking-[0.04em] text-white shadow-[0_0_30px_-6px_rgba(41,82,227,0.7)] transition-all duration-300 ease-in-out hover:bg-[#4169e5] active:scale-95 disabled:cursor-not-allowed disabled:opacity-70"
             >
-              המשך לתשלום מאובטח
+              {checkingOut ? "מעבר לתשלום…" : "המשך לתשלום מאובטח"}
             </button>
             {checkoutError && (
               <p className="mt-2 text-center text-xs font-medium text-red-600">
