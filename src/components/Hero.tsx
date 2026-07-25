@@ -17,7 +17,7 @@ const ctaButton =
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-[92vh] w-full items-center justify-center overflow-hidden bg-surface">
+    <section className="relative flex min-h-[86vh] w-full items-center justify-center overflow-hidden bg-surface sm:min-h-[92vh]">
       {/* Edge-to-edge lifestyle video background */}
       <video
         autoPlay
@@ -38,7 +38,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
       {/* Content — floats directly over the video, centered on every breakpoint */}
-      <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center px-6 py-24 text-center lg:px-10">
+      <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center px-6 py-16 text-center sm:py-24 lg:px-10">
         <FadeIn>
           <div className="flex flex-col items-center">
             <p className="mb-4 text-xs font-bold tracking-[0.2em] text-zinc-200 sm:text-sm">

@@ -478,7 +478,7 @@ export default function ProductView({
 
       {/* Sticky buy bar — slides in once the main CTA scrolls out of view (mobile) */}
       <div
-        className={`fixed inset-x-0 bottom-0 z-40 flex items-center gap-4 border-t border-zinc-200 bg-surface px-5 py-3 shadow-[0_-8px_30px_-8px_rgba(0,0,0,0.15)] transition-transform duration-300 ease-out lg:hidden ${
+        className={`fixed inset-x-0 bottom-0 z-40 flex items-center gap-4 border-t border-zinc-200 bg-surface px-5 py-2.5 shadow-[0_-8px_30px_-8px_rgba(0,0,0,0.15)] transition-transform duration-300 ease-out lg:hidden ${
           showSticky ? "translate-y-0" : "translate-y-full"
         }`}
       >

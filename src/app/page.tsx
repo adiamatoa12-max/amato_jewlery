@@ -848,10 +848,10 @@ function UrgencyBand() {
 /* ── Sticky mobile buy bar — always-visible CTA (mobile only) ────────── */
 function StickyBuyBar() {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 w-full border-t border-zinc-200 bg-surface px-4 py-3 shadow-[0_-8px_30px_-8px_rgba(0,0,0,0.15)] lg:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-50 w-full border-t border-zinc-200 bg-surface px-4 py-2.5 shadow-[0_-8px_30px_-8px_rgba(0,0,0,0.15)] lg:hidden">
       <Link
         href={PRODUCT_URL}
-        className="flex w-full items-center justify-center rounded-full bg-[#2952e3] px-6 py-3.5 text-sm font-black uppercase tracking-[0.08em] text-white shadow-[0_0_26px_-6px_rgba(41,82,227,0.5)] ring-1 ring-[#2952e3]/40 transition-all duration-300 active:scale-95"
+        className="flex w-full items-center justify-center rounded-full bg-[#2952e3] px-6 py-3 text-sm font-black uppercase tracking-[0.08em] text-white shadow-[0_0_26px_-6px_rgba(41,82,227,0.5)] ring-1 ring-[#2952e3]/40 transition-all duration-300 active:scale-95"
       >
         הזמן עכשיו · מלאי מוגבל
       </Link>
