@@ -13,7 +13,7 @@ const CSP = [
   "img-src 'self' data: blob: https://cdn.shopify.com https://www.facebook.com https://www.googletagmanager.com",
   "media-src 'self'",
   "font-src 'self' data:",
-  "connect-src 'self' https://g32kvk-ux.myshopify.com https://www.google-analytics.com https://www.googletagmanager.com https://www.facebook.com",
+  "connect-src 'self' https://*.myshopify.com https://www.google-analytics.com https://www.googletagmanager.com https://www.facebook.com",
   "frame-src https://www.googletagmanager.com",
   "form-action 'self'",
   "frame-ancestors 'none'",
