@@ -229,25 +229,25 @@ function HowItWorks() {
             </p>
 
             <div className="mt-10 overflow-x-auto rounded-2xl bg-white shadow-[0_10px_30px_rgba(0,0,0,0.04)]">
-              <table className="w-full min-w-[540px] border-collapse text-right">
+              <table className="w-full min-w-0 border-collapse text-right sm:min-w-[540px]">
                 <thead>
                   <tr>
-                    <th scope="col" className="p-4" />
+                    <th scope="col" className="p-2 sm:p-4" />
                     <th
                       scope="col"
-                      className="rounded-t-xl bg-[#2952e3]/[0.06] p-4 text-center font-display text-sm font-black tracking-tight text-[#2952e3]"
+                      className="rounded-t-xl bg-[#2952e3]/[0.06] px-2 py-3 text-center font-display text-xs font-black tracking-tight text-[#2952e3] sm:p-4 sm:text-sm"
                     >
                       VaultShaker
                     </th>
                     <th
                       scope="col"
-                      className="p-4 text-center text-xs font-bold text-zinc-500"
+                      className="px-1.5 py-3 text-center text-[11px] font-bold leading-tight text-zinc-500 sm:p-4 sm:text-xs"
                     >
                       חשמלי סטנדרטי
                     </th>
                     <th
                       scope="col"
-                      className="p-4 text-center text-xs font-bold text-zinc-500"
+                      className="px-1.5 py-3 text-center text-[11px] font-bold leading-tight text-zinc-500 sm:p-4 sm:text-xs"
                     >
                       שייקר קלאסי
                     </th>
@@ -260,21 +260,21 @@ function HowItWorks() {
                       <tr key={row.feature} className="border-t border-zinc-100">
                         <th
                           scope="row"
-                          className="p-4 text-sm font-semibold text-zinc-800"
+                          className="py-3 pe-2 ps-1 text-xs font-semibold leading-snug text-zinc-800 sm:p-4 sm:text-sm"
                         >
                           {row.feature}
                         </th>
                         <td
-                          className={`bg-[#2952e3]/[0.06] p-4 text-center ${
+                          className={`bg-[#2952e3]/[0.06] px-1.5 py-3 text-center sm:p-4 ${
                             isLast ? "rounded-b-xl" : ""
                           }`}
                         >
                           <CompareCell value={row.vault} highlight />
                         </td>
-                        <td className="p-4 text-center">
+                        <td className="px-1.5 py-3 text-center sm:p-4">
                           <CompareCell value={row.electric} />
                         </td>
-                        <td className="p-4 text-center">
+                        <td className="px-1.5 py-3 text-center sm:p-4">
                           <CompareCell value={row.classic} />
                         </td>
                       </tr>
