@@ -210,29 +210,21 @@ export default function ProductView({
             </p>
           ) : (
             <>
-              <div className="mt-5 flex items-end gap-3">
+              <div className="mt-5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
                 <p className="font-display text-3xl font-extrabold tabular-nums text-zinc-900">
                   {formatPrice(displayPrice, product.currency)}
                 </p>
-                {bundle ? (
-                  <>
-                    <span className="pb-1 text-base tabular-nums text-zinc-500 line-through">
-                      {formatPrice(bundleWas, product.currency)}
-                    </span>
-                    <span className="pb-1 text-xs font-bold tracking-wide text-zinc-500">
-                      חיסכון {formatPrice(bundleSaves, product.currency)}
-                    </span>
-                  </>
-                ) : (
-                  <>
-                    <span className="pb-1 text-base tabular-nums text-zinc-500 line-through">
-                      {formatPrice(FOUNDER_COMPARE_AT, product.currency)}
-                    </span>
-                    <span className="pb-1 text-xs font-bold tracking-wide text-zinc-500">
-                      מחיר מוקדמים
-                    </span>
-                  </>
-                )}
+                <span className="text-base tabular-nums text-zinc-400 line-through">
+                  {formatPrice(
+                    bundle ? bundleWas : FOUNDER_COMPARE_AT,
+                    product.currency,
+                  )}
+                </span>
+                <span className="text-xs font-bold tracking-wide text-zinc-500">
+                  {bundle
+                    ? `חיסכון ${formatPrice(bundleSaves, product.currency)}`
+                    : "מחיר מוקדמים"}
+                </span>
               </div>
 
               <p
@@ -339,14 +331,14 @@ export default function ProductView({
 
           {/* Scarcity nudge — sits directly above the buy button. */}
           {!WAITLIST_MODE && !soldOut && (
-            <div className="mt-6 flex items-center justify-center gap-2 rounded-xl bg-red-50 px-4 py-2.5 text-center">
-              <span className="relative flex h-2 w-2 shrink-0">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500" />
-              </span>
-              <span className="text-xs font-bold text-red-700">
+            <div className="mt-6 rounded-xl bg-red-50 px-4 py-3">
+              <p className="text-center text-xs font-bold leading-relaxed text-red-700">
+                <span className="relative -mt-px me-1.5 inline-flex h-2 w-2 align-middle">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500 opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500" />
+                </span>
                 מלאי מוגבל — נותרו 14 יחידות בלבד למהדורת ההשקה!
-              </span>
+              </p>
             </div>
           )}
 
@@ -436,8 +428,9 @@ export default function ProductView({
             )}
           </div>
 
-          {/* Thumbnails — clean, rounded-2xl, no borders (ring marks active) */}
-          <div className="grid grid-cols-4 gap-3">
+          {/* Thumbnails — clean, rounded-2xl, no borders (ring marks active).
+              5 columns so all media (4 images + 1 video) sit on one row. */}
+          <div className="grid grid-cols-5 gap-2.5">
             {GALLERY_MEDIA.map((m, i) => (
               <button
                 key={m.src}
