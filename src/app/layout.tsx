@@ -61,9 +61,11 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     images: [
       {
-        url: "/images/שייקר חדש2.jpeg",
-        width: 1200,
-        height: 800,
+        // ASCII filename (no spaces / Hebrew) so Facebook/WhatsApp/LinkedIn and
+        // Google can reliably fetch it — non-ASCII OG URLs often fail to scrape.
+        url: "/images/vault-og.jpg",
+        width: 1536,
+        height: 1024,
         alt: "שייקר VAULT החשמלי המגנטי",
       },
     ],
@@ -72,7 +74,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
-    images: ["/images/שייקר חדש2.jpeg"],
+    images: ["/images/vault-og.jpg"],
   },
 };
 
