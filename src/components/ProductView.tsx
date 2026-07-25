@@ -17,7 +17,6 @@ import { ACCESSORIES } from "@/lib/accessories";
 import { WAITLIST_MODE, EXTRAS_AVAILABLE } from "@/lib/config";
 import {
   FOUNDER_PRICE,
-  FOUNDER_COMPARE_AT,
   BUNDLE_PRICE,
   BUNDLE_DISCOUNT_CODE,
 } from "@/lib/pricing";
@@ -214,17 +213,16 @@ export default function ProductView({
                 <p className="font-display text-3xl font-extrabold tabular-nums text-zinc-900">
                   {formatPrice(displayPrice, product.currency)}
                 </p>
-                <span className="text-base tabular-nums text-zinc-400 line-through">
-                  {formatPrice(
-                    bundle ? bundleWas : FOUNDER_COMPARE_AT,
-                    product.currency,
-                  )}
-                </span>
-                <span className="text-xs font-bold tracking-wide text-zinc-500">
-                  {bundle
-                    ? `חיסכון ${formatPrice(bundleSaves, product.currency)}`
-                    : "מחיר מוקדמים"}
-                </span>
+                {bundle && (
+                  <>
+                    <span className="text-base tabular-nums text-zinc-400 line-through">
+                      {formatPrice(bundleWas, product.currency)}
+                    </span>
+                    <span className="text-xs font-bold tracking-wide text-zinc-500">
+                      חיסכון {formatPrice(bundleSaves, product.currency)}
+                    </span>
+                  </>
+                )}
               </div>
 
               <p
