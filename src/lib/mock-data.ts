@@ -35,7 +35,7 @@ export interface MockCollection {
 }
 
 const MATERIAL =
-  "פלדת אל-חלד (Stainless Steel) בדרגת פרימיום · אטימה מלאה נגד נזילות · מגנט N52 ומעמד טלפון מובנה";
+  "גוף טריטן (Tritan) שקוף בדרגת פרימיום נטול BPA · בסיס מנוע חשמלי · אטימה מלאה נגד נזילות · מגנט N52 ומעמד טלפון מובנה";
 
 export interface MockProductWithCollection extends MockProduct {
   collectionTitle: string;
@@ -74,14 +74,14 @@ export const COLLECTIONS: MockCollection[] = [
         handle: "vault-magnetic-shaker",
         title: "שייקר VAULT מגנטי",
         description:
-          "שייקר הפרימיום המגנטי עם מעמד טלפון מובנה. מגנט N52 עוצמתי שמעגן את הטלפון לצילום ולסטרימינג, אטימה מלאה נגד נזילות וגוף פלדת אל-חלד (Stainless Steel) בדרגת פרימיום. כל מארז כולל שתי טבעות מגנטיות מתאמות.",
+          "שייקר הפרימיום החשמלי המגנטי עם מעמד טלפון מובנה. מנוע חשמלי עוצמתי לשייק חלק בשנייה, מגנט N52 שמעגן את הטלפון לצילום ולסטרימינג, אטימה מלאה נגד נזילות וגוף טריטן (Tritan) שקוף נטול BPA בדרגת פרימיום. כל מארז כולל שתי טבעות מגנטיות מתאמות.",
         price: 199,
         currency: "ILS",
         material: MATERIAL,
         availableForSale: true,
-        image: "/images/vault-product-image.png",
-        hoverImage: "/images/vault-product-image.png",
-        gallery: ["/images/vault-product-image.png", "/images/hero-2.png"],
+        image: "/images/שייקר חדש2.jpeg",
+        hoverImage: "/images/שייקר חדש.jpeg",
+        gallery: ["/images/שייקר חדש2.jpeg", "/images/שייקר חדש1.jpeg", "/images/שייקר חדש3.jpeg"],
         badge: "bestseller",
       },
       {

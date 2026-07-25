@@ -60,29 +60,34 @@ const TRUST_BADGES = [
   },
 ];
 
-// Curated gallery: studio value shot → UGC Mag-Grip close-up → lifestyle →
-// action video. Mixed media (image + video). Hebrew filenames are encoded.
+// Curated gallery: studio value shot → lifestyle → Mag-Grip streaming shot →
+// athlete → action video. Mixed media (image + video). Hebrew filenames encoded.
 type GalleryItem = { type: "image" | "video"; src: string; alt: string };
 const GALLERY_MEDIA: GalleryItem[] = [
   {
     type: "image",
-    src: "/images/vault-shaker-unboxing.png",
-    alt: "ערכת VAULT באריזת פרימיום — צילום אולפן",
+    src: "/images/שייקר חדש2.jpeg",
+    alt: "שייקר VAULT החשמלי — גוף שקוף עם בסיס מנוע ומעמד טלפון מובנה",
   },
   {
     type: "image",
-    src: "/images/שייקר 100.jpeg",
-    alt: "שני שייקרים של VAULT — מבצע קנו 2 יחידות",
+    src: "/images/שייקר חדש.jpeg",
+    alt: "שייקר VAULT החשמלי מונח על ספסל האימון",
   },
   {
     type: "image",
-    src: "/images/שייקר ת.jpeg",
-    alt: "טכנולוגיית Mag-Grip בקלוז-אפ — הטלפון מוצמד על ציוד הכושר",
+    src: "/images/שייקר חדש1.jpeg",
+    alt: "טכנולוגיית Mag-Grip — הטלפון מוצמד לרוחב על מתקן המשקולות",
+  },
+  {
+    type: "image",
+    src: "/images/שייקר חדש3.jpeg",
+    alt: "ספורטאי מחזיק את שייקר VAULT החשמלי בחדר הכושר",
   },
   {
     type: "video",
-    src: `/videos/${encodeURIComponent("שייקר 31.mp4")}`,
-    alt: "טכנולוגיית Mag-Grip בפעולה על ספסל האימון",
+    src: `/videos/${encodeURIComponent("שייקר חדש4.mp4")}`,
+    alt: "שייקר VAULT החשמלי בפעולה — טכנולוגיית Mag-Grip על ספסל האימון",
   },
 ];
 

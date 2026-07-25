@@ -6,14 +6,14 @@ import FadeIn from "@/components/FadeIn";
 export const metadata: Metadata = {
   title: "הסיפור שלנו — VAULT",
   description:
-    "VAULT — השייקר המגנטי בעל הביצועים הגבוהים, עם מעמד טלפון מובנה. עיצוב ארגונומי, גוף פלדת אל-חלד ואטימה מושלמת — בנוי לאורח חיים אקטיבי.",
+    "VAULT — השייקר החשמלי המגנטי בעל הביצועים הגבוהים, עם מעמד טלפון מובנה. עיצוב ארגונומי, גוף טריטן שקוף נטול BPA ואטימה מושלמת — בנוי לאורח חיים אקטיבי.",
 };
 
 const PILLARS = [
   {
     icon: ShieldCheck,
     title: "עמידות",
-    body: "פלדת אל-חלד (נירוסטה) בדרגת פרימיום שסופגת אימון אחרי אימון בלי להתעייף. משקיעים פעם אחת, לא קונים שייקר חדש כל חודש.",
+    body: "גוף טריטן (Tritan) שקוף בדרגת פרימיום, נטול BPA, שסופג אימון אחרי אימון בלי להתעייף. משקיעים פעם אחת, לא קונים שייקר חדש כל חודש.",
   },
   {
     icon: Magnet,
@@ -34,8 +34,8 @@ export default function AboutPage() {
         {/* Hero */}
         <section className="relative h-[60vh] min-h-[420px] w-full overflow-hidden">
           <Image
-            src="/images/hero-2.png"
-            alt="VAULT — השייקר המגנטי"
+            src="/images/שייקר חדש3.jpeg"
+            alt="VAULT — השייקר החשמלי המגנטי"
             fill
             priority
             sizes="100vw"
@@ -116,8 +116,8 @@ export default function AboutPage() {
             <FadeIn>
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-100">
                 <Image
-                  src="/images/vault-product-image.png"
-                  alt="שייקר VAULT המגנטי"
+                  src="/images/שייקר חדש2.jpeg"
+                  alt="שייקר VAULT החשמלי — גוף שקוף עם בסיס מנוע"
                   fill
                   sizes="(min-width: 1024px) 50vw, 100vw"
                   className="object-cover"
@@ -139,8 +139,8 @@ export default function AboutPage() {
                   ההרמטית דואגת שהתיק שלך יישאר יבש.
                 </p>
                 <p className="mx-auto mt-4 max-w-md text-lg leading-[1.7] text-[#2D3748] lg:mx-0">
-                  וגוף פלדת אל-חלד עם ידית הנשיאה הארגונומית פשוט מחזיק
-                  מעמד, אימון אחרי אימון.
+                  וגוף הטריטן השקוף נטול ה-BPA עם ידית הנשיאה הארגונומית פשוט
+                  מחזיק מעמד, אימון אחרי אימון.
                 </p>
               </div>
             </FadeIn>

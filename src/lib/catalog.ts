@@ -26,7 +26,7 @@ import {
 } from "./shopify/operations";
 import type { Product as ShopifyProduct } from "./shopify/types";
 
-const DEFAULT_MATERIAL = "פלדת אל-חלד (Stainless Steel) בדרגת פרימיום · מכסה אטום נגד נזילות · מגנט חזק ומעמד טלפון מובנה";
+const DEFAULT_MATERIAL = "גוף טריטן (Tritan) שקוף בדרגת פרימיום נטול BPA · בסיס מנוע חשמלי · מכסה אטום נגד נזילות · מגנט חזק ומעמד טלפון מובנה";
 
 /**
  * Log a Shopify failure and signal that we're serving the bundled catalog
@@ -202,7 +202,7 @@ export interface StyleTile {
 // populated collection. Replaced automatically by live tiles once these
 // collections have cover images in Shopify.
 const FALLBACK_STYLE_TILES: StyleTile[] = [
-  { handle: "shakers", label: "Shakers", image: "/images/vault-product-image.png" },
+  { handle: "shakers", label: "Shakers", image: "/images/שייקר חדש2.jpeg" },
   { handle: "accessories", label: "Accessories", image: "/images/accessory-bundle-set.png" },
 ];
 

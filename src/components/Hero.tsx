@@ -7,8 +7,10 @@ import FadeIn from "@/components/FadeIn";
 
 // Main product — Hebrew handle, encoded for a safe URL (route decodes it).
 const PRODUCT_URL = `/product/${encodeURIComponent("vault-השייקר-המגנטי")}`;
-// Hero background clip (Mag-Grip in action). Hebrew filename → encode for URL.
-const VIDEO_SRC = `/videos/${encodeURIComponent("שייקר.mp4")}`;
+// Hero background clip (new electric shaker in action). Hebrew filename with a
+// space → encode for a safe URL. The clip lives under /images with the assets.
+const VIDEO_SRC = `/videos/${encodeURIComponent("שייקר חדש4.mp4")}`;
+const VIDEO_POSTER = `/images/${encodeURIComponent("שייקר חדש2.jpeg")}`;
 
 const ctaButton =
   "inline-flex w-full items-center justify-center rounded-full bg-[#2952e3] px-12 py-4 text-sm font-black uppercase tracking-[0.14em] text-white shadow-[0_10px_40px_-10px_rgba(41,82,227,0.75)] ring-1 ring-[#2952e3]/40 transition-all duration-300 ease-out hover:scale-105 hover:bg-[#4169e5] hover:shadow-[0_0_44px_-4px_rgba(41,82,227,0.9)] active:scale-95 sm:w-auto";
@@ -23,8 +25,8 @@ export default function Hero() {
         muted
         playsInline
         preload="auto"
-        poster="/images/vault-shaker-hero.png"
-        aria-label="שייקר VAULT המגנטי בפעולה — טכנולוגיית Mag-Grip"
+        poster={VIDEO_POSTER}
+        aria-label="שייקר VAULT החשמלי בפעולה — טכנולוגיית Mag-Grip"
         className="absolute inset-0 h-full w-full object-cover object-center"
       >
         <source src={VIDEO_SRC} type="video/mp4" />

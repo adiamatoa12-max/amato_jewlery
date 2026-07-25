@@ -11,8 +11,8 @@ import FadeIn from "@/components/FadeIn";
  * running two comparison blocks back-to-back.
  */
 const PRODUCT_URL = `/product/${encodeURIComponent("vault-השייקר-המגנטי")}`;
-const LIFESTYLE_IMG = "/images/שייקר 11.jpeg"; // next/image encodes the path
-const MAGGRIP_VIDEO = `/videos/${encodeURIComponent("שייקר 31.mp4")}`;
+const LIFESTYLE_IMG = "/images/שייקר חדש.jpeg"; // next/image encodes the path
+const MAGGRIP_VIDEO = `/videos/${encodeURIComponent("שייקר חדש4.mp4")}`;
 
 // Three core pillars. In the RTL grid the first item renders on the right,
 // so the visual order is: motor (right) · magnet (center) · seal (left).
@@ -98,13 +98,10 @@ export default function ManifestoSection({
               <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-2xl shadow-lg lg:max-w-none">
                 <Image
                   src={LIFESTYLE_IMG}
-                  alt="שייקר VAULT המגנטי — עיצוב ארגונומי שיושב טבעי ביד"
+                  alt="שייקר VAULT החשמלי — גוף שקוף עם בסיס מנוע ומעמד טלפון"
                   fill
                   sizes="(max-width: 1024px) 85vw, 450px"
-                  // Mirror-selfie shot — flip horizontally so the "VAULT"
-                  // logo printed on the shaker reads correctly (the raw photo
-                  // shows it reversed, as captured in a mirror).
-                  className="-scale-x-100 object-cover"
+                  className="object-cover"
                 />
               </div>
               <div dir="rtl" className="text-right">

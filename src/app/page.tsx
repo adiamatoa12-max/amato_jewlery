@@ -112,7 +112,7 @@ const COMPARISON_ROWS: {
 }[] = [
   {
     feature: "נפח ארגונומי",
-    vault: "400 מ״ל",
+    vault: "500 מ״ל",
     electric: "600 מ״ל+",
     classic: "700 מ״ל",
   },
@@ -217,12 +217,12 @@ function HowItWorks() {
           ))}
         </div>
 
-        {/* 400ml positioning + 3-way comparison table (replaces the old
+        {/* 500ml positioning + 3-way comparison table (replaces the old
             static steps graphic — lighter, scannable, no image weight). */}
         <FadeIn delay={120}>
           <div dir="rtl" className="mx-auto mt-12 max-w-3xl">
             <h3 className="text-center font-display text-2xl font-black tracking-tight text-[#000000] sm:text-3xl">
-              נפח 400 מ״ל. בדיוק כמו שצריך.
+              נפח 500 מ״ל. בדיוק כמו שצריך.
             </h3>
             <p className="mx-auto mt-4 max-w-xl text-center text-base leading-[1.7] text-[#2D3748]">
               מספיק גדול לשייק מלא, מספיק קומפקטי כדי להישאר{" "}
@@ -293,11 +293,9 @@ function HowItWorks() {
   );
 }
 
-/* ── 'The Gym Life' showcase videos (side by side) ───────────────────── */
-const GYM_VIDEOS = [
-  "/videos/vault-magnetic-demo.mp4",
-  "/videos/post_78.mp4",
-];
+/* ── 'The Gym Life' showcase (video + lifestyle shot, side by side) ───── */
+// New electric-shaker demo clip (lives under /images with the new assets).
+const GYM_DEMO_VIDEO = `/videos/${encodeURIComponent("שייקר חדש4.mp4")}`;
 
 function UseCases() {
   return (
@@ -313,16 +311,25 @@ function UseCases() {
         </FadeIn>
 
         <div className="mx-auto mt-14 grid max-w-5xl grid-cols-1 gap-2 md:grid-cols-2">
-          {GYM_VIDEOS.map((src, i) => (
-            <FadeIn key={src} delay={i * 100}>
-              <div className="group relative aspect-video overflow-hidden rounded-3xl shadow-[0_24px_70px_-35px_rgba(0,0,0,0.9)]">
-                <AutoplayVideo
-                  src={src}
-                  className="absolute inset-0 h-full w-full object-cover object-center"
-                />
-              </div>
-            </FadeIn>
-          ))}
+          <FadeIn>
+            <div className="group relative aspect-video overflow-hidden rounded-3xl shadow-[0_24px_70px_-35px_rgba(0,0,0,0.9)]">
+              <AutoplayVideo
+                src={GYM_DEMO_VIDEO}
+                className="absolute inset-0 h-full w-full object-cover object-center"
+              />
+            </div>
+          </FadeIn>
+          <FadeIn delay={100}>
+            <div className="group relative aspect-video overflow-hidden rounded-3xl shadow-[0_24px_70px_-35px_rgba(0,0,0,0.9)]">
+              <Image
+                src="/images/שייקר חדש3.jpeg"
+                alt="ספורטאי מחזיק את שייקר VAULT החשמלי בחדר הכושר"
+                fill
+                sizes="(min-width: 768px) 50vw, 100vw"
+                className="object-cover object-center"
+              />
+            </div>
+          </FadeIn>
         </div>
       </div>
     </section>
@@ -372,8 +379,8 @@ function HorizontalStreaming() {
         <FadeIn delay={120} className="order-first md:order-none">
           <div className="relative aspect-video overflow-hidden rounded-2xl border border-zinc-200 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
             <Image
-              src="/images/horizontal-stream.png"
-              alt="טלפון מחובר לרוחב לשייקר VAULT בחדר כושר"
+              src="/images/שייקר חדש1.jpeg"
+              alt="שייקר VAULT החשמלי מוצמד למתקן משקולות עם טלפון לרוחב שמשדר משחק"
               fill
               sizes="(min-width: 768px) 50vw, 100vw"
               className="object-cover"
@@ -389,116 +396,15 @@ function HorizontalStreaming() {
 type Callout = {
   icon: LucideIcon;
   label: string;
-  align: "right" | "left";
-  /** Label box position, as a CSS style (percent of the image container). */
-  labelStyle: React.CSSProperties;
-  /** Anchor dot on the bottle, in % of the container. */
-  dot: { x: number; y: number };
-  /** Inner endpoint of the connector line, near the label, in % of container. */
-  line: { x: number; y: number };
 };
 
 const ANATOMY: Callout[] = [
-  {
-    icon: Droplet,
-    label: "פיית שתייה היגיינית",
-    align: "right",
-    labelStyle: { top: "13%", right: "2%" },
-    dot: { x: 49, y: 16 },
-    line: { x: 67, y: 17 },
-  },
-  {
-    icon: Magnet,
-    label: "מגנט N52 עוצמתי",
-    align: "right",
-    labelStyle: { top: "50%", right: "2%" },
-    dot: { x: 52, y: 54 },
-    line: { x: 67, y: 53 },
-  },
-  {
-    icon: Grip,
-    label: "ידית נשיאה ארגונומית",
-    align: "left",
-    labelStyle: { top: "11%", left: "2%" },
-    dot: { x: 45, y: 13 },
-    line: { x: 33, y: 15 },
-  },
-  {
-    icon: ShieldCheck,
-    label: "אטימה מוחלטת לנזילות (BPA-Free)",
-    align: "left",
-    labelStyle: { top: "45%", left: "2%" },
-    dot: { x: 48, y: 33 },
-    line: { x: 33, y: 47 },
-  },
-  {
-    icon: Zap,
-    label: "כפתור הפעלה · מנוע חשמלי",
-    align: "left",
-    labelStyle: { bottom: "8%", left: "2%" },
-    dot: { x: 50, y: 86 },
-    line: { x: 33, y: 84 },
-  },
+  { icon: Droplet, label: "פיית שתייה היגיינית" },
+  { icon: Zap, label: "מנוע חשמלי לערבול מושלם" },
+  { icon: Magnet, label: "מגנט N52 עוצמתי" },
+  { icon: Grip, label: "ידית נשיאה ארגונומית" },
+  { icon: ShieldCheck, label: "גוף שקוף BPA-Free · אטום לנזילות" },
 ];
-
-/** A single floating callout: connector line + bottle dot + glowing label. */
-function AnatomyCallout({ icon: Icon, label, align, labelStyle, dot, line }: Callout) {
-  return (
-    <div className="group pointer-events-none absolute inset-0">
-      {/* Connector line (stretches with the container). */}
-      <svg
-        viewBox="0 0 100 100"
-        preserveAspectRatio="none"
-        className="absolute inset-0 h-full w-full overflow-visible"
-        aria-hidden
-      >
-        <line
-          x1={line.x}
-          y1={line.y}
-          x2={dot.x}
-          y2={dot.y}
-          stroke={GOLD}
-          strokeWidth="0.25"
-          className="opacity-40 transition-opacity duration-300 group-hover:opacity-100"
-        />
-      </svg>
-
-      {/* Anchor dot on the bottle part. */}
-      <span
-        className="absolute -translate-x-1/2 -translate-y-1/2"
-        style={{ left: `${dot.x}%`, top: `${dot.y}%` }}
-        aria-hidden
-      >
-        <span
-          className="block h-2 w-2 rounded-full ring-2 ring-black/60 transition-transform duration-300 group-hover:scale-125"
-          style={{ backgroundColor: GOLD }}
-        />
-        <span
-          className="absolute inset-0 -m-1.5 rounded-full border opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          style={{ borderColor: GOLD }}
-        />
-      </span>
-
-      {/* Label — gold icon chip + glowing text. */}
-      <div
-        style={labelStyle}
-        className={`pointer-events-auto absolute flex max-w-[44%] items-center gap-2.5 ${
-          align === "right" ? "flex-row-reverse text-right" : "flex-row text-left"
-        }`}
-      >
-        <span
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border bg-black/70 backdrop-blur-sm transition-all duration-300 group-hover:shadow-[0_0_18px_-2px_rgba(41,82,227,0.7)]"
-          style={{ borderColor: `${GOLD}66`, color: GOLD }}
-        >
-          <Icon className="h-4 w-4" strokeWidth={1.75} />
-        </span>
-        <span className="text-xs font-semibold leading-snug text-white/85 transition-all duration-300 group-hover:text-[#2952e3] group-hover:[text-shadow:0_0_14px_rgba(41,82,227,0.8)] lg:text-sm">
-          {label}
-        </span>
-      </div>
-    </div>
-  );
-}
 
 function Anatomy() {
   return (
@@ -516,35 +422,18 @@ function Anatomy() {
           </h2>
         </FadeIn>
 
-        {/* Product image with floating callouts (lg+). */}
-        <FadeIn delay={120}>
-          <div className="relative mx-auto mt-14 hidden aspect-[3/2] w-full max-w-3xl lg:block">
+        {/* Product image + feature list — clean shot at all breakpoints. */}
+        <div className="mt-12 lg:mt-14">
+          <div className="relative mx-auto aspect-[3/2] w-full max-w-3xl overflow-hidden rounded-2xl border border-zinc-200 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
             <Image
-              src="/images/vault-product-image.png"
-              alt="שייקר VAULT המגנטי"
+              src="/images/שייקר חדש2.jpeg"
+              alt="שייקר VAULT החשמלי — גוף שקוף עם בסיס מנוע ומעמד טלפון מובנה"
               fill
               sizes="(min-width: 1024px) 768px, 100vw"
-              className="rounded-2xl border border-zinc-200 object-cover"
-              priority={false}
-            />
-            {ANATOMY.map((c) => (
-              <AnatomyCallout key={c.label} {...c} />
-            ))}
-          </div>
-        </FadeIn>
-
-        {/* Mobile / tablet: image + stacked feature list. */}
-        <div className="mt-12 lg:hidden">
-          <div className="relative mx-auto aspect-[3/2] w-full max-w-md overflow-hidden rounded-2xl border border-zinc-200 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-            <Image
-              src="/images/vault-product-image.png"
-              alt="שייקר VAULT המגנטי"
-              fill
-              sizes="100vw"
               className="object-cover"
             />
           </div>
-          <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+          <ul className="mx-auto mt-8 grid max-w-3xl gap-3 sm:grid-cols-2">
             {ANATOMY.map(({ icon: Icon, label }) => (
               <li
                 key={label}

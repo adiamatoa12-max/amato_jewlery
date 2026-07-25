@@ -61,10 +61,10 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     images: [
       {
-        url: "/images/vault-shaker-hero.png",
+        url: "/images/שייקר חדש2.jpeg",
         width: 1200,
-        height: 1500,
-        alt: "שייקר VAULT המגנטי",
+        height: 800,
+        alt: "שייקר VAULT החשמלי המגנטי",
       },
     ],
   },
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
-    images: ["/images/vault-shaker-hero.png"],
+    images: ["/images/שייקר חדש2.jpeg"],
   },
 };
 
