@@ -583,8 +583,8 @@ function BundleBanner() {
           {/* Visual — DOM-first: top on mobile, right column in RTL desktop */}
           <div className="w-full bg-transparent">
             <Image
-              src="/images/accessory-bundle-set.png"
-              alt="סט VAULT המלא — שייקר ואביזרים"
+              src="/images/vault-bundle-new.png"
+              alt="סט VAULT המלא — שייקר חשמלי, טבעת מגנטית, נרתיק אוזניות, מגבת ומברשת ניקוי"
               width={1200}
               height={900}
               sizes="(min-width: 768px) 50vw, 100vw"
