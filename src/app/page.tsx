@@ -110,9 +110,9 @@ const COMPARISON_ROWS: {
 }[] = [
   {
     feature: "נפח ארגונומי",
-    vault: "500 מ״ל",
+    vault: "700 מ״ל",
     electric: "600 מ״ל+",
-    classic: "700 מ״ל",
+    classic: "900 מ״ל",
   },
   {
     feature: "קל על המגנט ונכנס למחזיק כוסות",
@@ -215,17 +215,17 @@ function HowItWorks() {
           ))}
         </div>
 
-        {/* 500ml positioning + 3-way comparison table (replaces the old
+        {/* 700ml positioning + 3-way comparison table (replaces the old
             static steps graphic — lighter, scannable, no image weight). */}
         <FadeIn delay={120}>
           <div dir="rtl" className="mx-auto mt-12 max-w-3xl">
             <h3 className="text-center font-display text-2xl font-black tracking-tight text-[#000000] sm:text-3xl">
-              נפח 500 מ״ל. בדיוק כמו שצריך.
+              נפח 700 מ״ל. בדיוק כמו שצריך.
             </h3>
             <p className="mx-auto mt-4 max-w-xl text-center text-base leading-[1.7] text-[#2D3748]">
-              גדול מספיק לשייק מלא, קומפקטי מספיק כדי להישאר{" "}
-              <strong className="font-bold text-[#111111]">קל על המגנט</strong>.
-              נכנס בול למחזיק הכוסות ולתיק האימונים. התוצאה: שייק מרוכז בלי קצף.
+              קיבולת נדיבה שמספיקה לשייק חלבון מלא ולמים לאורך כל האימון, ועדיין{" "}
+              <strong className="font-bold text-[#111111]">נכנסת בול למחזיק הכוסות</strong>{" "}
+              ולתיק האימונים. התוצאה: שייק חלק וקטיפתי, בלי גושים.
             </p>
 
             <div className="mt-10 overflow-x-auto rounded-2xl bg-white shadow-[0_10px_30px_rgba(0,0,0,0.04)]">
