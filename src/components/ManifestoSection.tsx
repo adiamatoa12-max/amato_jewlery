@@ -12,7 +12,7 @@ import FadeIn from "@/components/FadeIn";
  */
 const PRODUCT_URL = `/product/${encodeURIComponent("vault-השייקר-המגנטי")}`;
 const LIFESTYLE_IMG = "/images/שייקר חדש.jpeg"; // next/image encodes the path
-const MAGGRIP_VIDEO = `/videos/${encodeURIComponent("שייקר חדש4.mp4")}`;
+const MAGGRIP_VIDEO = `/videos/${encodeURIComponent("סרטון שייקר חדש.mp4")}`;
 
 // Three core pillars. In the RTL grid the first item renders on the right,
 // so the visual order is: motor (right) · magnet (center) · seal (left).
