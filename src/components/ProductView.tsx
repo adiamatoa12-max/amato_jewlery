@@ -18,7 +18,7 @@ import { WAITLIST_MODE, EXTRAS_AVAILABLE } from "@/lib/config";
 import {
   FOUNDER_PRICE,
   FOUNDER_COMPARE_AT,
-  BUNDLE_DISCOUNT,
+  BUNDLE_PRICE,
 } from "@/lib/pricing";
 import WaitlistButton from "@/components/WaitlistButton";
 
@@ -102,8 +102,9 @@ export default function ProductView({
   // Pricing: single unit (Founder's Edition price) vs. 2-pack launch discount.
   const unit = FOUNDER_PRICE;
   const bundleWas = unit * 2;
-  const bundleNow = Math.round(unit * 2 * (1 - BUNDLE_DISCOUNT));
+  const bundleNow = BUNDLE_PRICE;
   const bundleSaves = bundleWas - bundleNow;
+  const bundlePct = Math.round((1 - bundleNow / bundleWas) * 100);
   const displayPrice = bundle ? bundleNow : unit;
 
   // Checkout: create a fresh Shopify cart with the live-catalog variant id and
@@ -262,7 +263,7 @@ export default function ProductView({
             <BundleOption
               selected={bundle}
               onSelect={() => setBundle(true)}
-              title="קנה 2 (15% הנחה)"
+              title={`קנה 2 (${bundlePct}% הנחה)`}
               priceLabel={formatPrice(bundleNow, product.currency)}
               badge="המשתלם ביותר"
               note={`חוסכים ${formatPrice(bundleSaves, product.currency)}`}
@@ -500,7 +501,7 @@ export default function ProductView({
                 {product.title}
               </span>
               <span className="truncate text-[11px] font-medium text-emerald-600">
-                {bundle ? "2 יחידות · 15% הנחה" : "משלוח חינם"}
+                {bundle ? `2 יחידות · ${bundlePct}% הנחה` : "משלוח חינם"}
               </span>
             </>
           )}
