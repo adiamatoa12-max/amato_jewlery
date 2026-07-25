@@ -19,15 +19,15 @@ const MAGGRIP_VIDEO = `/videos/${encodeURIComponent("סרטון שייקר חד�
 const PILLARS = [
   {
     title: "מנוע חשמלי עוצמתי",
-    body: "מוחק גושים בשנייה אחת. שייק חלק ומושלם בכל פעם, בלי מאמץ.",
+    body: "מוחק גושים בשנייה. שייק חלק ומושלם בלי מאמץ.",
   },
   {
     title: "מגנט MAG-GRIP",
-    body: "מגנט N52 משחרר לך את הידיים. הטלפון נעול ויציב בגובה העיניים לאורך כל האימון.",
+    body: "מגנט N52 משחרר את הידיים. הטלפון נעול בגובה העיניים לאורך כל האימון.",
   },
   {
     title: "אטימה הרמטית",
-    body: "100% חסינות לנזילות ודליפות. זורקים לתיק ומתאמנים בראש שקט.",
+    body: "100% חסין לנזילות. זורקים לתיק ומתאמנים בראש שקט.",
   },
 ];
 
@@ -54,7 +54,7 @@ export default function ManifestoSection({
               הסטנדרט של VAULT
             </h2>
             <p className="mx-auto mt-6 max-w-2xl text-center font-display text-xl font-bold tracking-tight text-[#2D3748] sm:text-2xl">
-              עידן הציוד הזול בחדר הכושר נגמר.
+              עידן הציוד הזול נגמר.
             </p>
           </FadeIn>
 
@@ -106,13 +106,13 @@ export default function ManifestoSection({
               </div>
               <div dir="rtl" className="text-right">
                 <h3 className="font-display text-3xl font-black tracking-tight text-[#111111] sm:text-4xl">
-                  עיצוב שיושב נכון.
+                  עיצוב שיושב נכון
                 </h3>
                 <p className="mt-5 text-lg font-medium leading-[1.85] text-[#2D3748] sm:text-xl">
                   <strong className="font-bold text-[#111111]">ארגונומיה מדויקת</strong>{" "}
                   שנשארת נוחה גם באמצע האימון.{" "}
                   <br className="hidden sm:block" />
-                  אוחזים חזק, מרגישים קל — בלי להתפשר על הסטייל.
+                  אוחזים חזק ומרגישים קל — בלי להתפשר על הסטייל.
                 </p>
               </div>
             </div>
@@ -132,13 +132,13 @@ export default function ManifestoSection({
               </div>
               <div dir="rtl" className="text-right lg:order-1">
                 <h3 className="font-display text-3xl font-black tracking-tight text-[#111111] sm:text-4xl">
-                  תמיד איתך, בכל אימון.
+                  תמיד איתך בכל אימון
                 </h3>
                 <p className="mt-5 text-lg font-medium leading-[1.85] text-[#2D3748] sm:text-xl">
                   <strong className="font-bold text-[#111111]">נצמד לכל משקולת או ספסל מתכתי</strong>.
                   הטלפון תמיד בגובה העיניים.{" "}
                   <br className="hidden sm:block" />
-                  ידיים חופשיות, אפס הסחות דעת, אפס טלפונים על הרצפה.
+                  ידיים חופשיות ואפס טלפונים על הרצפה.
                 </p>
               </div>
             </div>

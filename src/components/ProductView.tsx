@@ -56,7 +56,7 @@ const TRUST_BADGES = [
   {
     icon: Lock,
     label: "סליקה מאובטחת ומוצפנת SSL",
-    sub: "קנייה בטוחה — פרטי התשלום שלכם מוגנים ומוצפנים.",
+    sub: "פרטי התשלום שלכם מוגנים ומוצפנים.",
   },
 ];
 
@@ -195,7 +195,7 @@ export default function ProductView({
             />
             <p className="text-base leading-[1.7] text-[#2D3748]">
               <strong className="font-bold text-[#111111]">מיקסר חשמלי מובנה</strong> —
-              ערבוב בלחיצת כפתור לשייק חלק ומושלם בכל פעם, בלי גושים.
+              שייק חלק ומושלם בלחיצת כפתור, בלי גושים.
             </p>
           </div>
 
@@ -341,7 +341,7 @@ export default function ProductView({
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500" />
               </span>
               <span className="text-xs font-bold text-red-700">
-                מלאי מוגבל: נותרו רק 14 יחידות למהדורת ההשקה!
+                מלאי מוגבל — נותרו 14 יחידות בלבד למהדורת ההשקה!
               </span>
             </div>
           )}
@@ -402,7 +402,7 @@ export default function ProductView({
             <Accordion title="מפרט טכני" body={product.material} />
             <Accordion
               title="משלוח ואחריות"
-              body="משלוח חינם עד הבית תוך 7–14 ימי עסקים. לא מרוצים? מחזירים תוך 30 יום, ללא שאלות מיותרות."
+              body="משלוח חינם עד הבית תוך 7–14 ימי עסקים. לא מרוצים? מחזירים תוך 30 יום, בלי שאלות."
             />
           </div>
         </section>

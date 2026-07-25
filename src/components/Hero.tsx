@@ -42,16 +42,16 @@ export default function Hero() {
         <FadeIn>
           <div className="flex flex-col items-center">
             <p className="mb-4 text-xs font-bold tracking-[0.2em] text-zinc-200 sm:text-sm">
-              הנדסת ביצועים. אפס פשרות.
+              הנדסת ביצועים · אפס פשרות
             </p>
             <h1 className="font-display text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
-              האימון שלך, משודרג.
+              האימון שלך משודרג
             </h1>
             <p className="mt-3 max-w-2xl text-lg font-light leading-relaxed text-zinc-100 sm:text-xl">
               הטלפון מאובטח. השייק מושלם.
             </p>
             <p className="mx-auto mt-5 max-w-md text-base font-light leading-relaxed text-zinc-300">
-              בלי טלפון על הרצפה. בלי גושים בשייק. רק ביצועים.
+              בלי טלפון על הרצפה. בלי גושים. רק ביצועים.
             </p>
 
             <div className="mt-10 sm:mt-10">

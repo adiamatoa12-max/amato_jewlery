@@ -40,8 +40,8 @@ export default function ThankYou({
         תודה על ההזמנה!
       </h1>
       <p className="mt-4 max-w-md text-base leading-[1.7] text-[#2D3748] sm:text-lg">
-        ההזמנה שלך התקבלה ואישור נשלח לכתובת המייל שלך. אנחנו כבר אורזים אותה
-        בקפידה — תקבלו עדכון עם פרטי המעקב ברגע שתצא לדרך.
+        ההזמנה התקבלה ואישור נשלח למייל שלך. אנחנו כבר אורזים אותה בקפידה —
+        תקבלו עדכון עם פרטי המעקב ברגע שתצא לדרך.
       </p>
       <p className="mt-3 text-xs tracking-[0.15em] text-zinc-500" dir="ltr">
         ORDER&nbsp;#VLT-{"{{order_number}}"}
@@ -73,7 +73,7 @@ export default function ThankYou({
                 הוסיפו שייקר שני — 30% הנחה
               </h2>
               <p className="mt-1 text-xs leading-relaxed text-zinc-600">
-                מתנה מושלמת, או גיבוי לתיק הכושר. רק עכשיו, במחיר ההזמנה הזו.
+                מתנה מושלמת או גיבוי לתיק הכושר. רק עכשיו, במחיר ההזמנה הזו.
               </p>
               <div className="mt-2 flex items-center justify-end gap-2">
                 <span className="text-sm tabular-nums text-zinc-500 line-through">
