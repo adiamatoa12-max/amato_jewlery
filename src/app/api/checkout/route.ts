@@ -30,7 +30,7 @@ export async function POST(request: Request) {
     );
   }
 
-  let body: { lines?: CheckoutLine[] };
+  let body: { lines?: CheckoutLine[]; discountCodes?: string[] };
   try {
     body = await request.json();
   } catch {
@@ -48,8 +48,16 @@ export async function POST(request: Request) {
     );
   }
 
+  // Bundle/promo discount codes applied to the Shopify cart (e.g. the 2-pack
+  // code). Sanitised to non-empty strings; Shopify ignores any that don't match.
+  const discountCodes = Array.isArray(body.discountCodes)
+    ? body.discountCodes.filter(
+        (c): c is string => typeof c === "string" && c.trim().length > 0,
+      )
+    : [];
+
   try {
-    const cart = await createCart(lines);
+    const cart = await createCart(lines, discountCodes);
     return NextResponse.json({ url: cart.checkoutUrl });
   } catch (error) {
     // Log the real (English) Shopify error server-side; show Hebrew to the user.

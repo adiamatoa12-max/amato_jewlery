@@ -19,6 +19,7 @@ import {
   FOUNDER_PRICE,
   FOUNDER_COMPARE_AT,
   BUNDLE_PRICE,
+  BUNDLE_DISCOUNT_CODE,
 } from "@/lib/pricing";
 import WaitlistButton from "@/components/WaitlistButton";
 
@@ -123,6 +124,9 @@ export default function ProductView({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           lines: [{ variantId: product.variantId, quantity: bundle ? 2 : 1 }],
+          // 2-pack: apply the bundle discount so the cart nets to BUNDLE_PRICE
+          // (2 units − 139 ₪) instead of 2 × the single-unit variant price.
+          discountCodes: bundle ? [BUNDLE_DISCOUNT_CODE] : [],
         }),
       });
       const data = (await res.json()) as { url?: string; error?: string };

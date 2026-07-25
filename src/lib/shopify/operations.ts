@@ -135,12 +135,13 @@ interface CartLineInput {
 
 export async function createCart(
   lines: CartLineInput[] = [],
+  discountCodes: string[] = [],
 ): Promise<Cart> {
   const data = await shopifyFetch<{
     cartCreate: { cart: RawCart; userErrors: UserError[] };
   }>({
     query: CREATE_CART_MUTATION,
-    variables: { lines },
+    variables: { lines, discountCodes },
     cache: "no-store",
   });
   throwOnUserErrors(data.cartCreate.userErrors, "Failed to create cart");

@@ -190,8 +190,8 @@ export const GET_COLLECTION_PRODUCTS_QUERY = /* GraphQL */ `
 `;
 
 export const CREATE_CART_MUTATION = /* GraphQL */ `
-  mutation CreateCart($lines: [CartLineInput!]) {
-    cartCreate(input: { lines: $lines }) {
+  mutation CreateCart($lines: [CartLineInput!], $discountCodes: [String!]) {
+    cartCreate(input: { lines: $lines, discountCodes: $discountCodes }) {
       cart {
         ...CartFields
       }
