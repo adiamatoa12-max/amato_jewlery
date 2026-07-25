@@ -22,7 +22,6 @@ import FooterLink, { type FooterLinkItem } from "@/components/FooterLink";
 import MediaPlaceholder from "@/components/MediaPlaceholder";
 import Hero from "@/components/Hero";
 import ManifestoSection from "@/components/ManifestoSection";
-import AutoplayVideo from "@/components/AutoplayVideo";
 import FaqAccordion from "@/components/FaqAccordion";
 import WaitlistButton from "@/components/WaitlistButton";
 import { WAITLIST_MODE, EXTRAS_AVAILABLE } from "@/lib/config";
@@ -63,7 +62,6 @@ export default function Home() {
         <Hero />
         <ManifestoSection />
         <HowItWorks />
-        <UseCases />
         <MicroConversion />
         <HorizontalStreaming />
         <Anatomy />
@@ -288,49 +286,6 @@ function HowItWorks() {
             </div>
           </div>
         </FadeIn>
-      </div>
-    </section>
-  );
-}
-
-/* ── 'The Gym Life' showcase (video + lifestyle shot, side by side) ───── */
-// New electric-shaker demo clip (lives under /images with the new assets).
-const GYM_DEMO_VIDEO = `/videos/${encodeURIComponent("שייקר חדש4.mp4")}`;
-
-function UseCases() {
-  return (
-    <section className="bg-surface-alt px-6 py-12 lg:px-10 lg:py-16">
-      <div className="mx-auto max-w-6xl">
-        <FadeIn>
-          <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-500">
-            אורח חיים אתלטי
-          </p>
-          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-900 lg:text-4xl">
-            בנוי למתאמנים בחדר הכושר
-          </h2>
-        </FadeIn>
-
-        <div className="mx-auto mt-14 grid max-w-5xl grid-cols-1 gap-2 md:grid-cols-2">
-          <FadeIn>
-            <div className="group relative aspect-video overflow-hidden rounded-3xl shadow-[0_24px_70px_-35px_rgba(0,0,0,0.9)]">
-              <AutoplayVideo
-                src={GYM_DEMO_VIDEO}
-                className="absolute inset-0 h-full w-full object-cover object-center"
-              />
-            </div>
-          </FadeIn>
-          <FadeIn delay={100}>
-            <div className="group relative aspect-video overflow-hidden rounded-3xl shadow-[0_24px_70px_-35px_rgba(0,0,0,0.9)]">
-              <Image
-                src="/images/שייקר חדש3.jpeg"
-                alt="ספורטאי מחזיק את שייקר VAULT החשמלי בחדר הכושר"
-                fill
-                sizes="(min-width: 768px) 50vw, 100vw"
-                className="object-cover object-center"
-              />
-            </div>
-          </FadeIn>
-        </div>
       </div>
     </section>
   );
