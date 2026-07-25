@@ -51,7 +51,7 @@ export const DEFAULT_REVIEWS: Review[] = [
     date: "יוני 2026",
     verified: true,
     body: "הגיע סופר מהיר! אספתי מהחבילה ולא התאפקתי ופתחתי כבר באוטו. האיכות של הפלסטיק מרגישה פרימיום ברמות והוא יושב בול במחזיק כוסות.",
-    image: "/images/review-ugc-car.png",
+    image: "/images/vault_review_photo_4.png",
   },
   {
     name: "רוני כ.",
@@ -59,7 +59,7 @@ export const DEFAULT_REVIEWS: Review[] = [
     date: "יוני 2026",
     verified: true,
     body: "הדבר הראשון שעשיתי זה לבדוק את המגנט על המקרר במטבח – תופס חזק בטירוף ולא זז. המנוע החשמלי מערבב את החלבון בשניות בלי גושים בכלל. שווה כל שקל.",
-    image: "/images/review-ugc-fridge.png",
+    image: "/images/vault_review_photo_1.png",
   },
   {
     name: "דניאל ל.",
@@ -67,7 +67,7 @@ export const DEFAULT_REVIEWS: Review[] = [
     date: "מאי 2026",
     verified: true,
     body: "אריזה ממש יפה ומושקעת, מתאים בול גם כמתנה. השייקר עצמו נראה הצגה, אטום לחלוטין ולא נוזל בתיק. ממליץ בחום!",
-    image: "/images/review-ugc-unboxing.png",
+    image: "/images/vault_review_photo_3.png",
   },
   {
     name: "מאור א.",
@@ -75,7 +75,7 @@ export const DEFAULT_REVIEWS: Review[] = [
     date: "מאי 2026",
     verified: true,
     body: "קניתי בעיקר בגלל הקטע של המגנט לטלפון במכון וזה פשוט גאוני. השייקר עצמו קל לניקוי והסוללה מחזיקה מלא זמן.",
-    image: "/images/review-ugc-closeup.png",
+    image: "/images/vault_review_photo_2.png",
   },
 ];
 
