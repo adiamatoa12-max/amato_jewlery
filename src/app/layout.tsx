@@ -46,11 +46,12 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   alternates: { canonical: "/" },
   icons: {
-    // Square "Ü" mark cropped from the VAULT wordmark — the wordmark itself
-    // is too wide to render legibly in a browser tab. (Apple touch icon is
-    // handled separately by the existing app/apple-icon.svg convention.)
-    icon: "/images/favicon-mark.png",
-    shortcut: "/images/favicon-mark.png",
+    // Custom VAULT favicon used for the browser tab, shortcut and Apple touch
+    // icon. (The old app/apple-icon.svg file-convention icon was removed so
+    // this single source of truth wins for the apple-touch-icon too.)
+    icon: "/images/favicon.png",
+    shortcut: "/images/favicon.png",
+    apple: "/images/favicon.png",
   },
   openGraph: {
     type: "website",
