@@ -21,6 +21,7 @@ import {
   BUNDLE_DISCOUNT_CODE,
 } from "@/lib/pricing";
 import WaitlistButton from "@/components/WaitlistButton";
+import { SITE_URL } from "@/lib/site";
 
 const GOLD = "#2952e3";
 
@@ -137,9 +138,20 @@ export default function ProductView({
             {
               variantId: product.variantId,
               quantity: bundle ? 2 : 1,
-              // Chosen colour — travels to Shopify as a line-item property so
-              // it's visible on the order in order management.
-              attributes: [{ key: "צבע", value: COLORS[activeColor].name }],
+              // Chosen colour — travels to Shopify as line-item properties so
+              // it's visible on the order in order management. `_color_image`
+              // is an absolute URL to the colour's image; the leading "_" keeps
+              // it hidden from the customer-facing line while remaining on the
+              // order (and available to a checkout app/extension that renders
+              // custom line images — native checkout still uses the variant
+              // image, so on its own this does not swap the checkout thumbnail).
+              attributes: [
+                { key: "צבע", value: COLORS[activeColor].name },
+                {
+                  key: "_color_image",
+                  value: new URL(COLORS[activeColor].image, SITE_URL).href,
+                },
+              ],
             },
           ],
           // 2-pack: apply the bundle discount so the cart nets to BUNDLE_PRICE
