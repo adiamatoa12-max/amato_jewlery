@@ -91,6 +91,17 @@ const GALLERY_MEDIA: GalleryItem[] = [
   },
 ];
 
+// Selectable shaker colours. Each swaps the main product image (studio shot on
+// white). `swatch` is the dot colour; next/image encodes the Hebrew filenames.
+type ShakerColor = { name: string; image: string; swatch: string };
+const COLORS: ShakerColor[] = [
+  { name: "שחור", image: "/images/שחור.png", swatch: "#1c1c1e" },
+  { name: "לבן", image: "/images/לבן.png", swatch: "#ededeb" },
+  { name: "כחול", image: "/images/כחול.png", swatch: "#6b9bd1" },
+  { name: "ירוק", image: "/images/ירוק.png", swatch: "#8ed3a2" },
+  { name: "ורוד", image: "/images/ורוד.png", swatch: "#e8a3c4" },
+];
+
 export default function ProductView({
   product,
   soldOut,
@@ -145,8 +156,19 @@ export default function ProductView({
   const toggleAddOn = (handle: string) =>
     setAddOns((prev) => ({ ...prev, [handle]: !prev[handle] }));
 
-  const [activeImg, setActiveImg] = useState(0);
-  const activeMedia = GALLERY_MEDIA[activeImg] ?? GALLERY_MEDIA[0];
+  // Gallery selection: a colour is always selected (drives the main studio
+  // shot). `activeThumb` is null while a colour is shown, or the index of a
+  // lifestyle/video thumbnail once one is clicked.
+  const [activeColor, setActiveColor] = useState(0);
+  const [activeThumb, setActiveThumb] = useState<number | null>(null);
+  const activeMedia =
+    activeThumb === null
+      ? {
+          type: "image" as const,
+          src: COLORS[activeColor].image,
+          alt: `שייקר VAULT החשמלי — צבע ${COLORS[activeColor].name}`,
+        }
+      : GALLERY_MEDIA[activeThumb] ?? GALLERY_MEDIA[0];
 
   // Sticky bar appears only once the main Buy button has scrolled out of view
   // (above the viewport) — keeps the CTA reachable without crowding the page.
@@ -239,6 +261,40 @@ export default function ProductView({
               </p>
             </>
           )}
+
+          {/* Colour selector — swaps the main product image */}
+          <div className="mt-7">
+            <p className="mb-3 text-sm font-semibold text-zinc-900">
+              צבע:{" "}
+              <span className="font-medium text-zinc-500">
+                {COLORS[activeColor].name}
+              </span>
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {COLORS.map((c, i) => {
+                const selected = activeColor === i;
+                return (
+                  <button
+                    key={c.name}
+                    type="button"
+                    onClick={() => {
+                      setActiveColor(i);
+                      setActiveThumb(null);
+                    }}
+                    aria-label={`צבע ${c.name}`}
+                    aria-pressed={selected}
+                    title={c.name}
+                    className={`h-10 w-10 rounded-full border border-black/10 shadow-sm transition-all duration-200 ${
+                      selected
+                        ? "ring-2 ring-[#2952e3] ring-offset-2 ring-offset-white"
+                        : "hover:scale-110"
+                    }`}
+                    style={{ backgroundColor: c.swatch }}
+                  />
+                );
+              })}
+            </div>
+          </div>
 
           {/* Purchase controls — hidden in pre-launch waitlist mode */}
           {!WAITLIST_MODE && (
@@ -403,7 +459,11 @@ export default function ProductView({
 
         {/* GALLERY — order-1 on mobile (top, under header), left column on desktop (RTL). Mixed media: image + action video. */}
         <section className="order-1 flex flex-col gap-4 lg:order-2">
-          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-zinc-100">
+          <div
+            className={`relative aspect-[4/5] w-full overflow-hidden rounded-2xl transition-colors duration-300 ${
+              activeThumb === null ? "bg-white" : "bg-zinc-100"
+            }`}
+          >
             {activeMedia.type === "video" ? (
               <video
                 src={activeMedia.src}
@@ -416,28 +476,33 @@ export default function ProductView({
               />
             ) : (
               <Image
+                key={activeMedia.src}
                 src={activeMedia.src}
                 alt={activeMedia.alt}
                 fill
                 priority
                 sizes="(min-width: 1024px) 50vw, 100vw"
-                className="object-cover object-center transition-transform duration-700 ease-in-out hover:scale-105"
+                className={`transition-transform duration-500 ease-in-out hover:scale-105 ${
+                  activeThumb === null
+                    ? "object-contain p-4"
+                    : "object-cover object-center"
+                }`}
               />
             )}
           </div>
 
-          {/* Thumbnails — clean, rounded-2xl, no borders (ring marks active).
-              5 columns so all media (4 images + 1 video) sit on one row. */}
+          {/* Thumbnails — lifestyle shots + video (colours are chosen via the
+              swatches). 5 columns so all media sit on one row. */}
           <div className="grid grid-cols-5 gap-2.5">
             {GALLERY_MEDIA.map((m, i) => (
               <button
                 key={m.src}
                 type="button"
-                onClick={() => setActiveImg(i)}
+                onClick={() => setActiveThumb(i)}
                 aria-label={m.alt}
-                aria-current={i === activeImg}
+                aria-current={i === activeThumb}
                 className={`relative aspect-square overflow-hidden rounded-2xl transition-all duration-300 ${
-                  i === activeImg
+                  i === activeThumb
                     ? "ring-2 ring-[#2952e3]"
                     : "opacity-60 hover:opacity-100"
                 }`}
