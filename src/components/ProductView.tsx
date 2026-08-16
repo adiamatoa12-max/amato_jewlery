@@ -133,7 +133,15 @@ export default function ProductView({
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          lines: [{ variantId: product.variantId, quantity: bundle ? 2 : 1 }],
+          lines: [
+            {
+              variantId: product.variantId,
+              quantity: bundle ? 2 : 1,
+              // Chosen colour — travels to Shopify as a line-item property so
+              // it's visible on the order in order management.
+              attributes: [{ key: "צבע", value: COLORS[activeColor].name }],
+            },
+          ],
           // 2-pack: apply the bundle discount so the cart nets to BUNDLE_PRICE
           // (2 units − 139 ₪) instead of 2 × the single-unit variant price.
           discountCodes: bundle ? [BUNDLE_DISCOUNT_CODE] : [],

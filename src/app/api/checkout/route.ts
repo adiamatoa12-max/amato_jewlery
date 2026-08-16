@@ -6,6 +6,8 @@ import { checkRateLimit } from "@/lib/rate-limit";
 interface CheckoutLine {
   variantId?: string;
   quantity: number;
+  /** Custom line properties (e.g. chosen colour), shown on the Shopify order. */
+  attributes?: { key: string; value: string }[];
 }
 
 /**
@@ -39,7 +41,24 @@ export async function POST(request: Request) {
 
   const lines = (body.lines ?? [])
     .filter((l) => l.variantId && l.quantity > 0)
-    .map((l) => ({ merchandiseId: l.variantId as string, quantity: l.quantity }));
+    .map((l) => {
+      // Keep only well-formed {key, value} string pairs.
+      const attributes = Array.isArray(l.attributes)
+        ? l.attributes.filter(
+            (a) =>
+              a &&
+              typeof a.key === "string" &&
+              a.key.trim().length > 0 &&
+              typeof a.value === "string" &&
+              a.value.trim().length > 0,
+          )
+        : [];
+      return {
+        merchandiseId: l.variantId as string,
+        quantity: l.quantity,
+        ...(attributes.length ? { attributes } : {}),
+      };
+    });
 
   if (lines.length === 0) {
     return NextResponse.json(

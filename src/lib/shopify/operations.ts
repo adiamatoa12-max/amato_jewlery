@@ -131,6 +131,8 @@ export async function getCollectionProducts(
 interface CartLineInput {
   merchandiseId: string;
   quantity: number;
+  /** Custom line-item properties (e.g. chosen colour) — surfaced on the order. */
+  attributes?: { key: string; value: string }[];
 }
 
 export async function createCart(
