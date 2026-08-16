@@ -30,7 +30,7 @@ const GOLD = "#2952e3";
 
 // Main product. The handle has Hebrew chars, so encode it for a safe URL;
 // the [handle] route decodes it back before the Shopify lookup.
-const PRODUCT_HANDLE = "vault-השייקר-המגנטי";
+const PRODUCT_HANDLE = "vault-magnetic-shaker";
 const PRODUCT_URL = `/product/${encodeURIComponent(PRODUCT_HANDLE)}`;
 
 /** Primary CTA — "get notified" in pre-launch waitlist mode, else a shop link. */

@@ -8,7 +8,7 @@ const MESSAGES = [
   "מבצע השקה: קנו 2 שייקרים וקבלו 37% הנחה + משלוח חינם | מלאי ראשון מוגבל",
 ];
 
-const PRODUCT_URL = `/product/${encodeURIComponent("vault-השייקר-המגנטי")}`;
+const PRODUCT_URL = `/product/${encodeURIComponent("vault-magnetic-shaker")}`;
 
 export default function AnnouncementBar() {
   const [active, setActive] = useState(0);

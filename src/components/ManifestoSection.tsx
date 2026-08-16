@@ -10,7 +10,7 @@ import FadeIn from "@/components/FadeIn";
  * (see HowItWorks in app/page.tsx) — this section stays story-led to avoid
  * running two comparison blocks back-to-back.
  */
-const PRODUCT_URL = `/product/${encodeURIComponent("vault-השייקר-המגנטי")}`;
+const PRODUCT_URL = `/product/${encodeURIComponent("vault-magnetic-shaker")}`;
 const LIFESTYLE_IMG = "/images/שייקר חדש.jpeg"; // next/image encodes the path
 const MAGGRIP_VIDEO = `/videos/${encodeURIComponent("סרטון שייקר חדש.mp4")}`;
 

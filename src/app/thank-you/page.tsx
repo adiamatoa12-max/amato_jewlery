@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export const revalidate = 60;
 
 export default async function ThankYouPage() {
-  const product = await getProduct("vault-השייקר-המגנטי").catch(() => null);
+  const product = await getProduct("vault-magnetic-shaker").catch(() => null);
 
   return (
     <div className="flex min-h-full flex-col bg-surface text-zinc-900">

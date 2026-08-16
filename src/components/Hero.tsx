@@ -6,7 +6,7 @@ import WaitlistButton from "@/components/WaitlistButton";
 import FadeIn from "@/components/FadeIn";
 
 // Main product — Hebrew handle, encoded for a safe URL (route decodes it).
-const PRODUCT_URL = `/product/${encodeURIComponent("vault-השייקר-המגנטי")}`;
+const PRODUCT_URL = `/product/${encodeURIComponent("vault-magnetic-shaker")}`;
 // Hero background clip (new electric shaker in action). Hebrew filename with a
 // space → encode for a safe URL. The clip lives under /images with the assets.
 const VIDEO_SRC = `/videos/${encodeURIComponent("שייקר חדש4.mp4")}`;
