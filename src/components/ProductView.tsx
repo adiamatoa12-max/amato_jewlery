@@ -21,7 +21,6 @@ import {
   BUNDLE_DISCOUNT_CODE,
 } from "@/lib/pricing";
 import WaitlistButton from "@/components/WaitlistButton";
-import { SITE_URL } from "@/lib/site";
 
 const GOLD = "#2952e3";
 
@@ -92,15 +91,21 @@ const GALLERY_MEDIA: GalleryItem[] = [
   },
 ];
 
-// Selectable shaker colours. Each swaps the main product image (studio shot on
-// white). `swatch` is the dot colour; next/image encodes the Hebrew filenames.
-type ShakerColor = { name: string; image: string; swatch: string };
+// Selectable shaker colours, each mapped to its Shopify variant so the right
+// variant is sent to checkout. `swatch` is the dot colour; `image` swaps the
+// main product shot (next/image encodes the Hebrew filenames).
+type ShakerColor = {
+  name: string;
+  image: string;
+  swatch: string;
+  variantId: string;
+};
 const COLORS: ShakerColor[] = [
-  { name: "שחור", image: "/images/שחור.png", swatch: "#1c1c1e" },
-  { name: "לבן", image: "/images/לבן.png", swatch: "#ededeb" },
-  { name: "כחול", image: "/images/כחול.png", swatch: "#6b9bd1" },
-  { name: "ירוק", image: "/images/ירוק.png", swatch: "#8ed3a2" },
-  { name: "ורוד", image: "/images/ורוד.png", swatch: "#e8a3c4" },
+  { name: "שחור", image: "/images/שחור.png", swatch: "#1c1c1e", variantId: "gid://shopify/ProductVariant/54531183313109" },
+  { name: "לבן", image: "/images/לבן.png", swatch: "#ededeb", variantId: "gid://shopify/ProductVariant/54531183378645" },
+  { name: "כחול", image: "/images/כחול.png", swatch: "#6b9bd1", variantId: "gid://shopify/ProductVariant/54531183345877" },
+  { name: "ירוק", image: "/images/ירוק.png", swatch: "#8ed3a2", variantId: "gid://shopify/ProductVariant/54531183411413" },
+  { name: "ורוד", image: "/images/ורוד.png", swatch: "#e8a3c4", variantId: "gid://shopify/ProductVariant/54531183444181" },
 ];
 
 export default function ProductView({
@@ -127,12 +132,14 @@ export default function ProductView({
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
   async function handleCheckout() {
     if (checkingOut) return;
-    // Guard: without a Shopify variant id the cart line is dropped server-side
-    // and the API returns the confusing "no items" error. This happens when the
-    // catalog falls back to the bundled product (Shopify lookup failed) — give a
-    // clear, honest message instead of a doomed request.
-    if (!product.variantId) {
-      console.warn("[checkout] missing product.variantId — cannot check out");
+    // Send the SELECTED colour's Shopify variant (falls back to the product's
+    // default variant). Its own variant image + option is what Shopify shows on
+    // the order and checkout for that colour.
+    const variantId = COLORS[activeColor].variantId || product.variantId;
+    // Guard: without a variant id the cart line is dropped server-side and the
+    // API returns the confusing "no items" error — give a clear message instead.
+    if (!variantId) {
+      console.warn("[checkout] missing variant id — cannot check out");
       setCheckoutError("הרכישה אינה זמינה כרגע. אנא רעננו את הדף ונסו שוב.");
       return;
     }
@@ -145,22 +152,11 @@ export default function ProductView({
         body: JSON.stringify({
           lines: [
             {
-              variantId: product.variantId,
+              variantId,
               quantity: bundle ? 2 : 1,
-              // Chosen colour — travels to Shopify as line-item properties so
-              // it's visible on the order in order management. `_color_image`
-              // is an absolute URL to the colour's image; the leading "_" keeps
-              // it hidden from the customer-facing line while remaining on the
-              // order (and available to a checkout app/extension that renders
-              // custom line images — native checkout still uses the variant
-              // image, so on its own this does not swap the checkout thumbnail).
-              attributes: [
-                { key: "צבע", value: COLORS[activeColor].name },
-                {
-                  key: "_color_image",
-                  value: new URL(COLORS[activeColor].image, SITE_URL).href,
-                },
-              ],
+              // Colour is captured by the variant itself; also send the Hebrew
+              // colour name as a line property for readable order management.
+              attributes: [{ key: "צבע", value: COLORS[activeColor].name }],
             },
           ],
           // 2-pack: apply the bundle discount so the cart nets to BUNDLE_PRICE
