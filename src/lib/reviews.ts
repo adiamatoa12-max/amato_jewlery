@@ -13,38 +13,10 @@ export interface Review {
   image?: string;
 }
 
-// Real customer reviews keyed by product handle.
-export const REVIEWS_BY_HANDLE: Record<string, Review[]> = {
-  "vault-magnetic-shaker": [
-    {
-      name: "דניאל כהן",
-      rating: 5,
-      date: "מאי 2026",
-      body: "המגנט פשוט מטורף. הטלפון נצמד חזק ולא זז גם באמצע סט כפיפות, וסוף סוף אני מצלם אימונים בלי חצובה. השייקר אטום לגמרי ולא נוזל טיפה. שדרוג רציני.",
-      verified: true,
-    },
-    {
-      name: "נועה לוי",
-      rating: 5,
-      date: "מאי 2026",
-      body: "האריזה הגיעה מושקעת ויוקרתית, והשייקר נראה אפילו טוב יותר מבתמונות. קל לניקוי ונעים לאחיזה, והמעמד לטלפון מושלם לסטרימינג באימון. לא מוותרת עליו.",
-      verified: true,
-    },
-  ],
-  "vault-bundle-set": [
-    {
-      name: "איתי ברקוביץ׳",
-      rating: 5,
-      date: "אפריל 2026",
-      body: "לקחתי את הסט המלא וזה שווה כל שקל. איכות בנייה פרימיום שמרגישים ביד, והטבעות המגנטיות מחזיקות מצוין גם על הכיסוי. כל האביזרים משלימים את חוויית האימון. ממליץ בחום.",
-      verified: true,
-    },
-  ],
-};
-
-// Shown for any product without handle-specific reviews (e.g. the main shaker).
-// Each includes an authentic UGC photo submitted by the customer.
-export const DEFAULT_REVIEWS: Review[] = [
+// UGC reviews with customer photos — the visual highlight of the reviews
+// section. Shown on the shaker page and as the default for any product without
+// its own handle-specific reviews.
+const PHOTO_REVIEWS: Review[] = [
   {
     name: "עידן מ.",
     rating: 5,
@@ -78,6 +50,46 @@ export const DEFAULT_REVIEWS: Review[] = [
     image: "/images/vault_review_photo_2.png",
   },
 ];
+
+// The shaker leads with the UGC photo reviews (so the images always show),
+// followed by written testimonials.
+const SHAKER_REVIEWS: Review[] = [
+  ...PHOTO_REVIEWS,
+  {
+    name: "דניאל כהן",
+    rating: 5,
+    date: "מאי 2026",
+    body: "המגנט פשוט מטורף. הטלפון נצמד חזק ולא זז גם באמצע סט כפיפות, וסוף סוף אני מצלם אימונים בלי חצובה. השייקר אטום לגמרי ולא נוזל טיפה. שדרוג רציני.",
+    verified: true,
+  },
+  {
+    name: "נועה לוי",
+    rating: 5,
+    date: "מאי 2026",
+    body: "האריזה הגיעה מושקעת ויוקרתית, והשייקר נראה אפילו טוב יותר מבתמונות. קל לניקוי ונעים לאחיזה, והמעמד לטלפון מושלם לסטרימינג באימון. לא מוותרת עליו.",
+    verified: true,
+  },
+];
+
+// Real customer reviews keyed by product handle. Both shaker handles (the
+// ASCII catalog handle and the Hebrew Shopify handle) map to the same set so
+// the photo reviews show regardless of which one resolves.
+export const REVIEWS_BY_HANDLE: Record<string, Review[]> = {
+  "vault-magnetic-shaker": SHAKER_REVIEWS,
+  "vault-השייקר-המגנטי": SHAKER_REVIEWS,
+  "vault-bundle-set": [
+    {
+      name: "איתי ברקוביץ׳",
+      rating: 5,
+      date: "אפריל 2026",
+      body: "לקחתי את הסט המלא וזה שווה כל שקל. איכות בנייה פרימיום שמרגישים ביד, והטבעות המגנטיות מחזיקות מצוין גם על הכיסוי. כל האביזרים משלימים את חוויית האימון. ממליץ בחום.",
+      verified: true,
+    },
+  ],
+};
+
+// Shown for any product without handle-specific reviews.
+export const DEFAULT_REVIEWS: Review[] = PHOTO_REVIEWS;
 
 // Total reviews shown in the summary line (we surface a representative sample).
 export const DISPLAY_REVIEW_COUNT = 27;
