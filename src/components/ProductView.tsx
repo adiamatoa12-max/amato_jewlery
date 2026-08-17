@@ -127,6 +127,15 @@ export default function ProductView({
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
   async function handleCheckout() {
     if (checkingOut) return;
+    // Guard: without a Shopify variant id the cart line is dropped server-side
+    // and the API returns the confusing "no items" error. This happens when the
+    // catalog falls back to the bundled product (Shopify lookup failed) — give a
+    // clear, honest message instead of a doomed request.
+    if (!product.variantId) {
+      console.warn("[checkout] missing product.variantId — cannot check out");
+      setCheckoutError("הרכישה אינה זמינה כרגע. אנא רעננו את הדף ונסו שוב.");
+      return;
+    }
     setCheckoutError(null);
     setCheckingOut(true);
     try {

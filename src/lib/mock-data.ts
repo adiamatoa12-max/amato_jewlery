@@ -79,6 +79,10 @@ export const COLLECTIONS: MockCollection[] = [
         currency: "ILS",
         material: MATERIAL,
         availableForSale: true,
+        // Fallback checkout variant id. Set SHOPIFY_SHAKER_VARIANT_ID to the
+        // real Shopify variant so checkout still works when the live Shopify
+        // product lookup fails and this bundled product is served instead.
+        variantId: process.env.SHOPIFY_SHAKER_VARIANT_ID,
         image: "/images/שייקר חדש2.jpeg",
         hoverImage: "/images/שייקר חדש.jpeg",
         gallery: ["/images/שייקר חדש2.jpeg", "/images/שייקר חדש1.jpeg", "/images/שייקר חדש3.jpeg"],
