@@ -224,12 +224,12 @@ export default function ProductView({
             {collectionTitle}
           </Link>
 
-          <h1 className="mt-4 font-display text-4xl font-black leading-tight tracking-tight text-zinc-900 lg:text-5xl">
+          <h1 className="mt-4 font-display text-4xl font-black leading-tight tracking-tight text-white lg:text-5xl">
             {product.title}
           </h1>
 
           {/* Launch edition — scarcity, neutral typography */}
-          <p className="mt-3 flex items-center gap-2 text-[11px] font-bold tracking-[0.15em] text-zinc-600">
+          <p className="mt-3 flex items-center gap-2 text-[11px] font-bold tracking-[0.15em] text-zinc-400">
             <span>מהדורת השקה</span>
             <span className="text-zinc-600" aria-hidden>
               |
@@ -240,32 +240,32 @@ export default function ProductView({
           {/* Electric mixer feature highlight — clean inline, no box */}
           <div className="mt-5 flex items-start gap-2.5">
             <Zap
-              className="mt-0.5 h-5 w-5 shrink-0 text-[#2952e3]"
+              className="mt-0.5 h-5 w-5 shrink-0 text-[#5b82ff]"
               strokeWidth={2}
             />
-            <p className="text-base leading-[1.7] text-[#2D3748]">
-              <strong className="font-bold text-[#111111]">מיקסר חשמלי מובנה</strong> —
+            <p className="text-base leading-[1.7] text-zinc-300">
+              <strong className="font-bold text-white">מיקסר חשמלי מובנה</strong> —
               שייק חלק ומושלם בלחיצת כפתור, בלי גושים.
             </p>
           </div>
 
           {WAITLIST_MODE ? (
             /* Pre-launch: no price — invite the visitor to the waitlist. */
-            <p className="mt-4 text-sm font-semibold tracking-[0.02em] text-zinc-600">
+            <p className="mt-4 text-sm font-semibold tracking-[0.02em] text-zinc-400">
               זמין בקרוב — הירשמו לעדכונים וקבלו עדיפות בהשקה
             </p>
           ) : (
             <>
               <div className="mt-5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                <p className="font-display text-3xl font-extrabold tabular-nums text-zinc-900">
+                <p className="font-display text-3xl font-extrabold tabular-nums text-white">
                   {formatPrice(displayPrice, product.currency)}
                 </p>
                 {bundle && (
                   <>
-                    <span className="text-base tabular-nums text-zinc-400 line-through">
+                    <span className="text-base tabular-nums text-zinc-500 line-through">
                       {formatPrice(bundleWas, product.currency)}
                     </span>
-                    <span className="text-xs font-bold tracking-wide text-zinc-500">
+                    <span className="text-xs font-bold tracking-wide text-zinc-400">
                       חיסכון {formatPrice(bundleSaves, product.currency)}
                     </span>
                   </>
@@ -274,7 +274,7 @@ export default function ProductView({
 
               <p
                 className={`mt-5 flex items-center gap-2 text-xs font-medium tracking-[0.08em] ${
-                  soldOut ? "text-zinc-500" : "text-emerald-600"
+                  soldOut ? "text-zinc-500" : "text-emerald-400"
                 }`}
               >
                 <span
@@ -289,9 +289,9 @@ export default function ProductView({
 
           {/* Colour selector — swaps the main product image */}
           <div className="mt-7">
-            <p className="mb-3 text-sm font-semibold text-zinc-900">
+            <p className="mb-3 text-sm font-semibold text-zinc-200">
               צבע:{" "}
-              <span className="font-medium text-zinc-500">
+              <span className="font-medium text-zinc-400">
                 {COLORS[activeColor].name}
               </span>
             </p>
@@ -309,9 +309,9 @@ export default function ProductView({
                     aria-label={`צבע ${c.name}`}
                     aria-pressed={selected}
                     title={c.name}
-                    className={`h-10 w-10 rounded-full border border-black/10 shadow-sm transition-all duration-200 ${
+                    className={`h-10 w-10 rounded-full border border-white/20 shadow-sm transition-all duration-200 ${
                       selected
-                        ? "ring-2 ring-[#2952e3] ring-offset-2 ring-offset-white"
+                        ? "ring-2 ring-[#5b82ff] ring-offset-2 ring-offset-[#0a0a0c]"
                         : "hover:scale-110"
                     }`}
                     style={{ backgroundColor: c.swatch }}
@@ -410,8 +410,8 @@ export default function ProductView({
 
           {/* Scarcity nudge — sits directly above the buy button. */}
           {!WAITLIST_MODE && !soldOut && (
-            <div className="mt-6 rounded-xl bg-red-50 px-4 py-3">
-              <p className="text-center text-xs font-bold leading-relaxed text-red-700">
+            <div className="mt-6 rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-3">
+              <p className="text-center text-xs font-bold leading-relaxed text-red-300">
                 <span className="relative -mt-px me-1.5 inline-flex h-2 w-2 align-middle">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500 opacity-75" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500" />
@@ -446,26 +446,47 @@ export default function ProductView({
           )}
           </div>
           {!WAITLIST_MODE && !soldOut && (
-            <p className="mt-3 text-center text-xs font-medium tracking-wide text-zinc-500">
-              סליקה מאובטחת · משלוח חינם לכל הארץ · 30 יום החזר כספי
-            </p>
+            <>
+              {/* Express checkout — payment methods available on the secure
+                  Shopify checkout the button above leads to. */}
+              <div className="mt-4 flex flex-col items-center gap-2.5">
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">
+                  תשלום מהיר ומאובטח
+                </span>
+                <div className="flex flex-wrap items-center justify-center gap-2">
+                  {["Apple Pay", "Google Pay", "Shop Pay", "Visa", "Mastercard"].map(
+                    (m) => (
+                      <span
+                        key={m}
+                        className="rounded-md border border-white/10 bg-white/[0.06] px-2.5 py-1 text-[11px] font-semibold text-zinc-300"
+                      >
+                        {m}
+                      </span>
+                    ),
+                  )}
+                </div>
+              </div>
+              <p className="mt-3 text-center text-xs font-medium tracking-wide text-zinc-400">
+                סליקה מאובטחת · משלוח חינם לכל הארץ · 30 יום החזר כספי
+              </p>
+            </>
           )}
           {checkoutError && (
-            <p className="mt-2 text-center text-xs font-medium text-red-600">
+            <p className="mt-2 text-center text-xs font-medium text-red-400">
               {checkoutError}
             </p>
           )}
 
           {/* Trust badges — stacked so the full reassurance copy stays legible */}
-          <ul dir="rtl" className="mt-8 flex flex-col gap-4 border-y border-zinc-200 py-6 text-right">
+          <ul dir="rtl" className="mt-8 flex flex-col gap-4 border-y border-white/10 py-6 text-right">
             {TRUST_BADGES.map(({ icon: Icon, label, sub }) => (
               <li key={label} className="flex items-start gap-3">
-                <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#2952e3]/10 text-[#2952e3]">
+                <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#5b82ff]/15 text-[#5b82ff]">
                   <Icon className="h-[18px] w-[18px]" strokeWidth={1.75} />
                 </span>
                 <div>
-                  <p className="text-sm font-bold text-zinc-900">{label}</p>
-                  <p className="mt-0.5 text-xs leading-snug text-zinc-500">{sub}</p>
+                  <p className="text-sm font-bold text-white">{label}</p>
+                  <p className="mt-0.5 text-xs leading-snug text-zinc-400">{sub}</p>
                 </div>
               </li>
             ))}
@@ -485,8 +506,8 @@ export default function ProductView({
         {/* GALLERY — order-1 on mobile (top, under header), left column on desktop (RTL). Mixed media: image + action video. */}
         <section className="order-1 flex flex-col gap-4 lg:order-2">
           <div
-            className={`relative aspect-[4/5] w-full overflow-hidden rounded-2xl transition-colors duration-300 ${
-              activeThumb === null ? "bg-white" : "bg-zinc-100"
+            className={`relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-white/10 transition-colors duration-300 ${
+              activeThumb === null ? "bg-white" : "bg-zinc-900"
             }`}
           >
             {activeMedia.type === "video" ? (
@@ -566,7 +587,7 @@ export default function ProductView({
 
       {/* Sticky buy bar — slides in once the main CTA scrolls out of view (mobile) */}
       <div
-        className={`fixed inset-x-0 bottom-0 z-40 flex items-center gap-4 border-t border-zinc-200 bg-surface px-5 py-2.5 shadow-[0_-8px_30px_-8px_rgba(0,0,0,0.15)] transition-transform duration-300 ease-out lg:hidden ${
+        className={`fixed inset-x-0 bottom-0 z-40 flex items-center gap-4 border-t border-white/10 bg-[#0a0a0c]/95 px-5 py-2.5 shadow-[0_-8px_30px_-8px_rgba(0,0,0,0.6)] backdrop-blur-md transition-transform duration-300 ease-out lg:hidden ${
           showSticky ? "translate-y-0" : "translate-y-full"
         }`}
       >
@@ -582,10 +603,10 @@ export default function ProductView({
             </>
           ) : (
             <>
-              <span className="truncate text-xs font-bold text-zinc-900">
+              <span className="truncate text-xs font-bold text-white">
                 {product.title}
               </span>
-              <span className="truncate text-[11px] font-medium text-emerald-600">
+              <span className="truncate text-[11px] font-medium text-emerald-400">
                 {bundle ? `2 יחידות · ${bundlePct}% הנחה` : "משלוח חינם"}
               </span>
             </>
@@ -641,12 +662,12 @@ function BundleOption({
       type="button"
       onClick={onSelect}
       aria-pressed={selected}
-      className={`relative flex w-full items-center justify-between gap-3 rounded-2xl border bg-white p-5 text-right shadow-[0_4px_16px_-4px_rgba(0,0,0,0.08)] transition-all duration-300 ${
+      className={`relative flex w-full items-center justify-between gap-3 rounded-2xl border p-5 text-right transition-all duration-300 ${
         selected
-          ? "border-[#2952e3] shadow-[0_0_24px_-8px_rgba(41,82,227,0.35)]"
+          ? "border-[#5b82ff] bg-[#5b82ff]/10 shadow-[0_0_30px_-8px_rgba(91,130,255,0.5)]"
           : highlight
-            ? "border-[#2952e3]/40 hover:border-[#2952e3]/70"
-            : "border-zinc-200 hover:border-zinc-300"
+            ? "border-[#5b82ff]/40 bg-white/[0.03] hover:border-[#5b82ff]/70"
+            : "border-white/10 bg-white/[0.03] hover:border-white/25"
       }`}
     >
       {badge && (
@@ -656,18 +677,18 @@ function BundleOption({
       )}
       <span
         className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${
-          selected ? "border-[#2952e3] bg-[#2952e3]" : "border-zinc-300"
+          selected ? "border-[#5b82ff] bg-[#5b82ff]" : "border-white/25"
         }`}
       >
         {selected && <Check className="h-3.5 w-3.5 text-white" strokeWidth={3} />}
       </span>
       <span className="flex flex-1 flex-col items-start gap-0.5">
-        <span className="text-sm font-bold text-zinc-900">{title}</span>
+        <span className="text-sm font-bold text-white">{title}</span>
         {note && (
-          <span className="text-[11px] font-bold text-zinc-500">{note}</span>
+          <span className="text-[11px] font-bold text-zinc-400">{note}</span>
         )}
       </span>
-      <span className="font-display text-xl font-extrabold tabular-nums text-zinc-900">
+      <span className="font-display text-xl font-extrabold tabular-nums text-white">
         {priceLabel}
       </span>
     </button>
@@ -677,21 +698,21 @@ function BundleOption({
 function Accordion({ title, body }: { title: string; body: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="border-b border-[#E2E8F0] bg-transparent transition-colors duration-300 ease-out">
+    <div className="border-b border-white/10 bg-transparent transition-colors duration-300 ease-out">
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
         className="flex w-full items-center justify-between py-5 text-start"
       >
-        <span className="text-sm font-medium tracking-[0.04em] text-zinc-900">
+        <span className="text-sm font-medium tracking-[0.04em] text-zinc-100">
           {title}
         </span>
         <ChevronDown
           className={`h-4 w-4 shrink-0 transition-transform duration-300 ease-in-out ${
             open ? "rotate-180" : ""
           }`}
-          style={{ color: GOLD }}
+          style={{ color: "#5b82ff" }}
           strokeWidth={1.5}
         />
       </button>
@@ -701,7 +722,7 @@ function Accordion({ title, body }: { title: string; body: string }) {
         }`}
       >
         <div className="overflow-hidden">
-          <p className="pb-6 text-base leading-[1.7] text-[#2D3748]">{body}</p>
+          <p className="pb-6 text-base leading-[1.7] text-zinc-300">{body}</p>
         </div>
       </div>
     </div>

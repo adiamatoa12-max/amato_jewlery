@@ -59,6 +59,8 @@ export default function SiteHeader({
   const searchInputRef = useRef<HTMLInputElement | null>(null);
   const { totalQuantity, openCart } = useCart();
   const pathname = usePathname();
+  // Product pages use the dark landing-page theme — flip the header to match.
+  const isDark = pathname?.startsWith("/product/") ?? false;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -126,10 +128,10 @@ export default function SiteHeader({
   // never overlapping the hero imagery. Deepens its shadow slightly on scroll.
   return (
     <header
-      className={`absolute inset-x-0 top-7 z-50 text-zinc-900 backdrop-blur-md transition-all duration-500 ease-in-out ${
-        scrolled
-          ? "bg-white/95 shadow-lg shadow-black/5"
-          : "bg-white/80"
+      className={`absolute inset-x-0 top-7 z-50 backdrop-blur-md transition-all duration-500 ease-in-out ${
+        isDark
+          ? `text-zinc-100 ${scrolled ? "bg-[#0a0a0c]/95 shadow-lg shadow-black/40" : "bg-[#0a0a0c]/80"}`
+          : `text-zinc-900 ${scrolled ? "bg-white/95 shadow-lg shadow-black/5" : "bg-white/80"}`
       }`}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-10">
@@ -143,15 +145,23 @@ export default function SiteHeader({
           aria-label="VAULT — דף הבית"
           className="inline-flex items-center p-2 transition-all duration-500 ease-in-out hover:opacity-70"
         >
-          <Image
-            src="/images/favicon.png"
-            alt="VAULT Logo"
-            width={1774}
-            height={887}
-            priority
-            sizes="88px"
-            className="h-10 w-auto object-contain lg:h-11"
-          />
+          {isDark ? (
+            // The logo image has a white background, so on the dark theme we
+            // render the wordmark as text instead of inverting it to a box.
+            <span className="font-display text-2xl font-black uppercase tracking-[0.18em] text-white lg:text-[26px]">
+              VAULT
+            </span>
+          ) : (
+            <Image
+              src="/images/favicon.png"
+              alt="VAULT Logo"
+              width={1774}
+              height={887}
+              priority
+              sizes="88px"
+              className="h-10 w-auto object-contain lg:h-11"
+            />
+          )}
         </Link>
 
         {/* Desktop inline nav — centered, hidden on mobile */}
@@ -165,7 +175,11 @@ export default function SiteHeader({
             <Link
               key={l.label}
               href={l.href}
-              className="text-[13px] font-medium tracking-[0.06em] text-zinc-700 transition-colors duration-300 hover:text-[#2952e3]"
+              className={`text-[13px] font-medium tracking-[0.06em] transition-colors duration-300 ${
+                isDark
+                  ? "text-zinc-300 hover:text-[#5b82ff]"
+                  : "text-zinc-700 hover:text-[#2952e3]"
+              }`}
             >
               {l.label}
             </Link>
