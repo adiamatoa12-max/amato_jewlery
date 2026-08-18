@@ -16,7 +16,7 @@ function Stars({ rating, className = "" }: { rating: number; className?: string 
         <Star
           key={i}
           className={`h-3.5 w-3.5 ${
-            i < rating ? "fill-[#F59E0B] text-[#F59E0B]" : "fill-transparent text-zinc-600"
+            i < rating ? "fill-[#F59E0B] text-[#F59E0B]" : "fill-transparent text-zinc-700"
           }`}
           strokeWidth={1.5}
         />
@@ -51,22 +51,22 @@ export default function CustomerReviews({ handle }: { handle: string }) {
     : 0;
 
   return (
-    <section className="border-t border-white/10 bg-[#0c0c0f]">
+    <section className="border-t border-zinc-200 bg-surface-alt">
       <div className="mx-auto max-w-6xl px-6 py-12 lg:px-10 lg:py-16">
         {/* Header */}
         <div className="flex flex-col items-center text-center">
-          <h2 className="font-display text-2xl font-bold tracking-tight text-white lg:text-3xl">
+          <h2 className="font-display text-2xl font-bold tracking-tight text-zinc-900 lg:text-3xl">
             ביקורות לקוחות
           </h2>
           {hasReviews ? (
             <div className="mt-5 flex items-center gap-3">
               <Stars rating={Math.round(average)} />
-              <span className="text-sm tabular-nums text-zinc-400">
+              <span className="text-sm tabular-nums text-zinc-500">
                 {average.toFixed(1)} · {DISPLAY_REVIEW_COUNT} ביקורות
               </span>
             </div>
           ) : (
-            <p className="mt-5 text-sm text-zinc-400">
+            <p className="mt-5 text-sm text-zinc-500">
               עדיין אין ביקורות — היו הראשונים לשתף את החוויה שלכם.
             </p>
           )}
@@ -90,7 +90,7 @@ export default function CustomerReviews({ handle }: { handle: string }) {
         >
           <div className="overflow-hidden">
             {submitted ? (
-              <p className="rounded-sm border border-white/10 bg-white/[0.04] px-6 py-8 text-center text-sm text-zinc-300">
+              <p className="rounded-sm border border-zinc-200 bg-white px-6 py-8 text-center text-sm text-zinc-600">
                 תודה על המשוב! הביקורת שלך תפורסם לאחר אישור.
               </p>
             ) : (
@@ -99,10 +99,10 @@ export default function CustomerReviews({ handle }: { handle: string }) {
                   e.preventDefault();
                   setSubmitted(true);
                 }}
-                className="mx-auto max-w-xl rounded-sm border border-white/10 bg-white/[0.04] p-6 lg:p-8"
+                className="mx-auto max-w-xl rounded-sm border border-zinc-200 bg-white p-6 lg:p-8"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-xs tracking-[0.08em] text-zinc-400">
+                  <span className="text-xs tracking-[0.08em] text-zinc-500">
                     הדירוג שלך
                   </span>
                   <div className="-mx-1 flex items-center">
@@ -118,7 +118,7 @@ export default function CustomerReviews({ handle }: { handle: string }) {
                           className={`h-5 w-5 ${
                             i < rating
                               ? "fill-[#F59E0B] text-[#F59E0B]"
-                              : "fill-transparent text-zinc-600"
+                              : "fill-transparent text-zinc-700"
                           }`}
                           strokeWidth={1.5}
                         />
@@ -131,14 +131,14 @@ export default function CustomerReviews({ handle }: { handle: string }) {
                   required
                   aria-label="השם שלך"
                   placeholder="השם שלך"
-                  className="mt-5 w-full border-b border-white/20 bg-transparent py-2 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-[#2952e3] focus:outline-none"
+                  className="mt-5 w-full border-b border-zinc-300 bg-transparent py-2 text-sm text-zinc-900 placeholder:text-zinc-500 focus:border-[#2952e3] focus:outline-none"
                 />
                 <textarea
                   required
                   rows={4}
                   aria-label="ספרו לנו על החוויה שלכם"
                   placeholder="ספרו לנו על החוויה שלכם..."
-                  className="mt-5 w-full resize-none border-b border-white/20 bg-transparent py-2 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-[#2952e3] focus:outline-none"
+                  className="mt-5 w-full resize-none border-b border-zinc-300 bg-transparent py-2 text-sm text-zinc-900 placeholder:text-zinc-500 focus:border-[#2952e3] focus:outline-none"
                 />
                 <button
                   type="submit"
@@ -156,10 +156,10 @@ export default function CustomerReviews({ handle }: { handle: string }) {
           {reviews.map((review) => (
             <li
               key={review.name}
-              className="flex h-full flex-col rounded-2xl border border-white/10 bg-white/[0.04] p-6 transition-colors duration-300 hover:border-white/20"
+              className="flex h-full flex-col rounded-2xl bg-white p-6 shadow-[0_8px_24px_rgba(0,0,0,0.03)] transition-shadow duration-300 hover:shadow-[0_12px_32px_rgba(0,0,0,0.06)]"
             >
               <Stars rating={review.rating} />
-              <p className="mt-4 flex-1 text-base leading-[1.7] text-zinc-300">
+              <p className="mt-4 flex-1 text-base leading-[1.7] text-[#2D3748]">
                 “{review.body}”
               </p>
 
@@ -180,8 +180,8 @@ export default function CustomerReviews({ handle }: { handle: string }) {
                 </button>
               )}
 
-              <div className="mt-6 flex items-center justify-between gap-3 border-t border-white/10 pt-4">
-                <span className="text-sm font-bold text-white">{review.name}</span>
+              <div className="mt-6 flex items-center justify-between gap-3 border-t border-zinc-200 pt-4">
+                <span className="text-sm font-bold text-zinc-900">{review.name}</span>
                 {review.verified && (
                   <span className="inline-flex items-center gap-1 text-[11px] tracking-[0.04em] text-emerald-400">
                     <BadgeCheck className="h-3.5 w-3.5" strokeWidth={1.75} />

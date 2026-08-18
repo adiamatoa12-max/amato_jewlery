@@ -46,15 +46,11 @@ const DEFAULT_FAQS: FaqItem[] = [
 export default function FaqAccordion({
   items = DEFAULT_FAQS,
   className = "bg-surface-alt",
-  dark = false,
 }: {
   items?: FaqItem[];
   className?: string;
-  /** Dark landing-page theme (product page). */
-  dark?: boolean;
 } = {}) {
   const [open, setOpen] = useState<number | null>(0);
-  const accent = dark ? "#5b82ff" : GOLD;
 
   return (
     <section className={`px-5 py-12 sm:px-6 lg:px-10 lg:py-16 ${className}`}>
@@ -63,7 +59,7 @@ export default function FaqAccordion({
           <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-500">
             FAQ
           </p>
-          <h2 className={`mt-4 text-center font-display text-3xl font-black tracking-tight lg:text-4xl ${dark ? "text-white" : "text-zinc-900"}`}>
+          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-900 lg:text-4xl">
             שאלות נפוצות
           </h2>
         </FadeIn>
@@ -74,7 +70,7 @@ export default function FaqAccordion({
             return (
               <div
                 key={item.q}
-                className={`rounded-2xl border bg-transparent px-5 transition-colors duration-300 ease-out ${dark ? "border-white/10 hover:border-white/25" : "border-zinc-200 hover:border-zinc-300"}`}
+                className="rounded-2xl border border-zinc-200 bg-transparent px-5 transition-colors duration-300 ease-out hover:border-zinc-300"
               >
                 <button
                   type="button"
@@ -82,14 +78,14 @@ export default function FaqAccordion({
                   aria-expanded={isOpen}
                   className="flex w-full items-center justify-between gap-4 py-5 text-right transition-colors duration-200"
                 >
-                  <span className={`font-display text-base font-bold tracking-tight lg:text-lg ${dark ? "text-white" : "text-zinc-900"}`}>
+                  <span className="font-display text-base font-bold tracking-tight text-zinc-900 lg:text-lg">
                     {item.q}
                   </span>
                   <ChevronDown
                     className={`h-5 w-5 shrink-0 transition-transform duration-300 ${
                       isOpen ? "rotate-180" : ""
                     }`}
-                    style={{ color: accent }}
+                    style={{ color: GOLD }}
                     strokeWidth={1.75}
                   />
                 </button>
@@ -102,7 +98,7 @@ export default function FaqAccordion({
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <p className={`pb-6 text-right text-base leading-[1.7] lg:text-lg ${dark ? "text-zinc-300" : "text-[#2D3748]"}`}>
+                    <p className="pb-6 text-right text-base leading-[1.7] text-[#2D3748] lg:text-lg">
                       {item.a}
                     </p>
                   </div>

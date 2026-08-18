@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ProductView from "@/components/ProductView";
 import CustomerReviews from "@/components/CustomerReviews";
-import ProductHighlights from "@/components/ProductHighlights";
 import FaqAccordion, { type FaqItem } from "@/components/FaqAccordion";
 import { getAllHandles, getProduct } from "@/lib/catalog";
 import { getReviewSummary } from "@/lib/reviews";
@@ -120,10 +119,7 @@ export default async function ProductPage({
   };
 
   return (
-    <div
-      data-theme="vault-dark"
-      className="flex min-h-full flex-col bg-[#0a0a0c] pb-20 text-zinc-100 lg:pb-0"
-    >
+    <div className="flex min-h-full flex-col bg-surface pb-20 text-zinc-900 lg:pb-0">
       <script
         type="application/ld+json"
         // Trusted, server-derived data only (Shopify catalog + our own
@@ -157,15 +153,13 @@ export default async function ProductPage({
           }}
         />
       </main>
-      {/* Feature + spec band — the dark landing-page "why it's better" block. */}
-      <ProductHighlights />
       {/* Below-the-fold reviews — kept below the buy box/accordions. Brand
           story (Manifesto) lives on the homepage only, to avoid duplication. */}
       <CustomerReviews handle={product.handle} />
 
       {/* Objection-busting FAQ — the three questions buyers ask most before
           checkout. `bg-surface` alternates against the gray reviews section. */}
-      <FaqAccordion items={PRODUCT_FAQS} dark className="bg-[#0a0a0c]" />
+      <FaqAccordion items={PRODUCT_FAQS} className="bg-surface" />
     </div>
   );
 }
