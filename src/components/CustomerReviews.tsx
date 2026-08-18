@@ -16,7 +16,7 @@ function Stars({ rating, className = "" }: { rating: number; className?: string 
         <Star
           key={i}
           className={`h-3.5 w-3.5 ${
-            i < rating ? "fill-[#F59E0B] text-[#F59E0B]" : "fill-transparent text-zinc-600"
+            i < rating ? "fill-[#D4AF37] text-[#D4AF37]" : "fill-transparent text-zinc-600"
           }`}
           strokeWidth={1.5}
         />
@@ -51,7 +51,7 @@ export default function CustomerReviews({ handle }: { handle: string }) {
     : 0;
 
   return (
-    <section className="border-t border-white/10 bg-[#0c0c0f]">
+    <section className="border-t border-white/10 bg-[#0B0B0B]">
       <div className="mx-auto max-w-6xl px-6 py-12 lg:px-10 lg:py-16">
         {/* Header */}
         <div className="flex flex-col items-center text-center">
@@ -76,7 +76,7 @@ export default function CustomerReviews({ handle }: { handle: string }) {
               setOpen((o) => !o);
               setSubmitted(false);
             }}
-            className="mt-8 inline-flex items-center rounded-full border border-[#2952e3]/50 px-8 py-3 text-xs font-bold tracking-[0.12em] text-[#2952e3] transition-all duration-300 ease-in-out hover:bg-[#2952e3] hover:text-white"
+            className="mt-8 inline-flex items-center rounded-full border border-[#D4AF37]/50 px-8 py-3 text-xs font-bold tracking-[0.12em] text-[#D4AF37] transition-all duration-300 ease-in-out hover:bg-[#D4AF37] hover:text-black"
           >
             כתבו ביקורת
           </button>
@@ -117,7 +117,7 @@ export default function CustomerReviews({ handle }: { handle: string }) {
                         <Star
                           className={`h-5 w-5 ${
                             i < rating
-                              ? "fill-[#F59E0B] text-[#F59E0B]"
+                              ? "fill-[#D4AF37] text-[#D4AF37]"
                               : "fill-transparent text-zinc-600"
                           }`}
                           strokeWidth={1.5}
@@ -131,18 +131,18 @@ export default function CustomerReviews({ handle }: { handle: string }) {
                   required
                   aria-label="השם שלך"
                   placeholder="השם שלך"
-                  className="mt-5 w-full border-b border-white/20 bg-transparent py-2 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-[#2952e3] focus:outline-none"
+                  className="mt-5 w-full border-b border-white/20 bg-transparent py-2 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-[#D4AF37] focus:outline-none"
                 />
                 <textarea
                   required
                   rows={4}
                   aria-label="ספרו לנו על החוויה שלכם"
                   placeholder="ספרו לנו על החוויה שלכם..."
-                  className="mt-5 w-full resize-none border-b border-white/20 bg-transparent py-2 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-[#2952e3] focus:outline-none"
+                  className="mt-5 w-full resize-none border-b border-white/20 bg-transparent py-2 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-[#D4AF37] focus:outline-none"
                 />
                 <button
                   type="submit"
-                  className="mt-6 inline-flex items-center rounded-full bg-[#2952e3] px-8 py-3 text-xs font-bold tracking-[0.12em] text-white transition-all duration-300 ease-in-out hover:bg-[#4169e5]"
+                  className="mt-6 inline-flex items-center rounded-full bg-[#D4AF37] px-8 py-3 text-xs font-bold tracking-[0.12em] text-black transition-all duration-300 ease-in-out hover:bg-[#e0c24e]"
                 >
                   שליחת הביקורת
                 </button>

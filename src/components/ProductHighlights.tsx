@@ -36,7 +36,7 @@ const SPECS = [
 
 export default function ProductHighlights() {
   return (
-    <section className="border-t border-white/10 bg-[#0a0a0c] px-6 py-14 lg:px-10 lg:py-20">
+    <section className="border-t border-white/10 bg-[#0B0B0B] px-6 py-14 lg:px-10 lg:py-20">
       <div className="mx-auto max-w-6xl">
         {/* Benefit rows */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
@@ -45,7 +45,7 @@ export default function ProductHighlights() {
               key={title}
               className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-right transition-colors duration-300 hover:border-white/20"
             >
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#5b82ff]/15 text-[#5b82ff]">
+              <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#D4AF37]/15 text-[#D4AF37]">
                 <Icon className="h-5 w-5" strokeWidth={1.75} />
               </span>
               <h3 className="mt-5 font-display text-lg font-extrabold tracking-tight text-white">
@@ -63,7 +63,7 @@ export default function ProductHighlights() {
               key={label}
               className="flex flex-col items-center gap-2 px-2 py-3 text-center"
             >
-              <Icon className="h-6 w-6 text-[#5b82ff]" strokeWidth={1.5} />
+              <Icon className="h-6 w-6 text-[#D4AF37]" strokeWidth={1.5} />
               <span className="text-sm font-bold text-white">{label}</span>
               <span className="text-[11px] leading-tight text-zinc-500">{sub}</span>
             </div>
