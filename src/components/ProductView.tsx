@@ -11,7 +11,6 @@ import {
   Check,
   Zap,
   Play,
-  Star,
 } from "lucide-react";
 import { formatPrice, type AddToCartInput } from "@/lib/cart/CartContext";
 import { ACCESSORIES } from "@/lib/accessories";
@@ -23,7 +22,7 @@ import {
 } from "@/lib/pricing";
 import WaitlistButton from "@/components/WaitlistButton";
 
-const GOLD = "#D4AF37";
+const GOLD = "#2952e3";
 
 interface GalleryMedia {
   media_type: string;
@@ -41,8 +40,6 @@ interface ProductViewProps {
   soldOut: boolean;
   collectionTitle: string;
   collectionHandle: string;
-  rating: number;
-  reviewCount: number;
 }
 
 const TRUST_BADGES = [
@@ -116,8 +113,6 @@ export default function ProductView({
   soldOut,
   collectionTitle,
   collectionHandle,
-  rating,
-  reviewCount,
 }: ProductViewProps) {
   const [bundle, setBundle] = useState(false);
 
@@ -233,31 +228,6 @@ export default function ProductView({
             {product.title}
           </h1>
 
-          {/* Rating — gold stars + real review summary for social proof */}
-          {reviewCount > 0 && (
-            <div className="mt-3 flex items-center gap-2">
-              <div className="flex gap-0.5" aria-hidden>
-                {[0, 1, 2, 3, 4].map((i) => (
-                  <Star
-                    key={i}
-                    className={`h-4 w-4 ${
-                      i < Math.round(rating)
-                        ? "fill-[#D4AF37] text-[#D4AF37]"
-                        : "fill-zinc-700 text-zinc-700"
-                    }`}
-                    strokeWidth={0}
-                  />
-                ))}
-              </div>
-              <span className="text-xs font-bold text-[#D4AF37]">
-                {rating.toFixed(1)}
-              </span>
-              <span className="text-xs text-zinc-500">
-                · {reviewCount} ביקורות
-              </span>
-            </div>
-          )}
-
           {/* Launch edition — scarcity, neutral typography */}
           <p className="mt-3 flex items-center gap-2 text-[11px] font-bold tracking-[0.15em] text-zinc-400">
             <span>מהדורת השקה</span>
@@ -270,7 +240,7 @@ export default function ProductView({
           {/* Electric mixer feature highlight — clean inline, no box */}
           <div className="mt-5 flex items-start gap-2.5">
             <Zap
-              className="mt-0.5 h-5 w-5 shrink-0 text-[#D4AF37]"
+              className="mt-0.5 h-5 w-5 shrink-0 text-[#5b82ff]"
               strokeWidth={2}
             />
             <p className="text-base leading-[1.7] text-zinc-300">
@@ -287,7 +257,7 @@ export default function ProductView({
           ) : (
             <>
               <div className="mt-5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                <p className="font-display text-3xl font-extrabold tabular-nums text-[#D4AF37]">
+                <p className="font-display text-3xl font-extrabold tabular-nums text-white">
                   {formatPrice(displayPrice, product.currency)}
                 </p>
                 {bundle && (
@@ -341,7 +311,7 @@ export default function ProductView({
                     title={c.name}
                     className={`h-10 w-10 rounded-full border border-white/20 shadow-sm transition-all duration-200 ${
                       selected
-                        ? "ring-2 ring-[#D4AF37] ring-offset-2 ring-offset-[#0B0B0B]"
+                        ? "ring-2 ring-[#5b82ff] ring-offset-2 ring-offset-[#0a0a0c]"
                         : "hover:scale-110"
                     }`}
                     style={{ backgroundColor: c.swatch }}
@@ -362,17 +332,16 @@ export default function ProductView({
             <BundleOption
               selected={!bundle}
               onSelect={() => setBundle(false)}
-              title="אחד"
-              note="יחידה בודדת"
+              title="קנה 1"
               priceLabel={formatPrice(unit, product.currency)}
             />
             <BundleOption
               selected={bundle}
               onSelect={() => setBundle(true)}
-              title={`שניים ב-${formatPrice(bundleNow, product.currency)}`}
+              title={`קנה 2 (${bundlePct}% הנחה)`}
               priceLabel={formatPrice(bundleNow, product.currency)}
-              badge="הכי משתלם"
-              note={`חוסכים ${formatPrice(bundleSaves, product.currency)} · ${bundlePct}% הנחה`}
+              badge="המשתלם ביותר"
+              note={`חוסכים ${formatPrice(bundleSaves, product.currency)}`}
               highlight
             />
           </div>
@@ -452,50 +421,16 @@ export default function ProductView({
             </div>
           )}
 
-          {/* Express checkout — accelerated buttons open Shopify's secure
-              checkout, where Apple Pay / Google Pay complete natively. */}
-          {!WAITLIST_MODE && !soldOut && (
-            <div className="mt-6 space-y-2.5">
-              <button
-                type="button"
-                onClick={handleCheckout}
-                disabled={checkingOut}
-                aria-label="תשלום מהיר עם Apple Pay"
-                className="flex w-full items-center justify-center gap-1.5 rounded-full bg-black px-6 py-3.5 text-[15px] font-semibold text-white ring-1 ring-white/15 transition-all duration-200 hover:bg-zinc-900 active:scale-95 disabled:opacity-60"
-              >
-                <span className="-mt-0.5 text-lg leading-none"></span>
-                <span>Pay</span>
-              </button>
-              <button
-                type="button"
-                onClick={handleCheckout}
-                disabled={checkingOut}
-                aria-label="תשלום מהיר עם Google Pay"
-                className="flex w-full items-center justify-center rounded-full bg-white px-6 py-3.5 text-[15px] font-bold tracking-tight text-zinc-900 transition-all duration-200 hover:bg-zinc-100 active:scale-95 disabled:opacity-60"
-              >
-                <span className="text-[#4285F4]">G</span>
-                <span>&nbsp;Pay</span>
-              </button>
-              <div className="flex items-center gap-3 pt-1">
-                <span className="h-px flex-1 bg-white/10" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-zinc-500">
-                  או
-                </span>
-                <span className="h-px flex-1 bg-white/10" />
-              </div>
-            </div>
-          )}
-
           {/* CTA — routes to the direct Shopify checkout for the selected
               bundle. Pre-launch waitlist mode still shows the signup. */}
           <div ref={buyRef} id="buy">
           {WAITLIST_MODE ? (
-            <WaitlistButton className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#D4AF37] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(212,175,55,0.45)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#e0c24e] hover:shadow-[0_0_46px_-4px_rgba(212,175,55,0.6)] active:scale-95" />
+            <WaitlistButton className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#2952e3] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-white shadow-[0_0_30px_-6px_rgba(41,82,227,0.5)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#4169e5] hover:shadow-[0_0_46px_-4px_rgba(41,82,227,0.65)] active:scale-95" />
           ) : soldOut ? (
             <button
               type="button"
               disabled
-              className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#D4AF37] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(212,175,55,0.45)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#e0c24e] hover:shadow-[0_0_46px_-4px_rgba(212,175,55,0.6)] active:scale-95 disabled:cursor-not-allowed disabled:bg-zinc-200 disabled:text-zinc-400 disabled:shadow-none"
+              className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#2952e3] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-white shadow-[0_0_30px_-6px_rgba(41,82,227,0.5)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#4169e5] hover:shadow-[0_0_46px_-4px_rgba(41,82,227,0.65)] active:scale-95 disabled:cursor-not-allowed disabled:bg-zinc-200 disabled:text-zinc-400 disabled:shadow-none"
             >
               אזל מהמלאי
             </button>
@@ -504,7 +439,7 @@ export default function ProductView({
               type="button"
               onClick={handleCheckout}
               disabled={checkingOut}
-              className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#D4AF37] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-[0_0_30px_-6px_rgba(212,175,55,0.45)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#e0c24e] hover:shadow-[0_0_46px_-4px_rgba(212,175,55,0.6)] active:scale-95 disabled:cursor-not-allowed disabled:opacity-70"
+              className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#2952e3] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-white shadow-[0_0_30px_-6px_rgba(41,82,227,0.5)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#4169e5] hover:shadow-[0_0_46px_-4px_rgba(41,82,227,0.65)] active:scale-95 disabled:cursor-not-allowed disabled:opacity-70"
             >
               {checkingOut ? "מעבר לתשלום…" : "המשך לתשלום מאובטח"}
             </button>
@@ -512,19 +447,26 @@ export default function ProductView({
           </div>
           {!WAITLIST_MODE && !soldOut && (
             <>
-              {/* Accepted cards / wallets on the secure Shopify checkout. */}
-              <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
-                {["Shop Pay", "Visa", "Mastercard", "American Express"].map((m) => (
-                  <span
-                    key={m}
-                    className="rounded-md border border-white/10 bg-white/[0.06] px-2.5 py-1 text-[11px] font-semibold text-zinc-300"
-                  >
-                    {m}
-                  </span>
-                ))}
+              {/* Express checkout — payment methods available on the secure
+                  Shopify checkout the button above leads to. */}
+              <div className="mt-4 flex flex-col items-center gap-2.5">
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">
+                  תשלום מהיר ומאובטח
+                </span>
+                <div className="flex flex-wrap items-center justify-center gap-2">
+                  {["Apple Pay", "Google Pay", "Shop Pay", "Visa", "Mastercard"].map(
+                    (m) => (
+                      <span
+                        key={m}
+                        className="rounded-md border border-white/10 bg-white/[0.06] px-2.5 py-1 text-[11px] font-semibold text-zinc-300"
+                      >
+                        {m}
+                      </span>
+                    ),
+                  )}
+                </div>
               </div>
-              <p className="mt-3 flex items-center justify-center gap-1.5 text-center text-xs font-medium tracking-wide text-zinc-400">
-                <Lock className="h-3.5 w-3.5 text-[#D4AF37]" strokeWidth={2} />
+              <p className="mt-3 text-center text-xs font-medium tracking-wide text-zinc-400">
                 סליקה מאובטחת · משלוח חינם לכל הארץ · 30 יום החזר כספי
               </p>
             </>
@@ -539,7 +481,7 @@ export default function ProductView({
           <ul dir="rtl" className="mt-8 flex flex-col gap-4 border-y border-white/10 py-6 text-right">
             {TRUST_BADGES.map(({ icon: Icon, label, sub }) => (
               <li key={label} className="flex items-start gap-3">
-                <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#D4AF37]/15 text-[#D4AF37]">
+                <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#5b82ff]/15 text-[#5b82ff]">
                   <Icon className="h-[18px] w-[18px]" strokeWidth={1.75} />
                 </span>
                 <div>
@@ -607,7 +549,7 @@ export default function ProductView({
                 aria-current={i === activeThumb}
                 className={`relative aspect-square overflow-hidden rounded-2xl transition-all duration-300 ${
                   i === activeThumb
-                    ? "ring-2 ring-[#D4AF37]"
+                    ? "ring-2 ring-[#2952e3]"
                     : "opacity-60 hover:opacity-100"
                 }`}
               >
@@ -645,7 +587,7 @@ export default function ProductView({
 
       {/* Sticky buy bar — slides in once the main CTA scrolls out of view (mobile) */}
       <div
-        className={`fixed inset-x-0 bottom-0 z-40 flex items-center gap-4 border-t border-white/10 bg-[#0B0B0B]/95 px-5 py-2.5 shadow-[0_-8px_30px_-8px_rgba(0,0,0,0.6)] backdrop-blur-md transition-transform duration-300 ease-out lg:hidden ${
+        className={`fixed inset-x-0 bottom-0 z-40 flex items-center gap-4 border-t border-white/10 bg-[#0a0a0c]/95 px-5 py-2.5 shadow-[0_-8px_30px_-8px_rgba(0,0,0,0.6)] backdrop-blur-md transition-transform duration-300 ease-out lg:hidden ${
           showSticky ? "translate-y-0" : "translate-y-full"
         }`}
       >
@@ -671,12 +613,12 @@ export default function ProductView({
           )}
         </div>
         {WAITLIST_MODE ? (
-          <WaitlistButton className="flex flex-1 items-center justify-center rounded-full bg-[#D4AF37] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#e0c24e] active:scale-95" />
+          <WaitlistButton className="flex flex-1 items-center justify-center rounded-full bg-[#2952e3] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-white transition-all duration-300 hover:bg-[#4169e5] active:scale-95" />
         ) : soldOut ? (
           <button
             type="button"
             disabled
-            className="flex flex-1 items-center justify-center rounded-full bg-[#D4AF37] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-black transition-all duration-300 hover:bg-[#e0c24e] active:scale-95 disabled:bg-zinc-200 disabled:text-zinc-400"
+            className="flex flex-1 items-center justify-center rounded-full bg-[#2952e3] px-6 py-3.5 text-sm font-black uppercase tracking-[0.1em] text-white transition-all duration-300 hover:bg-[#4169e5] active:scale-95 disabled:bg-zinc-200 disabled:text-zinc-400"
           >
             אזל מהמלאי
           </button>
@@ -685,7 +627,7 @@ export default function ProductView({
             type="button"
             onClick={handleCheckout}
             disabled={checkingOut}
-            className="flex flex-1 items-center justify-center rounded-full bg-[#D4AF37] px-5 py-3.5 text-sm font-black tracking-[0.02em] text-black transition-all duration-300 hover:bg-[#e0c24e] active:scale-95 disabled:opacity-70"
+            className="flex flex-1 items-center justify-center rounded-full bg-[#2952e3] px-5 py-3.5 text-sm font-black tracking-[0.02em] text-white transition-all duration-300 hover:bg-[#4169e5] active:scale-95 disabled:opacity-70"
           >
             {checkingOut
               ? "מעבר לתשלום…"
@@ -722,23 +664,23 @@ function BundleOption({
       aria-pressed={selected}
       className={`relative flex w-full items-center justify-between gap-3 rounded-2xl border p-5 text-right transition-all duration-300 ${
         selected
-          ? "border-[#D4AF37] bg-[#D4AF37]/10 shadow-[0_0_30px_-8px_rgba(212,175,55,0.45)]"
+          ? "border-[#5b82ff] bg-[#5b82ff]/10 shadow-[0_0_30px_-8px_rgba(91,130,255,0.5)]"
           : highlight
-            ? "border-[#D4AF37]/40 bg-white/[0.03] hover:border-[#D4AF37]/70"
+            ? "border-[#5b82ff]/40 bg-white/[0.03] hover:border-[#5b82ff]/70"
             : "border-white/10 bg-white/[0.03] hover:border-white/25"
       }`}
     >
       {badge && (
-        <span className="absolute -top-2.5 left-4 rounded-full bg-[#D4AF37] px-2.5 py-0.5 text-[10px] font-black tracking-wide text-black">
+        <span className="absolute -top-2.5 left-4 rounded-full bg-[#2952e3] px-2.5 py-0.5 text-[10px] font-black tracking-wide text-white">
           {badge}
         </span>
       )}
       <span
         className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${
-          selected ? "border-[#D4AF37] bg-[#D4AF37]" : "border-white/25"
+          selected ? "border-[#5b82ff] bg-[#5b82ff]" : "border-white/25"
         }`}
       >
-        {selected && <Check className="h-3.5 w-3.5 text-black" strokeWidth={3} />}
+        {selected && <Check className="h-3.5 w-3.5 text-white" strokeWidth={3} />}
       </span>
       <span className="flex flex-1 flex-col items-start gap-0.5">
         <span className="text-sm font-bold text-white">{title}</span>
@@ -770,7 +712,7 @@ function Accordion({ title, body }: { title: string; body: string }) {
           className={`h-4 w-4 shrink-0 transition-transform duration-300 ease-in-out ${
             open ? "rotate-180" : ""
           }`}
-          style={{ color: "#D4AF37" }}
+          style={{ color: "#5b82ff" }}
           strokeWidth={1.5}
         />
       </button>

@@ -130,7 +130,7 @@ export default function SiteHeader({
     <header
       className={`absolute inset-x-0 top-7 z-50 backdrop-blur-md transition-all duration-500 ease-in-out ${
         isDark
-          ? `text-zinc-100 ${scrolled ? "bg-[#0B0B0B]/95 shadow-lg shadow-black/40" : "bg-[#0B0B0B]/80"}`
+          ? `text-zinc-100 ${scrolled ? "bg-[#0a0a0c]/95 shadow-lg shadow-black/40" : "bg-[#0a0a0c]/80"}`
           : `text-zinc-900 ${scrolled ? "bg-white/95 shadow-lg shadow-black/5" : "bg-white/80"}`
       }`}
     >
@@ -177,7 +177,7 @@ export default function SiteHeader({
               href={l.href}
               className={`text-[13px] font-medium tracking-[0.06em] transition-colors duration-300 ${
                 isDark
-                  ? "text-zinc-300 hover:text-[#D4AF37]"
+                  ? "text-zinc-300 hover:text-[#5b82ff]"
                   : "text-zinc-700 hover:text-[#2952e3]"
               }`}
             >

@@ -122,7 +122,7 @@ export default async function ProductPage({
   return (
     <div
       data-theme="vault-dark"
-      className="flex min-h-full flex-col bg-[#0B0B0B] pb-20 text-zinc-100 lg:pb-0"
+      className="flex min-h-full flex-col bg-[#0a0a0c] pb-20 text-zinc-100 lg:pb-0"
     >
       <script
         type="application/ld+json"
@@ -135,8 +135,6 @@ export default async function ProductPage({
           soldOut={soldOut}
           collectionTitle={product.collectionTitle}
           collectionHandle={product.collectionHandle}
-          rating={ratingValue}
-          reviewCount={reviewCount}
           product={{
             handle: product.handle,
             title: product.title,
@@ -167,7 +165,7 @@ export default async function ProductPage({
 
       {/* Objection-busting FAQ — the three questions buyers ask most before
           checkout. `bg-surface` alternates against the gray reviews section. */}
-      <FaqAccordion items={PRODUCT_FAQS} dark className="bg-[#0B0B0B]" />
+      <FaqAccordion items={PRODUCT_FAQS} dark className="bg-[#0a0a0c]" />
     </div>
   );
 }

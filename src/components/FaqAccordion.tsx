@@ -54,7 +54,7 @@ export default function FaqAccordion({
   dark?: boolean;
 } = {}) {
   const [open, setOpen] = useState<number | null>(0);
-  const accent = dark ? "#D4AF37" : GOLD;
+  const accent = dark ? "#5b82ff" : GOLD;
 
   return (
     <section className={`px-5 py-12 sm:px-6 lg:px-10 lg:py-16 ${className}`}>
