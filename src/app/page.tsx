@@ -128,7 +128,7 @@ function ElectricMixSection() {
             <p className="mx-auto mt-6 max-w-md text-base leading-[1.7] text-[#2D3748] md:mx-0 lg:text-lg">
               מנוע חשמלי חזק שמערבב את החלבון בשניות —{" "}
               <strong className="font-bold text-[#111111]">שייק חלק לגמרי, בלי גושים</strong>.
-              בלי לנער ידיים ובלי כדור מתכת שמקרטע. לחיצה אחת וזהו.
+              בלי לנער. לחיצה אחת וזהו.
             </p>
             <PrimaryCta className={`mt-8 ${goldButton}`} label="לבחירת צבעים והזמנה ←" />
           </div>
