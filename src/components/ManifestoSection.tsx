@@ -155,7 +155,7 @@ export default function ManifestoSection({
               {ctaLabel}
             </Link>
             <p className="mt-6 text-[11px] uppercase tracking-[0.3em] text-zinc-600">
-              משלוח מהיר לכל הארץ · 30 יום החזר כספי
+              משלוח חינם עד הבית · 30 יום להחזרה
             </p>
           </div>
         </FadeIn>

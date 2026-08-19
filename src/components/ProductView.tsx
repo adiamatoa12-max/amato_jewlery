@@ -58,13 +58,13 @@ const SPECS = [
 const TRUST_BADGES = [
   {
     icon: Handshake,
-    label: "30 ימי אחריות מלאה",
-    sub: "לא אהבתם? כספכם יוחזר.",
+    label: "30 יום להחזרה · 30 ימי אחריות",
+    sub: "לא אהבתם? מחזירים תוך 30 יום, בלי שאלות.",
   },
   {
     icon: Truck,
-    label: "משלוח מבוטח עם שליח עד הבית",
-    sub: "7–14 ימי עסקים · חינם במסגרת מבצע ההשקה!",
+    label: "משלוח חינם עד הבית | 7–14 ימי עסקים",
+    sub: "שליח עד הבית לכל הארץ, בלי עלות משלוח.",
   },
   {
     icon: Lock,
@@ -500,9 +500,14 @@ export default function ProductView({
           )}
           </div>
           {!WAITLIST_MODE && !soldOut && (
-            <p className="mt-3 text-center text-xs font-medium tracking-wide text-zinc-500">
-              סליקה מאובטחת · משלוח חינם לכל הארץ · 30 יום החזר כספי
-            </p>
+            <>
+              <p className="mt-3 text-center text-xs font-medium tracking-wide text-zinc-600">
+                🔒 תשלום מאובטח | משלוח חינם | 30 יום להחזרה
+              </p>
+              <p className="mt-1.5 text-center text-[11px] font-medium tracking-[0.08em] text-zinc-400">
+                Apple Pay | Google Pay | כרטיס אשראי
+              </p>
+            </>
           )}
           {checkoutError && (
             <p className="mt-2 text-center text-xs font-medium text-red-600">
@@ -531,7 +536,7 @@ export default function ProductView({
             <Accordion title="מפרט טכני" body={product.material} />
             <Accordion
               title="משלוח ואחריות"
-              body="משלוח חינם עד הבית תוך 7–14 ימי עסקים. לא מרוצים? מחזירים תוך 30 יום, בלי שאלות."
+              body="משלוח חינם עד הבית | 7–14 ימי עסקים. לא מרוצים? 30 יום להחזרה, בלי שאלות. 30 ימי אחריות על כל שייקר."
             />
           </div>
         </section>
@@ -642,7 +647,7 @@ export default function ProductView({
                 {formatPrice(displayPrice, product.currency)}
               </span>
               <span className="mt-1 truncate text-[11px] font-medium text-emerald-600">
-                {bundle ? "2 יחידות · השייקר השני ב-50₪" : "משלוח חינם · 30 יום החזר"}
+                {bundle ? "2 יחידות · השייקר השני ב-50₪" : "משלוח חינם · 30 יום להחזרה"}
               </span>
             </>
           )}

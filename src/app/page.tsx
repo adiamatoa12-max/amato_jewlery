@@ -21,7 +21,6 @@ import FadeIn from "@/components/FadeIn";
 import FooterLink, { type FooterLinkItem } from "@/components/FooterLink";
 import MediaPlaceholder from "@/components/MediaPlaceholder";
 import Hero from "@/components/Hero";
-import ManifestoSection from "@/components/ManifestoSection";
 import FaqAccordion from "@/components/FaqAccordion";
 import WaitlistButton from "@/components/WaitlistButton";
 import { WAITLIST_MODE, EXTRAS_AVAILABLE } from "@/lib/config";
@@ -60,19 +59,17 @@ export default function Home() {
     <div className="flex min-h-full flex-col bg-surface pb-24 pt-[5.75rem] text-zinc-900 lg:pb-0">
       <main id="main-content" className="flex-1">
         <Hero />
-        <ManifestoSection />
-        <HowItWorks />
-        <MicroConversion />
-        <HorizontalStreaming />
-        <Anatomy />
-        <Compatibility />
-        <Reviews />
-        <FaqAccordion />
-        <BundleBanner />
-        <CompleteGear />
-        <WhatsInTheBox />
-        <FinalCta />
-        <UrgencyBand />
+        {/* Exact landing-page section order (per brief) */}
+        <ProblemSection />          {/* מכירים את זה? */}
+        <ElectricMixSection />      {/* לוחצים. והוא מערבב לבד. */}
+        <HorizontalStreaming />     {/* ויש עליו גם מעמד מגנטי לטלפון */}
+        <CleaningSection />         {/* ומה עם הניקוי? */}
+        <Anatomy />                 {/* בקיצור, הכול בשייקר אחד */}
+        <Compatibility />          {/* אבל האם המגנט באמת מחזיק? */}
+        <Reviews />                 {/* כבר משתמשים בו באימונים */}
+        <BundleSection />           {/* למה עכשיו שניים? */}
+        <WhatsInTheBox />           {/* unified-policy reassurance strip */}
+        <FaqAccordion />            {/* שאלות נפוצות */}
       </main>
       <Footer />
       <StickyBuyBar />
@@ -80,7 +77,147 @@ export default function Home() {
   );
 }
 
-/* ── Impact hero ─────────────────────────────────────────────────────── */
+/* ── 1 · מכירים את זה? (problem / agitation) ─────────────────────────── */
+const PAINS = [
+  "הטלפון על הרצפה של המכון — ואתם מתפללים שאף אחד לא ידרוך עליו.",
+  "שייק מלא גושים של אבקה שלא נמסה עד הסוף.",
+  "שייקר שנפתח בתיק ומרטיב לכם את כל הבגדים.",
+];
+
+function ProblemSection() {
+  return (
+    <section className="bg-surface px-6 py-12 lg:px-10 lg:py-16">
+      <div className="mx-auto max-w-3xl text-center">
+        <FadeIn>
+          <h2 className="font-display text-3xl font-black tracking-tight text-zinc-900 sm:text-4xl">
+            מכירים את זה?
+          </h2>
+        </FadeIn>
+        <FadeIn delay={120}>
+          <ul dir="rtl" className="mx-auto mt-8 flex max-w-xl flex-col gap-3 text-right">
+            {PAINS.map((p) => (
+              <li
+                key={p}
+                className="flex items-start gap-3 rounded-xl border border-zinc-200 bg-white p-4 text-base leading-[1.6] text-[#2D3748] shadow-[0_4px_16px_-6px_rgba(0,0,0,0.08)]"
+              >
+                <X className="mt-0.5 h-5 w-5 shrink-0 text-red-500" strokeWidth={2.5} />
+                {p}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-8 font-display text-xl font-bold text-zinc-900 sm:text-2xl">
+            נמאס לנו מזה. אז בנינו את VAULT.
+          </p>
+        </FadeIn>
+      </div>
+    </section>
+  );
+}
+
+/* ── 2 · לוחצים. והוא מערבב לבד. (electric motor) ────────────────────── */
+function ElectricMixSection() {
+  return (
+    <section className="bg-surface-alt px-6 py-12 lg:px-10 lg:py-16">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 md:grid-cols-2 lg:gap-16">
+        <FadeIn>
+          <div className="text-center md:text-right">
+            <h2 className="font-display text-3xl font-black leading-tight tracking-tight text-zinc-900 lg:text-4xl">
+              לוחצים. והוא מערבב לבד.
+            </h2>
+            <p className="mx-auto mt-6 max-w-md text-base leading-[1.7] text-[#2D3748] md:mx-0 lg:text-lg">
+              מנוע חשמלי חזק שמערבב את החלבון בשניות —{" "}
+              <strong className="font-bold text-[#111111]">שייק חלק לגמרי, בלי גושים</strong>.
+              בלי לנער ידיים ובלי כדור מתכת שמקרטע. לחיצה אחת וזהו.
+            </p>
+            <PrimaryCta className={`mt-8 ${goldButton}`} label="לבחירת צבעים והזמנה ←" />
+          </div>
+        </FadeIn>
+        <FadeIn delay={120} className="order-first md:order-none">
+          <div className="relative aspect-square overflow-hidden rounded-2xl border border-zinc-200 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
+            <Image
+              src="/images/שייקר חדש2.jpeg"
+              alt="שייקר VAULT החשמלי — מנוע לערבוב חלק בלי גושים"
+              fill
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="object-cover"
+            />
+          </div>
+        </FadeIn>
+      </div>
+    </section>
+  );
+}
+
+/* ── 4 · ומה עם הניקוי? (cleaning) ───────────────────────────────────── */
+const CLEAN_STEPS = [
+  "ממלאים מים וטיפת סבון",
+  "מפעילים את המנוע ל-5 שניות",
+  "שוטפים — ונקי לגמרי",
+];
+
+function CleaningSection() {
+  return (
+    <section className="bg-surface px-6 py-12 lg:px-10 lg:py-16">
+      <div className="mx-auto max-w-3xl text-center">
+        <FadeIn>
+          <h2 className="font-display text-3xl font-black tracking-tight text-zinc-900 sm:text-4xl">
+            ומה עם הניקוי?
+          </h2>
+          <p className="mx-auto mt-5 max-w-xl text-base leading-[1.7] text-[#2D3748] lg:text-lg">
+            פשוט. כל החלקים מתפרקים ונכנסים גם למדיח כלים — בלי פינות שקשה להגיע אליהן.
+          </p>
+        </FadeIn>
+        <FadeIn delay={120}>
+          <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+            {CLEAN_STEPS.map((s, i) => (
+              <div
+                key={s}
+                className="flex flex-col items-center gap-3 rounded-2xl border border-zinc-200 bg-white p-6 shadow-[0_4px_16px_-6px_rgba(0,0,0,0.08)]"
+              >
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#2952e3] font-display text-sm font-black text-white">
+                  {i + 1}
+                </span>
+                <span className="text-sm font-semibold text-zinc-800">{s}</span>
+              </div>
+            ))}
+          </div>
+        </FadeIn>
+      </div>
+    </section>
+  );
+}
+
+/* ── 8 · למה עכשיו שניים? (bundle — second shaker ₪50) ───────────────── */
+function BundleSection() {
+  return (
+    <section className="bg-surface-alt px-6 py-12 lg:px-10 lg:py-16">
+      <FadeIn>
+        <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 text-center">
+          <p className="text-[11px] font-bold tracking-[0.3em] text-zinc-500">
+            מבצע השקה · מלאי מוגבל
+          </p>
+          <h2 className="font-display text-3xl font-black tracking-tight text-zinc-900 sm:text-4xl">
+            למה עכשיו שניים?
+          </h2>
+          <p className="max-w-xl text-lg leading-[1.7] text-[#2D3748]">
+            כי השני עולה רק <strong className="font-bold text-[#111111]">50 ₪</strong>. אחד לכם
+            ואחד לפרטנר לאימונים (או גיבוי לתיק) — במקום מחיר מלא. מבצע השקה, מוגבל במלאי.
+          </p>
+          <PrimaryCta className={goldButton} label="להזמנה השני ב-50 ₪ ←" />
+          <div className="mt-1 flex flex-col items-center gap-1.5">
+            <p className="text-xs font-medium tracking-wide text-zinc-600">
+              🔒 תשלום מאובטח | משלוח חינם | 30 יום להחזרה
+            </p>
+            <p className="text-[11px] font-medium tracking-[0.08em] text-zinc-400">
+              Apple Pay | Google Pay | כרטיס אשראי
+            </p>
+          </div>
+        </div>
+      </FadeIn>
+    </section>
+  );
+}
+
 /* ── How it works (3 steps) ──────────────────────────────────────────── */
 const STEPS = [
   {
@@ -318,13 +455,13 @@ function HorizontalStreaming() {
         <FadeIn>
           <div className="text-right">
             <h2 className="font-display text-3xl font-black leading-tight tracking-tight text-zinc-900 lg:text-4xl">
-              לא משדרים את המשחק בחדר כושר?
+              ויש עליו גם מעמד מגנטי לטלפון
             </h2>
             <p className="mt-6 max-w-md text-base leading-[1.7] text-[#2D3748] lg:text-lg">
-              מסובבים את הטלפון לרוחב ומקבלים זווית צפייה מושלמת — ישירות
-              ממתקן המשקולות.{" "}
+              מגנט N52 חזק שמצמיד את הטלפון לכל מכונה או ספסל מתכתי — בגובה
+              העיניים.{" "}
               <br className="hidden lg:block" />
-              צופים במשחק, בסדרה או בסרטון אימון, בלי להחזיק שום דבר ביד.
+              צופים במשחק, בסדרה או בסרטון אימון, מצלמים את הסט, בלי להחזיק כלום ביד.
             </p>
           </div>
         </FadeIn>
@@ -369,10 +506,10 @@ function Anatomy() {
       <div className="mx-auto max-w-5xl">
         <FadeIn>
           <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-500">
-למה הוא שונה
+            הכול במקום אחד
           </p>
           <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-900 lg:text-5xl">
-כל מה שחסר בשייקר רגיל
+            בקיצור, הכול בשייקר אחד
           </h2>
         </FadeIn>
 
@@ -408,7 +545,7 @@ function Anatomy() {
         </div>
 
         <div className="mt-14 flex justify-center">
-          <PrimaryCta className={goldButton} label="הזמינו עכשיו את VAULT" />
+          <PrimaryCta className={goldButton} label="לבחירת צבעים והזמנה ←" />
         </div>
       </div>
     </section>
@@ -444,12 +581,12 @@ function Compatibility() {
         <FadeIn delay={120}>
           <div className="text-center md:text-right">
             <h2 className="font-display text-3xl font-black tracking-tight text-zinc-900 lg:text-4xl">
-              מתאים לכל סמארטפון!
+              אבל האם המגנט באמת מחזיק?
             </h2>
             <p className="mx-auto mt-6 max-w-md text-base leading-[1.7] text-[#2D3748] md:mx-0 lg:text-lg">
-              כל VAULT מגיע עם שתי טבעות מתכת דקות. מדביקים אחת על הטלפון וזהו.{" "}
+              כן. מגנט N52 — הדרגה החזקה ביותר — נצמד חזק ולא זז, גם באמצע סט.{" "}
               <br className="hidden lg:block" />
-              חיבור מגנטי חזק לכל מכשיר — אייפון או אנדרואיד.
+              כל מארז כולל שתי טבעות מתכת דקות; מדביקים אחת על הטלפון, ומתאים לכל מכשיר — אייפון או אנדרואיד.
             </p>
 
             <ul className="mt-8 space-y-4">
@@ -471,7 +608,7 @@ function Compatibility() {
               ))}
             </ul>
 
-            <PrimaryCta className={`mt-9 ${goldButton}`} label="הזמינו עכשיו" />
+            <PrimaryCta className={`mt-9 ${goldButton}`} label="לבחירת צבעים והזמנה ←" />
           </div>
         </FadeIn>
       </div>
@@ -532,7 +669,7 @@ function Reviews() {
             לקוחות מספרים
           </p>
           <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-[#000000] lg:text-4xl">
-            למה מתאמנים עוברים ל-VAULT?
+            כבר משתמשים בו באימונים
           </h2>
         </FadeIn>
 
@@ -779,9 +916,9 @@ function CompleteGear() {
 
 /* ── Trust & guarantees banner ───────────────────────────────────────── */
 const TRUST_ITEMS = [
-  { icon: ShieldCheck, label: "אחריות שנה על המנוע" },
-  { icon: RotateCcw, label: "30 יום החזר כספי מלא" },
-  { icon: Truck, label: "משלוח מהיר חינם לכל הארץ" },
+  { icon: ShieldCheck, label: "30 ימי אחריות" },
+  { icon: RotateCcw, label: "30 יום להחזרה" },
+  { icon: Truck, label: "משלוח חינם עד הבית | 7–14 ימי עסקים" },
   { icon: Lock, label: "תשלום מאובטח ומוצפן" },
 ];
 
@@ -853,7 +990,7 @@ function StickyBuyBar() {
         href={PRODUCT_URL}
         className="flex w-full items-center justify-center rounded-full bg-[#2952e3] px-6 py-3 text-sm font-black uppercase tracking-[0.08em] text-white shadow-[0_0_26px_-6px_rgba(41,82,227,0.5)] ring-1 ring-[#2952e3]/40 transition-all duration-300 active:scale-95"
       >
-        הזמינו עכשיו · מלאי מוגבל
+        לבחירת צבעים והזמנה ←
       </Link>
     </div>
   );

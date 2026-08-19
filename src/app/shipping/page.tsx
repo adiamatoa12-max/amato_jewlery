@@ -4,7 +4,7 @@ import PolicyPage from "@/components/PolicyPage";
 export const metadata: Metadata = {
   title: "מדיניות משלוחים — VAULT",
   description:
-    "פרטי המשלוח של VAULT — שולחים את השייקר המגנטי ואת אביזרי האימון בחינם עד הבית, עם זמני אספקה מהירים ומעקב מלא אחר ההזמנה.",
+    "פרטי המשלוח של VAULT — משלוח חינם עד הבית | 7–14 ימי עסקים, לשייקר המגנטי ולכל אביזרי האימון, עם מעקב מלא אחר ההזמנה.",
 };
 
 export default function ShippingPage() {
