@@ -66,6 +66,7 @@ export default function Home() {
         <CleaningSection />         {/* ומה עם הניקוי? */}
         <Anatomy />                 {/* בקיצור, הכול בשייקר אחד */}
         <Compatibility />          {/* אבל האם המגנט באמת מחזיק? */}
+        <ComparisonSection />       {/* היתרונות של VAULT (comparison table) */}
         <Reviews />                 {/* כבר משתמשים בו באימונים */}
         <BundleSection />           {/* למה עכשיו שניים? */}
         <VaultInActionSection />    {/* ראה את ה-VAULT בפעולה */}
@@ -262,6 +263,78 @@ function VaultInActionSection() {
           </div>
           <div className="mt-8 flex justify-center">
             <PrimaryCta className={goldButton} label="לבחירת צבעים והזמנה ←" />
+          </div>
+        </FadeIn>
+      </div>
+    </section>
+  );
+}
+
+/* ── היתרונות של VAULT — 3-way comparison table (intact) ─────────────── */
+function ComparisonSection() {
+  return (
+    <section className="bg-surface px-6 py-12 lg:px-10 lg:py-16">
+      <div dir="rtl" className="mx-auto max-w-3xl">
+        <FadeIn>
+          <h2 className="text-center font-display text-3xl font-black tracking-tight text-zinc-900 sm:text-4xl">
+            היתרונות של VAULT
+          </h2>
+        </FadeIn>
+        <FadeIn delay={120}>
+          <div className="mt-10 overflow-x-auto rounded-2xl bg-white shadow-[0_10px_30px_rgba(0,0,0,0.04)]">
+            <table className="w-full min-w-0 border-collapse text-right sm:min-w-[540px]">
+              <thead>
+                <tr>
+                  <th scope="col" className="p-2 sm:p-4" />
+                  <th
+                    scope="col"
+                    className="rounded-t-xl bg-[#2952e3]/[0.06] px-2 py-3 text-center font-display text-xs font-black tracking-tight text-[#2952e3] sm:p-4 sm:text-sm"
+                  >
+                    VaultShaker
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-1.5 py-3 text-center text-[11px] font-bold leading-tight text-zinc-500 sm:p-4 sm:text-xs"
+                  >
+                    חשמלי סטנדרטי
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-1.5 py-3 text-center text-[11px] font-bold leading-tight text-zinc-500 sm:p-4 sm:text-xs"
+                  >
+                    שייקר קלאסי
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {COMPARISON_ROWS.map((row, i) => {
+                  const isLast = i === COMPARISON_ROWS.length - 1;
+                  return (
+                    <tr key={row.feature} className="border-t border-zinc-100">
+                      <th
+                        scope="row"
+                        className="py-3 pe-2 ps-1 text-xs font-semibold leading-snug text-zinc-800 sm:p-4 sm:text-sm"
+                      >
+                        {row.feature}
+                      </th>
+                      <td
+                        className={`bg-[#2952e3]/[0.06] px-1.5 py-3 text-center sm:p-4 ${
+                          isLast ? "rounded-b-xl" : ""
+                        }`}
+                      >
+                        <CompareCell value={row.vault} highlight />
+                      </td>
+                      <td className="px-1.5 py-3 text-center sm:p-4">
+                        <CompareCell value={row.electric} />
+                      </td>
+                      <td className="px-1.5 py-3 text-center sm:p-4">
+                        <CompareCell value={row.classic} />
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
           </div>
         </FadeIn>
       </div>
