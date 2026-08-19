@@ -121,7 +121,6 @@ export default function ProductView({
   const bundleWas = unit * 2;
   const bundleNow = BUNDLE_PRICE;
   const bundleSaves = bundleWas - bundleNow;
-  const bundlePct = Math.round((1 - bundleNow / bundleWas) * 100);
   const displayPrice = bundle ? bundleNow : unit;
 
   // Checkout: create a fresh Shopify cart with the live-catalog variant id and
@@ -356,7 +355,7 @@ export default function ProductView({
             <BundleOption
               selected={bundle}
               onSelect={() => setBundle(true)}
-              title={`קנה 2 (${bundlePct}% הנחה)`}
+              title="קנה 2 · השייקר השני ב-50₪"
               priceLabel={formatPrice(bundleNow, product.currency)}
               badge="המשתלם ביותר"
               note={`חוסכים ${formatPrice(bundleSaves, product.currency)}`}
@@ -604,7 +603,7 @@ export default function ProductView({
                 {product.title}
               </span>
               <span className="truncate text-[11px] font-medium text-emerald-600">
-                {bundle ? `2 יחידות · ${bundlePct}% הנחה` : "משלוח חינם"}
+                {bundle ? "2 יחידות · השייקר השני ב-50₪" : "משלוח חינם"}
               </span>
             </>
           )}

@@ -817,7 +817,7 @@ function FinalCta() {
             מבצע השקה · מלאי ראשון מוגבל
           </p>
           <h2 className="font-display text-3xl font-black tracking-tight text-zinc-900 sm:text-4xl">
-            קנו 2 וקבלו 37% הנחה + משלוח חינם
+            קנו 2 וקבלו השייקר השני ב-50₪ + משלוח חינם
           </h2>
           <p className="max-w-xl text-lg leading-[1.7] text-[#2D3748]">
             שדרגו את האימון או תנו במתנה לפרטנר לאימונים. ההטבה להשקה בלבד
