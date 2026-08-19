@@ -291,7 +291,7 @@ export default function ProductView({
               strokeWidth={2}
             />
             <p className="text-base leading-[1.7] text-[#2D3748]">
-              <strong className="font-bold text-[#111111]">מיקסר חשמלי מובנה</strong> —
+              <strong className="font-bold text-[#111111]">מנגנון חשמלי מובנה</strong> —
               שייק חלק ומושלם בלחיצת כפתור, בלי גושים.
             </p>
           </div>

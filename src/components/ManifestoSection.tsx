@@ -135,7 +135,7 @@ export default function ManifestoSection({
                   תמיד איתך בכל אימון
                 </h3>
                 <p className="mt-5 text-lg font-medium leading-[1.85] text-[#2D3748] sm:text-xl">
-                  <strong className="font-bold text-[#111111]">נצמד לכל משקולת או ספסל מתכתי</strong>.
+                  <strong className="font-bold text-[#111111]">נצמד בכל מקום ובכל זמן</strong>.
                   הטלפון תמיד בגובה העיניים.{" "}
                   <br className="hidden sm:block" />
                   ידיים חופשיות ואפס טלפונים על הרצפה.

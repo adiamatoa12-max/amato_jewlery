@@ -43,9 +43,6 @@ export default function Hero() {
       <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center px-6 py-16 text-center sm:py-24 lg:px-10">
         <FadeIn>
           <div className="flex flex-col items-center">
-            <p className="mb-4 text-xs font-bold tracking-[0.2em] text-zinc-200 sm:text-sm">
-              למה הוא שונה
-            </p>
             <h1 className="font-display text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
               יש שייקרים. ויש VAULT.
             </h1>
