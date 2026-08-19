@@ -33,7 +33,7 @@ const rubik = Rubik({
   subsets: ["hebrew", "latin"],
 });
 
-const TITLE = "VAULT Shaker | שייקר מגנטי לחדר כושר";
+const TITLE = "VAULT Shaker | שייקר מגנטי חשמלי לחדר כושר";
 const DESCRIPTION =
   "VAULT — שייקר מגנטי לחדר כושר. הסוף לטלפון על הרצפה במכון: מחזיק את המכשיר שלך בגובה העיניים עם טכנולוגיית Mag-Grip, ומכין שייק חלק ב-10 שניות.";
 

@@ -358,7 +358,7 @@ export default function ProductView({
           <>
           {/* Bundle & Save — vertical option cards */}
           <p className="mb-3 mt-6 text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-500">
-            Bundle & Save
+            בחרו את החבילה שלכם
           </p>
           <div className="grid grid-cols-1 gap-3">
             <BundleOption

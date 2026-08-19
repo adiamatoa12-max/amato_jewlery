@@ -185,7 +185,7 @@ function HowItWorks() {
       <div className="mx-auto max-w-6xl">
         <FadeIn>
           <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-500">
-            פשוט להפליא
+פשוט. חכם. מהיר.
           </p>
           <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-[#000000] lg:text-4xl">
             איך זה עובד
@@ -301,7 +301,7 @@ function MicroConversion() {
           </h2>
           <PrimaryCta
             className={`w-full sm:w-auto ${goldButton}`}
-            label="הזמינו את ה-VAULT שלכם עכשיו"
+            label="הזמינו את VAULT עכשיו"
           />
         </div>
       </FadeIn>
@@ -372,7 +372,7 @@ function Anatomy() {
             הנדסה מדויקת
           </p>
           <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-900 lg:text-5xl">
-            המבנה המדויק של VAULT
+            מהונדס עד לפרט האחרון
           </h2>
         </FadeIn>
 
@@ -532,7 +532,7 @@ function Reviews() {
             לקוחות מספרים
           </p>
           <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-[#000000] lg:text-4xl">
-            למה מתאמנים עברו ל-Vault?
+            למה מתאמנים עוברים ל-VAULT?
           </h2>
         </FadeIn>
 
@@ -630,7 +630,7 @@ function BundleBanner() {
               </div>
             ) : (
               <p className="mt-7 text-sm font-bold uppercase tracking-[0.25em] text-zinc-500">
-                בקרוב · Coming Soon
+                אזל זמנית — חוזר בקרוב
               </p>
             )}
 
@@ -853,7 +853,7 @@ function StickyBuyBar() {
         href={PRODUCT_URL}
         className="flex w-full items-center justify-center rounded-full bg-[#2952e3] px-6 py-3 text-sm font-black uppercase tracking-[0.08em] text-white shadow-[0_0_26px_-6px_rgba(41,82,227,0.5)] ring-1 ring-[#2952e3]/40 transition-all duration-300 active:scale-95"
       >
-        הזמן עכשיו · מלאי מוגבל
+        הזמינו עכשיו · מלאי מוגבל
       </Link>
     </div>
   );
@@ -946,7 +946,7 @@ function Footer() {
               VAULT
             </span>
             <p className="mt-4 max-w-xs text-xs leading-relaxed text-zinc-500">
-              שייקר מגנטי בביצועים גבוהים לאורח חיים אקטיבי.
+              השייקר המגנטי החשמלי לספורטאים שלא מתפשרים.
             </p>
           </div>
 

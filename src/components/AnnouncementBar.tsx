@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Zap } from "lucide-react";
 
 const MESSAGES = [
-  "מבצע השקה: קנו שייקר וקבלו שייקר שני ב-50₪ + משלוח חינם | מלאי ראשון מוגבל",
+  "מבצע השקה · השייקר השני ב-50 ₪ בלבד · משלוח חינם עד הבית · מלאי מוגבל",
 ];
 
 const PRODUCT_URL = `/product/${encodeURIComponent("vault-magnetic-shaker")}`;

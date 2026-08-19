@@ -45,7 +45,7 @@ export default function Hero() {
               הנדסת ביצועים · אפס פשרות
             </p>
             <h1 className="font-display text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
-              האימון שלך משודרג
+              האימון שלך עולה רמה
             </h1>
             <p className="mt-3 max-w-2xl text-lg font-light leading-relaxed text-zinc-100 sm:text-xl">
               הטלפון מאובטח. השייק מושלם.

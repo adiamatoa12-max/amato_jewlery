@@ -116,7 +116,7 @@ export default function WaitlistModal() {
         ) : (
           <>
             <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-zinc-500">
-              Coming Soon
+              בקרוב · ההשקה מתקרבת
             </p>
             <h2 className="mt-3 font-display text-2xl font-black tracking-tight text-zinc-900 sm:text-3xl">
               הצטרפו לרשימת ההמתנה
