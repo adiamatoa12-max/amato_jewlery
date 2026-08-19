@@ -134,14 +134,28 @@ function ElectricMixSection() {
           </div>
         </FadeIn>
         <FadeIn delay={120} className="order-first md:order-none">
-          <div className="relative aspect-square overflow-hidden rounded-2xl border border-zinc-200 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
-            <Image
-              src="/images/שייקר חדש2.jpeg"
-              alt="שייקר VAULT החשמלי — מנוע לערבוב חלק בלי גושים"
-              fill
-              sizes="(min-width: 768px) 50vw, 100vw"
-              className="object-cover"
-            />
+          {/* Looping muted demo video. .mov → quicktime + mp4-labelled sources;
+              poster covers browsers that can't decode QuickTime. */}
+          <div className="mx-auto w-full max-w-sm">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              poster={`/images/${encodeURIComponent("שייקר חדש2.jpeg")}`}
+              aria-label="שייקר VAULT בפעולה — הדגמה"
+              className="w-full rounded-2xl border border-zinc-200 bg-zinc-900 shadow-[0_24px_70px_-28px_rgba(0,0,0,0.4)]"
+            >
+              <source
+                src={`/videos/${encodeURIComponent("סרטון הסבר מגנט.mov")}`}
+                type="video/quicktime"
+              />
+              <source
+                src={`/videos/${encodeURIComponent("סרטון הסבר מגנט.mov")}`}
+                type="video/mp4"
+              />
+            </video>
           </div>
         </FadeIn>
       </div>
@@ -600,31 +614,17 @@ function Compatibility() {
   return (
     <section className="bg-surface-alt px-6 py-12 lg:px-10 lg:py-16">
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 md:grid-cols-2">
-        {/* Visuals — magnet-strength demo video. DOM-first so it sits on the
-            RIGHT in RTL, directly beside the text. Loops muted as a continuous
-            demonstration. .mov → quicktime + mp4-labelled sources; poster
-            covers browsers that can't decode QuickTime. */}
+        {/* Visuals — DOM-first so it sits on the RIGHT in RTL */}
         <FadeIn>
-          <div className="mx-auto w-full max-w-sm">
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="metadata"
-              poster={`/images/${encodeURIComponent("שייקר חדש1.jpeg")}`}
-              aria-label="הדגמת עוצמת המגנט N52 — הטלפון נצמד למכונה ולא זז"
-              className="w-full rounded-2xl border border-zinc-200 bg-zinc-900 shadow-[0_24px_70px_-28px_rgba(0,0,0,0.4)]"
-            >
-              <source
-                src={`/videos/${encodeURIComponent("סרטון הסבר מגנט.mov")}`}
-                type="video/quicktime"
-              />
-              <source
-                src={`/videos/${encodeURIComponent("סרטון הסבר מגנט.mov")}`}
-                type="video/mp4"
-              />
-            </video>
+          <div className="mx-auto w-full max-w-md bg-transparent">
+            <Image
+              src="/images/compatibility-options-removebg-preview.png"
+              alt="שלוש אפשרויות הצמדה מגנטית של הטלפון — בתוך הכיסוי, על גביו וישירות על המכשיר"
+              width={1200}
+              height={800}
+              sizes="(min-width: 768px) 420px, 80vw"
+              className="h-auto w-full object-contain"
+            />
           </div>
         </FadeIn>
 
