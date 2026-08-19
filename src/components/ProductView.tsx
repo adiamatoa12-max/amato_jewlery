@@ -11,6 +11,10 @@ import {
   Check,
   Zap,
   Play,
+  ShieldCheck,
+  Magnet,
+  Droplets,
+  BatteryCharging,
 } from "lucide-react";
 import { formatPrice, type AddToCartInput } from "@/lib/cart/CartContext";
 import { ACCESSORIES } from "@/lib/accessories";
@@ -41,6 +45,15 @@ interface ProductViewProps {
   collectionTitle: string;
   collectionHandle: string;
 }
+
+// Compact product-spec icons — the immediate value prop shown right under the
+// bundle selector, so mobile shoppers see it before/next to the checkout.
+const SPECS = [
+  { icon: ShieldCheck, label: "נטול BPA" },
+  { icon: Magnet, label: "מגנט N52" },
+  { icon: Droplets, label: "100% אטום" },
+  { icon: BatteryCharging, label: "סוללה חזקה" },
+];
 
 const TRUST_BADGES = [
   {
@@ -322,7 +335,7 @@ export default function ProductView({
 
           {/* Colour selector(s) — a single picker, or one per shaker once the
               2-pack is selected. The first picker drives the gallery image. */}
-          <div className="mt-7 space-y-5">
+          <div className="mt-6 space-y-4">
             <ColorRow
               label={bundle ? "צבע שייקר ראשון" : "צבע"}
               value={activeColor}
@@ -344,7 +357,7 @@ export default function ProductView({
           {!WAITLIST_MODE && (
           <>
           {/* Bundle & Save — vertical option cards */}
-          <p className="mb-3 mt-8 text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-500">
+          <p className="mb-3 mt-6 text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-500">
             Bundle & Save
           </p>
           <div className="grid grid-cols-1 gap-3">
@@ -364,6 +377,22 @@ export default function ProductView({
               highlight
             />
           </div>
+
+          {/* Immediate value prop — key specs right under the bundle selector so
+              mobile shoppers see them at the decision point, before checkout. */}
+          <ul className="mt-4 grid grid-cols-2 gap-2 rounded-2xl border border-zinc-200 bg-zinc-50 p-3 sm:grid-cols-4">
+            {SPECS.map(({ icon: Icon, label }) => (
+              <li
+                key={label}
+                className="flex flex-col items-center gap-1.5 px-1 py-2 text-center"
+              >
+                <Icon className="h-5 w-5 text-[#2952e3]" strokeWidth={1.75} />
+                <span className="text-[11px] font-bold leading-tight text-zinc-900">
+                  {label}
+                </span>
+              </li>
+            ))}
+          </ul>
 
           {/* In-buy-box accessory upsell — hidden while extras are out of stock */}
           {EXTRAS_AVAILABLE && (
