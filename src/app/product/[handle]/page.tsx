@@ -27,7 +27,7 @@ export async function generateMetadata({
     : `${product.title} — VAULT`;
   const description =
     product.description?.replace(/\s+/g, " ").trim().slice(0, 160) ||
-    "שייקר מגנטי לחדר כושר VAULT — ביצועים גבוהים, מעמד טלפון מובנה ואטימה מושלמת.";
+    "שייקר VAULT החשמלי — מערבב שייק חלק בלי גושים, נצמד עם מגנט N52 לכל מכונה ואטום 100%.";
   const canonicalPath = `/product/${encodeURIComponent(product.handle)}`;
   // Structured OG image object (width/height/alt) — WhatsApp/Facebook render
   // a correctly-sized preview immediately instead of guessing dimensions.

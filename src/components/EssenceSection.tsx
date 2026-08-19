@@ -92,11 +92,11 @@ export default function EssenceSection() {
           המהות שלנו
         </p>
         <h2 className="mt-7 font-serif text-3xl font-light leading-tight tracking-[0.04em] lg:text-5xl">
-          תוכנן לתנועה, בנוי לביצועים.
+          בא איתך לכל אימון.
         </h2>
         <p className="mt-7 max-w-lg text-sm leading-loose text-white/80 lg:text-base">
-          השייקר המגנטי של VAULT משלב מעמד טלפון מובנה, אטימות מושלמת וכדור ערבוב
-          יעיל — כל מה שצריך לאימון, לריצה ולכל יום פעיל.
+          מנוע חשמלי שמערבב את השייק חלק בלי גושים, מגנט N52 שמצמיד את הטלפון לכל
+          מכונה, ואטימה שלא מדליפה טיפה — כל מה שצריך לאימון, לריצה ולכל יום פעיל.
         </p>
       </div>
     </section>

@@ -109,7 +109,7 @@ const COMPARISON_ROWS: {
   classic: CompareValue;
 }[] = [
   {
-    feature: "נפח ארגונומי",
+    feature: "נפח נוח ליד",
     vault: "700 מ״ל",
     electric: "600 מ״ל+",
     classic: "900 מ״ל",
@@ -353,11 +353,11 @@ type Callout = {
 };
 
 const ANATOMY: Callout[] = [
-  { icon: Droplet, label: "פיית שתייה היגיינית" },
-  { icon: Zap, label: "מנוע חשמלי לערבול מושלם" },
-  { icon: Magnet, label: "מגנט N52 עוצמתי" },
-  { icon: Grip, label: "ידית נשיאה ארגונומית" },
-  { icon: ShieldCheck, label: "גוף שקוף BPA-Free · אטום לנזילות" },
+  { icon: Droplet, label: "פייה נוחה לשתייה ישירה" },
+  { icon: Zap, label: "מנוע חשמלי — שייק חלק בלי גושים" },
+  { icon: Magnet, label: "מגנט N52 שנצמד לכל מכונה" },
+  { icon: Grip, label: "ידית נוחה לאחיזה" },
+  { icon: ShieldCheck, label: "גוף שקוף נטול BPA · אטום 100%" },
 ];
 
 function Anatomy() {
@@ -369,10 +369,10 @@ function Anatomy() {
       <div className="mx-auto max-w-5xl">
         <FadeIn>
           <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-500">
-            הנדסה מדויקת
+מה יש לו שלרגיל אין
           </p>
           <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-900 lg:text-5xl">
-            מהונדס עד לפרט האחרון
+כל מה שחסר בשייקר רגיל
           </h2>
         </FadeIn>
 

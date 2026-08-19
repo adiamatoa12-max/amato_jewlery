@@ -51,7 +51,7 @@ export default function ManifestoSection({
               למה VAULT שונה
             </p>
             <h2 className="mt-5 text-center font-display text-4xl font-black uppercase leading-[0.95] tracking-tight text-[#111111] sm:text-5xl lg:text-6xl">
-              הסטנדרט של VAULT
+ככה שייקר צריך להיות
             </h2>
             <p className="mx-auto mt-6 max-w-2xl text-center font-display text-xl font-bold tracking-tight text-[#2D3748] sm:text-2xl">
               עידן הציוד הזול נגמר.
@@ -109,8 +109,8 @@ export default function ManifestoSection({
                   עיצוב שיושב נכון
                 </h3>
                 <p className="mt-5 text-lg font-medium leading-[1.85] text-[#2D3748] sm:text-xl">
-                  <strong className="font-bold text-[#111111]">ארגונומיה מדויקת</strong>{" "}
-                  שנשארת נוחה גם באמצע האימון.{" "}
+                  <strong className="font-bold text-[#111111]">יושב מעולה ביד</strong>{" "}
+                  ונשאר נוח גם באמצע האימון.{" "}
                   <br className="hidden sm:block" />
                   אוחזים חזק ומרגישים קל — בלי להתפשר על הסטייל.
                 </p>

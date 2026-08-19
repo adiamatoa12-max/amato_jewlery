@@ -22,7 +22,7 @@ export async function generateMetadata({
   const title = `${collection.title} — VAULT`;
   const description =
     collection.tagline?.replace(/\s+/g, " ").trim().slice(0, 160) ||
-    `${collection.title} מבית VAULT — ציוד אימון בביצועים גבוהים.`;
+    `${collection.title} מבית VAULT — הציוד שמשדרג לך את האימון.`;
   const image = collection.products[0]?.image;
   const canonicalPath = `/collections/${encodeURIComponent(collection.handle)}`;
 

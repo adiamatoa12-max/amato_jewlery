@@ -6,7 +6,7 @@ import FadeIn from "@/components/FadeIn";
 export const metadata: Metadata = {
   title: "הסיפור שלנו — VAULT",
   description:
-    "VAULT — השייקר החשמלי המגנטי בעל הביצועים הגבוהים, עם מעמד טלפון מובנה. עיצוב ארגונומי, גוף טריטן שקוף נטול BPA ואטימה מושלמת — בנוי לאורח חיים אקטיבי.",
+    "VAULT — השייקר החשמלי המגנטי עם מעמד טלפון מובנה. מערבב שייק חלק בלי גושים, נצמד עם מגנט חזק לכל מכונה ואטום 100% — לכל מי שמתאמן ברצינות.",
 };
 
 const PILLARS = [
@@ -22,8 +22,8 @@ const PILLARS = [
   },
   {
     icon: Dumbbell,
-    title: "ביצועים",
-    body: "נבנה לשימוש יומיומי בחדר הכושר. אטימה מלאה שמונעת נזילות, גם כשהתיק מתהפך בדרך.",
+    title: "בלי נזילות",
+    body: "בנוי לחדר הכושר היומיומי. אטום לגמרי — לא מדליף טיפה, גם כשהתיק מתהפך בדרך.",
   },
 ];
 
@@ -73,9 +73,9 @@ export default function AboutPage() {
                 שמחזיק את הטלפון בגובה העיניים לאורך כל האימון.
               </p>
               <p className="text-lg font-medium leading-[1.8] text-[#2D3748]">
-                אנחנו מאמינים בעיצוב ארגונומי מדויק, בחומרים הכי איכותיים
-                ובאפס פשרות. ה-VaultShaker הוא לא עוד בקבוק — הוא השדרוג
-                שהאימונים שלך ראויים לו.
+                אנחנו מאמינים בעיצוב שנוח לאחוז, בחומרים הכי איכותיים ובלי
+                פשרות. VAULT הוא לא עוד בקבוק — הוא השדרוג שהאימונים שלך ראויים
+                לו.
               </p>
             </div>
           </FadeIn>
@@ -129,18 +129,18 @@ export default function AboutPage() {
             <FadeIn delay={150}>
               <div className="flex flex-col text-center lg:order-first lg:text-right">
                 <p className="text-xs font-bold uppercase tracking-[0.3em] text-zinc-600">
-                  הנדסה מדויקת
+                  כל פרט חשוב
                 </p>
                 <h2 className="mt-5 font-display text-3xl font-black leading-tight tracking-tight text-zinc-900 lg:text-4xl">
-                  כל פרט נבנה לביצועים.
+                  כל פרט נבנה בשביל האימון.
                 </h2>
                 <p className="mx-auto mt-7 max-w-md text-lg leading-[1.7] text-[#2D3748] lg:mx-0">
                   המגנט מעגן את הטלפון כך שלא תצטרכו להחזיק אותו. האטימה
                   ההרמטית שומרת על התיק יבש.
                 </p>
                 <p className="mx-auto mt-4 max-w-md text-lg leading-[1.7] text-[#2D3748] lg:mx-0">
-                  וגוף הטריטן השקוף וידית הנשיאה הארגונומית פשוט מחזיקים מעמד,
-                  אימון אחרי אימון.
+                  וגוף הטריטן השקוף והידית הנוחה פשוט מחזיקים מעמד, אימון אחרי
+                  אימון.
                 </p>
               </div>
             </FadeIn>
