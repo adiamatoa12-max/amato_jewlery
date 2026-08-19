@@ -135,14 +135,52 @@ export default function ProductView({
     // Send the SELECTED colour's Shopify variant (falls back to the product's
     // default variant). Its own variant image + option is what Shopify shows on
     // the order and checkout for that colour.
-    const variantId = COLORS[activeColor].variantId || product.variantId;
+    // Resolve the chosen colour variant(s). A single purchase uses the primary
+    // colour; the 2-pack sends BOTH chosen colours so the customer receives the
+    // exact two shakers they picked. Falls back to the product's default variant.
+    const first = COLORS[activeColor];
+    const second = COLORS[secondColor];
+    const firstVariant = first.variantId || product.variantId;
+    const secondVariant = second.variantId || product.variantId;
     // Guard: without a variant id the cart line is dropped server-side and the
     // API returns the confusing "no items" error — give a clear message instead.
-    if (!variantId) {
+    if (!firstVariant || (bundle && !secondVariant)) {
       console.warn("[checkout] missing variant id — cannot check out");
       setCheckoutError("הרכישה אינה זמינה כרגע. אנא רעננו את הדף ונסו שוב.");
       return;
     }
+    // Build the cart lines. Single unit → one line. 2-pack → one line per chosen
+    // colour (qty 1 each); if both colours match, merge into one qty-2 line so
+    // the total quantity stays correct. Colour is captured by the variant itself
+    // and also sent as a readable Hebrew line property for order management.
+    const lines = !bundle
+      ? [
+          {
+            variantId: firstVariant,
+            quantity: 1,
+            attributes: [{ key: "צבע", value: first.name }],
+          },
+        ]
+      : firstVariant === secondVariant
+        ? [
+            {
+              variantId: firstVariant,
+              quantity: 2,
+              attributes: [{ key: "צבע", value: first.name }],
+            },
+          ]
+        : [
+            {
+              variantId: firstVariant,
+              quantity: 1,
+              attributes: [{ key: "צבע (שייקר ראשון)", value: first.name }],
+            },
+            {
+              variantId: secondVariant,
+              quantity: 1,
+              attributes: [{ key: "צבע (שייקר שני)", value: second.name }],
+            },
+          ];
     setCheckoutError(null);
     setCheckingOut(true);
     try {
@@ -150,15 +188,7 @@ export default function ProductView({
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          lines: [
-            {
-              variantId,
-              quantity: bundle ? 2 : 1,
-              // Colour is captured by the variant itself; also send the Hebrew
-              // colour name as a line property for readable order management.
-              attributes: [{ key: "צבע", value: COLORS[activeColor].name }],
-            },
-          ],
+          lines,
           // 2-pack: apply the bundle discount so the cart nets to BUNDLE_PRICE
           // (2 units − 139 ₪) instead of 2 × the single-unit variant price.
           discountCodes: bundle ? [BUNDLE_DISCOUNT_CODE] : [],
@@ -185,6 +215,8 @@ export default function ProductView({
   // shot). `activeThumb` is null while a colour is shown, or the index of a
   // lifestyle/video thumbnail once one is clicked.
   const [activeColor, setActiveColor] = useState(0);
+  // Second shaker's colour — only used when the 2-pack bundle is selected.
+  const [secondColor, setSecondColor] = useState(0);
   const [activeThumb, setActiveThumb] = useState<number | null>(null);
   const activeMedia =
     activeThumb === null
@@ -287,38 +319,24 @@ export default function ProductView({
             </>
           )}
 
-          {/* Colour selector — swaps the main product image */}
-          <div className="mt-7">
-            <p className="mb-3 text-sm font-semibold text-zinc-900">
-              צבע:{" "}
-              <span className="font-medium text-zinc-500">
-                {COLORS[activeColor].name}
-              </span>
-            </p>
-            <div className="flex flex-wrap gap-3">
-              {COLORS.map((c, i) => {
-                const selected = activeColor === i;
-                return (
-                  <button
-                    key={c.name}
-                    type="button"
-                    onClick={() => {
-                      setActiveColor(i);
-                      setActiveThumb(null);
-                    }}
-                    aria-label={`צבע ${c.name}`}
-                    aria-pressed={selected}
-                    title={c.name}
-                    className={`h-10 w-10 rounded-full border border-black/10 shadow-sm transition-all duration-200 ${
-                      selected
-                        ? "ring-2 ring-[#2952e3] ring-offset-2 ring-offset-white"
-                        : "hover:scale-110"
-                    }`}
-                    style={{ backgroundColor: c.swatch }}
-                  />
-                );
-              })}
-            </div>
+          {/* Colour selector(s) — a single picker, or one per shaker once the
+              2-pack is selected. The first picker drives the gallery image. */}
+          <div className="mt-7 space-y-5">
+            <ColorRow
+              label={bundle ? "צבע שייקר ראשון" : "צבע"}
+              value={activeColor}
+              onSelect={(i) => {
+                setActiveColor(i);
+                setActiveThumb(null);
+              }}
+            />
+            {bundle && (
+              <ColorRow
+                label="צבע שייקר שני"
+                value={secondColor}
+                onSelect={(i) => setSecondColor(i)}
+              />
+            )}
           </div>
 
           {/* Purchase controls — hidden in pre-launch waitlist mode */}
@@ -615,6 +633,48 @@ export default function ProductView({
         )}
       </div>
     </>
+  );
+}
+
+// A labelled row of colour swatches. Reused for the single-unit picker and for
+// each shaker's picker in the 2-pack. `value` is the selected COLORS index.
+function ColorRow({
+  label,
+  value,
+  onSelect,
+}: {
+  label: string;
+  value: number;
+  onSelect: (index: number) => void;
+}) {
+  return (
+    <div>
+      <p className="mb-3 text-sm font-semibold text-zinc-900">
+        {label}:{" "}
+        <span className="font-medium text-zinc-500">{COLORS[value].name}</span>
+      </p>
+      <div className="flex flex-wrap gap-3">
+        {COLORS.map((c, i) => {
+          const selected = value === i;
+          return (
+            <button
+              key={c.name}
+              type="button"
+              onClick={() => onSelect(i)}
+              aria-label={`${label} ${c.name}`}
+              aria-pressed={selected}
+              title={c.name}
+              className={`h-10 w-10 rounded-full border border-black/10 shadow-sm transition-all duration-200 ${
+                selected
+                  ? "ring-2 ring-[#2952e3] ring-offset-2 ring-offset-white"
+                  : "hover:scale-110"
+              }`}
+              style={{ backgroundColor: c.swatch }}
+            />
+          );
+        })}
+      </div>
+    </div>
   );
 }
 
