@@ -68,6 +68,7 @@ export default function Home() {
         <Compatibility />          {/* אבל האם המגנט באמת מחזיק? */}
         <Reviews />                 {/* כבר משתמשים בו באימונים */}
         <BundleSection />           {/* למה עכשיו שניים? */}
+        <VaultInActionSection />    {/* ראה את ה-VAULT בפעולה */}
         <WhatsInTheBox />           {/* unified-policy reassurance strip */}
         <FaqAccordion />            {/* שאלות נפוצות */}
       </main>
@@ -214,6 +215,42 @@ function BundleSection() {
           </div>
         </div>
       </FadeIn>
+    </section>
+  );
+}
+
+/* ── See it in action — the previous hero clip, relocated near the bottom ── */
+function VaultInActionSection() {
+  return (
+    <section className="bg-surface-alt px-6 py-12 lg:px-10 lg:py-16">
+      <div className="mx-auto max-w-4xl">
+        <FadeIn>
+          <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-500">
+            בפעולה
+          </p>
+          <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-900 sm:text-4xl">
+            ראה את ה-VAULT בפעולה
+          </h2>
+        </FadeIn>
+        <FadeIn delay={120}>
+          <div className="mx-auto mt-10 overflow-hidden rounded-2xl border border-zinc-200 shadow-[0_24px_70px_-28px_rgba(0,0,0,0.4)]">
+            <video
+              src={`/videos/${encodeURIComponent("שייקר חדש4.mp4")}`}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              poster={`/images/${encodeURIComponent("שייקר חדש2.jpeg")}`}
+              aria-label="שייקר VAULT בפעולה — טכנולוגיית Mag-Grip בחדר הכושר"
+              className="aspect-video w-full bg-zinc-900 object-cover"
+            />
+          </div>
+          <div className="mt-8 flex justify-center">
+            <PrimaryCta className={goldButton} label="לבחירת צבעים והזמנה ←" />
+          </div>
+        </FadeIn>
+      </div>
     </section>
   );
 }
