@@ -600,17 +600,31 @@ function Compatibility() {
   return (
     <section className="bg-surface-alt px-6 py-12 lg:px-10 lg:py-16">
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 md:grid-cols-2">
-        {/* Visuals — DOM-first so it sits on the RIGHT in RTL */}
+        {/* Visuals — magnet-strength demo video. DOM-first so it sits on the
+            RIGHT in RTL, directly beside the text. Loops muted as a continuous
+            demonstration. .mov → quicktime + mp4-labelled sources; poster
+            covers browsers that can't decode QuickTime. */}
         <FadeIn>
-          <div className="mx-auto w-full max-w-md bg-transparent">
-            <Image
-              src="/images/compatibility-options-removebg-preview.png"
-              alt="VAULT Mounting Options"
-              width={1200}
-              height={800}
-              sizes="(min-width: 768px) 420px, 80vw"
-              className="h-auto w-full object-contain"
-            />
+          <div className="mx-auto w-full max-w-sm">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              poster={`/images/${encodeURIComponent("שייקר חדש1.jpeg")}`}
+              aria-label="הדגמת עוצמת המגנט N52 — הטלפון נצמד למכונה ולא זז"
+              className="w-full rounded-2xl border border-zinc-200 bg-zinc-900 shadow-[0_24px_70px_-28px_rgba(0,0,0,0.4)]"
+            >
+              <source
+                src={`/videos/${encodeURIComponent("סרטון הסבר מגנט.mov")}`}
+                type="video/quicktime"
+              />
+              <source
+                src={`/videos/${encodeURIComponent("סרטון הסבר מגנט.mov")}`}
+                type="video/mp4"
+              />
+            </video>
           </div>
         </FadeIn>
 
