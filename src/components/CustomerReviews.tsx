@@ -131,14 +131,14 @@ export default function CustomerReviews({ handle }: { handle: string }) {
                   required
                   aria-label="השם שלך"
                   placeholder="השם שלך"
-                  className="mt-5 w-full border-b border-zinc-300 bg-transparent py-2 text-sm text-zinc-900 placeholder:text-zinc-500 focus:border-[#2952e3] focus:outline-none"
+                  className="mt-5 w-full border-b border-zinc-300 bg-transparent py-2 text-base text-zinc-900 placeholder:text-zinc-500 focus:border-[#2952e3] focus:outline-none"
                 />
                 <textarea
                   required
                   rows={4}
                   aria-label="ספרו לנו על החוויה שלכם"
                   placeholder="ספרו לנו על החוויה שלכם..."
-                  className="mt-5 w-full resize-none border-b border-zinc-300 bg-transparent py-2 text-sm text-zinc-900 placeholder:text-zinc-500 focus:border-[#2952e3] focus:outline-none"
+                  className="mt-5 w-full resize-none border-b border-zinc-300 bg-transparent py-2 text-base text-zinc-900 placeholder:text-zinc-500 focus:border-[#2952e3] focus:outline-none"
                 />
                 <button
                   type="submit"

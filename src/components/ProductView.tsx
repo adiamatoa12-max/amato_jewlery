@@ -226,20 +226,22 @@ export default function ProductView({
         }
       : GALLERY_MEDIA[activeThumb] ?? GALLERY_MEDIA[0];
 
-  // Sticky bar appears only once the main Buy button has scrolled out of view
-  // (above the viewport) — keeps the CTA reachable without crowding the page.
+  // Persistent mobile buy-bar: visible whenever the main Buy button is NOT in
+  // view — including the gallery region at the top of the page (button still
+  // below the fold) and after it scrolls past. Hides only while the main CTA is
+  // on screen, so there's never a duplicate CTA. IntersectionObserver avoids a
+  // scroll-handler and its layout thrash.
   const buyRef = useRef<HTMLDivElement | null>(null);
   const [showSticky, setShowSticky] = useState(false);
   useEffect(() => {
-    const onScroll = () => {
-      const el = buyRef.current;
-      if (!el) return;
-      // Show once the main Buy button has fully scrolled above the viewport.
-      setShowSticky(el.getBoundingClientRect().bottom < 0);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const el = buyRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setShowSticky(!entry.isIntersecting),
+      { threshold: 0 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
   }, []);
 
   return (
@@ -599,11 +601,11 @@ export default function ProductView({
             </>
           ) : (
             <>
-              <span className="truncate text-xs font-bold text-zinc-900">
-                {product.title}
+              <span className="text-lg font-black tabular-nums leading-none text-zinc-900">
+                {formatPrice(displayPrice, product.currency)}
               </span>
-              <span className="truncate text-[11px] font-medium text-emerald-600">
-                {bundle ? "2 יחידות · השייקר השני ב-50₪" : "משלוח חינם"}
+              <span className="mt-1 truncate text-[11px] font-medium text-emerald-600">
+                {bundle ? "2 יחידות · השייקר השני ב-50₪" : "משלוח חינם · 30 יום החזר"}
               </span>
             </>
           )}
@@ -623,11 +625,9 @@ export default function ProductView({
             type="button"
             onClick={handleCheckout}
             disabled={checkingOut}
-            className="flex flex-1 items-center justify-center rounded-full bg-[#2952e3] px-5 py-3.5 text-sm font-black tracking-[0.02em] text-white transition-all duration-300 hover:bg-[#4169e5] active:scale-95 disabled:opacity-70"
+            className="flex flex-1 items-center justify-center rounded-full bg-[#2952e3] px-6 py-3.5 text-sm font-black tracking-[0.04em] text-white transition-all duration-300 hover:bg-[#4169e5] active:scale-95 disabled:opacity-70"
           >
-            {checkingOut
-              ? "מעבר לתשלום…"
-              : `רכישה מהירה — ${formatPrice(displayPrice, product.currency)}`}
+            {checkingOut ? "מעבר לתשלום…" : "המשך לתשלום"}
           </button>
         )}
       </div>
@@ -663,7 +663,7 @@ function ColorRow({
               aria-label={`${label} ${c.name}`}
               aria-pressed={selected}
               title={c.name}
-              className={`h-10 w-10 rounded-full border border-black/10 shadow-sm transition-all duration-200 ${
+              className={`h-11 w-11 rounded-full border border-black/10 shadow-sm transition-all duration-200 ${
                 selected
                   ? "ring-2 ring-[#2952e3] ring-offset-2 ring-offset-white"
                   : "hover:scale-110"
