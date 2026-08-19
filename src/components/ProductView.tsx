@@ -259,9 +259,10 @@ export default function ProductView({
 
   return (
     <>
-      <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:gap-16">
-        {/* DETAILS — order-2 on mobile (below gallery), right column on desktop (RTL) */}
-        <section className="order-2 flex flex-col self-start lg:order-1 lg:sticky lg:top-32">
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start lg:gap-x-16 lg:gap-y-0">
+        {/* HEADER — title/price. order-1 (top) on mobile; right column · top row
+            on desktop (RTL). The gallery slots in after this on mobile. */}
+        <section className="order-1 flex flex-col lg:col-start-1 lg:row-start-1">
           <Link
             href={`/#${collectionHandle}`}
             className="text-[11px] font-bold uppercase tracking-[0.25em] transition-colors duration-300"
@@ -332,10 +333,15 @@ export default function ProductView({
               </p>
             </>
           )}
+        </section>
 
+        {/* CONTROLS — colour · bundle · checkout. order-3 (below the gallery) on
+            mobile, so the swatches sit directly under the product image; right
+            column · second row on desktop, tucked under the header. */}
+        <section className="order-3 flex flex-col lg:col-start-1 lg:row-start-2">
           {/* Colour selector(s) — a single picker, or one per shaker once the
               2-pack is selected. The first picker drives the gallery image. */}
-          <div className="mt-6 space-y-4">
+          <div className="mt-2 space-y-4 lg:mt-6">
             <ColorRow
               label={bundle ? "צבע שייקר ראשון" : "צבע"}
               value={activeColor}
@@ -530,8 +536,10 @@ export default function ProductView({
           </div>
         </section>
 
-        {/* GALLERY — order-1 on mobile (top, under header), left column on desktop (RTL). Mixed media: image + action video. */}
-        <section className="order-1 flex flex-col gap-4 lg:order-2">
+        {/* GALLERY — order-2 on mobile (between header and controls, so the image
+            sits right above the swatches and visibly updates on colour change);
+            left column spanning both rows on desktop (RTL). Mixed media. */}
+        <section className="order-2 flex flex-col gap-4 lg:col-start-2 lg:row-start-1 lg:row-span-2">
           <div
             className={`relative aspect-[4/5] w-full overflow-hidden rounded-2xl transition-colors duration-300 ${
               activeThumb === null ? "bg-white" : "bg-zinc-100"
