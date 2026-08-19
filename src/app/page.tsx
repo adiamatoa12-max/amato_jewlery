@@ -369,7 +369,7 @@ function Anatomy() {
       <div className="mx-auto max-w-5xl">
         <FadeIn>
           <p className="text-center text-[11px] font-bold tracking-[0.3em] text-zinc-500">
-מה יש לו שלרגיל אין
+למה הוא שונה
           </p>
           <h2 className="mt-4 text-center font-display text-3xl font-black tracking-tight text-zinc-900 lg:text-5xl">
 כל מה שחסר בשייקר רגיל
