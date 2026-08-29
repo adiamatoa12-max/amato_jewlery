@@ -46,12 +46,15 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   alternates: { canonical: "/" },
   icons: {
-    // Custom VAULT favicon used for the browser tab, shortcut and Apple touch
-    // icon. (The old app/apple-icon.svg file-convention icon was removed so
-    // this single source of truth wins for the apple-touch-icon too.)
-    icon: "/images/favicon.png",
-    shortcut: "/images/favicon.png",
-    apple: "/images/favicon.png",
+    // Square VAULT "V" mark. SVG for crisp modern-browser tabs, a PNG fallback
+    // for older browsers, and a full-bleed PNG for the iOS/Android touch icon
+    // (single source of truth — no app/ file-convention icons).
+    icon: [
+      { url: "/images/favicon-v.svg", type: "image/svg+xml" },
+      { url: "/images/favicon-v-512.png", type: "image/png", sizes: "512x512" },
+    ],
+    shortcut: "/images/favicon-v-512.png",
+    apple: "/images/favicon-v-apple.png",
   },
   openGraph: {
     type: "website",
