@@ -5,14 +5,12 @@ import { useEffect, useRef } from "react";
 type VideoSource = { src: string; type: string };
 
 /**
- * Background / demo video that reliably autoplays on mobile.
- *
- * Two things browsers (esp. iOS Safari) need that plain JSX doesn't guarantee:
- *  1. `muted` set as a real property — React's `muted` attribute is unreliable,
- *     and mobile browsers block autoplay for anything they consider unmuted,
- *     which is what surfaces the tap-to-play button.
- *  2. an explicit play() nudge once data is ready.
- * We do both here. Controls are never rendered, so it loops as background motion.
+ * Background / demo video that autoplays as pure looping motion — no controls,
+ * no tap-to-play. Uses a direct `src` (single, universally-supported MP4/H.264)
+ * rather than <source> children, sets `muted` as a real property (React's
+ * attribute alone is unreliable and mobile blocks autoplay for anything it
+ * considers unmuted), and retries play() across the load lifecycle plus the
+ * first user gesture as a last resort.
  */
 export default function AutoplayVideo({
   sources,
@@ -26,40 +24,49 @@ export default function AutoplayVideo({
   ariaLabel?: string;
 }) {
   const ref = useRef<HTMLVideoElement>(null);
+  const src = sources[0]?.src;
 
   useEffect(() => {
     const v = ref.current;
     if (!v) return;
     v.muted = true;
     v.defaultMuted = true;
-    const play = () => {
+    let cancelled = false;
+    const tryPlay = () => {
+      if (cancelled) return;
       const p = v.play();
       if (p && typeof p.catch === "function") p.catch(() => {});
     };
-    play();
-    v.addEventListener("loadeddata", play);
-    v.addEventListener("canplay", play);
+    tryPlay();
+    const events = ["loadedmetadata", "loadeddata", "canplay", "canplaythrough"];
+    events.forEach((e) => v.addEventListener(e, tryPlay));
+    // Last-resort resume on the first user interaction (covers Low-Power-Mode
+    // / strict autoplay policies) — one-shot listeners.
+    const onGesture = () => tryPlay();
+    document.addEventListener("touchstart", onGesture, { once: true, passive: true });
+    document.addEventListener("click", onGesture, { once: true });
+    document.addEventListener("visibilitychange", tryPlay);
     return () => {
-      v.removeEventListener("loadeddata", play);
-      v.removeEventListener("canplay", play);
+      cancelled = true;
+      events.forEach((e) => v.removeEventListener(e, tryPlay));
+      document.removeEventListener("touchstart", onGesture);
+      document.removeEventListener("click", onGesture);
+      document.removeEventListener("visibilitychange", tryPlay);
     };
-  }, []);
+  }, [src]);
 
   return (
     <video
       ref={ref}
+      src={src}
       autoPlay
-      loop
       muted
+      loop
       playsInline
       preload="auto"
       poster={poster}
       aria-label={ariaLabel}
       className={className}
-    >
-      {sources.map((s) => (
-        <source key={s.type} src={s.src} type={s.type} />
-      ))}
-    </video>
+    />
   );
 }

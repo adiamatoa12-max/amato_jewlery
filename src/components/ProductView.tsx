@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -10,7 +10,6 @@ import {
   ChevronDown,
   Check,
   Zap,
-  Play,
   ShieldCheck,
   Magnet,
   Droplets,
@@ -25,6 +24,7 @@ import {
   BUNDLE_DISCOUNT_CODE,
 } from "@/lib/pricing";
 import WaitlistButton from "@/components/WaitlistButton";
+import AutoplayVideo from "@/components/AutoplayVideo";
 
 const GOLD = "#2952e3";
 
@@ -244,28 +244,9 @@ export default function ProductView({
     ? "להזמנה השני ב-50 ₪ ←"
     : "לבחירת צבעים והזמנה ←";
 
-  // Exactly one CTA on screen at a time: the in-box button while the buy box is
-  // visible, and the single sticky bottom bar only once it scrolls fully out of
-  // view. A scroll listener (with an immediate initial check) is used rather than
-  // IntersectionObserver so the state is correct on first paint everywhere.
-  const buyRef = useRef<HTMLDivElement | null>(null);
-  const [showSticky, setShowSticky] = useState(false);
-  useEffect(() => {
-    const update = () => {
-      const el = buyRef.current;
-      if (!el) return;
-      const r = el.getBoundingClientRect();
-      // Sticky shows only when the in-box CTA is entirely above or below the fold.
-      setShowSticky(r.bottom <= 0 || r.top >= window.innerHeight);
-    };
-    update();
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
-    return () => {
-      window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
-    };
-  }, []);
+  // Mobile renders exactly ONE checkout button: the always-visible sticky bottom
+  // bar. The in-box CTA is desktop-only (`hidden lg:block`), so a second button
+  // can never appear on mobile.
 
   return (
     <>
@@ -487,7 +468,7 @@ export default function ProductView({
 
           {/* CTA — routes to the direct Shopify checkout for the selected
               bundle. Pre-launch waitlist mode still shows the signup. */}
-          <div ref={buyRef} id="buy">
+          <div id="buy" className="hidden lg:block">
           {WAITLIST_MODE ? (
             <WaitlistButton className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#2952e3] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-white shadow-[0_0_30px_-6px_rgba(41,82,227,0.5)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#4169e5] hover:shadow-[0_0_46px_-4px_rgba(41,82,227,0.65)] active:scale-95" />
           ) : soldOut ? (
@@ -561,13 +542,9 @@ export default function ProductView({
             }`}
           >
             {activeMedia.type === "video" ? (
-              <video
-                src={activeMedia.src}
-                autoPlay
-                loop
-                muted
-                playsInline
-                aria-label={activeMedia.alt}
+              <AutoplayVideo
+                sources={[{ src: activeMedia.src, type: "video/mp4" }]}
+                ariaLabel={activeMedia.alt}
                 className="absolute inset-0 h-full w-full object-cover object-center"
               />
             ) : (
@@ -604,22 +581,11 @@ export default function ProductView({
                 }`}
               >
                 {m.type === "video" ? (
-                  <>
-                    <video
-                      src={m.src}
-                      muted
-                      playsInline
-                      preload="metadata"
-                      className="absolute inset-0 h-full w-full object-cover object-center"
-                    />
-                    <span className="absolute inset-0 flex items-center justify-center bg-black/25">
-                      <Play
-                        className="h-5 w-5 text-white"
-                        strokeWidth={2}
-                        fill="currentColor"
-                      />
-                    </span>
-                  </>
+                  <AutoplayVideo
+                    sources={[{ src: m.src, type: "video/mp4" }]}
+                    ariaLabel={m.alt}
+                    className="absolute inset-0 h-full w-full object-cover object-center"
+                  />
                 ) : (
                   <Image
                     src={m.src}
@@ -635,13 +601,8 @@ export default function ProductView({
         </section>
       </div>
 
-      {/* Sticky buy bar — the single mobile CTA bar; slides in only once the
-          in-box CTA scrolls out of view, so there's never a second bar/overlap. */}
-      <div
-        className={`fixed inset-x-0 bottom-0 z-40 flex items-center gap-4 border-t border-zinc-200 bg-surface px-5 py-2.5 shadow-[0_-8px_30px_-8px_rgba(0,0,0,0.15)] transition-transform duration-300 ease-out lg:hidden ${
-          showSticky ? "translate-y-0" : "translate-y-full"
-        }`}
-      >
+      {/* Sticky buy bar — the single, always-visible checkout button on mobile. */}
+      <div className="fixed inset-x-0 bottom-0 z-40 flex items-center gap-4 border-t border-zinc-200 bg-surface px-5 py-2.5 shadow-[0_-8px_30px_-8px_rgba(0,0,0,0.15)] lg:hidden">
         <div className="flex min-w-0 flex-col leading-tight">
           {WAITLIST_MODE ? (
             <>
