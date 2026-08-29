@@ -21,6 +21,7 @@ import FadeIn from "@/components/FadeIn";
 import FooterLink, { type FooterLinkItem } from "@/components/FooterLink";
 import MediaPlaceholder from "@/components/MediaPlaceholder";
 import Hero from "@/components/Hero";
+import AutoplayVideo from "@/components/AutoplayVideo";
 import FaqAccordion from "@/components/FaqAccordion";
 import WaitlistButton from "@/components/WaitlistButton";
 import { WAITLIST_MODE, EXTRAS_AVAILABLE } from "@/lib/config";
@@ -138,25 +139,15 @@ function ElectricMixSection() {
           {/* Looping muted demo video. .mov → quicktime + mp4-labelled sources;
               poster covers browsers that can't decode QuickTime. */}
           <div className="mx-auto w-full max-w-sm">
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="metadata"
+            <AutoplayVideo
+              sources={[
+                { src: `/videos/${encodeURIComponent("סרטון הסבר מגנט.mov")}`, type: "video/quicktime" },
+                { src: `/videos/${encodeURIComponent("סרטון הסבר מגנט.mov")}`, type: "video/mp4" },
+              ]}
               poster={`/images/${encodeURIComponent("שייקר חדש2.jpeg")}`}
-              aria-label="שייקר VAULT בפעולה — הדגמה"
+              ariaLabel="שייקר VAULT בפעולה — הדגמה"
               className="w-full rounded-2xl border border-zinc-200 bg-zinc-900 shadow-[0_24px_70px_-28px_rgba(0,0,0,0.4)]"
-            >
-              <source
-                src={`/videos/${encodeURIComponent("סרטון הסבר מגנט.mov")}`}
-                type="video/quicktime"
-              />
-              <source
-                src={`/videos/${encodeURIComponent("סרטון הסבר מגנט.mov")}`}
-                type="video/mp4"
-              />
-            </video>
+            />
           </div>
         </FadeIn>
       </div>
@@ -249,15 +240,12 @@ function VaultInActionSection() {
         </FadeIn>
         <FadeIn delay={120}>
           <div className="mx-auto mt-10 overflow-hidden rounded-2xl border border-zinc-200 shadow-[0_24px_70px_-28px_rgba(0,0,0,0.4)]">
-            <video
-              src={`/videos/${encodeURIComponent("שייקר חדש4.mp4")}`}
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="metadata"
+            <AutoplayVideo
+              sources={[
+                { src: `/videos/${encodeURIComponent("שייקר חדש4.mp4")}`, type: "video/mp4" },
+              ]}
               poster={`/images/${encodeURIComponent("שייקר חדש2.jpeg")}`}
-              aria-label="שייקר VAULT בפעולה — טכנולוגיית Mag-Grip בחדר הכושר"
+              ariaLabel="שייקר VAULT בפעולה — טכנולוגיית Mag-Grip בחדר הכושר"
               className="aspect-video w-full bg-zinc-900 object-cover"
             />
           </div>

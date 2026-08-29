@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { WAITLIST_MODE } from "@/lib/config";
 import WaitlistButton from "@/components/WaitlistButton";
+import AutoplayVideo from "@/components/AutoplayVideo";
 import FadeIn from "@/components/FadeIn";
 
 // Main product — Hebrew handle, encoded for a safe URL (route decodes it).
@@ -20,19 +21,15 @@ export default function Hero() {
   return (
     <section className="relative flex min-h-[86vh] w-full items-center justify-center overflow-hidden bg-surface sm:min-h-[92vh]">
       {/* Edge-to-edge lifestyle video background */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="auto"
+      <AutoplayVideo
+        sources={[
+          { src: VIDEO_SRC, type: "video/quicktime" },
+          { src: VIDEO_SRC, type: "video/mp4" },
+        ]}
         poster={VIDEO_POSTER}
-        aria-label="שייקר VAULT החשמלי בפעולה — טכנולוגיית Mag-Grip"
+        ariaLabel="שייקר VAULT החשמלי בפעולה — טכנולוגיית Mag-Grip"
         className="absolute inset-0 h-full w-full object-cover object-center"
-      >
-        <source src={VIDEO_SRC} type="video/quicktime" />
-        <source src={VIDEO_SRC} type="video/mp4" />
-      </video>
+      />
 
       {/* Global dark overlay — uniform legibility wash + a vertical gradient
           for extra depth toward the bottom. No local box behind the text. */}

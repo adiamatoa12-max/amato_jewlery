@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -239,23 +239,9 @@ export default function ProductView({
         }
       : GALLERY_MEDIA[activeThumb] ?? GALLERY_MEDIA[0];
 
-  // Persistent mobile buy-bar: visible whenever the main Buy button is NOT in
-  // view — including the gallery region at the top of the page (button still
-  // below the fold) and after it scrolls past. Hides only while the main CTA is
-  // on screen, so there's never a duplicate CTA. IntersectionObserver avoids a
-  // scroll-handler and its layout thrash.
-  const buyRef = useRef<HTMLDivElement | null>(null);
-  const [showSticky, setShowSticky] = useState(false);
-  useEffect(() => {
-    const el = buyRef.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([entry]) => setShowSticky(!entry.isIntersecting),
-      { threshold: 0 },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
+  // Mobile has exactly one checkout button: the always-visible sticky bar at the
+  // bottom. The in-flow CTA below is desktop-only (`hidden lg:block`), so the two
+  // never both appear — no duplicate / overlap on mobile.
 
   return (
     <>
@@ -477,7 +463,7 @@ export default function ProductView({
 
           {/* CTA — routes to the direct Shopify checkout for the selected
               bundle. Pre-launch waitlist mode still shows the signup. */}
-          <div ref={buyRef} id="buy">
+          <div id="buy" className="hidden lg:block">
           {WAITLIST_MODE ? (
             <WaitlistButton className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#2952e3] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-white shadow-[0_0_30px_-6px_rgba(41,82,227,0.5)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#4169e5] hover:shadow-[0_0_46px_-4px_rgba(41,82,227,0.65)] active:scale-95" />
           ) : soldOut ? (
@@ -500,14 +486,14 @@ export default function ProductView({
           )}
           </div>
           {!WAITLIST_MODE && !soldOut && (
-            <>
+            <div className="hidden lg:block">
               <p className="mt-3 text-center text-xs font-medium tracking-wide text-zinc-600">
                 🔒 תשלום מאובטח | משלוח חינם | 30 יום להחזרה
               </p>
               <p className="mt-1.5 text-center text-[11px] font-medium tracking-[0.08em] text-zinc-400">
                 Apple Pay | Google Pay | כרטיס אשראי
               </p>
-            </>
+            </div>
           )}
           {checkoutError && (
             <p className="mt-2 text-center text-xs font-medium text-red-600">
@@ -625,11 +611,9 @@ export default function ProductView({
         </section>
       </div>
 
-      {/* Sticky buy bar — slides in once the main CTA scrolls out of view (mobile) */}
+      {/* Sticky buy bar — the single, always-visible checkout button on mobile. */}
       <div
-        className={`fixed inset-x-0 bottom-0 z-40 flex items-center gap-4 border-t border-zinc-200 bg-surface px-5 py-2.5 shadow-[0_-8px_30px_-8px_rgba(0,0,0,0.15)] transition-transform duration-300 ease-out lg:hidden ${
-          showSticky ? "translate-y-0" : "translate-y-full"
-        }`}
+        className="fixed inset-x-0 bottom-0 z-40 flex items-center gap-4 border-t border-zinc-200 bg-surface px-5 py-2.5 shadow-[0_-8px_30px_-8px_rgba(0,0,0,0.15)] lg:hidden"
       >
         <div className="flex min-w-0 flex-col leading-tight">
           {WAITLIST_MODE ? (

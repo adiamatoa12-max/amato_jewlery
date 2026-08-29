@@ -2,86 +2,64 @@
 
 import { useEffect, useRef } from "react";
 
+type VideoSource = { src: string; type: string };
+
 /**
- * A muted background video that only plays while on screen.
+ * Background / demo video that reliably autoplays on mobile.
  *
- * - An IntersectionObserver pauses offscreen instances so multiple copies of
- *   the same clip don't all decode at once — keeps scrolling smooth.
- * - Optional `start`/`end` (seconds) loop a single segment of the source, so
- *   several tiles can each tell a different part of the story from one file.
+ * Two things browsers (esp. iOS Safari) need that plain JSX doesn't guarantee:
+ *  1. `muted` set as a real property — React's `muted` attribute is unreliable,
+ *     and mobile browsers block autoplay for anything they consider unmuted,
+ *     which is what surfaces the tap-to-play button.
+ *  2. an explicit play() nudge once data is ready.
+ * We do both here. Controls are never rendered, so it loops as background motion.
  */
 export default function AutoplayVideo({
-  src,
-  className,
+  sources,
   poster,
-  start,
-  end,
+  className,
+  ariaLabel,
 }: {
-  src: string;
-  className?: string;
+  sources: VideoSource[];
   poster?: string;
-  start?: number;
-  end?: number;
+  className?: string;
+  ariaLabel?: string;
 }) {
-  const ref = useRef<HTMLVideoElement | null>(null);
-  const segmented = typeof start === "number" && typeof end === "number";
+  const ref = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    // Seek to the segment start once metadata is known.
-    const seekToStart = () => {
-      if (segmented && el.currentTime < (start as number)) {
-        el.currentTime = start as number;
-      }
+    const v = ref.current;
+    if (!v) return;
+    v.muted = true;
+    v.defaultMuted = true;
+    const play = () => {
+      const p = v.play();
+      if (p && typeof p.catch === "function") p.catch(() => {});
     };
-    if (segmented) {
-      if (el.readyState >= 1) seekToStart();
-      else el.addEventListener("loadedmetadata", seekToStart);
-    }
-
-    // Loop within the segment: when we pass `end`, jump back to `start`.
-    const onTimeUpdate = () => {
-      if (segmented && el.currentTime >= (end as number)) {
-        el.currentTime = start as number;
-      }
-    };
-    if (segmented) el.addEventListener("timeupdate", onTimeUpdate);
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            seekToStart();
-            el.play().catch(() => {});
-          } else {
-            el.pause();
-          }
-        }
-      },
-      { threshold: 0.2 },
-    );
-    io.observe(el);
-
+    play();
+    v.addEventListener("loadeddata", play);
+    v.addEventListener("canplay", play);
     return () => {
-      io.disconnect();
-      el.removeEventListener("loadedmetadata", seekToStart);
-      el.removeEventListener("timeupdate", onTimeUpdate);
+      v.removeEventListener("loadeddata", play);
+      v.removeEventListener("canplay", play);
     };
-  }, [segmented, start, end]);
+  }, []);
 
   return (
     <video
       ref={ref}
-      src={src}
-      poster={poster}
-      className={className}
       autoPlay
+      loop
       muted
-      loop={!segmented}
       playsInline
-      preload="metadata"
-    />
+      preload="auto"
+      poster={poster}
+      aria-label={ariaLabel}
+      className={className}
+    >
+      {sources.map((s) => (
+        <source key={s.type} src={s.src} type={s.type} />
+      ))}
+    </video>
   );
 }
