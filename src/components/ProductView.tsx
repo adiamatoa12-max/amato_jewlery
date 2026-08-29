@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -239,9 +239,33 @@ export default function ProductView({
         }
       : GALLERY_MEDIA[activeThumb] ?? GALLERY_MEDIA[0];
 
-  // Mobile has exactly one checkout button: the always-visible sticky bar at the
-  // bottom. The in-flow CTA below is desktop-only (`hidden lg:block`), so the two
-  // never both appear — no duplicate / overlap on mobile.
+  // Dynamic CTA label — reflects the bundle selection on every checkout button.
+  const ctaLabel = bundle
+    ? "להזמנה השני ב-50 ₪ ←"
+    : "לבחירת צבעים והזמנה ←";
+
+  // Exactly one CTA on screen at a time: the in-box button while the buy box is
+  // visible, and the single sticky bottom bar only once it scrolls fully out of
+  // view. A scroll listener (with an immediate initial check) is used rather than
+  // IntersectionObserver so the state is correct on first paint everywhere.
+  const buyRef = useRef<HTMLDivElement | null>(null);
+  const [showSticky, setShowSticky] = useState(false);
+  useEffect(() => {
+    const update = () => {
+      const el = buyRef.current;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      // Sticky shows only when the in-box CTA is entirely above or below the fold.
+      setShowSticky(r.bottom <= 0 || r.top >= window.innerHeight);
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
 
   return (
     <>
@@ -463,7 +487,7 @@ export default function ProductView({
 
           {/* CTA — routes to the direct Shopify checkout for the selected
               bundle. Pre-launch waitlist mode still shows the signup. */}
-          <div id="buy" className="hidden lg:block">
+          <div ref={buyRef} id="buy">
           {WAITLIST_MODE ? (
             <WaitlistButton className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#2952e3] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-white shadow-[0_0_30px_-6px_rgba(41,82,227,0.5)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#4169e5] hover:shadow-[0_0_46px_-4px_rgba(41,82,227,0.65)] active:scale-95" />
           ) : soldOut ? (
@@ -481,13 +505,13 @@ export default function ProductView({
               disabled={checkingOut}
               className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#2952e3] px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-white shadow-[0_0_30px_-6px_rgba(41,82,227,0.5)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#4169e5] hover:shadow-[0_0_46px_-4px_rgba(41,82,227,0.65)] active:scale-95 disabled:cursor-not-allowed disabled:opacity-70"
             >
-              {checkingOut ? "מעבר לתשלום…" : "המשך לתשלום מאובטח"}
+              {checkingOut ? "מעבר לתשלום…" : ctaLabel}
             </button>
           )}
           </div>
           {!WAITLIST_MODE && !soldOut && (
-            <div className="hidden lg:block">
-              <p className="mt-3 text-center text-xs font-medium tracking-wide text-zinc-600">
+            <div className="mt-3">
+              <p className="text-center text-xs font-medium tracking-wide text-zinc-600">
                 🔒 תשלום מאובטח | משלוח חינם | 30 יום להחזרה
               </p>
               <p className="mt-1.5 text-center text-[11px] font-medium tracking-[0.08em] text-zinc-400">
@@ -611,9 +635,12 @@ export default function ProductView({
         </section>
       </div>
 
-      {/* Sticky buy bar — the single, always-visible checkout button on mobile. */}
+      {/* Sticky buy bar — the single mobile CTA bar; slides in only once the
+          in-box CTA scrolls out of view, so there's never a second bar/overlap. */}
       <div
-        className="fixed inset-x-0 bottom-0 z-40 flex items-center gap-4 border-t border-zinc-200 bg-surface px-5 py-2.5 shadow-[0_-8px_30px_-8px_rgba(0,0,0,0.15)] lg:hidden"
+        className={`fixed inset-x-0 bottom-0 z-40 flex items-center gap-4 border-t border-zinc-200 bg-surface px-5 py-2.5 shadow-[0_-8px_30px_-8px_rgba(0,0,0,0.15)] transition-transform duration-300 ease-out lg:hidden ${
+          showSticky ? "translate-y-0" : "translate-y-full"
+        }`}
       >
         <div className="flex min-w-0 flex-col leading-tight">
           {WAITLIST_MODE ? (
@@ -653,7 +680,7 @@ export default function ProductView({
             disabled={checkingOut}
             className="flex flex-1 items-center justify-center rounded-full bg-[#2952e3] px-6 py-3.5 text-sm font-black tracking-[0.04em] text-white transition-all duration-300 hover:bg-[#4169e5] active:scale-95 disabled:opacity-70"
           >
-            {checkingOut ? "מעבר לתשלום…" : "המשך לתשלום"}
+            {checkingOut ? "מעבר לתשלום…" : ctaLabel}
           </button>
         )}
       </div>
