@@ -8,10 +8,9 @@ import FadeIn from "@/components/FadeIn";
 
 // Main product — Hebrew handle, encoded for a safe URL (route decodes it).
 const PRODUCT_URL = `/product/${encodeURIComponent("vault-magnetic-shaker")}`;
-// Hero background clip. New uploaded clip is a .mov (QuickTime) — offer it as
-// both quicktime (Safari) and mp4-labelled (Chrome attempts the H.264 stream)
-// so autoplay works across browsers. Filename has spaces + Hebrew → encode it.
-const VIDEO_SRC = `/videos/${encodeURIComponent("סרטון לאתר vault.mov")}`;
+// Hero background clip — MP4 / H.264 for universal autoplay (incl. Android &
+// all browsers). Filename has spaces + Hebrew → encode it.
+const VIDEO_SRC = `/videos/${encodeURIComponent("סרטון לאתר vault.mp4")}`;
 const VIDEO_POSTER = `/images/${encodeURIComponent("שייקר חדש2.jpeg")}`;
 
 const ctaButton =
@@ -22,10 +21,7 @@ export default function Hero() {
     <section className="relative flex min-h-[86vh] w-full items-center justify-center overflow-hidden bg-surface sm:min-h-[92vh]">
       {/* Edge-to-edge lifestyle video background */}
       <AutoplayVideo
-        sources={[
-          { src: VIDEO_SRC, type: "video/quicktime" },
-          { src: VIDEO_SRC, type: "video/mp4" },
-        ]}
+        sources={[{ src: VIDEO_SRC, type: "video/mp4" }]}
         poster={VIDEO_POSTER}
         ariaLabel="שייקר VAULT החשמלי בפעולה — טכנולוגיית Mag-Grip"
         className="absolute inset-0 h-full w-full object-cover object-center"

@@ -136,13 +136,11 @@ function ElectricMixSection() {
           </div>
         </FadeIn>
         <FadeIn delay={120} className="order-first md:order-none">
-          {/* Looping muted demo video. .mov → quicktime + mp4-labelled sources;
-              poster covers browsers that can't decode QuickTime. */}
+          {/* Looping muted demo video — MP4 / H.264 for universal autoplay. */}
           <div className="mx-auto w-full max-w-sm">
             <AutoplayVideo
               sources={[
-                { src: `/videos/${encodeURIComponent("סרטון הסבר מגנט.mov")}`, type: "video/quicktime" },
-                { src: `/videos/${encodeURIComponent("סרטון הסבר מגנט.mov")}`, type: "video/mp4" },
+                { src: `/videos/${encodeURIComponent("סרטון הסבר מגנט.mp4")}`, type: "video/mp4" },
               ]}
               poster={`/images/${encodeURIComponent("שייקר חדש2.jpeg")}`}
               ariaLabel="שייקר VAULT בפעולה — הדגמה"
