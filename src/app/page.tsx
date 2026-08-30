@@ -132,7 +132,7 @@ function ElectricMixSection() {
               <strong className="font-bold text-[#111111]">שייק חלק לגמרי, בלי גושים</strong>.
               בלי לנער. לחיצה אחת וזהו.
             </p>
-            <PrimaryCta className={`mt-8 ${goldButton}`} label="לבחירת צבעים והזמנה ←" />
+            <PrimaryCta className={`mt-8 ${goldButton}`} label="לרכישת השייקר בהנחה ←" />
           </div>
         </FadeIn>
         <FadeIn delay={120} className="order-first md:order-none">
@@ -248,7 +248,7 @@ function VaultInActionSection() {
             />
           </div>
           <div className="mt-8 flex justify-center">
-            <PrimaryCta className={goldButton} label="לבחירת צבעים והזמנה ←" />
+            <PrimaryCta className={goldButton} label="לרכישת השייקר בהנחה ←" />
           </div>
         </FadeIn>
       </div>
@@ -654,7 +654,7 @@ function Anatomy() {
         </div>
 
         <div className="mt-14 flex justify-center">
-          <PrimaryCta className={goldButton} label="לבחירת צבעים והזמנה ←" />
+          <PrimaryCta className={goldButton} label="לרכישת השייקר בהנחה ←" />
         </div>
       </div>
     </section>
@@ -717,7 +717,7 @@ function Compatibility() {
               ))}
             </ul>
 
-            <PrimaryCta className={`mt-9 ${goldButton}`} label="לבחירת צבעים והזמנה ←" />
+            <PrimaryCta className={`mt-9 ${goldButton}`} label="לרכישת השייקר בהנחה ←" />
           </div>
         </FadeIn>
       </div>
@@ -1099,7 +1099,7 @@ function StickyBuyBar() {
         href={PRODUCT_URL}
         className="flex w-full items-center justify-center rounded-full bg-[#2952e3] px-6 py-3 text-sm font-black uppercase tracking-[0.08em] text-white shadow-[0_0_26px_-6px_rgba(41,82,227,0.5)] ring-1 ring-[#2952e3]/40 transition-all duration-300 active:scale-95"
       >
-        לבחירת צבעים והזמנה ←
+        לרכישת השייקר בהנחה ←
       </Link>
     </div>
   );

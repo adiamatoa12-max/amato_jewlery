@@ -53,7 +53,7 @@ export default function Hero() {
                   href={PRODUCT_URL}
                   className={`mx-auto max-w-xs sm:mx-0 sm:max-w-none ${ctaButton}`}
                 >
-                  לבחירת צבעים והזמנה ←
+                  לרכישת השייקר בהנחה ←
                 </Link>
               )}
             </div>

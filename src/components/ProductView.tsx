@@ -242,7 +242,7 @@ export default function ProductView({
   // Dynamic CTA label — reflects the bundle selection on every checkout button.
   const ctaLabel = bundle
     ? "להזמנה השני ב-50 ₪ ←"
-    : "לבחירת צבעים והזמנה ←";
+    : "לרכישת השייקר בהנחה ←";
 
   // Mobile renders exactly ONE checkout button: the always-visible sticky bottom
   // bar. The in-box CTA is desktop-only (`hidden lg:block`), so a second button
