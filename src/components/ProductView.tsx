@@ -253,7 +253,10 @@ export default function ProductView({
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start lg:gap-x-16 lg:gap-y-0">
         {/* HEADER — title/price. order-1 (top) on mobile; right column · top row
             on desktop (RTL). The gallery slots in after this on mobile. */}
-        <section className="order-1 flex flex-col lg:col-start-1 lg:row-start-1">
+        <section
+          dir="rtl"
+          className="order-1 flex flex-col text-right lg:col-start-1 lg:row-start-1"
+        >
           <Link
             href={`/#${collectionHandle}`}
             className="text-[11px] font-bold uppercase tracking-[0.25em] transition-colors duration-300"
@@ -262,7 +265,7 @@ export default function ProductView({
             {collectionTitle}
           </Link>
 
-          <h1 className="mt-4 font-display text-4xl font-black leading-tight tracking-tight text-zinc-900 lg:text-5xl">
+          <h1 className="mt-3 text-balance font-display text-4xl font-black leading-[1.1] tracking-tight text-zinc-900 lg:text-5xl">
             {product.title}
           </h1>
 
@@ -294,8 +297,8 @@ export default function ProductView({
             </p>
           ) : (
             <>
-              <div className="mt-5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                <p className="font-display text-3xl font-extrabold tabular-nums text-zinc-900">
+              <div className="mt-6 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <p className="font-display text-4xl font-extrabold tabular-nums text-zinc-900">
                   {formatPrice(displayPrice, product.currency)}
                 </p>
                 {bundle && (
@@ -311,7 +314,7 @@ export default function ProductView({
               </div>
 
               <p
-                className={`mt-5 flex items-center gap-2 text-xs font-medium tracking-[0.08em] ${
+                className={`mt-2.5 flex items-center gap-2 text-xs font-medium tracking-[0.08em] ${
                   soldOut ? "text-zinc-500" : "text-emerald-600"
                 }`}
               >
