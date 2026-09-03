@@ -73,34 +73,29 @@ const TRUST_BADGES = [
   },
 ];
 
-// Curated gallery: studio value shot → lifestyle → Mag-Grip streaming shot →
-// athlete → action video. Mixed media (image + video). Hebrew filenames encoded.
+// Product-page gallery — the new VAULT product shots. next/image encodes the
+// Hebrew filenames (which contain spaces) automatically.
 type GalleryItem = { type: "image" | "video"; src: string; alt: string };
 const GALLERY_MEDIA: GalleryItem[] = [
   {
     type: "image",
-    src: "/images/שייקר חדש2.jpeg",
-    alt: "שייקר VAULT החשמלי — גוף שקוף עם בסיס מנוע ומעמד טלפון מובנה",
+    src: "/images/תמונה vault דף מוצר.jpeg",
+    alt: "שייקר VAULT החשמלי עם מעמד מגנטי לטלפון בחדר הכושר",
   },
   {
     type: "image",
-    src: "/images/שייקר חדש.jpeg",
-    alt: "שייקר VAULT החשמלי מונח על ספסל האימון",
+    src: "/images/תמונה vault דף מוצר2.jpeg",
+    alt: "שייקר VAULT החשמלי עם מכסה מתהפך פתוח",
   },
   {
     type: "image",
-    src: "/images/שייקר חדש1.jpeg",
-    alt: "טכנולוגיית Mag-Grip — הטלפון מוצמד לרוחב על מתקן המשקולות",
+    src: "/images/תמונה vault דף מוצר3.jpeg",
+    alt: "שייקר VAULT החשמלי ביד — סימוני קיבולת עד 500 מ״ל",
   },
   {
     type: "image",
-    src: "/images/שייקר חדש3.jpeg",
-    alt: "ספורטאי מחזיק את שייקר VAULT החשמלי בחדר הכושר",
-  },
-  {
-    type: "video",
-    src: `/videos/${encodeURIComponent("שייקר חדש4.mp4")}`,
-    alt: "שייקר VAULT החשמלי בפעולה — טכנולוגיית Mag-Grip על ספסל האימון",
+    src: "/images/תמונה vault דף מוצר4.jpeg",
+    alt: "שייקר VAULT החשמלי ביד עם מכסה מגנטי פתוח בחדר הכושר",
   },
 ];
 
@@ -567,9 +562,9 @@ export default function ProductView({
             )}
           </div>
 
-          {/* Thumbnails — lifestyle shots + video (colours are chosen via the
-              swatches). 5 columns so all media sit on one row. */}
-          <div className="grid grid-cols-5 gap-2.5">
+          {/* Thumbnails — product shots (colours are chosen via the swatches).
+              4 columns so all thumbnails sit on one row. */}
+          <div className="grid grid-cols-4 gap-2.5">
             {GALLERY_MEDIA.map((m, i) => (
               <button
                 key={m.src}
