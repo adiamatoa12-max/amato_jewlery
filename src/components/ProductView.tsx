@@ -239,21 +239,7 @@ export default function ProductView({
     ? "להזמנה השני ב-50 ₪ ←"
     : "לרכישת השייקר בהנחה ←";
 
-  // Express-checkout availability — Apple Pay on Apple devices, Google Pay on
-  // Android, both on desktop. Defaults to both for SSR, then narrows on mount.
-  // The buttons launch the same cart flow, landing the shopper in Shopify's
-  // accelerated checkout where the native Apple/Google Pay sheet completes.
-  const [express, setExpress] = useState({ apple: true, google: true });
-  useEffect(() => {
-    const isApple =
-      typeof window !== "undefined" && "ApplePaySession" in window;
-    const isAndroid = /Android/i.test(navigator.userAgent || "");
-    if (isApple) setExpress({ apple: true, google: false });
-    else if (isAndroid) setExpress({ apple: false, google: true });
-    else setExpress({ apple: true, google: true });
-  }, []);
-
-  // One primary CTA on screen at a time: the in-box checkout cluster while the
+  // One primary CTA on screen at a time: the in-box checkout button while the
   // buy box is visible, the sticky bottom bar only once it scrolls out of view.
   const buyRef = useRef<HTMLDivElement | null>(null);
   const [showSticky, setShowSticky] = useState(false);
@@ -516,51 +502,6 @@ export default function ProductView({
             >
               {checkingOut ? "מעבר לתשלום…" : ctaLabel}
             </button>
-          )}
-
-          {/* Express checkout — launches the accelerated Shopify checkout, where
-              the native Apple Pay / Google Pay sheet completes the payment. */}
-          {!WAITLIST_MODE && !soldOut && (express.apple || express.google) && (
-            <div className="mt-3.5 space-y-2.5">
-              <div className="flex items-center gap-3">
-                <span className="h-px flex-1 bg-zinc-200" aria-hidden />
-                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">
-                  או תשלום מהיר
-                </span>
-                <span className="h-px flex-1 bg-zinc-200" aria-hidden />
-              </div>
-              {express.apple && (
-                <button
-                  type="button"
-                  onClick={handleCheckout}
-                  disabled={checkingOut}
-                  aria-label="תשלום מהיר עם Apple Pay"
-                  className="flex w-full items-center justify-center gap-1.5 rounded-full bg-black px-6 py-3.5 text-white ring-1 ring-black/5 transition-all duration-200 hover:opacity-90 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
-                >
-                  <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="currentColor" aria-hidden>
-                    <path d="M17.6 12.7c0-2.2 1.8-3.3 1.9-3.4-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.7.8-3.3.8-.7 0-1.7-.8-2.8-.8-1.4 0-2.8.8-3.5 2.1-1.5 2.6-.4 6.5 1.1 8.6.7 1 1.5 2.2 2.6 2.1 1 0 1.4-.7 2.7-.7s1.6.7 2.7.6c1.1 0 1.8-1 2.5-2 .8-1.2 1.1-2.3 1.1-2.3 0 0-2.1-.8-2.1-3.2zM15.4 6.2c.6-.7 1-1.7.9-2.7-.9 0-1.9.6-2.5 1.3-.6.6-1 1.6-.9 2.6 1 .1 1.9-.5 2.5-1.2z" />
-                  </svg>
-                  <span className="text-[15px] font-semibold">Pay</span>
-                </button>
-              )}
-              {express.google && (
-                <button
-                  type="button"
-                  onClick={handleCheckout}
-                  disabled={checkingOut}
-                  aria-label="תשלום מהיר עם Google Pay"
-                  className="flex w-full items-center justify-center gap-1.5 rounded-full border border-zinc-300 bg-white px-6 py-3.5 text-zinc-800 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-all duration-200 hover:bg-zinc-50 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
-                >
-                  <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" aria-hidden>
-                    <path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.7-2.4 3.6v3h3.9c2.3-2.1 3.5-5.2 3.5-8.8z" />
-                    <path fill="#34A853" d="M12 24c3.2 0 6-1.1 7.9-2.9l-3.9-3c-1.1.7-2.5 1.2-4 1.2-3.1 0-5.7-2.1-6.6-4.9H1.4v3.1C3.3 21.3 7.3 24 12 24z" />
-                    <path fill="#FBBC05" d="M5.4 14.4c-.2-.7-.4-1.4-.4-2.4s.1-1.6.4-2.4V6.6H1.4C.5 8.3 0 10.1 0 12s.5 3.7 1.4 5.4l4-3z" />
-                    <path fill="#EA4335" d="M12 4.8c1.8 0 3.3.6 4.6 1.8l3.4-3.4C18 1.2 15.2 0 12 0 7.3 0 3.3 2.7 1.4 6.6l4 3.1C6.3 6.9 8.9 4.8 12 4.8z" />
-                  </svg>
-                  <span className="text-[15px] font-semibold">Pay</span>
-                </button>
-              )}
-            </div>
           )}
           </div>
           {!WAITLIST_MODE && !soldOut && (
