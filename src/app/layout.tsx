@@ -33,6 +33,16 @@ const rubik = Rubik({
   subsets: ["hebrew", "latin"],
 });
 
+// Origin of the Shopify checkout the buy button redirects to — used to preconnect
+// so the handshake is already done by the time the shopper is sent to pay.
+const SHOPIFY_ORIGIN = (() => {
+  const d = process.env.SHOPIFY_STORE_DOMAIN
+    ?.replace(/^https?:\/\//, "")
+    .replace(/\/+$/, "")
+    .trim();
+  return d ? `https://${d}` : "";
+})();
+
 const TITLE = "VAULT Shaker | שייקר מגנטי חשמלי לחדר כושר";
 const DESCRIPTION =
   "VAULT — שייקר מגנטי לחדר כושר. הסוף לטלפון על הרצפה במכון: מחזיק את המכשיר שלך בגובה העיניים עם טכנולוגיית Mag-Grip, ומכין שייק חלק ב-10 שניות.";
@@ -106,6 +116,17 @@ export default async function RootLayout({
       className={`${assistant.variable} ${frankRuhl.variable} ${rubik.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-[#F7F7F5] text-zinc-900">
+        {/* Warm the connection to Shopify's checkout so the buy-button redirect
+            reaches the payment gateway with DNS/TLS already negotiated — shaving
+            the handshake off the click-to-payment path. */}
+        {SHOPIFY_ORIGIN && (
+          <>
+            <link rel="preconnect" href={SHOPIFY_ORIGIN} />
+            <link rel="dns-prefetch" href={SHOPIFY_ORIGIN} />
+          </>
+        )}
+        <link rel="preconnect" href="https://cdn.shopify.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://cdn.shopify.com" />
         <AnalyticsNoscript />
         {/* Skip link — first focusable element for keyboard/SR users */}
         <a

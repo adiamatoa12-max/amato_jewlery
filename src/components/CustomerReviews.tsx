@@ -129,6 +129,8 @@ export default function CustomerReviews({ handle }: { handle: string }) {
                 <input
                   type="text"
                   required
+                  autoComplete="name"
+                  autoCapitalize="words"
                   aria-label="השם שלך"
                   placeholder="השם שלך"
                   className="mt-5 w-full border-b border-zinc-300 bg-transparent py-2 text-base text-zinc-900 placeholder:text-zinc-500 focus:border-[#2952e3] focus:outline-none"

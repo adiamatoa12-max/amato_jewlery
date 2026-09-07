@@ -1219,6 +1219,10 @@ function Footer() {
             <form className="mt-5 flex items-center border-b border-zinc-300 pb-2">
               <input
                 type="email"
+                autoComplete="email"
+                autoCapitalize="off"
+                spellCheck={false}
+                inputMode="email"
                 aria-label="כתובת אימייל לרישום לניוזלטר"
                 placeholder="כתובת אימייל"
                 className="w-full bg-transparent text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none"

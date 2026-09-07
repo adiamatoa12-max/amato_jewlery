@@ -132,6 +132,8 @@ export default function WaitlistModal() {
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                autoComplete="name"
+                autoCapitalize="words"
                 aria-label="השם שלך"
                 placeholder="השם שלך"
                 className="w-full rounded-full border border-zinc-300 bg-surface px-5 py-3 text-sm text-zinc-900 placeholder:text-zinc-500 focus:border-[#2952e3] focus:outline-none"
@@ -141,6 +143,10 @@ export default function WaitlistModal() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                autoComplete="email"
+                autoCapitalize="off"
+                spellCheck={false}
+                inputMode="email"
                 aria-label="כתובת אימייל"
                 placeholder="כתובת אימייל"
                 dir="ltr"
@@ -151,6 +157,7 @@ export default function WaitlistModal() {
                 inputMode="tel"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
+                autoComplete="tel"
                 // Lenient: digits, spaces, +, -, (), 7–15 chars. Optional field.
                 pattern="[0-9+()\-\s]{7,15}"
                 aria-label="מספר טלפון (לא חובה)"
